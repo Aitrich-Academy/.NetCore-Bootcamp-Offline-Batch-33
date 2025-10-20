@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    html,body
+    {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        overflow-x: hidden;
+        padding: 0px;
+    
+    }
+        .menu-bar{
+        position: absolute;
+        width: 300px;
+        height: 1100px;
+        top: 0px;
+        background-color: #20a6fc;
+    }
+    .menu-bar h2
+    {
+        position: absolute;
+        font-family:Bahnschrift;
+        width: 190px;
+        margin-left: 40px;
+        font-weight: 900px;
+        font-size: 32px;
+        color: white;
+    }
+    #All_Jobs{
+        position: absolute;
+        margin-top: 317px;
+        margin-left: 45px;
+    }
+    #application{
+        position: absolute;
+        margin-top: 370px;
+        margin-left: 48px;
+    }
+    #message{
+        position: absolute;
+        margin-top: 420px;
+        margin-left: 45px;
+    }
+    #profile{
+        position: absolute;
+        margin-top: 470px;
+        margin-left: 45px;
+    }
+    #settings{
+        position: absolute;
+        margin-top: 520px;
+        margin-left: 45px;
+    }
+    #part-time{
+        position: absolute;
+        margin-top: 620px;
+        margin-left: 35px;
+    }
+    #full-time{
+        position: absolute;
+        margin-top: 700px;
+        margin-left: 40px;
+    }
+    #mid-level{
+        position: absolute;
+        margin-top: 760px;
+        margin-left: 40px;
+    }
+    #salary{
+        position: absolute;
+        margin-top: 820px;
+        margin-left: 40px;
+    }
+    #location{
+        position: absolute;
+        margin-top: 880px;
+        margin-left: 40px;
+    }
+    #onsite{
+        position: absolute;
+        margin-top: 950px;
+        margin-left: 47px;
+    }
+    .top-bar{
+        position: absolute;
+        background-color: white;
+        margin-left:300px;
+        width: 1200px;
+        height: 100px;
+    }
+    .content-bar{
+        position: absolute;
+        background-color: white;
+        margin-top: 100px;
+        margin-left: 300px;
+        width: 750px;
+        height: 1100px;
+    }
+    .sub-content1{
+        position: absolute;
+        background-color: white;
+        margin-left: 10px;
+        width: 550px;
+        height: 220px;
+        border: 1px solid;
+        border-radius: 10px;
+    }
+    .sub-content2 {
+        position: absolute;
+        background-color: white;
+        margin-left: 10px;
+        margin-top: 250px;
+        width: 550px;
+        height: 220px;
+        border: 1px solid;
+        border-radius: 10px;
+    }
+    .sub-content3{
+        position: absolute;
+        background-color: white;
+        margin-left: 10px;
+        margin-top: 500px;
+        width: 550px;
+        height: 220px;
+        border: 1px solid;
+        border-radius: 10px;
+    }
+    .rightside{
+        position: absolute;
+        margin-left: 1050px;
+        margin-top: 100px;
+        width: 450px;
+        height: 1100px;
+    }
+    .tab-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        margin:180px auto;
+        font-family: Arial, sans-serif;
+    }
+    .tab {
+        flex: 1;
+        text-align: center;
+        padding: 10px 0;
+        color: #aaa;
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+        transition: color 0.3s;
+    }
+    .tab.active {
+        color: #c0b090; /* light brown or gold-like color */
+    }
+    .tab.active::after {
+        content: "";
+        position: absolute;
+        left: 2%;
+        right: 20%;
+        bottom: 0;
+        height: 2px;
+        width: 140px;
+        background-color: #c0b090;
+        border-radius: 2px;
+    }
+    .btn1{
+        position: relative;
+        background-color: #20a6fc;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        width: 210px;
+        height: 40px;
+        border-radius: 10px;
+        margin-left: 10px;
+    }
+    .btn2{
+        position: relative;
+        background-color: #d6cdcd;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        width: 210px;
+        height: 40px;
+        border-radius: 10px;
+        margin-top: -40px;
+        margin-left: 250px;
+    }
+    .footer-menu{
+        position: absolute;
+        background-color: #20a6fc;
+        width: 1300px;
+        height: 240px;
+        margin-top: 1100px;
+    }
+    .footer-bar{
+        position: relative;
+        background-color: #f1f1f1;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        width: 650px;
+        height: 60px;
+        margin-left: 400px;
+        border-radius: 10px;
+    }
+    .footer-bar2{
+        position: absolute;
+        background-color: #20a6fc;
+        width: 200px;
+        height: 40px;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin-left: 400px;
+        border-radius: 10px;
+
+    }
+    .footer{
+        position: absolute;
+        background-color: rgb(255, 255, 255);
+        width: 1500px;
+        height: 300px;
+        margin-top: 1340px;
+    }
+    .footer1{
+        position: absolute;
+        background-color: #ffffff;
+        height: 250px;
+        width: 300px;
+        margin-left: 100px;
+        margin-top: 50px;
+    }
+    .youtube{
+        position: absolute;
+        width: 30px;
+        height: 20px;
+        margin-top: 25px;
+        margin-left: 0px;
+    }
+    .insta{
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        margin-top: 21px;
+        margin-left: 50px;
+    }
+    .twitter{
+        position: absolute;
+        width: 30px;
+        height: 20px;
+        margin-top: 25px;
+        margin-left: 95px;
+    }
+    .facebook{
+        position: absolute;
+        width: 15px;
+        height: 20px;
+        margin-top: 25px;
+        margin-left: 145px;
+    }
+    .linkedin{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        margin-top: 25px;
+        margin-left: 180px;
+    }
+    .footer2{
+        position: absolute;
+        background-color: #ffffff;
+        width: 150px;
+        height: 250px;
+        margin-left: 550px;
+        margin-top: 50px;
+    }
+    .footer3{
+        position: absolute;
+        background-color: #ffffff;
+        width: 150px;
+        height: 250px;
+        margin-left: 700px;
+        margin-top: 50px;
+    }
+    .footer4{
+        position: absolute;
+        background-color: #ffffff;
+        width: 150px;
+        height: 250px;
+        margin-left: 860px;
+        margin-top: 50px;
+    }
+    .footer5{
+        position: absolute;
+        background-color: #ffffff;
+        width: 150px;
+        height: 250px;
+        margin-left: 1000px;
+        margin-top: 50px;
+    }
+    .footer-deep{
+        position: absolute;
+        width: 1500px;
+        height: 50px;
+        margin-top: 1650px;
+    }
+    .mixed{
+        position:absolute;
+        background-color: #20a6fc;
+        width: 550px;
+        margin-top: 1500px;
+        margin-left: 400px;
+        opacity: 50%;
+    }
+    </style>
+</head>
+<body link="white" vlink="white">
+    <div class="menu-bar">
+       <h2>HireMe Now!</h2>
+        <img src="image/Ellipse 1.png" style="position: absolute; margin-top: 100px; margin-left: 85px;">
+        <p style="position: absolute; color: white; background-color: green; font-size: small; width: 80px; margin-top: 185px; margin-left: 90px; border-radius: 10px;">Open to work</p>
+       
+        <!-- <img src="image/buildings-2.png" style="position: absolute;  margin-top: 317px; margin-left: 45px; z-index: 1;">
+        <a href="#jobs" style="position: absolute; width: 200px; margin-left:30px; top: 310px; color: white; text-align: center; padding: 10px; font-family:Bahnschrift;background-color: #4cb7fc; border-radius: 12.5px; font-size: smaller;">All Jobs</a> -->
+        <img id="All_Jobs" src="image/buildings-2.png">
+        <a href="#" style="position: absolute; width: 200px; margin-left: 120px; margin-top: 320px;">All Jobs</a>
+        <img id="application" src="image/Vector.png">
+        <a href="#" style="position: absolute; width: 200px; margin-left: 120px; margin-top: 370px;" >My Application</a>
+         <img id="message" src="image/message-2.png">
+        <a href="#" style="position: absolute; width: 200px; margin-left: 120px; margin-top: 420px;" >Messages</a>
+         <img id="profile" src="image/profile.png">
+        <a href="#" style="position: absolute; width: 200px; margin-left: 120px; margin-top: 474px;" >Profile</a>
+         <img id="settings" src="image/setting-2.png">
+        <a href="#" style="position: absolute; width: 200px; margin-left: 120px; margin-top: 524px;" >Settings</a>
+
+         <img id="part-time" src="image/Group 1 (5).png">
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 630px; color: white;" >Type of Employment</p>
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 650px; color: white; font-size: 15px;" >Part Time Job</p>
+
+        <img id="full-time" src="image/Group 1 (2).png">
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 700px; color: white;" >Type of Employment</p>
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 718px; color: white; font-size: 15px;" >Full Time Job</p>
+
+        <img id="mid-level" src="image/Group 1 (1).png">
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 760px; color: white;" >Experience Level</p>
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 775px; color: white; font-size: 15px;" >Mid Level</p>
+
+         <img id="salary" src="image/Group 1 (4).png">
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 820px; color: white;" >Salary Range</p>
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 835px; color: white; font-size: 15px;" >&#8377;3000 - &#8377;5000</p>
+
+         <img id="location" src="image/Group 1 (3).png">
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 880px; color: white;" >Location</p>
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 895px; color: white; font-size: 15px;" >South East Asia</p>
+
+         <img id="onsite" src="images/Vector.png">
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 940px; color: white;" >Onsite / Remote</p>
+        <p style="position: absolute; width: 200px; margin-left: 120px; margin-top: 955px; color: white; font-size: 15px;" >Remote Job</p>
+    </div>
+    <div class="top-bar">
+        <img src="image/setting-4.png" style="position: absolute; margin-top: 10px; margin-left: 60px;">
+        <p style="position: absolute; margin-top: 35px; margin-left: 40px;" >All Jobs</p>
+
+        <img src="image/notification-bing.png" style="position: absolute; margin-top: 20px; margin-left: 900px;">
+        <img src="image/Ellipse 2.png" height="25px" style="position: absolute; margin-top: 20px; margin-left: 950px;">
+        <p style="margin-top: 25px; margin-left: 82%;">Leslie Alexander</p>
+    </div>
+
+    <div class="content-bar">
+        <img src="image/search-normal.png" style="position: absolute; margin-top: 40px; margin-left: 60px;">    
+        <p style="position: absolute; margin-top: 42px; margin-left: 95px;">Search for Jobs</p>
+        <img src="image/location.png" style="margin-top: 40px; margin-left: 350px;">
+        <p style="position: absolute; margin-top: -25px; margin-left: 380px;">Location</p>
+        <img src="image/arrow-down.png" style="position: absolute; margin-top: 45px; margin-left: 90px;">
+        <p style="margin-left: 380px; margin-top: 5px;">Sort by:</p>
+        <p style="margin-left: 450px; margin-top: -35px;">Newest Jobs</p>
+
+        <div class="sub-content1">
+            <img src="image/download (1).jpeg" style="position:absolute; height: 60px; width: 60px; margin-left: 0px; border-radius: 10px;">
+            <p style="position: absolute; margin-left: 120px; font-weight: bold;">Customer Service Executive</p>
+            <p style="position: absolute; margin-left: 120px; margin-top: 35px; font-size: small;">Location</p>
+            <p style="position: absolute; margin-left: 180px; margin-top: 35px; font-size: small; color: #20a6fc;">Teleperformance</p>
+            <p style=" position: absolute; margin-left: 70px; font-size: 14.5px; margin-top: 70px;">We are looking for a UI/UX Designer to turn our software into easy-to-use products for our clients.</p>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 80px; border-radius: 10px;">Full Time</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 165px; border-radius: 10px;">Mid Level</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 95px; text-align: center; margin-top: 170px; margin-left: 250px; border-radius: 10px;">₹3000-₹5000</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 350px; border-radius: 10px;">Indonesia</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 435px; border-radius: 10px;">Onsite</div>
+
+        </div>
+        
+        <div class="sub-content2">
+            <img src="image/download.jpeg" style="position:absolute; height: 60px; width: 80px; margin-left: 0px; border-radius: 10px;">
+            <p style="position: absolute; margin-left: 120px; font-weight: bold;">Junior Process Associate</p>
+            <p style="position: absolute; margin-left: 120px; margin-top: 35px; font-size: small;">Location</p>
+            <p style="position: absolute; margin-left: 180px; margin-top: 35px; font-size: small; color: #20a6fc;">Teleperformance</p>
+            <p style=" position: absolute; margin-left: 70px; font-size: 15px; margin-top: 70px;">Product Designer Responsibilities include defining Product specifications, creating digital or print drawings and designing fully-functional products.</p>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 80px; border-radius: 10px;">Full Time</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 165px; border-radius: 10px;">Mid Level</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 95px; text-align: center; margin-top: 170px; margin-left: 250px; border-radius: 10px;">₹3000-₹5000</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 350px; border-radius: 10px;">Indonesia</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 435px; border-radius: 10px;">Onsite</div>
+        </div>
+
+        <div class="sub-content3">
+            <img src="image/download.png" style="position:absolute; height: 60px; width: 60px; margin-left: 0px; border-radius: 10px;">
+           <p style="position: absolute; margin-left: 120px; font-weight: bold;">Junior Process Associate</p>
+            <p style="position: absolute; margin-left: 120px; margin-top: 35px; font-size: small;">Location</p>
+            <p style="position: absolute; margin-left: 180px; margin-top: 35px; font-size: small; color: #20a6fc;">Teleperformance</p>
+            <p style=" position: absolute; margin-left: 70px; font-size: 15px; margin-top: 70px;">Product Designer Responsibilities include defining Product specifications, creating digital or print drawings and designing fully-functional products.</p>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 80px; border-radius: 10px;">Full Time</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 165px; border-radius: 10px;">Mid Level</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 95px; text-align: center; margin-top: 170px; margin-left: 250px; border-radius: 10px;">₹3000-₹5000</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 350px; border-radius: 10px;">Indonesia</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 435px; border-radius: 10px;">Onsite</div>
+        </div>
+    </div>
+    <div class="rightside">
+        <img src="image/googleCover.jpg" height="200px" width="450px" alt="">
+        <p style="margin-left: 30px; margin-top: 5px; font-size: 14px;">12 Applicants</p>
+        <p style="position: absolute; color: #696363; margin-top: -30px; margin-left: 320px; font-size: 14px;">Posted 6 days ago</p>
+        
+        <p style="position: absolute; font-weight: bold; margin-left: 30px;">Junior Process Associate</p>
+        <img src="image/Group 5696.png" style="position: absolute; margin-left: 380px; margin-top: 10px; height: 30px;">
+        <p style="position: absolute; margin-top: 50px; margin-left: 30px; color: #20a6fc;">Guidehouse</p><p style="position: absolute; margin-top: 50px; margin-left: 120px; color: #696363;">*&nbsp;&nbsp; Location</p>
+        <img src="image/location.png" style="position: absolute; margin-top: 75px; margin-left: 25px; height: 20px; ">
+        <p style="margin-top: 90px; margin-left: 50px;">Location</p>
+
+        <hr color="#f1f1f1">
+
+        <img src="image/Group 1 (5).png" style="margin-left: 5px;">
+        <p style="position: absolute; margin-top: -50px; margin-left: 60px; color: #696363;">Type of Employment</p>
+        <p style="position: absolute; margin-top: -30px; margin-left: 60px;">Full Time Job</p>
+
+        <img src="image/Group 1 (6).png" style="position: absolute; margin-left: 180px;">
+        <p style="margin-top: -50px; margin-left: 295px; color: #696363;">Location</p>
+        <p style="position: absolute; margin-top: -15px; margin-left: 295px;">Indonesia</p>
+
+        <img src="image/Group 1 (7).png" style="position: absolute; margin-top: 30px; margin-left: 5px;">
+        <p style="position: absolute; margin-top: 30px; margin-left: 60px; color: #696363;">Experience Level</p>
+        <p style="position: absolute; margin-top: 50px; margin-left: 60px;">All Level</p>
+
+        <img src="image/Group 1 (8).png" style="position: absolute; margin-top: 30px; margin-left: 235px;">
+        <p style="position: absolute; margin-top: 30px; margin-left: 295px; color: #696363;">Onsite / Remote</p>
+        <p style="position: absolute; margin-top: 50px; margin-left: 295px;">Onsite</p>
+
+        <img src="image/Group 1 (9).png" style="position: absolute; margin-top: 95px; margin-left: 5px;">
+        <p style="position: absolute; margin-top: 95px; margin-left: 60px; color: #696363;">Salary Range</p>
+        <p style="position: absolute; margin-top: 115px; margin-left: 60px;">$2000 - $3000</p>
+
+        <div class="tab-container">
+            <div class="tab active">Company</div>
+            <div class="tab">Job Desc</div>
+            <div class="tab">Responsibilities</div>
+            <p style="position: absolute; color: #696363; margin-top: 205px; margin-left: 10px; text-align: left; font-size: 17px;">The acquisition bolsters Guidehouse's next-generation 
+                consulting Expertise across finance Services, energy,
+                health, national security and defense, while deepening our
+                capabilities with solutions in areas that include finance,
+                human-capital management, information tecnology, data 
+                analytics and performance management.
+            </p>
+        </div>
+        <div class="btn1">Apply Job</div>
+        <div class="btn2"> Message</div>
+
+    </div>
+
+    <div class="footer-menu">
+        <h1 style="color: white; margin-left: 550px; margin-top: 40px;">Get Notified every new job</h1>
+        <p style="color: white; width: 400px; text-align: center; margin-left: 550px; margin-top: 40px;">Ideal platform for job seekers passionate about starups and
+            seeking new career opportunities.
+        </p>
+        <div class="footer-bar">
+            <p style="margin-left: 60px;">Type Your Email Address</p>
+            <div class="footer-bar2">
+                <p>Subscribe</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+       <div class="footer1">
+        <h2>HireMe now!</h2>
+        <p style="width: 230px; margin-top: 30px; text-align: left;">Ideal platform for job seekers passionate about startups and seeking new career opportunities</p>
+        <img src="image/Subtract.png" class="footer1 youtube">
+        <img src="image/Group 33789.png" class="footer1 insta">
+        <img src="image/twitter icon.png" class="footer1 twitter">
+        <img src="image/facebook icon.png" class="footer1 facebook">
+        <img src="image/linkedin icon.png" class="footer1 linkedin">
+       </div>
+       <div class="footer2">
+            <p style="position: absolute; font-weight: bold; font-size: large;">About us</p>
+            <p style="position: absolute; margin-top: 60px;">About us</p>
+            <p style="position: absolute; margin-top: 85px;">Home</p>
+            <p style="position: absolute; margin-top: 110px;">Feature</p>
+            <p style="position: absolute; margin-top: 135px;">Team</p>
+       </div>
+       <div class="footer3">
+            <p style="position: absolute; font-weight: bold; font-size: large;">Company</p>
+            <p style="position: absolute; margin-top: 60px;">Contact us</p>
+            <p style="position: absolute; margin-top: 85px;">Career</p>
+            <p style="position: absolute; margin-top: 110px;">Pricing</p>
+            <p style="position: absolute; margin-top: 135px;">Blog</p>
+       </div>
+       <div class="footer4">
+        <p style="position: absolute; font-weight: bold; font-size: large;">Support</p>
+            <p style="position: absolute; margin-top: 60px;">Support</p>
+            <p style="position: absolute; margin-top: 85px;">Privacy</p>
+            <p style="position: absolute; margin-top: 110px;">FAQ</p>
+       </div>
+       <div class="footer5">
+        <p style="position: absolute; font-weight: bold; font-size: large;">Service</p>
+            <p style="position: absolute; margin-top: 60px;">SEO</p>
+            <p style="position: absolute; margin-top: 85px;">UI Design</p>
+            <p style="position: absolute; margin-top: 110px;">Developer</p>
+            <p style="position: absolute; margin-top: 135px;">Account</p>
+       </div>
+       <hr width="95%" style="margin-top: 300px;">
+    </div>
+    <div class="mixed">
+            <p style=" position: absolute; margin-left: 70px; font-size: 15px; margin-top: 70px;">Product Designer Responsibilities include defining Product specifications, creating digital or print drawings and designing fully-functional products.</p>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 80px; border-radius: 10px;">Full Time</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 165px; border-radius: 10px;">Mid Level</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 95px; text-align: center; margin-top: 170px; margin-left: 250px; border-radius: 10px;">₹3000-₹5000</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 350px; border-radius: 10px;">Indonesia</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 435px; border-radius: 10px;">Onsite</div>
+        </div>
+    </div>
+    <div class="footer-deep">
+        <p style="margin-left: 35px;">Terms & Conditions | Privacy Policy</p>
+        <p style="margin-top: -35px; margin-left: 1200px;">Copyright © 2023 All right reserved</p>
+    </div>
+</body>
+</html>

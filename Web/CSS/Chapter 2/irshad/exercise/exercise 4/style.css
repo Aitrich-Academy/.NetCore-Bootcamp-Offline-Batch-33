@@ -1,0 +1,84 @@
+.main{
+    position: absolute;
+    background-color: #c4dae8;
+    width: 1000px;
+    height: 550px;
+    margin-top: 100px;
+    margin-left: 250px;
+}
+#icon{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    margin-left: -350px;
+    margin-top: 30px;
+}
+#company{
+    position: absolute;
+    height: 20px;
+    width: 80px;
+    margin-left: -290px;
+    margin-top: 40px;
+}
+.main img{
+    margin-top: 150px;
+    height: 400px;
+    width: 50%;
+}
+.content{
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    height: 550px;
+    margin-top: -554px;
+    margin-left: 500px;
+}
+.content h2{
+    text-align: center;
+    margin-top: 120px;
+}
+#mail_text{
+    position: absolute;
+    margin-left: 100px;
+}
+#mail{
+    position: absolute;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+#password{
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 100px;   
+}
+#pass{
+    position: relative;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+#eye-no{
+    height: 20px;
+    width: 20px;
+    position: relative;
+    margin-top: 80px;
+    margin-left: 370px;
+}
+#forgot{
+    color: #d5d3d3;
+    text-align: right;
+    margin-right: 100px;
+}
+#btn{
+    position: absolute;
+    background-color: rgb(30, 110, 190);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 35px;
+    margin-left: 100px;
+    margin-top: 0px;
+    border-radius: 10px;
+    border: 1px solid rgb(30,110,190);
+}
