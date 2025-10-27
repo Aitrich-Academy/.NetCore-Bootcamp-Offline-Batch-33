@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    html,body
+    {
+        background-color: #e4e3e3;
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        overflow-x: hidden;
+        padding: 0px;
+    
+    }
+    .menu-bar{
+        position: absolute;
+        width: 280px;
+        height: 1100px;
+        top: 0px;
+        background-color: #20a6fc;
+    }
+    /* one main container */ 
+
+/* profile image */
+.menu-bar img.profile-pic {
+  height: 150px;
+  margin-left: 60px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* profile text */
+.profile-name {
+    position: absolute;
+    margin-left: 120px;
+    top: 140px;
+}
+.profile-email{
+    position: relative;
+    margin-left: 80px;
+    margin-top: 10px;
+}
+/* menu links */
+.menu-bar a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  margin: 10px auto;
+  padding: 8px 15px;
+  border-radius: 10px;
+  width: 220px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  justify-content: flex-start;
+}
+
+/* menu icons */
+.menu-bar a img {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+}
+
+/* hover effect only for links */
+.menu-bar a:hover {
+  background: orange;
+  transform: scale(1.05);
+}
+
+/* menu text */
+.menu-bar a p {
+  margin: 0;
+  font-size: 18px;
+}
+#add{
+    position: relative;
+    height: 80px;
+    width: 80px;
+    margin-top: 50px;
+}
+
+
+    .top-bar{
+        position: absolute;
+        background-color: rgb(255, 255, 255);
+        margin-left:280px;
+        width: 1250px;
+        height: 100px;
+    }
+    .p1{
+        position: absolute;
+        font-weight: bold;
+        margin-top: 70px;
+        margin-left: 30px;
+        font-size:x-large;
+    }
+    .p2{
+        position: absolute;
+        margin-left: 300px;
+        margin-top: 50px;
+    }
+    .p3{
+        position: absolute;
+        margin-left: 450px;
+        margin-top: 50px;
+    }
+    .p4{
+        position: absolute;
+        margin-left: 600px;
+        margin-top: 50px;
+    }
+    .bell{
+        position: absolute;
+        height: 45px;
+        top: 20px;
+        margin-left: 990PX;
+    }
+    .logout{
+        position: absolute;
+        height: 90px;
+        margin-left: 1100px;
+    }
+    .content-bar{
+        position: absolute;
+        background-color: #e4e3e3;
+        margin-top: 100px;
+        margin-left: 300px;
+        width: 750px;
+        height: 1100px;
+    }
+    .search-bar{
+        position: absolute;
+        background-color: white;
+        border: 2px solid;
+        height: 40px;
+        width: 750px;
+        border-radius: 10px;
+        opacity: 60%;
+    }
+    .search-bar p{
+        position: absolute;
+        top: -9px;
+        left: 30px;
+    }
+    .search-bar img{
+        position: absolute;
+        top: 7px;
+        left: 85%;
+    }
+    .sub-content1{
+        position: absolute;
+        background-color: #e4e3e3;
+        margin-left: 10px;
+        margin-top: 100px;
+        width: 500px;
+        height: 220px;
+    }
+    .sub-content2 {
+        position: absolute;
+        background-color: #e4e3e3;
+        margin-left: 10px;
+        margin-top: 350px;
+        width: 500px;
+        height: 220px;
+    }
+    .sub-content3{
+        position: absolute;
+        background-color: #e4e3e3;
+        margin-left: 10px;
+        margin-top: 600px;
+        width: 500px;
+        height: 220px;
+    }
+    
+    
+    .footer-menu{
+        position: absolute;
+        width: 830px;
+        height: 240px;
+        margin-top: 950px;
+    }
+    #img{
+        position: absolute;
+        width: 1500px;
+    }
+    .footer-menu p{
+        position: absolute;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 40px;
+        top: 150px;
+        left: 300px;
+    }
+    #cal{
+        position: absolute;
+        top: 150px;
+        left: 1300px;
+        animation: moveLeft 5s linear infinite;
+    }
+    #home{
+        position: absolute;
+        top: 150px;
+        
+        animation: moveRight 5s linear infinite;
+    }
+    @keyframes moveLeft {
+  0% { left: 1300px; }
+  100% { left: 1350px; } /* Adjust distance */
+}
+@keyframes moveRight {
+  0% { left: 1150px; }
+  100% { left: 1100px; } /* Adjust distance */
+}
+    .right-side{
+        position: absolute;
+        background-color:aquamarine;
+        width: 650px;
+        height: 790px;
+        top: 200px ;
+        left: 830px ;
+    }
+    .right-side img{
+        height: 790px;
+        width: 650px;
+    }
+    </style>
+</head>
+<body link="white" vlink="white">
+    <div class="menu-bar">
+        <img src="image/person5.png" class="profile-pic" alt="Profile">
+  <p class="profile-name">Olivia</p>
+  <p class="profile-email">olivia@mail.com</p>
+
+        <a href="#"><img src="image/dashboard 1.png"><p>Dashboard</p></a>
+  <a href="#"><img src="image/suitcase 2.png"><p>Jobs</p></a>
+  <a href="#"><img src="image/application (1) 1.png"><p>Applications</p></a>
+  <a href="#"><img src="image/question (1) 1.png"><p>Interviews</p></a>
+  <a href="#"><img src="image/message 1.png"><p>Messages</p></a>
+  <a href="#"><img src="image/settings 1.png"><p>Settings</p></a>
+  <a href="#"><img src="image/add-group (1) 1.png" id="add">Add New</a>
+
+    </div>
+    <div class="top-bar">
+        <p class="p1">Find Jobs</p>
+        <p class="p2">List Jobs</p>
+        <p class="p3">Post Jobs</p>
+        <p class="p4">Update Jobs</p>
+
+        <img src="image/notification-bing.png" class="bell">
+        <img src="image/logout (3).png" class="logout">
+    </div>
+
+    <div class="content-bar">
+        <div class="search-bar">
+            <p>Search by Job Title, Qualification, Industry</p>
+            <img src="image/icon filter.png">
+        </div>
+        <p style="position: absolute; left: 20px; top: 50px;">showing 106 Jobs</p>
+        <p style="position: absolute; margin-left: 350px; margin-top: 65px; color: #c0b4b4;">Sort by:</p>
+        <img src="image/arrow-down.png" style="position: absolute; margin-top: 65px; margin-left: 490px;">
+        <p style="position: absolute; margin-left: 405px; margin-top: 65px;">Newest Jobs</p>
+
+        <div class="sub-content1">
+            <img src="image/Rectangle 14 (2) - Copy.png" style="position:absolute; height: 60px; width: 60px; margin-left: 0px; border-radius: 10px;">
+            <img src="image/Group 5696.png" style="position: absolute; margin-left: 90%; margin-top: 10px;">
+            <p style="position: absolute; margin-left: 65px; font-weight: bold;">UI/UX Designer</p>
+            <p style="position: absolute; margin-left: 65px; margin-top: 35px; font-size: small; color: #20a6fc;">Shopee</p>
+            <p style="position: absolute; margin-left: 106px; margin-top: 35px; font-size: small;">•</p>
+            <p style="position: absolute; margin-left: 114px; margin-top: 35px; font-size: small;">Location</p>
+            <p style=" position: absolute; margin-left: 30px; font-size: 14.5px; margin-top: 70px;">We are looking for a UI/UX Designer to turn our software into easy-to-use products for our clients.</p>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 30px; border-radius: 10px;">Full Time</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 115px; border-radius: 10px;">Mid Level</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 95px; text-align: center; margin-top: 170px; margin-left: 200px; border-radius: 10px;">₹3000-₹5000</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 300px; border-radius: 10px;">Indonesia</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 385px; border-radius: 10px;">Onsite</div>
+
+        </div>
+        
+        <div class="sub-content2">
+            <img src="image/Rectangle 14 (3).png" style="position:absolute;  margin-left: 5px; border-radius: 10px;">
+            <img src="image/Group 5696.png" style="position: absolute; margin-left: 90%; margin-top: 10px;">            <p style="position: absolute; margin-left: 70px; font-weight: bold;">Product Designer</p>
+            <p style="position: absolute; margin-left: 70px; margin-top: 35px; font-size: small; color: #20a6fc;">Amazon</p>
+            <p style="position: absolute; margin-left: 117px; margin-top: 35px; font-size: small;">•</p>
+            <p style="position: absolute; margin-left: 125px; margin-top: 35px; font-size: small;">Location</p>
+            <p style=" position: absolute; margin-left: 30px; font-size: 15px; margin-top: 70px;">Product Designer Responsibilities include defining Product specifications, creating digital or print drawings and designing fully-functional products.</p>
+           <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 30px; border-radius: 10px;">Full Time</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 115px; border-radius: 10px;">Mid Level</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 95px; text-align: center; margin-top: 170px; margin-left: 200px; border-radius: 10px;">₹3000-₹5000</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 300px; border-radius: 10px;">Indonesia</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 385px; border-radius: 10px;">Onsite</div>
+        </div>
+
+        <div class="sub-content3">
+            <img src="image/Rectangle 14 (1).png" style="position:absolute; height: 60px; width: 60px; margin-left: 0px; border-radius: 10px;">
+            <img src="image/Group 5696.png" style="position: absolute; margin-left: 90%; margin-top: 10px;">           <p style="position: absolute; margin-left: 70px; font-weight: bold;">Junior Process Associate</p>
+            <p style="position: absolute; margin-left: 70px; margin-top: 35px; font-size: small; color: #20a6fc;">Lazada</p>
+            <p style="position: absolute; margin-left: 112px; margin-top: 35px; font-size: small;">•</p>
+            <p style="position: absolute; margin-left: 120px; margin-top: 35px; font-size: small;">Location</p>
+            <p style=" position: absolute; margin-left: 30px; font-size: 15px; margin-top: 70px;">Product Designer Responsibilities include defining Product specifications, creating digital or print drawings and designing fully-functional products.</p>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 30px; border-radius: 10px;">Full Time</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 115px; border-radius: 10px;">Mid Level</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 95px; text-align: center; margin-top: 170px; margin-left: 200px; border-radius: 10px;">₹3000-₹5000</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 300px; border-radius: 10px;">Indonesia</div>
+            <div style="position: absolute; background-color: rgb(129, 118, 118); width: 80px; text-align: center; margin-top: 170px; margin-left: 385px; border-radius: 10px;">Onsite</div>
+        </div>
+    </div>
+    <div class="footer-menu">
+        <img src="image/Section 9.png" id="img">
+        <p>Post Your Job Now.....................</p>
+        <img src="image/calendar (2) 2.png" id="cal">
+        <img src="image/home-button 4.png" id="home">
+    </div>
+    <div class="right-side">
+        <img src="image/professional1.png" alt="">
+    </div>
+</body>
+</html>
