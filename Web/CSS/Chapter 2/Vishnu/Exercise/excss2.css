@@ -1,0 +1,298 @@
+ .dashboard
+   {
+    position: absolute;
+    height: 770px;
+    width: 20%;
+    background-color: cornflowerblue;
+
+   }
+
+   #drag
+   {
+    position: relative;
+    margin-left: 60px;
+    margin-top: 50px;
+    font-style: italic;
+    font-weight: bold;
+   }
+
+   .table1
+   {
+    position: relative;
+    margin-top: 50px;
+    margin-left: 60px;
+    color: aliceblue;
+   }
+
+   .main
+   {
+    position: absolute;
+    width: 84%;
+    height: 770px;
+    border-radius: 50px 0px 0px 0px ;
+    background-color: rgb(230, 230, 230);
+    margin-left: 15%;
+
+   }
+
+   #pic1
+   {
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 80px;
+
+   }
+   #Searchbar
+   {
+    position: relative;
+    margin-left: 300px;
+    margin-top: -30px;
+   }
+
+   #textbar
+   {
+    border-radius: 30px;
+    width: 400px;
+    height: 35px;
+   }
+
+   #Profile
+   {
+    position: relative;
+    margin-left: 110px;
+    margin-top: 30px;
+   }
+
+   #account
+   {
+    position: absolute;
+    width: 200px;
+    height: 30px;
+    margin-top: 130px;
+    margin-left: 110px;
+    background-color: rgb(222, 220, 220);
+    box-shadow: 0px 4px rgb(207, 207, 207);
+    padding: 2px 30px;
+    color: rgb(109, 109, 109);
+
+   }
+
+   #aside
+   {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 500px; 
+    height: 400px;
+    margin-left: 80px;
+    margin-top: 200px;
+    border-radius: 10px;
+    padding: 10px 25px;
+   }
+
+   .list3{
+    
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-left: 10%;
+    margin-top: 20%;
+    color: white;
+    }
+
+    #jobie
+    {
+    position: relative;
+    margin-bottom: 80px;
+    }
+
+    a:link
+    {
+    text-decoration: none;
+    }
+
+    .dash
+    {
+        font-size: small;
+        font-weight: bold;
+
+    }
+
+    .tablef
+    {
+        color: rgb(109, 109, 109);
+
+    }
+
+    .main2
+    {
+        border-radius: 5px;
+        height: 30px;
+        width: 350px;
+        border-color: rgb(217, 232, 243);
+        background-color: rgb(215, 231, 242);
+    }
+
+    #btn
+    {
+        position: absolute;
+        margin-left: 150px;
+        margin-top: 20px;
+        height: 40px;
+        width: 130px;
+        border-radius: 7px;
+        background-color: cornflowerblue;
+    }
+
+    #noti1
+    {
+        position: absolute;
+        margin: 10px 1300px;
+        height: 50px;
+        width: 50px;
+    }
+
+    #noti2
+    {
+        position: absolute;
+        margin: 10px 1360px;
+        height: 50px;
+        width: 50px;
+    }
+
+    #noti3
+    {
+        position: absolute;
+        margin: 17px 1420px;
+        height: 43px;
+        width: 40px;
+    }
+
+    #noti4
+    {
+        position: absolute;
+        margin: 26px 880px;
+        height: 25px;
+        width: 25px;
+    }
+
+    #noti5
+    {
+        position: absolute;
+        margin: 22px 1455px;
+        width: 60px;
+        height: 5px;
+        font-size: x-small;
+    }
+
+    .table99
+{
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 50px;
+
+    border-spacing: 50px 50px;
+}
+
+#b,#e
+{
+    background-color: rgb(0, 128, 192);
+    height: 100px;
+    width: 200px;
+    color: aliceblue;
+}
+
+#a{
+    background-color: rgb(61, 175, 4);
+    height: 100px;
+    width: 200px;
+    color: aliceblue;
+
+}
+#c,#d
+{
+    background-color: rgb(43, 34, 138);
+    height: 100px;
+    width: 200px; 
+    color: aliceblue;
+}
+
+#f
+{
+    background-color: rgb(38, 165, 2) ;
+    height: 100px;
+    width: 200px;
+
+}
+
+#picer1
+{
+   position: absolute;
+   margin-left: 165px;
+   margin-top: 120px;
+   height: 50px;
+   width: 50px;
+}
+
+#picer2
+{
+   position: absolute;
+   margin-left: 420px;
+   margin-top: 130px;
+   height: 35px;
+   width: 35px;
+}
+
+#picer3
+{
+   position: absolute;
+   margin-left: 670px;
+   margin-top: 130px;
+   height: 35px;
+   width: 35px;
+}
+
+#picer4
+{
+   position: absolute;
+   margin-left: 165px;
+   margin-top: 280px;
+   height: 35px;
+   width: 35px;
+}
+
+#picer5
+{
+   position: absolute;
+   margin-left: 420px;
+   margin-top: 280px;
+   height: 35px;
+   width: 35px;
+}
+
+#picer6
+{
+   position: absolute;
+   margin-left: 670px;
+   margin-top: 280px;
+   height: 35px;
+   width: 35px;
+}
+
+
+
+.font
+{
+    text-align: left;
+    margin-left: 70px;
+    margin-top: 0px;
+
+}
+
+#long
+{
+    background-color: rgb(230, 230, 230);
+    border-radius: 30px 0px 0px 30px;
+    font-size: small;
+    font-weight: bold;
+    height: 50px;
+    align-content: center;
+}

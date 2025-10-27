@@ -1,0 +1,147 @@
+.list1
+            {
+                background-color: violet;
+                padding: 30px 10px; 
+                border-radius: 10px;  
+                row-gap: 10px;            
+            }
+
+            .mak
+            {
+                width: 800px;
+                padding: 20px 80px;
+            }
+
+            .mak2
+            {
+                width: 500px;
+                height: 120px;
+                border: solid black;
+                padding: 5px 10px;
+            }
+
+            h1
+            {
+                font-size: xx-large;
+            }
+
+            a:link
+            {
+                background-color: yellow;
+                padding: 5px 5px;
+                text-decoration: none;
+                border-radius: 10px;
+            }
+
+            a:hover
+            {
+                background-color: wheat;
+            }
+
+            .mak3
+            {
+                border: solid;
+                padding: 5px 10px;
+                width: 250px;
+                height: 200px;
+                margin-top: 5%;
+            }
+
+            .table1
+            {
+                text-align: left;
+            }
+
+            th
+            {
+                background-color: antiquewhite;
+                border-radius: 5px;
+            }
+            
+            .kk
+            {
+                color: blue;
+                font-weight: bold;
+            }
+
+            .mak4
+            {
+                width: 400px;
+                height: 200px;
+                border: 5px solid blue;
+                background-color: aliceblue;
+                margin-top: 5%;
+                font-size: xx-large;
+
+            }
+
+            #dr
+            {
+                padding: 20px 50px;
+            }
+
+            .mak5
+            {
+                width: 200px;
+                height: 200px;
+                border: solid blue;
+                margin: -30% 60%;
+                border-radius: 10px;
+            }
+
+            .mak6
+            {
+                position: absolute;
+                left: 25%;
+                top: 95%;
+                border: solid;
+                padding: 10px 10px;
+            }
+
+            .gg
+            {
+                border: solid yellow;
+                border-radius: 10px;
+                padding: 10px 10px;
+            }
+
+            #kd
+            {
+                text-align: center;
+                font-size: xx-large;
+                font-weight: bold;
+                padding-left: 10%;
+            }
+
+            #fd
+            {
+                font-size: large;
+                border-top: solid;
+                border-left: solid;
+                padding: 1px 5px;
+            }
+
+            aside
+            {
+                position: absolute;
+                margin-top: 500px;
+                margin-left: 30%;
+                border: solid;
+                padding: 20px 10px;
+                width: 60%;
+            }
+
+            input
+            {
+                background-color: antiquewhite;
+                border: 0;
+                border-radius: 5px;
+                width: 100%;
+            }
+
+            label
+            {
+                margin-left: 1%;
+            }
+
+    
