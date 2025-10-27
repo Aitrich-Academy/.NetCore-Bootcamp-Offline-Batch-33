@@ -1,0 +1,320 @@
+ .dashboard
+   {
+    position: absolute;
+    height: 770px;
+    width: 20%;
+    background-color: cornflowerblue;
+
+   }
+
+   #drag
+   {
+    position: relative;
+    margin-left: 60px;
+    margin-top: 50px;
+    font-style: italic;
+    font-weight: bold;
+   }
+
+   .table1
+   {
+    position: relative;
+    margin-top: 50px;
+    margin-left: 60px;
+    color: aliceblue;
+   }
+
+   .main
+   {
+    position: absolute;
+    width: 84%;
+    height: 770px;
+    background-color: rgb(230, 230, 230);
+    margin-left: 15%;
+
+   }
+
+   #pic1
+   {
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 80px;
+
+   }
+   #Searchbar
+   {
+    position: relative;
+    margin-left: 300px;
+    margin-top: -30px;
+   }
+
+   #textbar
+   {
+    border-radius: 30px;
+    width: 400px;
+    height: 35px;
+   }
+
+   #Profile
+   {
+    position: relative;
+    margin-left: 110px;
+    margin-top: 30px;
+   }
+
+
+
+   #aside
+   {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 900px; 
+    height: 600px;
+    margin-left: 150px;
+    margin-top: 120px;
+    border-radius: 60px;
+    padding: 10px 25px;
+    box-shadow: 5px 5px 5px 5px rgb(171, 171, 171) ;
+   }
+
+   .list3{
+    
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-left: 10%;
+    margin-top: 20%;
+    color: white;
+    }
+
+    .jobie
+    {
+    position: relative;
+    margin-bottom: 80px;
+    margin-left: 5px;
+    font-weight: bolder;
+    font-size: 23px;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-name: shake;
+
+    }
+
+    @keyframes shake {
+        0%   {.jobie left:0px; right:0px;}
+        50%  {.jobie left:0px; right:30px;}
+        100% {.jobie left:0px; right:0px;}
+       }
+
+    a:link
+    {
+    text-decoration: none;
+    }
+
+    .dash
+    {
+        font-size: small;
+        font-weight: bold;
+
+    }
+
+    .dash:hover
+    {
+        background-color: rgb(244, 243, 243);
+        border-radius: 30px;
+        height: 30px;
+    }
+
+    .tablef
+    {
+        color: rgb(109, 109, 109);
+        margin-left: 200px;
+        margin-top: 50px;
+
+    }
+
+    .main2
+    {
+        border-radius: 5px;
+        height: 40px;
+        width: 450px;
+        border-color: rgb(217, 232, 243);
+        background-color: rgb(215, 231, 242);
+        margin-top: 20px;
+    }
+
+    #btn
+    {
+        position: absolute;
+        margin-left: 220px;
+        margin-top: 10px;
+        height: 40px;
+        width: 100px;
+        border-radius: 7px;
+        background-color: cornflowerblue;
+    }
+
+    #noti1
+    {
+        position: absolute;
+        margin: 10px 1300px;
+        height: 50px;
+        width: 50px;
+    }
+
+    #noti2
+    {
+        position: absolute;
+        margin: 10px 1360px;
+        height: 50px;
+        width: 50px;
+    }
+
+    #noti3
+    {
+        position: absolute;
+        margin: 17px 1420px;
+        height: 43px;
+        width: 40px;
+    }
+
+    #noti4
+    {
+        position: absolute;
+        margin: 26px 880px;
+        height: 25px;
+        width: 25px;
+    }
+
+    #noti5
+    {
+        position: absolute;
+        margin: 22px 1455px;
+        width: 60px;
+        height: 5px;
+        font-size: x-small;
+    }
+
+    #pushnotification
+    {
+        margin-left: 370px;
+        margin-top: 20px;
+        width:13px;
+        height: 13px;
+    }
+
+    #emailnotification
+    {
+        margin-left: 40px;
+        margin-top: 20px;
+        width: 13px;
+        height: 13px;
+    }
+
+    .add1
+    {
+        position: relative;
+        height: 60px;
+        width: 60px;
+        margin-top: 40px;
+        margin-left: 30px;
+    }
+
+    hr
+    {
+        position: absolute;
+        width: 800px;
+        height: 3px;
+        background-color: rgb(215, 231, 242);
+        border: 0;
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+
+    #hr2
+    {
+        position: absolute;
+        margin-left: 250px;
+        width: 1000px;
+        height: 3px;
+        background-color: rgb(170, 171, 172);
+        border: 0;
+    }
+
+    .input3
+    {
+        display: none;
+        margin-top: 50px;
+    }
+
+    .input1
+    {
+        margin-left: 40px;
+        margin-top: -20px;
+    }
+
+    .input1:hover 
+    {
+        display: block;
+        background-color: rgb(255, 255, 255);
+        width: 140px;
+        height: 40px;
+    }
+
+    .footer
+    {
+        position: absolute;
+        background-color: cornflowerblue;
+        width: 1500px;
+        height: 400px;
+        margin-top: 770px;
+        font-size: 50px;
+        font-weight: bold;
+        font-style: italic;
+        color: aliceblue;
+    }
+
+    #ppp
+    {
+        position: absolute;
+        margin-left: 250px;
+        margin-top: 200px;
+    }
+
+    #ppp1
+    {
+        position: absolute;
+        margin-top: 100px;
+        margin-right: 400px;
+        width: 200px;
+        height: 200px;
+        animation-name: shake2;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+    }
+
+    #ppp2
+    {
+        position: absolute;
+        margin-top: 140px;
+        margin-right: 100px;
+        width: 160px;
+        height: 160px;
+        animation-name: shake3;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes shake2 {
+        0%   {.jobie left:0px; right:0px;}
+        50%  {.jobie left:50px; right:50px;}
+        100% {.jobie left:0px; right:0px;}
+       }
+
+    @keyframes shake3 {
+        0%   {.jobie left:0px; right:100px;}
+        50%  {.jobie left:0px; right:0px;}
+        100% {.jobie left:0px; right:100px;}
+       }
+
+
+   
