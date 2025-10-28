@@ -1,0 +1,300 @@
+.header{
+    position: absolute;
+    background-image: linear-gradient(to left, rgb(255, 179, 0), rgb(176, 122, 45));
+    width: 100%;
+    height: 130px;
+    border: 1px solid orange;
+    border-radius:5px;
+}
+.header h1{
+    text-align: center;
+    color: white;
+    animation: head 4s infinite ease-in-out;
+}
+@keyframes head{
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+}
+.about{
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    left: 550px;
+    top: 70px;
+}
+.gallery{
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    left: 650px;
+    top: 70px;
+}
+.activity{
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    left: 750px;
+    top: 70px;
+}
+.contact{
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    left: 850px;
+    top: 70px;
+}
+.header p:hover{
+    color: black;
+}
+.top-content{
+    position: absolute;
+    background-color: rgb(235, 235, 171);
+    border: 3px solid gold;
+    border-radius: 10px;
+    height: 140px;
+    width: 730px;
+    top: 170px;
+    left: 25%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.top-content h2{
+    text-align: center;
+    color: rgb(241, 87, 49);
+}
+.top-content p{
+    position: absolute;
+    top: 70px;
+    left: 20px;
+}
+.top-content:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+.img1{
+    position: absolute;
+    background-color: rgb(235, 235, 171);
+    border: 2px solid gold;
+    border-radius: 10px;
+    height: 270px;
+    width: 290px;
+    top: 350px;
+    left: 130px;
+
+}
+.img1 img{
+    position: absolute;
+    height: 150px;
+    width: 280px;
+    left: 5px;
+    top: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.img1 p{
+    position: relative;
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    top: 150px;
+}
+.img1 img:hover{
+    transform:scalex(0.5) ;
+}
+.img2{
+    position: absolute;
+    background-color: rgb(235, 235, 171);
+    border: 2px solid gold;
+    border-radius: 10px;
+    height: 270px;
+    width: 290px;
+    top: 350px;
+    left: 470px;
+}
+.img2 img{
+    position: absolute;
+    height: 150px;
+    width: 280px;
+    left: 5px;
+    top: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.img2 p{
+    position: relative;
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    top: 150px;
+}
+.img2 img:hover{
+    transform:scalex(0.5) ;
+}
+.img3{
+    position: absolute;
+    background-color: rgb(235, 235, 171);
+    border: 2px solid gold;
+    border-radius: 10px;
+    height: 270px;
+    width: 290px;
+    top: 350px;
+    left: 810px;
+}
+.img3 img{
+    position: absolute;
+    height: 150px;
+    width: 280px;
+    left: 5px;
+    top: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.img3 p{
+    position: relative;
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    top: 150px;
+}
+.img3 img:hover{
+    transform:scalex(0.5) ;
+}
+.img4{
+    position: absolute;
+    background-color: rgb(235, 235, 171);
+    border: 2px solid gold;
+    border-radius: 10px;
+    height: 270px;
+    width: 290px;
+    top: 350px;
+    left: 1150px;
+}
+.img4 img{
+    position: absolute;
+    height: 150px;
+    width: 280px;
+    left: 5px;
+    top: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.img4 p{
+    position: relative;
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    top: 150px;
+}
+.img4 img:hover{
+    transform:scalex(0.5) ;
+}
+.Onam{
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    top: 650px;
+}
+.Onam p{
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.act1{
+    position: absolute;
+    background-color: antiquewhite;
+    height: 50px;
+    width: 100%;
+    top: 700px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.act1 p{
+    position: relative;
+    left: 70px;
+}
+.act1:hover{
+    transform: scale(1.1);
+    background-color: burlywood;
+}
+.act2{
+    position: absolute;
+    background-color: antiquewhite;
+    height: 50px;
+    width: 100%;
+    top: 770px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.act2 p{
+    position: relative;
+    left: 70px;
+}
+.act2:hover{
+    transform: scale(1.1);
+    background-color: burlywood;
+}
+.act3{
+    position: absolute;
+    background-color: antiquewhite;
+    height: 50px;
+    width: 100%;
+    top: 840px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.act3 p{
+    position: relative;
+    left: 70px;
+}
+.act3:hover{
+    transform: scale(1.1);
+    background-color: burlywood;
+}
+.act4{
+    position: absolute;
+    background-color: antiquewhite;
+    height: 50px;
+    width: 100%;
+    top: 910px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.act4 p{
+    position: relative;
+    left: 70px;
+}
+.act4:hover{
+    transform: scale(1.1);
+    background-color: burlywood;
+}
+.form{
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    top: 1040px;
+}
+#btn1{
+    position: relative;
+    background-color:darkcyan;
+    border-radius: 5px;
+    top: 10px;
+    height: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#btn1:hover{
+    transform: scale(1.1);
+    background-color: darkblue;
+}
+.footer{
+    position: absolute;
+    background-color: darkgoldenrod;
+    width: 100%;
+    height: 80px;
+    top: 1290px;
+}
+.footer p{
+    position: relative;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    top: 15px;
+}
