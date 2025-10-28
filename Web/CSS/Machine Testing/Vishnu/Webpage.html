@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Page</title>
+    <style>
+        header{
+            background-color: orange;
+            height: 150px;
+            width: 100%;
+            text-align: center;
+            padding-top: 25px;
+            transition: all 200ms ease;
+        }
+
+        h1{
+            color: antiquewhite;
+            font-size: 40px;
+            animation: headerzoom 2s infinite;
+            transition: transform 3s ease;
+        }
+
+        @keyframes headerzoom{
+            0%{
+                transform : scale(1)
+            }
+            50%{ 
+                transform : scale(1.04) 
+            }
+            100%{
+                transform : scale(1)
+            }
+        }
+
+        
+
+
+
+        .list1{
+            color: antiquewhite;
+            font-size: 20px;
+            padding-right: 50px;
+            text-underline-offset: 8px;
+            
+            
+
+        }
+
+        .about{
+            position: absolute;
+            width: 800px;
+            height:160px;
+            background-color: bisque;
+            border: solid;
+            border-color: rgb(241, 202, 60);
+            border-radius: 15px;
+            margin-top: 50px;
+            margin-left: 350px;
+            padding-top: 50px;
+            transition: all 200ms ease;
+            
+        }
+
+        .about:hover{
+            transform: scale(1.05);
+             box-shadow: 2px 4px 15px rgb(109, 109, 110);
+        }
+
+        .hh2{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bolder;
+            color: rgb(160, 1, 1);
+            margin-left: 40%;
+        
+        }
+
+        .pp2{
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(61, 60, 60);
+            font-weight: bold;
+            padding-top: 5px;
+            font-size: 14px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .Gallery1{
+            position: absolute;
+            margin-top: 350px;
+            margin-left: 200px;
+            background-color: antiquewhite;
+            border: solid;
+            border-color: rgb(241, 202, 60);
+            border-radius: 15px;
+            width: 250px;
+            height: 250px;
+            padding-top: 10px;
+            transition: scaleX(0.7) 2s ease;
+  
+        }
+
+        .Gallery1:hover{
+            transform: translateY(-8px);
+             box-shadow: 2px 4px 15px rgb(109, 109, 110);
+        }
+
+        .img2:hover{
+            transform: scaleX(0.7)
+        }
+
+        
+
+        .img2{
+            margin-left: 44px;
+            transition: all 1s ease;
+
+        }
+
+        .pp3{
+            text-align: center;
+        }
+
+        .Gallery2{
+            position: absolute;
+            margin-top: 350px;
+            margin-left: 500px;
+            background-color: antiquewhite;
+            border: solid;
+            border-color: rgb(241, 202, 60);
+            border-radius: 15px;
+            width: 250px;
+            height: 250px;
+            padding-top: 10px;
+            transition: all 200ms ease;
+  
+        }
+
+        .Gallery2:hover{
+            transform: translateY(-8px);
+             box-shadow: 2px 4px 15px rgb(109, 109, 110);
+        }
+
+        .Gallery3{
+            position: absolute;
+            margin-top: 350px;
+            margin-left: 800px;
+            background-color: antiquewhite;
+            border: solid;
+            border-color: rgb(241, 202, 60);
+            border-radius: 15px;
+            width: 250px;
+            height: 250px;
+            padding-top: 10px;
+            transition: all 200ms ease;
+  
+        }
+
+        .Gallery3:hover{
+            transform: translateY(-8px);
+             box-shadow: 2px 4px 15px rgb(109, 109, 110);
+        }
+
+        .Gallery4{
+            position: absolute;
+            margin-top: 350px;
+            margin-left: 1100px;
+            background-color: antiquewhite;
+            border: solid;
+            border-color: rgb(241, 202, 60);
+            border-radius: 15px;
+            width: 250px;
+            height: 250px;
+            padding-top: 10px;
+            transition: all 200ms ease;
+        }
+
+        .Gallery4:hover{
+            transform: translateY(-8px);
+             box-shadow: 2px 4px 15px rgb(109, 109, 110);
+        }
+
+        .OnamActivities{
+            position: absolute ;
+            margin-top: 700px;
+            width: 100%;
+
+
+        }
+
+        .activities1{
+            background-color: rgb(167, 107, 28);
+            margin-top: 30px;
+            margin-bottom: 5px;
+            height: 30px;
+            width: 96%;
+            font-size: 20px;
+            padding-top: 5px;
+            padding-left: 10px;
+            margin-left: 20px;
+            border-radius: 6px;
+            transition: all 200ms ease;
+        }
+
+        .activities1:hover{
+            transform: scale(1.03);
+            background-color: bisque;
+        }
+
+        .activities2{
+            background-color: rgb(167, 107, 28);
+            margin-top: 8px;
+            margin-bottom: 0;
+            height: 30px;
+            width: 96%;
+            font-size: 20px;
+            padding-top: 8px;
+            padding-left: 10px;
+            margin-left: 20px;
+            border-radius: 6px;
+            transition: all 200ms ease;
+        }
+
+        .activities2:hover{
+            transform: scale(1.03);
+            background-color: bisque;
+        }
+
+        .activities3{
+            background-color: rgb(167, 107, 28);
+            margin-top: 8px;
+            margin-bottom: 0px;
+            height: 30px;
+            width: 96%;
+            font-size: 20px;
+            padding-top: 8px;
+            padding-left: 10px;
+            margin-left: 20px;
+            border-radius: 6px;
+            transition: all 200ms ease;
+
+        }
+
+        .activities3:hover{
+            transform: scale(1.03);
+            background-color: bisque;
+        }
+
+        .activities4{
+            background-color: rgb(167, 107, 28);
+            margin-top: 8px;
+            margin-bottom: 0px;
+            height: 30px;
+            width: 96%;
+            font-size: 20px;
+            padding-top: 5px;
+            padding-left: 10px;
+            margin-left: 20px;
+            border-radius: 6px;
+            transition: all 200ms ease;
+        }
+
+        .activities4:hover{
+            transform: scale(1.03);
+            background-color: bisque;
+            
+        }
+
+        .hh4{
+            margin-left: 700px;
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: brown;
+            font-weight: bolder;
+        }
+
+        aside{
+            position: absolute;
+            margin-top: 1000px;
+            padding-left: 50px;
+        }
+
+        .hh5{
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+        }
+
+        button{
+            background-color: rgb(4, 108, 172);
+            color: aliceblue;
+            border-radius: 6px;
+            height: 40px;
+            transition: all 200ms ease;
+        }
+
+        button:hover{
+            background-color: blue;
+            transform: scale(1.05); 
+        }
+
+        footer{
+            position: absolute;
+            background-color: rgb(150, 150, 3);
+            height: 50px;
+            margin-top: 1400px;
+            width: 1500px;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        .hh6{
+            font-size: 20px;
+            color: aliceblue;
+        }
+
+        .form1{
+            height: 30px;
+            width: 1400px;
+            border-radius: 5px;
+        }
+
+        .form2{
+            height: 30px;
+            width: 1400px;
+            border-radius: 5px;
+        }
+
+        .form3{
+            border-radius: 5px;
+        }
+
+        .list1:hover{
+            color: rgb(11, 11, 9);
+        }
+
+        .list2:hover{
+            color: rgb(11, 11, 9);
+        }
+
+        .list3:hover{
+            color: rgb(11, 11, 9);
+        }
+
+        .list4:hover{
+            color: rgb(11, 11, 9);
+        }
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+    <header>
+        <h1>Celebrate the joy of kerala Onam!</h1>
+        <ul>
+            <a href="#" class="list1">About</a>
+            <a href="#" class="list1">Gallery</a>
+            <a href="#" class="list1">activities</a>
+            <a href="#" class="list1">Contact</a> 
+        </ul>
+    </header>
+
+    <main>
+
+        <div class="about">
+            <h class="hh2">About Mount Fuji</h>
+            <p class="pp2">Mount Fuji is an iconic, sacred stratovolcano and
+                 the tallest peak in Japan, standing at 3,776 meters
+                 (12,388 ft). Located on the island of Honshu, it is
+                 a major cultural symbol, celebrated for its symmetrical cone
+                 It last erupted from 1707 to 1708 and is a popular destination
+                 for climbing and sightseeing.
+                 Mount Fuji is widely regarded to have an attractive volcanic cone.
+                 It has been a frequent subject of Japanese art, especially after 1600,
+                 when Edo became the capital and people saw the mountain while
+                 traveling on the Tōkaidō road.
+                 </p>
+        </div>
+
+        <div class="Gallery1">
+            <img src="images/1920px-Mt_Fuji_NASA_ISS002-E-6971_large.jpg" height="160px" width="160px" style="border-radius: 8px;" class="img2">
+            <p class="pp3">A view of Mount Fuji from the Taisekiji temple </p>
+
+        </div>
+
+        <div class="Gallery2">
+            <img src="images/Fuji_in_the_Mountains_of_Taisekiji_LACMA_M.2006.136.141a-b.jpg" height="160px" width="160px" style="border-radius: 8px;" class="img2">
+            <p class="pp3">A view of Mount Fuji from the Taisekiji temple </p>
+
+        </div>
+
+        <div class="Gallery3">
+            <img src="images/「富嶽三十六景_凱風快晴」-South_Wind,_Clear_Sky_(Gaifū_kaisei),_also_known_as_Red_Fuji,_from_the_series_Thirty-six_Views_of_Mount_Fuji_(Fugaku_sanjūrokkei)_MET_DP141062.jpg" height="160px" width="160px" style="border-radius: 8px;" class="img2">
+            <p class="pp3">A view of Mount Fuji from the Taisekiji temple </p>
+
+        </div>
+
+        <div class="Gallery4">
+            <img src="images/Fuji_illustration.jpeg" height="160px" width="160px" style="border-radius: 8px;" class="img2">
+            <p class="pp3">A view of Mount Fuji from the Taisekiji temple </p>
+
+        </div>
+
+        <div class="OnamActivities">
+
+            <h class="hh4">Activities</h>
+
+            <div class="activities1">climbing</div>
+            <div class="activities2">Trucking</div>
+            <div class="activities3">climbing</div>
+            <div class="activities4">climbing</div>
+
+        </div>
+
+        <aside>
+            <h class="hh5">Contact Us</h><br><br><br>
+            <form>
+                <label>name:</label><br>
+                <input type="text"  class="form1"><br><br>
+
+                <label>Email:</label><br>
+                <input type="text" size="207" style="border-radius: 6px;" class="form2"><br><br>
+
+                <label>Message:</label><br>
+                <textarea cols="190" rows="4" class="form3">
+                </textarea>
+
+                <button>Send message</button>
+            </form>
+        </aside>
+
+        <footer>
+            <h class="hh6">&copy;2025 Mount Fuji. All Rights Reserved </h>
+        </footer>
+    </main>
+    
+</body>
+</html>
