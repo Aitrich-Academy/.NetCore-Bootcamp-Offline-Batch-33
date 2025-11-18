@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link src="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="form-page">
+        <h2>News Letter Sign Up</h2>
+        <form>
+            
+            <label for="name">Username:</label>
+            <input type="text" id="userName" placeholder="Enter your username" required>
+            <br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.com$" required>
+            <br><br>
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" placeholder="Enter your number" pattern="[0-9]{10}" >
+            <br><br>
+            <button onclick="btnsignUp()">signUp</button>
+        </form>
+    </div>
+</body>
+</html>
