@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    margin-left: 350px;
+    margin-top: 50px;
+}
+
+.card-1{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-2{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-3{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    width: 250px;
+}
+
+.btn {
+    color: white;
+    background-color: tomato;
+    width: 250px;
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
