@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+
+        </title>
+    </head>
+    <body>
+        <table border="0" bgcolor="" align="center" cellspacing="20" cellpadding="20" width="60%">
+            <tr><br><br><br><br><br>
+                <td align="center" width="50%">
+                    <img src="images/Group.png" height="450" width="300" alt="">
+                    <br>
+                    <!-- <p>○ ● ○ ○</p>  -->
+                    <hr>
+                </td>
+                <td>
+                    <h3><center>Sign in to Admin Dashboard</center></h3><br><br>
+                    <form onsubmit="return validateLogin()">
+                        Email <br>
+                        <input type="email" id="email"><br><br>
+                        Password <br>
+                        <input type="password" id="password"><br><br>
+                        <button type="submit">Sign in</button>
+                        </form>
+                </td>
+            </tr>
+        </table>
+
+
+        <script>
+              function validateLogin() {
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value.trim();
+
+      if (email === "" || password === "") {
+        alert("Please fill in both email and password.");
+        return false;
+      }
+
+      // Simple email format check
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+
+      alert("Login successful!");
+      return true; // continue form submission
+    }
+        </script>
+    </body>
+</html>
