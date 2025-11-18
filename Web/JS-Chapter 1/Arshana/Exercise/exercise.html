@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f6fa;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100%;
+    background-color: #030580;
+    color: white;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 12px 25px;
+    font-size: 15px;
+}
+
+.sidebar ul li:hover {
+    background-color: #220665;
+    cursor: pointer;
+}
+
+/* Topbar */
+.topbar {
+    margin-left: 220px;
+    background-color: white;
+    padding: 10px 30px;
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-info img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 220px;
+    padding: 30px;
+}
+
+/* Header row above card */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.section-divider {
+    border: 0;
+    height: 2px;
+    background-color: #c4c4c4;
+    margin: 10px auto 20px auto;
+    max-width: 400px;
+}
+
+/* Card */
+.card {
+    background: white;
+    padding: 40px;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #f0f4f8;
+}
+
+button {
+    display: block;
+    width: 150px;
+    margin: 25px auto 0;
+    padding: 10px;
+    background-color: #030580;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5c2ea8;
+}
+
+/* Popup Styles */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <ul>
+        <li><img src="images/Group 8.png" height="60" width="60" alt="" align="center"> <font align="center"><b>Jobie</b></font></li>
+        <li><img src="images/Vector.png" height="20" width="20" alt=""> Dashboard</li>
+        <li><img src="images/image 10.png" height="20" width="20" alt=""> Job Providers</li>
+        <li><img src="images/image 6.png" height="20" width="20" alt=""> New Registrations</li>
+        <li><img src="images/image 9.png" height="20" width="20" alt=""> Job Seekers</li>
+        <li><img src="images/ic_search.png" height="20" width="20" alt=""> Jobs</li>
+        <li><img src="images/frame.png" height="20" width="20" alt=""> My Profile</li>
+        <li><img src="images/card.png" height="20" width="20" alt=""> Messages</li>
+        <li><img src="images/image 7.png" height="20" width="20" alt=""> Settings</li>
+        <li><img src="images/image 8.png" height="20" width="20" alt=""> Logout</li>
+    </ul>
+</div>
+
+<!-- Topbar -->
+<div class="topbar">
+    <h3>My Profile</h3>
+    <div class="profile-info">
+        <img src="images/profilePicture.png" alt="">
+        <div>
+            <span><b>Oda Dink</b></span><br>
+            <span style="color:#C4BCBC;">Super Admin</span>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+
+    <div class="section-header">
+        <p><b>Account</b></p>
+    </div>
+    <hr class="section-divider">
+
+    <div class="card">
+
+        <label>Full name</label>
+        <input type="text" id="fullname" placeholder="Please enter your full name">
+
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Please enter your Username">
+
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Please enter your email">
+
+        <label>Phone No</label>
+        <input type="tel" id="phone" placeholder="Please enter your Phone no">
+
+        <button id="updateBtn">Update Details</button>
+    </div>
+</div>
+
+<!-- Popup Modal -->
+<div id="overlay"></div>
+
+<div id="popup">
+    <h3>Entered Details are:</h3>
+    <p id="display"></p>
+    <button id="closeBtn">Close</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <ul>
+        <li><img src="images/Group 8.png" height="60" width="60" alt="" align="center"> <font align="center"><b>Jobie</b></font></li>
+        <li><img src="images/Vector.png" height="20" width="20" alt=""> Dashboard</li>
+        <li><img src="images/image 10.png" height="20" width="20" alt=""> Job Providers</li>
+        <li><img src="images/image 6.png" height="20" width="20" alt=""> New Registrations</li>
+        <li><img src="images/image 9.png" height="20" width="20" alt=""> Job Seekers</li>
+        <li><img src="images/ic_search.png" height="20" width="20" alt=""> Jobs</li>
+        <li><img src="images/frame.png" height="20" width="20" alt=""> My Profile</li>
+        <li><img src="images/card.png" height="20" width="20" alt=""> Messages</li>
+        <li><img src="images/image 7.png" height="20" width="20" alt=""> Settings</li>
+        <li><img src="images/image 8.png" height="20" width="20" alt=""> Logout</li>
+    </ul> -->
