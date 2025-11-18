@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Food Order</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("images/food.jpg"); 
+            background-size: cover;            
+            background-position: center;       
+            height: 100vh;                  
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .navbar {
+            width: 100%;
+            height: 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 25px;
+            box-sizing: border-box;
+        }
+
+       
+        .logo {
+            font-size: 40px;
+            font-weight: bold;
+            color: yellow;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+      
+        .menu-items a {
+            color: white;
+            text-decoration: none;
+            margin-left: 50px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        
+        button {
+            width: 140px;
+            padding: 8px 12px;
+            background-color: red;
+            color: yellow;
+            font-size: 15px;
+            border-radius: 10px;
+        }
+
+        
+        #result {
+            margin-top: 15px;
+            font-size: 25px;
+            font-weight: bolder;
+            font-family: cursive;
+            color: wheat;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<div class="navbar">
+    <div class="logo">HUNGRY HUB</div>
+
+    <div class="menu-items">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Menu</a>
+        <a href="#">Contact Us</a>
+    </div>
+
+    
+</div>
+
+
+<button id="orderBtn">Order Food</button>
+<p id="result"></p>
+
+<script>
+    document.getElementById("orderBtn").addEventListener("click", function () {
+
+        let confirmOrder = confirm("Do you want to place the order?");
+
+        if (confirmOrder) {
+            document.getElementById("result").innerText = "Order placed";
+        } else {
+            document.getElementById("result").innerText = "Order cancelled";
+        }
+
+    });
+</script>
+
+</body>
+</html>
