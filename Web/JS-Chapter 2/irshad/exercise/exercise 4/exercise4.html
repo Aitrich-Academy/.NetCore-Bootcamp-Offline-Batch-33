@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HireMe Now</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .sidebar {
+      background: #2581bc;
+      color: #fff;
+      width: 220px;
+      height: 100vh;
+      position: fixed;
+      left: 0; top: 0;
+      padding-top: 20px;
+    }
+    .sidebar h2 { text-align: center; margin-top: 80px; }
+    .sidebar ul { list-style: none; padding: 0; }
+    .sidebar li {
+        padding: 12px 25px;
+        margin-left: 40px;
+    }
+    .sidebar .addnew {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 18px;
+    }
+    .header {
+        display: flex;
+        align-items: center;   /* vertical alignment */
+        justify-content: flex-end; /* or center / space-between */
+        gap: 15px;             /* space between icons */
+        padding: 10px;
+    }
+
+
+    .content {
+      margin-left: 240px;
+      padding: 40px;
+    }
+    h3 { margin-bottom: 25px;
+         margin-top: 100px; }
+    table.shortlist-table {
+      border-collapse: separate;
+      border-spacing: 35px 25px;
+      width: auto;
+    }
+    td {
+      vertical-align: top;
+      min-width: 170px;
+      padding: 0;
+      background: #fff;
+    }
+    .card {
+      text-align: center;
+      padding: 0;
+    }
+    .card img {
+      width: 70px;
+      height: 70px;
+      
+      object-fit: fill;
+      background: #ddd;
+      margin-bottom: 6px;
+    }
+    
+    .card .name { font-weight: bold; margin-bottom: 5px; margin-top: 6px; }
+    .card .detail { font-size: 15px; margin-bottom: 15px; }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>HireMe Now!</h2>
+    <ul>
+      <li><img src="images/dashboard 1.png" alt="">&nbsp; Dash Board</li>
+      <li><img src="images/suitcase 2.png" alt="">&nbsp; Jobs</li>
+      <li><img src="images/application (1) 1.png" alt="">&nbsp; Applications</li>
+      <li><img src="images/question (1) 1.png" alt="">&nbsp; Interviews</li>
+      <li><img src="images/message 1.png" alt="">&nbsp; Messages</li>
+      <li><img src="images/settings 1.png" alt="">&nbsp; Settings</li>
+    </ul>
+    <div class="addnew">
+      <img src="images/add-group (1) 1.png"><br> AddNew
+    </div>
+  </div>
+  <div class="header">
+    <img src="images/notification-bing.png" alt="">
+    <img src="images/girl.png" alt="">
+    <img src="images/exit 1.png" alt="">
+  </div>
+  
+  <div class="content">
+    <h3>ShortList</h3>
+    <table class="shortlist-table" id="shortlistTable">
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    // Candidate list
+    const shortlist = [
+      { name: 'Alen', qualification: 'MCA', experience: '3 year', location: 'Banglore', img: 'images/member (1).png' },
+      { name: 'Sarah', qualification: 'MSC', experience: '2 Year', location: 'Chennai', img: 'images/girl.png' },
+      { name: 'Vivek', qualification: 'Btech', experience: '5 Year', location: 'Thiruvananthapuram', img: 'images/img1.png' },
+      { name: 'Deepak Roy', qualification: 'Btech', experience: '2 Year', location: 'calicut', img: 'images/member (2).png' }
+    ];
+
+    function renderTable(data) {
+      const tbody = document.getElementById('shortlistTable').querySelector('tbody');
+      tbody.innerHTML = "";
+      for (let row = 0; row < data.length; row += 2) {
+        let rowHtml = "<tr>";
+        for (let col = row; col < Math.min(row + 2, data.length); col++) {
+          const c = data[col];
+          rowHtml += `<td>
+            <div class="card">
+              <img src="${c.img}" alt="${c.name}">
+              <div class="name">${c.name}</div>
+              <div class="detail">Qualification: ${c.qualification}</div>
+              <div class="detail">Experience: ${c.experience}</div>
+              <div class="detail">Location: ${c.location}</div>
+            </div>
+          </td>`;
+        }
+        rowHtml += "</tr>";
+        tbody.innerHTML += rowHtml;
+      }
+    }
+    renderTable(shortlist);
+  </script>
+</body>
+</html>
