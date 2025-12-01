@@ -1,0 +1,112 @@
+:root {
+  --jobie-purple: #3c0f99;
+  --jobie-bg: #f6f6f8;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: var(--jobie-bg);
+}
+
+.dashboard-wrapper {
+  min-height: 100vh;
+}
+
+
+.sidebar {
+  width: 250px;
+  background-color: var(--jobie-purple);
+  color: #fff;
+}
+
+.sidebar-logo {
+  height: 48px;
+}
+
+.sidebar .nav-link {
+  color: #e2dcff;
+  font-size: 0.95rem;
+}
+
+.sidebar .nav-link i {
+  width: 22px;
+  font-size: 1.1rem;
+}
+
+
+
+.sidebar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding-inline: 12px;
+  color: #fff !important;
+  transition: 0.25s ease-in-out;
+}
+
+.main-content {
+  background-color: var(--jobie-bg);
+}
+
+.topbar-search {
+  max-width: 360px;
+}
+
+.notif-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-chip {
+  height: 48px;
+}
+
+.table-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.company-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+}
+
+.status-pill {
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 0.8rem;
+}
+
+.status-pending {
+  background: #f7f7f7;
+  border: 1px solid #c9cad0;
+  color: #777;
+}
+
+.status-onhold {
+  background: #fff3e9;
+  border: 1px solid #ffb58f;
+  color: #ff8b38;
+}
+
+.status-candidate {
+  background: #20b653;
+  border: 1px solid #20b653;
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  .dashboard-wrapper {
+    flex-direction: column;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+
+  .table-card {
+    box-shadow: none;
+  }
+}
