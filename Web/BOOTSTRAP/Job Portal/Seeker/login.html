@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Login Page</title>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #622774 0%, #243b6b 100%);
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+
+    .login-box {
+      background: rgba(50, 18, 63, 0.85);
+      border-radius: 16px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+      padding: 2rem;
+      width: 90vw;
+      max-width: 360px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .login-box h2 {
+      color: #A374F8;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    .login-box input[type="email"],
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #f6f3ff;
+      color: #3a206a;
+      box-sizing: border-box;
+    }
+
+    .login-box input[type="checkbox"] {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .login-box button {
+      background: #A374F8;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .login-box button:hover {
+      background: #7531c6;
+    }
+
+    .login-box .login-links {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #d8d5f7;
+    }
+    .login-box a {
+      color: #6cb6ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .login-box a:hover {
+      color: #A374F8;
+    }
+
+    @media (max-width: 500px) {
+      .login-box {
+        padding: 1rem;
+        max-width: 96vw;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.22);
+      }
+      .login-box h2 {
+        font-size: 1.5rem;
+      }
+      .login-box input,
+      .login-box button {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <form class="login-box">
+    <h2>Login</h2>
+    <input type="email" placeholder="Your Email" required>
+    <input type="password" placeholder="Your Password" required>
+    <label>
+      <input type="checkbox"> Keep me logged in
+    </label>
+    <button id="btnSubmit" type="submit">Login</button>
+    <div class="login-links">
+      <span>Forgot password?</span><br>
+      <span>Don't have an account yet? <a href="#">Sign up</a></span>
+    </div>
+  </form>
+
+
+
+
+  <script src="seeker.js"></script>
+</body>
+</html>
+
+
+<!-- ignore this file -->
