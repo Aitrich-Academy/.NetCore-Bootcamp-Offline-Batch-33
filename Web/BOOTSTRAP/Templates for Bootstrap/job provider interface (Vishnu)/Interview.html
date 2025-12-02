@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #eeeeee; 
+      box-sizing: border-box;
+    }
+
+    .sidebar {
+      background-color: #2d1fc3;
+      min-height: 100vh;
+      color: #fff;
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    .sidebar .list-group-item {
+      background-color: transparent;
+      color: #fff;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding-left: 0.5rem;
+      padding-bottom: 12px;
+      transition: background 0.2s;
+    }
+    .sidebar .list-group-item:hover {
+      background-color: #f5f5f56d;
+      color: #fff;
+    }
+    .sidebar .list-group-item img {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .sidebar .profile-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      background-color: #d6d8db;
+      display: block;
+      margin: 0 auto 32px auto;
+      border-radius: 50%;
+    }
+    .sidebar .add-new-img {
+      display: block;
+      margin: 32px auto 8px auto;
+      width: 80px;
+      height: 80px;
+    }
+    .sidebar .add-new-label {
+      text-align: center;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .main-bg {
+      background: #ffffff;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      background-color: #f5f4f7;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 36px;
+      gap: 18px;
+      border-bottom: 1px solid #eee;
+    }
+    .topbar .profile-pic {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #eee;
+    }
+    .topbar .logout-icon {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+    .topbar .logout-label {
+      font-weight: 500;
+      color: #222;
+      margin-left: 6px;
+    }
+
+     .content-card {
+      background: #fff;
+      border-radius: 8px;
+      margin-top: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 18px rgba(33,55,115,0.06);
+      padding: 32px 36px 36px 36px;
+      max-width: 1100px;
+      margin-left: 32px;
+      min-height: auto;
+    }
+
+    @media (max-width: 1200px) {
+      .content-card {
+        margin-left: 8px;
+        max-width: 98vw;
+        padding: 20px 16px 16px 16px;
+      }
+    }
+
+    .form-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    .form-tabs {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 12px;
+    }
+
+    .form-tabs button {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      color: #666;
+      cursor: pointer;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 12px;
+    }
+
+    .form-tabs button.active {
+      color: #2d1fc3;
+    }
+
+    .form-tabs button.active::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #2d1fc3;
+    }
+
+    .form-content {
+      display: none;
+    }
+
+    .form-content.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-control {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+    }
+
+    .form-control:focus {
+      border-color: #2d1fc3;
+      box-shadow: 0 0 0 0.2rem rgba(45, 31, 195, 0.15);
+    }
+
+    .form-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .submit-btn {
+      background-color: #348ada;
+      color: white;
+      border: none;
+      padding: 10px 32px;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+
+    .submit-btn:hover {
+      background-color: #286dbd;
+    }
+
+    .search-bar {
+      border-radius: 22px;
+      border: 1px solid #ddd;
+      padding-left: 20px;
+      height: 44px;
+      font-size: 1rem;
+      box-shadow: none;
+      margin-bottom: 24px;
+    }
+
+    .interview-card {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .interview-image {
+      flex-shrink: 0;
+    }
+
+    .interview-image img {
+      width: 140px;
+      height: 180px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .interview-details {
+      flex: 1;
+    }
+
+    .interview-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    .interview-info {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .interview-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .interview-actions button {
+      background-color: #348ada;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .interview-actions button:hover {
+      background-color: #286dbd;
+    }
+
+    .interview-actions .cancel-btn {
+      background-color: #dc3545;
+    }
+
+    .interview-actions .cancel-btn:hover {
+      background-color: #c82333;
+    }
+
+    .schedule-form-section {
+      background: #f9f9f9;
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+
+    .schedule-form-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        min-height: unset;
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+      .content-card {
+        padding: 16px;
+      }
+      .interview-card {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .interview-image img {
+        width: 100%;
+        height: auto;
+      }
+      .form-row {
+        flex-direction: column;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <div class="container-fluid main-bg">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-2 sidebar d-flex flex-column align-items-center">
+        <!-- Profile logo -->
+        <img src="images/profile.png"
+          alt="Profile" class="profile-img">
+        <!-- Menu items -->
+        <div class="list-group w-100">
+          <a href="Dashboard.html" class="list-group-item">
+            <img src="images/dashboard 1.png" width="20" height="20" alt="Dashboard"> Dashboard
+          </a>
+          <a href="Company.html" class="list-group-item">
+            <img src="images/suitcase 2.png" width="20" height="20" alt="Company"> Company
+          </a>
+          <a href="Jobs.html" class="list-group-item">
+            <img src="images/job-letter.png" width="20" height="20" alt="Jobs"> Jobs
+          </a>
+          <a href="Application.html" class="list-group-item">
+            <img src="images/application (1) 1.png" width="20" height="20" alt="Applications"> Applications
+          </a>
+          <a href="Interview.html" class="list-group-item">
+            <img src="images/question (1) 1.png" width="20" height="20" alt="Interviews"> Interviews
+          </a>
+          <a href="Messages.html" class="list-group-item">
+            <img src="images/message 1.png" width="20" height="20" alt="Messages"> Messages
+          </a>
+        </div>
+        <a href="Add new.html" class="mt-auto text-center">
+          <img src="images/add-group (1) 1.png" class="add-new-img" alt="add group">
+          <div class="add-new-label" style="text-decoration: none;">Add New</div>
+        </a>
+      </div>
+      <!-- Main Right Area -->
+      <div class="col-10 px-0 d-flex flex-column" style="min-height:100vh;">
+        <!-- Topbar -->
+        <div class="topbar">
+          <!-- Put icons from your assets if needed -->
+          <img src="images/Ellipse 1.png"
+            alt="Profile" class="profile-pic">
+          <img src="images/logout.png"
+            alt="Logout" class="logout-icon">
+          <span class="logout-label">Logout</span>
+        </div>
+
+
+ <!-- Content Card -->
+        <div class="content-card">
+          <div class="form-title">Interviews</div>
+
+          <!-- Form Tabs -->
+          <div class="form-tabs">
+            <button class="active" onclick="switchTab('list')">List Interviews</button>
+            <button onclick="switchTab('schedule')">Schedule Interview</button>
+          </div>
+
+          <!-- List Interviews Content -->
+          <div id="list" class="form-content active">
+            <input type="text" class="search-bar form-control" id="searchInterviews" placeholder="FIND INTERVIEWS">
+            <div id="interviewsList"></div>
+          </div>
+
+          <!-- Schedule Interview Form -->
+          <div id="schedule" class="form-content">
+            <div class="schedule-form-section">
+              <div class="schedule-form-title">Schedule Interview</div>
+              <form onsubmit="handleScheduleInterview(event)">
+                <div class="form-group">
+                  <label class="form-label">Candidate Name</label>
+                  <input type="text" class="form-control" id="candidateName" placeholder="Enter candidate name" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Position</label>
+                  <input type="text" class="form-control" id="positionName" placeholder="e.g., Senior Developer" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Date</label>
+                    <input type="date" class="form-control" id="interviewDate" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Time</label>
+                    <input type="time" class="form-control" id="interviewTime" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Interview Type</label>
+                  <select class="form-control" id="interviewType" required>
+                    <option value="">Select interview type</option>
+                    <option value="Phone Screening">Phone Screening</option>
+                    <option value="Video Call">Video Call</option>
+                    <option value="In-Person">In-Person</option>
+                    <option value="Technical Assessment">Technical Assessment</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Interviewer</label>
+                  <input type="text" class="form-control" id="interviewer" placeholder="Interviewer name" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Schedule Interview</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let interviews = [
+      {
+        id: 1,
+        name: "Sarah Johnson",
+        position: "Senior Frontend Developer",
+        date: "2024-12-05",
+        time: "10:00",
+        type: "Video Call",
+        interviewer: "John Smith",
+        image: "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22180%22%3E%3Crect fill=%234a90e2%22 width=%22140%22 height=%22180%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2218%22 fill=%22white%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECandidate%3C/text%3E%3C/svg%3E"
+      },
+      {
+        id: 2,
+        name: "Michael Chen",
+        position: "Backend Developer",
+        date: "2024-12-06",
+        time: "14:30",
+        type: "In-Person",
+        interviewer: "Jane Doe",
+        image: "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22180%22%3E%3Crect fill=%234a90e2%22 width=%22140%22 height=%22180%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2218%22 fill=%22white%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECandidate%3C/text%3E%3C/svg%3E"
+      }
+    ];
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.form-content').forEach(el => {
+        el.classList.remove('active');
+      });
+      document.querySelectorAll('.form-tabs button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+      
+      if (tabName === 'list') {
+        displayInterviews();
+      }
+    }
+
+    function displayInterviews() {
+      const searchTerm = document.getElementById('searchInterviews')?.value.toLowerCase() || '';
+      const filtered = interviews.filter(interview => 
+        interview.name.toLowerCase().includes(searchTerm) || 
+        interview.position.toLowerCase().includes(searchTerm)
+      );
+
+      const interviewsList = document.getElementById('interviewsList');
+      
+      if (filtered.length === 0) {
+        interviewsList.innerHTML = '<p style="text-align: center; color: #999; margin-top: 32px;">No interviews scheduled</p>';
+      } else {
+        interviewsList.innerHTML = filtered.map(interview => `
+          <div class="interview-card">
+            <div class="interview-image">
+              <img src="${interview.image}" alt="${interview.name}">
+            </div>
+            <div class="interview-details">
+              <div class="interview-name">${interview.name}</div>
+              <div class="interview-info"><strong>Position:</strong> ${interview.position}</div>
+              <div class="interview-info"><strong>Date & Time:</strong> ${interview.date} at ${interview.time}</div>
+              <div class="interview-info"><strong>Type:</strong> ${interview.type}</div>
+              <div class="interview-info"><strong>Interviewer:</strong> ${interview.interviewer}</div>
+              <div class="interview-actions">
+                <button onclick="editInterview(${interview.id})">Edit</button>
+                <button class="cancel-btn" onclick="cancelInterview(${interview.id})">Cancel</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function handleScheduleInterview(event) {
+      event.preventDefault();
+
+      const interview = {
+        id: Date.now(),
+        name: document.getElementById('candidateName').value,
+        position: document.getElementById('positionName').value,
+        date: document.getElementById('interviewDate').value,
+        time: document.getElementById('interviewTime').value,
+        type: document.getElementById('interviewType').value,
+        interviewer: document.getElementById('interviewer').value,
+        image: "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22180%22%3E%3Crect fill=%224a90e2%22 width=%22140%22 height=%22180%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2218%22 fill=%22white%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECandidate%3C/text%3E%3C/svg%3E"
+      };
+
+      interviews.push(interview);
+      document.querySelector('form').reset();
+      alert('Interview scheduled successfully!');
+      switchTab('list');
+    }
+
+    function editInterview(interviewId) {
+      alert('Edit functionality coming soon!');
+    }
+
+    function cancelInterview(interviewId) {
+      if (confirm('Are you sure you want to cancel this interview?')) {
+        interviews = interviews.filter(interview => interview.id !== interviewId);
+        displayInterviews();
+        alert('Interview cancelled. Notification sent to candidate.');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInterviews = document.getElementById('searchInterviews');
+      if (searchInterviews) {
+        searchInterviews.addEventListener('input', displayInterviews);
+      }
+      displayInterviews();
+    });
+  </script>
+</body>
+</html>
