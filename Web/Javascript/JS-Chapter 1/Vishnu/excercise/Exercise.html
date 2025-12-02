@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jobie Admin Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Left side illustration -->
+    <section class="left">
+      <header class="logo">
+        <div class="logo-circle"></div>
+        <span class="logo-text"></span>
+      </header>
+
+      <div class="illustration-box">
+        <!-- You can replace this with the real image -->
+        <div class="fake-illustration">
+        </div>
+      </div>
+    </section>
+
+    <!-- Right side form -->
+    <section class="right">
+      <div class="form-card">
+        <h1 class="title">Sign in to Admin Dashboard</h1>
+
+        <form id="loginForm" novalidate>
+          <!-- Email -->
+          <div class="field">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="input your email in here"
+            />
+            <p class="error" id="emailError"></p>
+          </div>
+
+          <!-- Password -->
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="password"
+                placeholder="input your password in here"
+              />
+              <button type="button" class="toggle-password" id="togglePassword">
+                👁
+              </button>
+            </div>
+            <p class="error" id="passwordError"></p>
+          </div>
+
+          <div class="forgot-row">
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn-primary">Sign In</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Hire Me Now!</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+ 
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #e9f0f4;
+    }
+    body.sidebar-open { overflow: hidden; position: fixed; width: 100%; }
+    .main-container {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      grid-template-rows: 80px auto 200px;
+      grid-template-areas:
+        "sidebar header"
+        "sidebar main"
+        "sidebar notify";
+      min-height: 100vh;
+      width: 100vw;
+    }
+    .sidebar {
+      grid-area: sidebar;
+      background: #295769;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 2em;
+      border-right: 2px solid #1f3f4f;
+      will-change: transform;
+    }
+    .profile-img {
+      border-radius: 50%;
+      margin-bottom: 1em;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+    }
+    .sidebar button {
+      border-radius: 8px;
+      width: 65%;  /* Reduced from 80% */
+      margin-top: -25px;
+    }
+    .menu-item, .menu-item1{
+      margin-bottom: 6px;
+      padding: 10px 14px;
+      opacity: .7; 
+      transition: .2s;
+    }
+    .menu-item.active, .menu-item1.active{
+      background: linear-gradient(to right, #7f8c05, #3a4b1a);
+      border: 2px solid #ffe17a;
+      opacity: 1;
+      transform: scale(1.02);
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .menu-item{
+      background: linear-gradient(to right, #009fc6, #003f53);
+      width: 85%;
+      padding: 14px 20px;
+      margin: 0 auto 10px auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border: 1px solid #204054;
+      cursor:pointer;
+      font-size:15px;
+      border-radius: 6px;
+      transition:.2s;
+    }
+    .sidebar .menu-item img { width: 24px; margin-right: 8px; }
+    .sidebar .menu-item:hover, .sidebar .menu-item1:hover { background:#1e4654; }
+    .header {
+      grid-area: header;
+      background: #f6f6f8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2em;
+      border-bottom: 2px solid #ddd;
+      flex-wrap: nowrap;
+    }
+    .headerTitle { transition: .2s; }
+    .main { grid-area: main; padding: 1.3em; display: flex; gap: 1em; flex-wrap: wrap; }
+    .main-left { min-width: 270px; }
+    .main-right { min-width: 200px; }
+
+    /* Notification Section */
+    .notify-section {
+      grid-area: notify;
+      background: #295769;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .notify-section h4 { margin-top: 30px; margin-bottom: 10px; font-weight: bold; }
+    .notify-section p { max-width: 600px; margin-bottom: 20px; font-size: 0.90em; }
+    .notify-form { display: flex; flex-direction: row; justify-content: center; align-items: center; text-align: center; width: 100%; }
+    .notify-form input { background-color: #dad0d0; max-width:400px; width: 60%; border-radius:10px; border: 1px solid #ccc; margin-right:10px; padding: 10px 20px; font-size: 1em; }
+    .notify-form button { border-radius:10px; padding: 10px 32px; font-size: 1em; }
+
+    /* Footer */
+    .footer { background: #f1f1f1; color: #295769; padding:40px 30px 10px 30px; width:100vw; box-sizing: border-box; }
+    .footer h4, .footer h6 { font-weight:600; margin-bottom: 12px;}
+    .footer-text {max-width: 330px; text-align: justify;line-height: 1.6;font-size: 1.00rem;  color: #486670;}
+    .social-wrapper { display: flex; gap: 15px; opacity: 0.8; transition: .2s; }
+    .social-wrapper img { width: 26px; height: 26px; }
+    .social-wrapper img:hover { opacity: 1; transform: scale(1.50); }
+
+    @media(max-width:992px) {
+      .main-container { grid-template-columns: 1fr; grid-template-rows: 0px 80px auto 240px; grid-template-areas: "sidebar" "header" "main" "notify"; }
+      .main{ flex-direction: column; }
+      .main-left, .main-right { min-width: 100%; }
+      .sidebar { position: fixed; min-height: 180px; width: 100vw; flex-direction: column; justify-content: flex-start; padding-bottom: 15px; left: 0; top: 0; height: 100vh; transform: translateX(-100%); transition: .35s ease; z-index: 1000; width: 230px; }
+      .sidebar.show { transform: translateX(0); }
+      .menu-toggle { cursor: pointer; }
+      .main-container { overflow-x: hidden; }
+      .sidebar nav { display: flex; gap: 10px; flex-wrap: nowrap; align-items: center; justify-content: center; }
+      .sidebar .menu-item, .sidebar .menu-item1 { width: auto; padding: 10px 14px; gap: 8px; font-size: 12px; white-space: nowrap; }
+      .sidebar .menu-item img { width: 14px; }
+      .profile-img {width:70px;}
+      .sidebar button { width:30vw;}
+      .sidebar .menu-item {font-size:13px;}
+      .main {flex-direction:column; gap:1em;}
+      .footer {padding:25px 5px 10px 5px;}
+    }
+    @media(max-width:600px) {
+      .main {padding:14px;}
+      .header{flex-wrap: wrap; row-gap: 10px;}
+      .footer {padding:16px 1vw 8px 1vw;text-align: center;}
+      .social-wrapper {justify-content: center;}
+      .notify-section h4 {font-size:1.1em;}
+      .notify-form input {width: 70vw;}
+      .footer .row > div {margin-bottom:10px;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h4>HIRE ME NOW!</h4>
+      <img src="images/Ellipse 1.png" class="profile-img" alt="Profile">
+      <button class="btn btn-success w-100 w-md-auto mb-2">Open To Work</button>
+      <nav class="w-100 flex-column pt-5">
+        <div class="menu-item" id="allJob" data-title="All Jobs"><img src="images/buildings-2.png" alt="">All Jobs</div>
+        <div class="menu-item" id="myApplication" data-title="My Applicants"><img src="images/Vector.png" alt="">My Applications</div>
+        <div class="menu-item" id="messages" data-title="Messages"><img src="images/message-2.png" alt="">Messages</div>
+        <div class="menu-item" id="myProfile" data-title="My Profile"><img src="images/profile.png" alt="">My Profile</div>
+        <div class="menu-item" id="settings" data-title="Settings"><img src="images/setting-2.png" alt="">Settings</div>
+      </nav>
+    </aside>
+
+    <!-- Header -->
+    <header class="header d-flex justify-content-between align-items-center px-3 py-2 flex-wrap">
+      <div class="left-header d-flex align-items-center gap-2">
+        <img src="images/hamburger.jpg" alt="menu" class="menu-toggle d-lg-none" width="30">
+       
+      </div>
+      <div class="d-flex align-items-center gap-2 flex-shrink-0">
+        <span class="fw-semibold">Leslie Alexander</span>
+        <img src="images/Ellipse 1.png" class="rounded-circle" width="45" alt="User">
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4">
+      <div class="row g-4">
+
+      
+        <!-- LEFT SIDE -->
+<div class="col-md-4">
+
+  <!-- Static Name and Email without labels or bold -->
+  <div class="mb-3">
+    <p>Leslie Alexander</p>
+  </div>
+
+  <div class="mb-3">
+    <p>leslie.alex@example.com</p>
+  </div>
+
+  <!-- Resume Upload -->
+
+<div class="mb-3">
+  <h5 class="fw-bold mb-3">Upload Resume</h5>
+  <input type="file" class="form-control mb-2" id="resumeInput" accept=".pdf,.doc,.docx">
+  <button class="btn btn-success" type="button" id="uploadResumeBtn">
+    <i class="bi bi-upload"></i> Upload Resume
+  </button>
+  <small class="text-muted d-block mt-1">Supported formats: PDF, DOC, DOCX. Max size: 5MB</small>
+</div>
+
+
+
+  <!-- Skills Section -->
+  <div class="mb-4">
+    <label class="form-label fw-bold">Skills</label>
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Add your skills">
+        <button class="btn btn-outline-secondary" type="button">
+            <i class="bi bi-pencil-square"></i> Edit
+        </button>
+    </div>
+  </div>
+
+</div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="col-md-8">
+          <h5 class="fw-bold mb-3"></h5>
+
+          <!-- Qualification Field -->
+          
+
+        <!-- Qualification Field -->
+<div class="mb-3">
+  <label class="form-label fw-normal">
+    <i class="bi bi-mortarboard me-1"></i> Qualification
+  </label>
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Enter your qualification">
+    <button class="btn btn-outline-secondary" type="button">
+      <i class="bi bi-pencil-square"></i> Edit
+    </button>
+  </div>
+</div>
+
+<!-- Experience Field -->
+<div class="mb-3">
+  <label class="form-label fw-normal">
+    <i class="bi bi-mortarboard me-1"></i> Experience
+  </label>
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Enter your experience">
+    <button class="btn btn-outline-secondary" type="button">
+      <i class="bi bi-pencil-square"></i> Edit
+    </button>
+  </div>
+</div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Notification Section -->
+    <section class="notify-section">
+      <h1>Get Notified Every New Job</h1>
+      <p class="mb-3">Ideal platform for job seekers passionate about startups and seeking new career opportunities.</p>
+      <form class="notify-form">
+        <input class="form-control" placeholder="Enter your Email Address....">
+        <button class="btn btn-success px-4">Subscribe</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="row">
+        <div class="col-md-7 mb-3">
+          <h4>Hire Me Now !</h4>
+          <p class="footer-text">Ideal platform for job seekers passionate about startups and seeking new opportunities.</p>
+          <div class="social-wrapper mt-3">
+            <img src="images/youtube.png" alt="YouTube" class="social-icon">
+            <img src="images/instagram.png" alt="Instagram" class="social-icon">
+            <img src="images/twitter.png" alt="Twitter" class="social-icon">
+            <img src="images/linkedin.png" alt="LinkedIn" class="social-icon">
+            <img src="images/fb.png" alt="Facebook" class="social-icon">
+          </div>
+        </div>
+        <div class="col-md-1 mb-3">
+          <h6>About Us</h6>
+          <p>Contact Us<br>Home<br>Features<br>Team</p>
+        </div>
+        <div class="col-md-1 mb-3">
+          <h6>Company</h6>
+          <p>Contact Us<br>Career<br>Pricing<br>Blog</p>
+        </div>
+        <div class="col-md-1 mb-3">
+          <h6>Support</h6>
+          <p>Support<br>Privacy<br>FAQ</p>
+        </div>
+        <div class="col-md-1 mb-3">
+          <h6>Services</h6>
+          <p>SEO<br>UI Design<br>Developer<br>Accountant</p>
+        </div>
+      </div>
+    </footer>
+
+  <div class="overlay"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
