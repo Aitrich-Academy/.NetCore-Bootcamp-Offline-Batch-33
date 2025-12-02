@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eeeeee;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar Responsive */
+    .sidebar {
+      background-color: #2d1fc3;
+      color: #fff;
+      padding: 24px 16px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 250px;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar .profile-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      background-color: #d6d8db;
+      display: block;
+      margin: 0 auto 24px auto;
+      border-radius: 50%;
+    }
+
+    .sidebar .list-group {
+      width: 100%;
+      margin-bottom: auto;
+    }
+
+    .sidebar .list-group-item {
+      background-color: transparent;
+      color: #fff;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar .list-group-item:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      transform: translateX(4px);
+    }
+
+    .sidebar .list-group-item img {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .sidebar .add-new-section {
+      width: 100%;
+      text-align: center;
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .sidebar .add-new-img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 12px;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+
+    .sidebar .add-new-img:hover {
+      opacity: 1;
+    }
+
+    .sidebar .add-new-label {
+      color: #fff;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* Main Content Area */
+    .main-content {
+      margin-left: 250px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .topbar {
+      background-color: #f5f4f7;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 20px;
+      gap: 15px;
+      border-bottom: 1px solid #eee;
+      flex-shrink: 0;
+    }
+
+    .topbar .profile-pic {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #eee;
+    }
+
+    .topbar .logout-section {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .topbar .logout-icon {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .topbar .logout-label {
+      font-weight: 500;
+      color: #222;
+      font-size: 0.95rem;
+    }
+
+    /* Content Card */
+    .content-card {
+      background: #fff;
+      border-radius: 8px;
+      margin: 32px;
+      box-shadow: 0 4px 18px rgba(33, 55, 115, 0.06);
+      padding: 32px;
+      flex: 1;
+    }
+
+    .search-bar {
+      border-radius: 22px;
+      border: 1px solid #ddd;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      box-shadow: none;
+      margin-bottom: 30px;
+      transition: border-color 0.3s;
+    }
+
+    .search-bar:focus {
+      border-color: #2d1fc3;
+      box-shadow: 0 0 0 0.2rem rgba(45, 31, 195, 0.15);
+    }
+
+    /* Stats Row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: #348ada;
+      color: #fff;
+      text-align: center;
+      border-radius: 8px;
+      padding: 24px 16px;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 8px rgba(52, 138, 218, 0.2);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(52, 138, 218, 0.3);
+    }
+
+    .stat-card .stat-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      opacity: 0.95;
+    }
+
+    .stat-card .stat-count {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    /* Image Section */
+    .main-img-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .main-img-section img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 4px 18px rgba(33, 55, 115, 0.13);
+    }
+
+    /* Hamburger Menu for Mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background-color: #2d1fc3;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Overlay for mobile */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    /* Tablet (768px - 1024px) */
+    @media (max-width: 1024px) {
+      .main-content {
+        margin-left: 0;
+      }
+
+      .sidebar {
+        width: 200px;
+        padding: 16px 12px;
+      }
+
+      .content-card {
+        margin: 24px;
+        padding: 24px;
+      }
+
+      .stats-row {
+        gap: 16px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        padding: 20px 12px;
+        min-height: 100px;
+      }
+
+      .stat-card .stat-count {
+        font-size: 1.6rem;
+      }
+
+      .topbar {
+        padding: 0 16px;
+        height: 65px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .sidebar {
+        position: fixed;
+        left: -200px;
+        transition: left 0.3s ease;
+        height: 100vh;
+        z-index: 1000;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .sidebar-overlay.active {
+        display: block;
+      }
+    }
+
+    /* Mobile (max 767px) */
+    @media (max-width: 767px) {
+      .main-content {
+        margin-left: 0;
+      }
+
+      .sidebar {
+        width: 100%;
+        max-width: 280px;
+        left: -280px;
+        padding: 16px;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .content-card {
+        margin: 16px;
+        padding: 16px;
+        border-radius: 6px;
+      }
+
+      .stats-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .stat-card {
+        padding: 16px;
+        min-height: 90px;
+      }
+
+      .stat-card .stat-title {
+        font-size: 0.85rem;
+      }
+
+      .stat-card .stat-count {
+        font-size: 1.5rem;
+      }
+
+      .topbar {
+        padding: 0 12px;
+        height: 60px;
+        gap: 12px;
+      }
+
+      .topbar .logout-label {
+        display: none;
+      }
+
+      .search-bar {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+        margin-bottom: 20px;
+      }
+
+      .main-img-section img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .sidebar .profile-img {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 20px;
+      }
+
+      .sidebar .list-group-item {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+        margin-bottom: 6px;
+      }
+
+      .sidebar .list-group-item img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    /* Small Mobile (max 480px) */
+    @media (max-width: 480px) {
+      .content-card {
+        margin: 12px;
+        padding: 12px;
+      }
+
+      .stats-row {
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 12px;
+        min-height: 80px;
+      }
+
+      .stat-card .stat-title {
+        font-size: 0.8rem;
+      }
+
+      .stat-card .stat-count {
+        font-size: 1.3rem;
+      }
+
+      .topbar {
+        height: 55px;
+        padding: 0 8px;
+      }
+
+      .topbar .profile-pic {
+        width: 32px;
+        height: 32px;
+      }
+
+      .topbar .logout-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .search-bar {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Scrollbar Styling */
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar Overlay (Mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <!-- Profile logo -->
+    <img src="images/profile.png" alt="Profile" class="profile-img">
+
+    <!-- Menu items -->
+    <div class="list-group w-100">
+          <a href="Responsive Dashboard.html" class="list-group-item">
+            <img src="images/dashboard 1.png" width="20" height="20" alt="Dashboard"> Dashboard
+          </a>
+          <a href="Company.html" class="list-group-item">
+            <img src="images/suitcase 2.png" width="20" height="20" alt="Company"> Company
+          </a>
+          <a href="Jobs.html" class="list-group-item">
+            <img src="images/job-letter.png" width="20" height="20" alt="Jobs"> Jobs
+          </a>
+          <a href="Application.html" class="list-group-item">
+            <img src="images/application (1) 1.png" width="20" height="20" alt="Applications"> Applications
+          </a>
+          <a href="Interview.html" class="list-group-item">
+            <img src="images/question (1) 1.png" width="20" height="20" alt="Interviews"> Interviews
+          </a>
+          <a href="Messages.html" class="list-group-item">
+            <img src="images/message 1.png" width="20" height="20" alt="Messages"> Messages
+          </a>
+        </div>
+
+    <!-- Add New Section -->
+    <a href="Add new.html" class="mt-auto text-center">
+          <img src="images/add-group (1) 1.png" class="add-new-img" alt="add group">
+          <div class="add-new-label" style="text-decoration: none;">Add New</div>
+        </a>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Topbar -->
+    <div class="topbar">
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <img src="images/Ellipse 1.png" alt="Profile" class="profile-pic">
+      
+      <div class="logout-section">
+        <svg class="logout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        <span class="logout-label">Logout</span>
+      </div>
+    </div>
+
+    <!-- Content Card -->
+    <div class="content-card">
+      <input type="text" class="form-control search-bar" placeholder="FIND JOB SEEKER">
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-title">Interviews Scheduled</div>
+          <div class="stat-count">87</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Applications Received</div>
+          <div class="stat-count">187</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Total Jobs Posted</div>
+          <div class="stat-count">207</div>
+        </div>
+      </div>
+
+      <div class="main-img-section">
+        <img src="images/What Does M_F_D_V Stand for at the End of a Job Description_.jpeg" alt="Dashboard Main" /> 
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function toggleSidebar() {
+      hamburger.classList.toggle('active');
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    hamburger.addEventListener('click', toggleSidebar);
+
+    // Close sidebar when overlay clicked
+    overlay.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+
+    // Close sidebar when a menu item is clicked
+    document.querySelectorAll('.sidebar .list-group-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        // Only close if on mobile
+        if (window.innerWidth <= 1024) {
+          e.preventDefault();
+          hamburger.classList.remove('active');
+          sidebar.classList.remove('active');
+          overlay.classList.remove('active');
+        }
+      });
+    });
+
+    // Close sidebar on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024) {
+        hamburger.classList.remove('active');
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

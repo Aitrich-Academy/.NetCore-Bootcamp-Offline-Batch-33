@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .signup-container {
+      background: white;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      max-width: 550px;
+      width: 100%;
+    }
+
+    .signup-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .signup-title::before {
+      content: "👤";
+      font-size: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 8px;
+    }
+
+    .input-wrapper.active {
+      border-bottom-color: #348ada;
+    }
+
+    .input-icon {
+      color: #348ada;
+      margin-right: 12px;
+      font-size: 1.1rem;
+    }
+
+    .form-control {
+      border: none;
+      outline: none;
+      padding: 0;
+      font-size: 0.95rem;
+      color: #333;
+      background: transparent;
+      width: 100%;
+    }
+
+    .form-control::placeholder {
+      color: #999;
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+    }
+
+    .input-wrapper:focus-within {
+      border-bottom-color: #348ada;
+    }
+
+    .signup-button {
+      width: 100%;
+      padding: 12px;
+      background-color: #348ada;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .signup-button::before {
+      content: "👤";
+    }
+
+    .signup-button:hover {
+      background-color: #286dbd;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .login-link a {
+      color: #348ada;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .signup-container {
+        padding: 24px;
+      }
+
+      .signup-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h1 class="signup-title">Sign Up</h1>
+    
+    <form id="signupForm" onsubmit="handleSignUp(event)">
+      <div class="form-group">
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="firstName" 
+            placeholder="firstName" 
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="lastName" 
+            placeholder="lastName" 
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="userName" 
+            placeholder="userName" 
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper">
+          <span class="input-icon">✉️</span>
+          <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            placeholder="email" 
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper">
+          <span class="input-icon">📱</span>
+          <input 
+            type="tel" 
+            class="form-control" 
+            id="phone" 
+            placeholder="phone" 
+            required
+          >
+        </div>
+      </div>
+
+      <button type="submit" class="signup-button">Sign Up</button>
+    </form>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Login here</a>
+    </div>
+  </div>
+
+  <script>
+    function handleSignUp(event) {
+      event.preventDefault();
+      
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const userName = document.getElementById('userName').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+
+      alert(`Welcome ${firstName} ${lastName}! Your account has been created successfully.`);
+      document.getElementById('signupForm').reset();
+      
+      // Navigate to dashboard after 1 second
+      setTimeout(() => {
+        window.location.href = 'Dashboard.html';
+      }, 1000);
+    }
+
+    // Add focus effect to input wrappers
+    const inputWrappers = document.querySelectorAll('.input-wrapper');
+    inputWrappers.forEach(wrapper => {
+      const input = wrapper.querySelector('.form-control');
+      input.addEventListener('focus', () => {
+        wrapper.classList.add('active');
+      });
+      input.addEventListener('blur', () => {
+        wrapper.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>

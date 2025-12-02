@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobs</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #eeeeee; 
+      box-sizing: border-box;
+    }
+
+    .sidebar {
+      background-color: #2d1fc3;
+      min-height: 100vh;
+      color: #fff;
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    .sidebar .list-group-item {
+      background-color: transparent;
+      color: #fff;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding-left: 0.5rem;
+      padding-bottom: 12px;
+      transition: background 0.2s;
+    }
+    .sidebar .list-group-item:hover {
+      background-color: #f5f5f56d;
+      color: #fff;
+    }
+    .sidebar .list-group-item img {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .sidebar .profile-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      background-color: #d6d8db;
+      display: block;
+      margin: 0 auto 32px auto;
+      border-radius: 50%;
+    }
+    .sidebar .add-new-img {
+      display: block;
+      margin: 32px auto 390px auto;
+      width: 80px;
+      height: 80px;
+    }
+    .sidebar .add-new-label {
+      text-align: center;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .main-bg {
+      background: #ffffff;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      background-color: #f5f4f7;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 36px;
+      gap: 18px;
+      border-bottom: 1px solid #eee;
+    }
+    .topbar .profile-pic {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #eee;
+    }
+    .topbar .logout-icon {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+    .topbar .logout-label {
+      font-weight: 500;
+      color: #222;
+      margin-left: 6px;
+    }
+
+.content-card {
+      background: #fff;
+      border-radius: 8px;
+      margin-top: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 18px rgba(33,55,115,0.06);
+      padding: 32px 36px 36px 36px;
+      max-width: 1100px;
+      margin-left: 32px;
+      min-height: auto;
+    }
+    @media (max-width: 1200px) {
+      .content-card {
+        margin-left: 8px;
+        max-width: 98vw;
+        padding: 20px 16px 16px 16px;
+      }
+    }
+
+    .form-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 24px;
+    }
+
+    .form-tabs {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 12px;
+    }
+
+    .form-tabs button {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      color: #666;
+      cursor: pointer;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 12px;
+    }
+
+    .form-tabs button.active {
+      color: #2d1fc3;
+    }
+
+    .form-tabs button.active::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #2d1fc3;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-control {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+    }
+
+    .form-control:focus {
+      border-color: #2d1fc3;
+      box-shadow: 0 0 0 0.2rem rgba(45, 31, 195, 0.15);
+    }
+
+    .form-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .submit-btn {
+      background-color: #348ada;
+      color: white;
+      border: none;
+      padding: 10px 32px;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+
+    .submit-btn:hover {
+      background-color: #286dbd;
+    }
+
+    .form-content {
+      display: none;
+    }
+
+    .form-content.active {
+      display: block;
+    }
+
+    .search-bar {
+      border-radius: 22px;
+      border: 1px solid #ddd;
+      padding-left: 20px;
+      height: 44px;
+      font-size: 1rem;
+      box-shadow: none;
+      margin-bottom: 24px;
+    }
+
+    .pagination-controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .pagination-controls button {
+      background-color: #f5f4f7;
+      border: 1px solid #ddd;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .pagination-controls button:hover {
+      background-color: #eeeeee;
+    }
+
+    .pagination-controls button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .page-number {
+      background-color: #2d1fc3;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .job-card {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .job-image {
+      flex-shrink: 0;
+    }
+
+    .job-image img {
+      width: 220px;
+      height: 280px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .job-details {
+      flex: 1;
+    }
+
+    .job-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    .job-info {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .job-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .job-actions button {
+      background-color: #348ada;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .job-actions button:hover {
+      background-color: #286dbd;
+    }
+
+    .job-actions .delete-btn {
+      background-color: #dc3545;
+    }
+
+    .job-actions .delete-btn:hover {
+      background-color: #c82333;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        min-height: unset;
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+      .content-card {
+        padding: 16px;
+      }
+      .job-card {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .job-image img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid main-bg">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-2 sidebar d-flex flex-column align-items-center">
+        <!-- Profile logo -->
+        <img src="images/profile.png"
+          alt="Profile" class="profile-img">
+        <!-- Menu items -->
+        <div class="list-group w-100">
+          <a href="Dashboard.html" class="list-group-item">
+            <img src="images/dashboard 1.png" width="20" height="20" alt="Dashboard"> Dashboard
+          </a>
+          <a href="Company.html" class="list-group-item">
+            <img src="images/suitcase 2.png" width="20" height="20" alt="Company"> Company
+          </a>
+          <a href="Jobs.html" class="list-group-item">
+            <img src="images/job-letter.png" width="20" height="20" alt="Jobs"> Jobs
+          </a>
+          <a href="Application.html" class="list-group-item">
+            <img src="images/application (1) 1.png" width="20" height="20" alt="Applications"> Applications
+          </a>
+          <a href="Interview.html" class="list-group-item">
+            <img src="images/question (1) 1.png" width="20" height="20" alt="Interviews"> Interviews
+          </a>
+          <a href="Messages.html" class="list-group-item">
+            <img src="images/message 1.png" width="20" height="20" alt="Messages"> Messages
+          </a>
+        </div>
+        <a href="Add new.html" class="mt-auto text-center">
+          <img src="images/add-group (1) 1.png" class="add-new-img" alt="add group">
+          <div class="add-new-label" style="text-decoration: none;">Add New</div>
+        </a>
+      </div>
+      <!-- Main Right Area -->
+      <div class="col-10 px-0 d-flex flex-column" style="min-height:100vh;">
+        <!-- Topbar -->
+        <div class="topbar">
+          <!-- Put icons from your assets if needed -->
+          <img src="images/Ellipse 1.png"
+            alt="Profile" class="profile-pic">
+          <img src="images/logout.png"
+            alt="Logout" class="logout-icon">
+          <span class="logout-label">Logout</span>
+        </div>
+       <!-- Content Card -->
+        <div class="content-card">
+          <div class="form-title">Jobs</div>
+
+          <!-- Form Tabs -->
+          <div class="form-tabs">
+            <button class="active" onclick="switchTab('post')">Post Jobs</button>
+            <button onclick="switchTab('list')">List Jobs</button>
+          </div>
+
+          <!-- Post Jobs Form -->
+          <div id="post" class="form-content active">
+            <form onsubmit="handlePostJob(event)">
+              <div class="form-group">
+                <label class="form-label">Job Title</label>
+                <input type="text" class="form-control" id="jobTitle" placeholder="e.g., Senior Developer" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Job Type</label>
+                <select class="form-control" id="jobType" required>
+                  <option value="">Select job type</option>
+                  <option value="Full-time">Full-time</option>
+                  <option value="Part-time">Part-time</option>
+                  <option value="Contract">Contract</option>
+                  <option value="Internship">Internship</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Experience Level</label>
+                <select class="form-control" id="experienceLevel" required>
+                  <option value="">Select experience level</option>
+                  <option value="Entry Level">Entry Level</option>
+                  <option value="Mid Level">Mid Level</option>
+                  <option value="Senior">Senior</option>
+                  <option value="Executive">Executive</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Salary Range</label>
+                <input type="text" class="form-control" id="salaryRange" placeholder="e.g., $50,000 - $70,000" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Location</label>
+                <input type="text" class="form-control" id="jobLocation" placeholder="City, Country" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Job Description</label>
+                <textarea class="form-control" id="jobDescription" rows="4" placeholder="Detailed job description" required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Requirements</label>
+                <textarea class="form-control" id="requirements" rows="3" placeholder="Skills and requirements" required></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn">Post Job</button>
+            </form>
+          </div>
+
+          <!-- List Jobs Content -->
+          <div id="list" class="form-content">
+            <input type="text" class="search-bar form-control" id="searchJobs" placeholder="Search jobs...">
+            
+            <div class="pagination-controls">
+              <button onclick="previousPage()" id="prevBtn">Previous</button>
+              <div class="page-number" id="pageNum">Page 1</div>
+              <button onclick="nextPage()" id="nextBtn">Next</button>
+            </div>
+
+            <div id="jobsList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- Extra blue space at bottom, optional
+        <div style="flex:1; background-color: #2d1fc3; height: 200px;"></div> -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let jobs = [];
+    let currentPage = 1;
+    const jobsPerPage = 3;
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.form-content').forEach(el => {
+        el.classList.remove('active');
+      });
+      document.querySelectorAll('.form-tabs button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+      
+      if (tabName === 'list') {
+        currentPage = 1;
+        displayJobs();
+      }
+    }
+
+    function handlePostJob(event) {
+      event.preventDefault();
+
+      const job = {
+        id: Date.now(),
+        title: document.getElementById('jobTitle').value,
+        type: document.getElementById('jobType').value,
+        level: document.getElementById('experienceLevel').value,
+        salary: document.getElementById('salaryRange').value,
+        location: document.getElementById('jobLocation').value,
+        description: document.getElementById('jobDescription').value,
+        requirements: document.getElementById('requirements').value,
+        image: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22220%22 height=%22280%22%3E%3Crect fill=%22%234a90e2%22 width=%22220%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22white%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EJob Poster%3C/text%3E%3C/svg%3E'
+      };
+
+      jobs.push(job);
+      document.querySelector('form').reset();
+      alert('Job posted successfully!');
+    }
+
+    function displayJobs() {
+      const searchTerm = document.getElementById('searchJobs')?.value.toLowerCase() || '';
+      const filtered = jobs.filter(job => 
+        job.title.toLowerCase().includes(searchTerm) || 
+        job.location.toLowerCase().includes(searchTerm)
+      );
+
+      const totalPages = Math.ceil(filtered.length / jobsPerPage);
+      const start = (currentPage - 1) * jobsPerPage;
+      const end = start + jobsPerPage;
+      const paginatedJobs = filtered.slice(start, end);
+
+      const jobsList = document.getElementById('jobsList');
+      
+      if (paginatedJobs.length === 0) {
+        jobsList.innerHTML = '<p style="text-align: center; color: #999; margin-top: 32px;">No jobs posted yet</p>';
+      } else {
+        jobsList.innerHTML = paginatedJobs.map(job => `
+          <div class="job-card">
+            <div class="job-image">
+              <img src="${job.image}" alt="Job Poster">
+            </div>
+            <div class="job-details">
+              <div class="job-title">${job.title}</div>
+              <div class="job-info"><strong>Type:</strong> ${job.type}</div>
+              <div class="job-info"><strong>Level:</strong> ${job.level}</div>
+              <div class="job-info"><strong>Salary:</strong> ${job.salary}</div>
+              <div class="job-info"><strong>Location:</strong> ${job.location}</div>
+              <div class="job-info"><strong>Description:</strong> ${job.description}</div>
+              <div class="job-info"><strong>Requirements:</strong> ${job.requirements}</div>
+              <div class="job-actions">
+                <button onclick="editJob(${job.id})">Edit</button>
+                <button class="delete-btn" onclick="deleteJob(${job.id})">Delete</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      document.getElementById('prevBtn').disabled = currentPage === 1;
+      document.getElementById('nextBtn').disabled = currentPage >= totalPages;
+      document.getElementById('pageNum').innerText = `Page ${currentPage}`;
+    }
+
+    function nextPage() {
+      const searchTerm = document.getElementById('searchJobs')?.value.toLowerCase() || '';
+      const filtered = jobs.filter(job => 
+        job.title.toLowerCase().includes(searchTerm) || 
+        job.location.toLowerCase().includes(searchTerm)
+      );
+      const totalPages = Math.ceil(filtered.length / jobsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        displayJobs();
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        displayJobs();
+      }
+    }
+
+    function editJob(jobId) {
+      alert('Edit functionality coming soon!');
+    }
+
+    function deleteJob(jobId) {
+      jobs = jobs.filter(job => job.id !== jobId);
+      displayJobs();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchJobs = document.getElementById('searchJobs');
+      if (searchJobs) {
+        searchJobs.addEventListener('input', displayJobs);
+      }
+    });
+  </script>
+</body>
+</html>
