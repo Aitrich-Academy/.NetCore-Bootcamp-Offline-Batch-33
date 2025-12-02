@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Jobie Login</title>
+</head>
+<body>
+    <div id="login-section" class="d-flex flex-column vh-100 bg-white justify-content-center overflow-hidden">
+        <!-- main -->
+        <div class="row g-3 mt-0">
+
+            <!-- left margin -->
+            <div class="col-md-1 d-none d-md-block"></div>
+            
+            <!-- left-side -->
+            <div class="col-md-5 login-bg d-none d-md-flex flex-column align-items-center justify-content-center p-5">
+                <img src="images/login-image.png" class="img-fluid" alt="Jobie Login">
+            </div>
+
+            <!-- right-side -->
+            <div class="col-md-5 d-flex align-items-center justify-content-center bg-white">
+                <div class="login-form-wrapper">
+                    
+                    <h4 class="mb-4 fw-bold">Sign in to Admin Dashboard</h4>
+
+                    <form onsubmit="handleLogin(event)">
+                        <div class="mb-3">
+                            <label class="text-muted small mb-1">Email</label>
+                            <input type="email" id="email" class="form-control custom-input" placeholder="enter email">
+                        </div>
+                        <div class="mb-3">
+                            <label class="text-muted small mb-1">Password</label>
+                            <input type="password" id="password" class="form-control custom-input" placeholder="enter password">
+                        </div>
+                        <div class="d-flex justify-content-end mb-4">
+                            <a href="#" class="text-decoration-none small text-muted">Forgot password ?</a>
+                        </div>
+                        
+                        <!-- login-button -->
+                        <button type="submit" class="btn btn-login w-100 py-2">
+                            Sign In
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+            <!-- right margin -->
+            <div class="col-md-1">
+            </div>
+
+        </div>
+    </div>
+  
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+        function handleLogin(event) {
+            // 1. Prevent the form from refreshing the page
+            event.preventDefault();
+
+            // 2. Get the values the user typed
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            if (email === "admin@gmail.com" && password === "admin") {
+                window.location.href = "dashboard.html";
+            } else {
+                alert("invalid email id / password.");
+            }
+        }
+    </script>
+</body>
+</html>

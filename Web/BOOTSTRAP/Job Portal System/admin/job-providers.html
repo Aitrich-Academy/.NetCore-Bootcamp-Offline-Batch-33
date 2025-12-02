@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Job Providers</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- left margin -->
+            <div class="col-md-1 d-none d-md-block"></div>
+
+            <div class="col-12 col-md-10 p-0">
+                <div class="d-flex min-vh-100" id="wrapper">
+                    <div id="sidebar-overlay"></div>
+                    <!-- navbar -->
+                    <aside class="sidebar flex-shrink-0 text-white">
+                        <!-- logo -->
+                        <div class="p-4 d-flex align-items-center justify-content-center gap-3">
+                            <img src="images/logo.png" alt="Jobie logo" style="height: 60px;">
+                            <h2 class="m-0 fw-bold logo-text">Jobie</h2>
+                        </div>
+                        <div class="list-group list-group-flush mt-2">
+                            <a href="dashboard.html" class="list-group-item list-group-item-action">
+                                <i class="bi bi-house-door-fill me-3"></i> Dashboard
+                            </a>
+                            <a href="job-providers.html" class="list-group-item list-group-item-action active">
+                                <i class="bi bi-building-fill-add me-3"></i> Job Providers
+                            </a>
+                            <a href="job-seekers.html" class="list-group-item list-group-item-action">
+                                <i class="bi bi-search me-3"></i> Job Seekers
+                            </a>
+                            <a href="jobs.html" class="list-group-item list-group-item-action">
+                                <i class="bi bi-briefcase-fill me-3"></i> Jobs
+                            </a>
+                            <a href="messages.html" class="list-group-item list-group-item-action">
+                                <i class="bi bi-chat-right-dots-fill me-3"></i> Messages
+                            </a>
+                            <a href="skills.html" class="list-group-item list-group-item-action">
+                                <i class="bi bi-building-fill-gear me-3"></i> Skills
+                            </a>
+                            <a href="index.html" class="list-group-item list-group-item-action">
+                                <i class="bi bi-box-arrow-right me-3"></i> Logout
+                            </a>
+                        </div>
+                    </aside>
+
+                    <!-- Main Content -->
+                    <main class="flex-grow-1 bg-light d-flex flex-column">
+                        
+                        <!-- Hamburger Button -->
+                        <div class="container-fluid pt-3 px-4 d-xl-none">
+                            <button class="btn btn-outline-dark" id="menu-toggle">
+                                <i class="bi bi-list fs-3"></i>
+                            </button>
+                        </div>
+
+                        <!-- Content Container -->
+                        <div class="container-fluid px-4 px-md-5 py-4 flex-grow-1">
+                            
+                            <h3 class="fw-bold text-dark mb-4">Job Providers</h3>
+
+                            <!-- Search Bar -->
+                            <div class="bg-white rounded-pill shadow-sm p-2 mb-4 d-flex align-items-center search-bar">
+                                <span class="ps-3 text-muted"><i class="bi bi-search"></i></span>
+                                <input type="text" class="form-control border-0 rounded-pill px-3 search-input-no-ring" placeholder="Search by Title,Company or any jobs keyword">
+                            </div>
+
+                            <p class="fw-bold mb-1">Showing 65 Companies</p>
+                            <p class="text-muted small mb-4">Based your preferences</p>
+
+                            <!-- Providers Grid -->
+                            <div class="row g-4">
+                                
+                                <!-- Card 1: TCS -->
+                                <div class="col-12 col-md-6 col-xl-4 card-col">
+                                    <div class="card border-0 shadow-sm h-100 p-4">
+                                        <div class="mb-2"><strong>Legal Name :</strong> TCS</div>
+                                        <div class="mb-2"><strong>Summary :</strong> tcs is</div>
+                                        <div class="mb-2"><strong>Industry :</strong></div>
+                                        <div class="mb-2"><strong>Email :</strong> tcs@mail.com</div>
+                                        <div class="mb-2"><strong>Phone :</strong> 7025906287</div>
+                                        <div class="mb-2"><strong>Address :</strong> tcs india</div>
+                                        <div class="mb-2"><strong>Website :</strong> www.tcs.com</div>
+                                        <div class="mb-3"><strong>Location :</strong> 654e6e46-3f71-4ff8-b812-bed66fbec06a</div>
+                                        
+                                        <div class="mt-auto d-flex justify-content-between pt-3">
+                                            <button class="btn btn-link text-decoration-none p-0" onclick="deleteCard(this)">
+                                                <i class="bi bi-trash text-primary"></i>
+                                            </button>
+                                            <button class="btn btn-link text-decoration-none p-0">
+                                                <i class="bi bi-slash-circle text-danger"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2: Datamate -->
+                                <div class="col-12 col-md-6 col-xl-4 card-col">
+                                    <div class="card border-0 shadow-sm h-100 p-4">
+                                        <div class="mb-2"><strong>Legal Name :</strong> Datamate</div>
+                                        <div class="mb-2"><strong>Summary :</strong> famous</div>
+                                        <div class="mb-2"><strong>Industry :</strong></div>
+                                        <div class="mb-2"><strong>Email :</strong> datamate@gmail.com</div>
+                                        <div class="mb-2"><strong>Phone :</strong> 9188093460</div>
+                                        <div class="mb-2"><strong>Address :</strong> datamate, india</div>
+                                        <div class="mb-2"><strong>Website :</strong> www.datamate.com</div>
+                                        <div class="mb-3"><strong>Location :</strong> be382247-3888-4cf8-babb-cc6c304247be</div>
+                                        
+                                        <div class="mt-auto d-flex justify-content-between pt-3">
+                                            <button class="btn btn-link text-decoration-none p-0" onclick="deleteCard(this)">
+                                                <i class="bi bi-trash text-primary"></i>
+                                            </button>
+                                            <button class="btn btn-link text-decoration-none p-0">
+                                                <i class="bi bi-slash-circle text-danger"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 3: Accenture -->
+                                <div class="col-12 col-md-6 col-xl-4 card-col">
+                                    <div class="card border-0 shadow-sm h-100 p-4">
+                                        <div class="mb-2"><strong>Legal Name :</strong> accenture</div>
+                                        <div class="mb-2"><strong>Summary :</strong> accenture is a IT company</div>
+                                        <div class="mb-2"><strong>Industry :</strong></div>
+                                        <div class="mb-2"><strong>Email :</strong> accenture@gmail.com</div>
+                                        <div class="mb-2"><strong>Phone :</strong> 9847229367</div>
+                                        <div class="mb-2"><strong>Address :</strong> acccenture, eranamkulam</div>
+                                        <div class="mb-2"><strong>Website :</strong> www.accenture.com</div>
+                                        <div class="mb-3"><strong>Location :</strong> be382247-3888-4cf8-babb-cc6c304247be</div>
+                                        
+                                        <div class="mt-auto d-flex justify-content-between pt-3">
+                                            <button class="btn btn-link text-decoration-none p-0" onclick="deleteCard(this)">
+                                                <i class="bi bi-trash text-primary"></i>
+                                            </button>
+                                            <button class="btn btn-link text-decoration-none p-0">
+                                                <i class="bi bi-slash-circle text-danger"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </main>
+                    
+                </div>
+            </div>
+
+            <!-- right margin -->
+            <div class="col-md-1 d-none d-md-block"></div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- JavaScript for Sidebar Toggle -->
+    <script>
+        var menuButton = document.getElementById("menu-toggle");
+        var wrapper = document.getElementById("wrapper");
+        var overlay = document.getElementById("sidebar-overlay");
+
+        menuButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            wrapper.classList.toggle("toggled");
+        });
+        
+        // Close Menu when clicking Overlay
+        overlay.addEventListener("click", function(e) {
+            wrapper.classList.remove("toggled");
+        });
+        function deleteCard(button) {
+            var cardColumn = button.closest('.card-col'); 
+            if (cardColumn) {
+                if(confirm("Are you sure you want to delete this provider?")) {
+                    cardColumn.remove();
+                }
+            }
+        }
+    </script>  
+</body>
+</html>
