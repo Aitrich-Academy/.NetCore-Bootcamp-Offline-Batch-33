@@ -1,0 +1,487 @@
+/* Hero Section */
+.hero {
+    background-image: url(images/seek.png);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    margin-top: 180px;
+}
+
+/* Search Box */
+.search-box {
+    max-width: 500px;
+    margin: auto;
+    background: rgba(245, 245, 245, 0.721);
+    border-radius: 10px;
+    padding: 6px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background: transparent;
+}
+
+/* Navbar inside hero */
+.nav {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    z-index: 2;
+    background: transparent;
+}
+
+.nav .nav-link {
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.nav-item :hover{
+    color: black;
+}
+
+.sentwhite{
+    font-size: 40px;
+    font-weight: bolder;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.texts{
+    font-size: medium;
+    margin-top: 15px;
+    text-align: center;
+    color: gray;
+}
+
+/* CATEGORY CARDS */
+.cat-card {
+    background: #eef7ff;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.cat-card:hover {
+    transform: translateY(-5px);
+}
+
+.cat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 25px;
+}
+
+.explore-card {
+    background: linear-gradient(to right, #3bb4ff, #008cff);
+    padding: 35px;
+    color: white;
+    border-radius: 15px;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 500;
+    height: 100%;
+    width: 100%;
+}
+
+/* Page 3 main heading */
+.text3{
+    font-size: 40px;
+    font-weight: bolder;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.text4{
+    font-size: medium;
+    margin-top: 15px;
+    text-align: center;
+    color: gray;
+}
+
+/* Job cards */
+.job-card{
+    background: #eaf4ff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.08);
+    transition: .3s;
+}
+.job-card:hover{
+    transform: translateY(-5px);
+}
+
+.badge-custom{
+    background:#d2f3ff;
+    color:#008cff;
+    font-size: 12px;
+    padding:5px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.badge-yellow{
+    background:#fff6d0;
+    color:#be8a00;
+}
+
+.badge-pink{
+    background:#ffd6f2;
+    color:#b70081;
+}
+
+.location-icon{
+    width:15px;
+    margin-right:5px;
+}
+
+.green-dot{
+    width:12px;
+}
+
+.hover-btn {
+    background:#eef9d3;
+    color:#6e7d2c;
+    font-weight:600;
+    border-radius:12px;
+    font-size:18px;
+    padding:12px 40px;
+    border: 1px;;
+}
+
+.hover-btn:hover,
+.hover-btn:focus,
+.hover-btn:active {
+    background:#eef9d3 !important;
+    color:#6e7d2c !important;
+    box-shadow: #eef9d3;
+    transition: .02sec;
+}
+
+/* NEW SECTION STYLES */
+.hired-title {
+    font-size: 42px;
+    color: #1c2e59;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.hired-text {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+.hired-btn {
+    background: #eef9d3;
+    color: #6e7d2c;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px 25px;
+}
+
+.hired-learn {
+    color: #1c2e59;
+    font-weight: 600;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.hired-learn:hover {
+    text-decoration: underline;
+}
+
+/* Floating logos */
+.logo-small {
+    width: 55px;
+}
+
+.logo-top-right {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+}
+
+.logo-bottom-left {
+    position: absolute;
+    bottom: -20px;
+    left: -10px;
+}
+
+/* TESTIMONIAL SECTION */
+.testimonial-title {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #1c2e59;
+}
+
+.testimonial-box {
+    background: #e5f3ff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+.testimonial-img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.test-name {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+.test-role {
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.custom-image {
+    border: 3px solid white;
+    border-radius: 15px;
+}
+
+.post-btn {
+    background-color: #e6f5a7;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.learn-link:hover {
+    text-decoration: underline;
+}
+
+.blog-card {
+    background-color: #dfeac5;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #cfe2a3;
+}
+
+.blog-img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.blog-content {
+    padding: 20px;
+    text-align: left;
+}
+
+.tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.design-tag {
+    background-color: #c8dd6f;
+}
+
+.finance-tag {
+    background-color: #a5c5e2;
+}
+
+.read-btn {
+    background-color: #c8dd6f;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.read-btn:hover {
+    background-color: #b1cd57;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    background-color: #2f5f75;
+}
+
+.newsletter-box {
+    width: 55%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #e2ddd4;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.email-input {
+    border: none;
+    padding: 12px;
+    border-radius: 0;
+}
+
+.email-input:focus {
+    box-shadow: none;
+}
+
+.subscribe-btn {
+    background-color: #6d8f3f;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 0;
+}
+
+.subscribe-btn:hover {
+    background-color: #5f7e34;
+}
+
+/* Footer Section */
+.footer-section {
+    background-color: #ffffff;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.footer-link:hover {
+    color: #000000;
+}
+
+.social-icons a {
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.social-img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* add profile  */
+
+/* Custom CSS for Dashboard Layout */
+
+/* Colors */
+:root {
+    --teal-bg: #3b7484;
+    --dark-teal: #3a7182;
+    --active-link: #4c8291;
+    --open-to-work-green: #64b54e;
+    --subscribe-green: #799a53;
+}
+
+/* 1. Sidebar Styling */
+.sidebar-wrapper {
+    width: 250px;
+    position: sticky; 
+    top: 0; 
+    height: 100vh;
+    background-color: var(--teal-bg) !important;
+}
+
+/* 1.1 Profile and Open to Work Button */
+.profile-img {
+    width: 80px; 
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #fff;
+}
+
+.open-to-work-btn {
+    background-color: var(--open-to-work-green);
+    border-color: var(--open-to-work-green);
+    width: 80%;
+    font-weight: bold;
+}
+
+/* 1.2 Navigation Links Styling (Button Look) */
+.sidebar-btn {
+    /* Use padding to create the button size */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px; /* Space between buttons */
+    border-radius: 5px !important;
+    font-weight: 500;
+}
+
+.sidebar-btn:hover {
+    background-color: #4a8d9d !important;
+}
+
+.active-sidebar-btn {
+    background-color: var(--active-link) !important;
+    border-left: 5px solid white !important; /* The white active indicator line */
+    padding-left: 10px !important; /* Adjusted padding due to border */
+}
+
+/* 2. Main Content and Buttons */
+.add-new-profile-btn {
+    /* Gradient color based on the image */
+    background: linear-gradient(to right, #799a53, #3a3b7d);
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.add-new-profile-btn:hover {
+    opacity: 0.9;
+    color: #fff;
+}
+
+/* 3. Newsletter Section Styling (Below Main Content) */
+.newsletter-section {
+    background-color: var(--teal-bg);
+}
+
+.newsletter-section .form-control {
+    border-radius: 5px 0 0 5px;
+    border: none;
+}
+
+.btn-subscribe {
+    background-color: var(--subscribe-green); 
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+/* 4. Global Footer */
+.global-footer {
+    background-color: #f8f9fa;
+}
+
+.text-purple {
+    color: #c13584 !important;
+}
