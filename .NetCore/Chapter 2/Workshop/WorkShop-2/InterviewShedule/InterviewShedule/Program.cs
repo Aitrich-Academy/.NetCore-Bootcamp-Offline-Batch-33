@@ -1,98 +1,106 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace InterviewShedule
+namespace InterviewSchedule
 {
     internal class Program
     {
-        struct interview
+        struct Interview
         {
-            public string title;
-            public DateTime date;
-            public string time;
+            public string Title;
+            public DateTime Date;
+            public string Time;
             public string Location;
         }
+
         static void Main(string[] args)
         {
-            interview[] shedule = new interview[10];
-            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-            Console.WriteLine("----------------------------------------------------------------Shedule An Interview For job Seekers------------------------------------------------------------------\n");
-            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+            Interview[] schedule = new Interview[10];
+            int count = 0;
 
-            string ch;
+            string choice;
+
+            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine("------------------ Interview Schedule System ------------------");
+            Console.WriteLine("---------------------------------------------------------------\n");
 
             do
             {
+                Console.WriteLine("A - Schedule an Interview");
+                Console.WriteLine("D - Display All Scheduled Interviews");
+                Console.WriteLine("Enter your option:");
+                string command = Console.ReadLine();
 
-
-                Console.WriteLine("A - Shedule a interview \n");
-                Console.WriteLine("D - sheduled interview List\n");
-
-                Console.WriteLine("------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-
-                Console.WriteLine("Select an option");
-                string Command = Console.ReadLine();
-                switch (Command)
+                switch (command)
                 {
                     case "A":
+                    case "a":
                         {
-                            Console.WriteLine("How many no of interviews are sheduling\n");
-                            int count = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("How many interviews do you want to schedule?");
+                            int n = int.Parse(Console.ReadLine());
+
+                            for (int i = 0; i < n; i++)
+                            {
+                                if (count >= schedule.Length)
+                                {
+                                    Console.WriteLine("No more slots available!");
+                                    break;
+                                }
+
+                                Console.WriteLine($"\n--- Interview {count + 1} ---");
+
+                                Console.Write("Enter Job Title: ");
+                                schedule[count].Title = Console.ReadLine();
+
+                                Console.Write("Enter Interview Date (dd-mm-yyyy): ");
+                                schedule[count].Date = DateTime.Parse(Console.ReadLine());
+
+                                Console.Write("Enter Interview Time (hh:mm): ");
+                                schedule[count].Time = Console.ReadLine();
+
+                                Console.Write("Enter Location: ");
+                                schedule[count].Location = Console.ReadLine();
+
+                                count++;
+                                Console.WriteLine("-----------------------------------------------\n");
+                            }
+                            break;
+                        }
+
+                    case "D":
+                    case "d":
+                        {
+                            Console.WriteLine("\n----------- Scheduled Interviews ------------\n");
+
+                            if (count == 0)
+                            {
+                                Console.WriteLine("No interviews scheduled yet.\n");
+                                break;
+                            }
+
                             for (int i = 0; i < count; i++)
                             {
-
-                                Console.WriteLine("----------------------------------------------------------Interviw shedule{0}--------------------------------------------------------------------------------------------", i + 1);
-                                Console.WriteLine("------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                                Console.Write("Enter the Name of job post {0}: ", i + 1);
-                                shedule[i].title = Console.ReadLine();
-                                Console.WriteLine("Enter the Date for Interview(dd-mm-yyyy)");
-                                shedule[i].date = Convert.ToDateTime(Console.ReadLine());
-                                Console.WriteLine("Enter the Time of a Interview(h-m)");
-                                shedule[i].time = Console.ReadLine();
-                                Console.Write("Location of sheduled InterView {0}: ", i + 1);
-                                shedule[i].Location = Console.ReadLine();
-                                Console.WriteLine("------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-
-                            }
-                            break;
-                        }
-                    case "D":
-                        {
-
-                            Console.WriteLine("----------------------------------------------------------Sheduled interview Details are are:---------------------------------------------------------------------------");
-                            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                            for (int i = 0; i < shedule.Length; i++)
-                            {
-                                if (shedule[i].title != null)
-                                {
-                                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                                    Console.WriteLine("Name: {0}", shedule[i].title);
-                                    Console.WriteLine("Date: {0}", shedule[i].date.Date.ToString("MM/dd/yyyy"));
-                                    Console.WriteLine("Time :{0}", shedule[i].time);
-                                   Console.WriteLine("Location: {0}", shedule[i].Location);
-                                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                                }
+                                Console.WriteLine("---------------------------------------------");
+                                Console.WriteLine("Job Title : " + schedule[i].Title);
+                                Console.WriteLine("Date      : " + schedule[i].Date.ToString("dd/MM/yyyy"));
+                                Console.WriteLine("Time      : " + schedule[i].Time);
+                                Console.WriteLine("Location  : " + schedule[i].Location);
+                                Console.WriteLine("---------------------------------------------\n");
                             }
 
-
-                            Console.ReadLine();
                             break;
                         }
+
+                    default:
+                        Console.WriteLine("Invalid option. Please select A or D.\n");
+                        break;
                 }
 
+                Console.WriteLine("Do you want to continue? (Y/N): ");
+                choice = Console.ReadLine();
 
+            } while (choice == "Y" || choice == "y");
 
-
-
-                Console.WriteLine("Do you want to continue (Y/N)\n");
-                ch = Console.ReadLine();
-
-            } while (ch == "y"||ch=="Y");
+            Console.WriteLine("\nThank you for using the Interview Scheduler!");
         }
-
     }
-    }
-
+}
