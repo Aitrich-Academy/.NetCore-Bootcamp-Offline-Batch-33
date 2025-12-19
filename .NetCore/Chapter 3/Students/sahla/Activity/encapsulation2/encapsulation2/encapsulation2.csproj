@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+<<<<<<<< HEAD:Chapter 3/Students/sahla/Activity/encapsulation2/encapsulation2/encapsulation2.csproj
+========
+    <RootNamespace>sorted_list</RootNamespace>
+>>>>>>>> f0606ae52fbab4fd2fdb33f7acdb491d511c39c2:Chapter 4/Students/sahana/Actiivity/sorted list/sorted list/sorted list.csproj
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

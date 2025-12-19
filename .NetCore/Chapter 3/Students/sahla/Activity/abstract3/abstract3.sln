@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+<<<<<<<< HEAD:Chapter 3/Students/sahla/Activity/abstract3/abstract3.sln
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "abstract3", "abstract3\abstract3.csproj", "{004A0514-54F3-43D9-B049-55F1B02A6E8C}"
+========
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qust1", "qust1\qust1.csproj", "{C06BBF60-97D8-4D20-8325-B5843A198EE4}"
+>>>>>>>> f0606ae52fbab4fd2fdb33f7acdb491d511c39c2:Chapter 4/Students/sahana/Actiivity/saarray3/qust1/qust1.sln
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<<< HEAD:Chapter 3/Students/sahla/Activity/abstract3/abstract3.sln
+		{004A0514-54F3-43D9-B049-55F1B02A6E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{004A0514-54F3-43D9-B049-55F1B02A6E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{004A0514-54F3-43D9-B049-55F1B02A6E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{004A0514-54F3-43D9-B049-55F1B02A6E8C}.Release|Any CPU.Build.0 = Release|Any CPU
+========
+		{C06BBF60-97D8-4D20-8325-B5843A198EE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C06BBF60-97D8-4D20-8325-B5843A198EE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C06BBF60-97D8-4D20-8325-B5843A198EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C06BBF60-97D8-4D20-8325-B5843A198EE4}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>>> f0606ae52fbab4fd2fdb33f7acdb491d511c39c2:Chapter 4/Students/sahana/Actiivity/saarray3/qust1/qust1.sln
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

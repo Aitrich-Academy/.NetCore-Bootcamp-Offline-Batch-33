@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+<<<<<<<< HEAD:Chapter 3/Students/sahana/Activity/encapsulation1/encapsulation1.sln
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "encapsulation1", "encapsulation1\encapsulation1.csproj", "{6A953DB9-59DA-45CC-884F-469DDA96CB72}"
+========
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sortedlist1", "sortedlist1\sortedlist1.csproj", "{090C274A-1DA0-4C9B-8715-1EB42C1C3D8E}"
+>>>>>>>> f0606ae52fbab4fd2fdb33f7acdb491d511c39c2:Chapter 4/Students/sahla/Activities/sortedlist1/sortedlist1.sln
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<<< HEAD:Chapter 3/Students/sahana/Activity/encapsulation1/encapsulation1.sln
+		{6A953DB9-59DA-45CC-884F-469DDA96CB72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A953DB9-59DA-45CC-884F-469DDA96CB72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A953DB9-59DA-45CC-884F-469DDA96CB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A953DB9-59DA-45CC-884F-469DDA96CB72}.Release|Any CPU.Build.0 = Release|Any CPU
+========
+		{090C274A-1DA0-4C9B-8715-1EB42C1C3D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{090C274A-1DA0-4C9B-8715-1EB42C1C3D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{090C274A-1DA0-4C9B-8715-1EB42C1C3D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{090C274A-1DA0-4C9B-8715-1EB42C1C3D8E}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>>> f0606ae52fbab4fd2fdb33f7acdb491d511c39c2:Chapter 4/Students/sahla/Activities/sortedlist1/sortedlist1.sln
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mechinetestoop", "mechinetestoop\mechinetestoop.csproj", "{FEB4F30D-D586-41A9-AE04-9FF5D9CBE79D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEB4F30D-D586-41A9-AE04-9FF5D9CBE79D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEB4F30D-D586-41A9-AE04-9FF5D9CBE79D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEB4F30D-D586-41A9-AE04-9FF5D9CBE79D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEB4F30D-D586-41A9-AE04-9FF5D9CBE79D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69D878CC-F618-4F29-B20C-BEC9F0FC64A9}
+	EndGlobalSection
+EndGlobal
