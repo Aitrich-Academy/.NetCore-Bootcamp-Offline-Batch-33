@@ -26,6 +26,6 @@ class TicketCounter
         // Check updated queue status
         Console.WriteLine("Customers remaining in Queue: " + ticketQueue.Count);
         Console.WriteLine("Next to be served: " + ticketQueue.Peek());
-        Console.ReadLine();
+        //Console.ReadLine();
     }
 }
