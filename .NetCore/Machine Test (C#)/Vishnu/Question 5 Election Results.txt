@@ -1,0 +1,6 @@
+Question 5: Election Results
+Q5. A city has an election with 4 candidates. Write a C# program that:
+ Declares an array of 4 integers to store the votes each candidate received.
+ Reads the votes for each candidate from the user.
+ Calculates and prints the total number of votes.
+ Determines and prints the candidate with the highest votes.
