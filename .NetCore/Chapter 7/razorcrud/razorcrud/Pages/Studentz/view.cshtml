@@ -1,0 +1,36 @@
+﻿@page "{id:int}"
+@model razorcrud.Pages.Studentz.viewModel
+
+@{
+    ViewData["Title"] = "View Student Details";
+}
+
+<h2>Student Details</h2>
+
+@if (Model.Student != null)
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>NID</th>
+            <td>@Model.Student.NID</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>@Model.Student.Name</td>
+        </tr>
+        <tr>
+            <th>Age</th>
+            <td>@Model.Student.Age</td>
+        </tr>
+        <tr>
+            <th>Course</th>
+            <td>@Model.Student.Course</td>
+        </tr>
+    </table>
+}
+else
+{
+    <p class="text-danger">Student not found.</p>
+}
+
+<a asp-page="/Studentz/index" class="btn btn-secondary">Back to List</a>

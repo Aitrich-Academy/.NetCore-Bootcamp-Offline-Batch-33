@@ -1,0 +1,42 @@
+﻿@page
+@model razorcrud.Pages.Studentz.CreateModel
+@{
+}
+<h2 class="mb-4">Create Student</h2>
+
+<form method="post" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label asp-for="student.NID" class="form-label"></label>
+        <input asp-for="student.NID" class="form-control" />
+        <span asp-validation-for="student.NID" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="student.Name" class="form-label"></label>
+        <input asp-for="student.Name" class="form-control" />
+        <span asp-validation-for="student.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="student.Age" class="form-label"></label>
+        <input asp-for="student.Age" class="form-control" />
+        <span asp-validation-for="student.Age" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="student.Course" class="form-label"></label>
+        <input asp-for="student.Course" class="form-control" />
+        <span asp-validation-for="student.Course" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="/Studentz/index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+
+

@@ -1,0 +1,80 @@
+﻿@page
+@model razorcrud.Pages.Studentz.indexModel
+@{
+}
+@* <a asp-page="/Studentz/Create" style="padding: 8px 16px; background-color: #230; color: white; text-decoration: none; border-radius: 5px;">Add Student</a> *@
+
+@* <h2>All Students</h2> *@
+
+@* <table border="1"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <th>NID</th> *@
+@*             <th>Name</th> *@
+@*             <th>Age</th> *@
+@*             <th>Course</th> *@
+@*             <th>Actions</th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*     @foreach (var student in Model.StudentList) *@
+@*     { *@
+@*         <tr> *@
+@*             <td>@student.NID</td> *@
+@*             <td>@student.Name</td> *@
+@*             <td>@student.Age</td> *@
+@*             <td>@student.Course</td> *@
+@*                 <td><a asp-page="delete" asp-route-id="student.NID">delete</a> </td> *@
+@*                 <td><a asp-page="/Studentz/edit" asp-route-id="@student.NID">edit</a> </td> *@
+                
+@*             <td> *@
+@*                  <a asp-page="/Studentz/ViewDetails" asp-route-id="@student.NID">View</a>  *@
+@*              </td> *@
+@*         </tr> *@
+@*     } *@
+@*     </tbody> *@
+@* </table> *@
+
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>All Students</h2>
+        <a asp-page="/Studentz/Create" class="btn btn-danger">Add Student</a>
+    </div>
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>NID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Course</th>
+                <th colspan="3">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.StudentList)
+            {
+                <tr>
+                    <td>@student.NID</td>
+                    <td>@student.Name</td>
+                    <td>@student.Age</td>
+                    <td>@student.Course</td>
+                    <td>
+                     
+                    </td>
+                    <td>
+                        <a asp-page="/Studentz/view" asp-route-id="@student.NID" class="btn btn-success btn-sm">View</a>
+                    </td>
+                    <td>
+                        <a asp-page="/Studentz/edit" asp-route-id="@student.NID" class="btn btn-warning btn-sm">Edit</a>
+                    </td>
+                    <td>
+                        <a asp-page="/Studentz/delete" asp-route-id="@student.NID" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

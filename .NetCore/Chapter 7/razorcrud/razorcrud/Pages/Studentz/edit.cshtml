@@ -1,0 +1,40 @@
+﻿
+@page "{id:int}"
+@model razorcrud.Pages.Studentz.editModel
+
+<h2 class="mb-4">Update Student</h2>
+
+<form method="post" class="needs-validation" novalidate>
+    <!-- Hidden ID field -->
+    <input type="hidden" asp-for="Student.NID" />
+
+    <!-- Name -->
+    <div class="mb-3">
+        <label asp-for="Student.Name" class="form-label"></label>
+        <input asp-for="Student.Name" class="form-control" />
+        <span asp-validation-for="Student.Name" class="text-danger"></span>
+    </div>
+
+    <!-- Age -->
+    <div class="mb-3">
+        <label asp-for="Student.Age" class="form-label"></label>
+        <input asp-for="Student.Age" class="form-control" />
+        <span asp-validation-for="Student.Age" class="text-danger"></span>
+    </div>
+
+    <!-- Course -->
+    <div class="mb-3">
+        <label asp-for="Student.Course" class="form-label"></label>
+        <input asp-for="Student.Course" class="form-control" />
+        <span asp-validation-for="Student.Course" class="text-danger"></span>
+    </div>
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-page="/Studentz/index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

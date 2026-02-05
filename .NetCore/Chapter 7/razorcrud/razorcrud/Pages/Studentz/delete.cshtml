@@ -1,0 +1,29 @@
+﻿
+
+@page "{id:int}"
+@model razorcrud.Pages.Studentz.deleteModel
+
+<h2>Delete Student</h2>
+
+@if (Model.Student == null)
+{
+    <p class="text-danger">Student not found.</p>
+}
+else
+{
+    <p>Are you sure you want to delete this student?</p>
+
+    <table class="table table-bordered">
+        <tr><th>NID</th><td>@Model.Student.NID</td></tr>
+        <tr><th>Name</th><td>@Model.Student.Name</td></tr>
+        <tr><th>Age</th><td>@Model.Student.Age</td></tr>
+        <tr><th>Course</th><td>@Model.Student.Course</td></tr>
+    </table>
+
+    <form method="post">
+        <input type="hidden" asp-for="Student.NID" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-page="/Studentz/index" class="btn btn-secondary">Cancel</a>
+    </form>
+}
+
