@@ -1,0 +1,28 @@
+﻿@page
+@model JobPostManagement.Pages.Jobs.AppliedJobsModel
+@{
+    ViewData["Title"] = "My Applied Jobs";
+}
+
+<h2>My Applied Jobs</h2>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var application in Model.Applications)
+        {
+            <tr>
+                <td>@application.Job.Title</td>
+                <td>@application.Job.Company</td>
+                <td>@application.Job.Location</td>
+            </tr>
+        }
+    </tbody>
+</table>
