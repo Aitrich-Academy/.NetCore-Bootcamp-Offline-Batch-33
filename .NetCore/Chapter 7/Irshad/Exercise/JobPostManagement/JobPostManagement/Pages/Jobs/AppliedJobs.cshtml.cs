@@ -3,21 +3,22 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using JobPostManagement.Data;
 using JobPostManagement.Models;
 using Microsoft.EntityFrameworkCore;
+using JobPostManagement.Interfaces;
 
 
 namespace JobPostManagement.Pages.Jobs
 {
     public class AppliedJobsModel : PageModel
     {
-        public readonly AppDbContext context;
+        public readonly IJobApplicationService jobApplication;
 
-        public AppliedJobsModel(AppDbContext context)
+        public AppliedJobsModel(IJobApplicationService jobApplication)
         {
-            this.context = context;
+            this.jobApplication = jobApplication;
         }
 
         public List<JobApplication> Applications { get; set; } = new();
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             var userId = HttpContext.Session.GetString("UserId");
 
@@ -26,10 +27,7 @@ namespace JobPostManagement.Pages.Jobs
                 return RedirectToPage("/Account/Login");
             }
 
-            Applications = context.JobApplications
-                .Include(a => a.Job)
-                .Where(a => a.UserId == userId)
-                .ToList();
+            Applications = await jobApplication.GetUserApplicationsAsync(userId);
 
             return Page();
         }

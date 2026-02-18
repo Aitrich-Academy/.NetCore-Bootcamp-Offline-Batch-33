@@ -3,18 +3,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using JobPostManagement.Data;
 using JobPostManagement.Models;
 using Microsoft.EntityFrameworkCore;
+using JobPostManagement.Interfaces;
 
 namespace JobPostManagement.Pages.Jobs
 {
     public class ApplyModel : PageModel
     {
-        public readonly AppDbContext context;
-
-        public ApplyModel(AppDbContext context)
+        public readonly IJobApplicationService jobApplication;
+        public ApplyModel(IJobApplicationService jobApplication)
         {
-            this.context = context;
+            this.jobApplication = jobApplication;
         }
-
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -32,12 +31,9 @@ namespace JobPostManagement.Pages.Jobs
                 return RedirectToPage("/Jobs/Index");
             }
 
-            var alreadyApplied = await context.JobApplications
-                .AnyAsync(a => a.JobId == id && a.UserId == userId);
-
-            if(alreadyApplied)
+            if(await jobApplication.AlreadyAppliedAsync(id,userId))
             {
-                TempData["Message"] = "You have already for this job.";
+                TempData["Message"] = "You have already applied for this job.";
                 return RedirectToPage("/Jobs/Index");
             }
 
@@ -48,8 +44,7 @@ namespace JobPostManagement.Pages.Jobs
                 AppliedAt = DateTime.Now
             };
 
-            context.JobApplications.Add(application);
-            await context.SaveChangesAsync();
+            await jobApplication.ApplyToJobAsync(id, userId);
 
             TempData["Message"] = "Application submitted successfully!";
             return RedirectToPage("/Jobs/AppliedJobs");

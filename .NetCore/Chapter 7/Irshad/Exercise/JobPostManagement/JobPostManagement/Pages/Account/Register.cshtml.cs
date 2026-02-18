@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using JobPostManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using JobPostManagement.Pages.Jobs;
+using JobPostManagement.Interfaces;
 
 namespace JobPostManagement.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        public readonly AppDbContext context;
-
-        public RegisterModel(AppDbContext context)
+        public readonly IUserService usersService;
+        public RegisterModel(IUserService usersService)
         {
-            this.context = context;
+            this.usersService = usersService;
         }
 
         [BindProperty]
@@ -27,15 +27,13 @@ namespace JobPostManagement.Pages.Account
                 return Page();
             }
             // Check if email already exists
-            var existingUser = await context.Users.FirstOrDefaultAsync(u => u.Email == User.Email);
-            if (existingUser != null)
+            if (await usersService.EmailExistsAsync(User.Email))
             {
                 ModelState.AddModelError(string.Empty, "Email is already registered.");
                 return Page();
             }
             // Set default role to User
-            context.Users.Add(User);
-            await context.SaveChangesAsync();
+            await usersService.RegisterAsync(User);
             return RedirectToPage("Login");
         }
     }

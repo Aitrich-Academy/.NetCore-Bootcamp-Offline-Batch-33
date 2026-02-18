@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using JobPostManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using JobPostManagement.Pages.Jobs;
+using JobPostManagement.Interfaces;
 
 namespace JobPostManagement.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        public readonly AppDbContext context;
-
-        public LoginModel(AppDbContext context)
+        public readonly IUserService usersService;
+        public LoginModel(IUserService usersService)
         {
-            this.context = context;
+            this.usersService = usersService;
         }
         [BindProperty]
         public string Email { get; set; }
@@ -24,13 +24,13 @@ namespace JobPostManagement.Pages.Account
         {
             return Page();
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            var user = context.Users.FirstOrDefault(u => u.Email == Email && u.Password == Password);
+            var user = await usersService.LoginAsync(Email, Password);
             if (user == null)
             {
                 ModelState.AddModelError("", "Invalid email or password.");

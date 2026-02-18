@@ -10,9 +10,7 @@ namespace JobManagement.Interface
 
         public Task<Jobs> GetJobByIdAsync(int id);
 
-
         public Task AddJobAsync(JobDto jobDto);
-
 
         public Task UpdateJobAsync(int id, Jobs jobDto);
 
