@@ -1,19 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using JobPostManagement.Data;
+using JobPostManagement.Interfaces;
 
 namespace JobPostManagement.Pages.Jobs
 {
     public class DeleteModel : PageModel
     {
-        public readonly AppDbContext context;
+        public readonly IJobService jobService;
 
-        public DeleteModel(AppDbContext context)
+        public DeleteModel(IJobService jobService)
         {
-            this.context = context;
+            this.jobService = jobService;
         }
 
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             var role = HttpContext.Session.GetString("UserRole");
 
@@ -22,15 +23,14 @@ namespace JobPostManagement.Pages.Jobs
                 return RedirectToPage("/Account/Login");
             }
 
-            var job = context.Jobs.Find(id);
+            var job = await jobService.GetJobByIdAsync(id);
 
             if (job == null)
             {
                 return NotFound();
             }
 
-            context.Jobs.Remove(job);
-            context.SaveChanges();
+            await jobService.DeleteJobAsync(id);
             return RedirectToPage("/Jobs/Index");
         }
     }

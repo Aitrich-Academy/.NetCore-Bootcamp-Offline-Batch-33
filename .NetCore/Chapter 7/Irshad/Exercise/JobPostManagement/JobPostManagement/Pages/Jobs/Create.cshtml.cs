@@ -3,16 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using JobPostManagement.Models;
 using Microsoft.EntityFrameworkCore;
+using JobPostManagement.Interfaces;
 
 namespace JobPostManagement.Pages.Jobs
 {
     public class CreateModel : PageModel
     {
-        public readonly AppDbContext context;
+        public readonly IJobService jobService;
 
-        public CreateModel(AppDbContext context)
+        public CreateModel(IJobService jobService)
         {
-            this.context = context;
+            this.jobService = jobService;
         }
         [BindProperty]
         public Job Job { get; set; } = new();
@@ -38,8 +39,7 @@ namespace JobPostManagement.Pages.Jobs
             {
                 return Page();
             }
-            context.Jobs.Add(Job);
-            await context.SaveChangesAsync();
+            await jobService.CreateJobAsync(Job);
             return RedirectToPage("/Jobs/Index");
         }
     }

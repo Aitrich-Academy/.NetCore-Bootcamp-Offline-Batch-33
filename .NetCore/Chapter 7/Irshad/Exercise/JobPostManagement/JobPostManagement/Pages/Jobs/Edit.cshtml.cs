@@ -2,20 +2,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using JobPostManagement.Data;
 using JobPostManagement.Models;
+using JobPostManagement.Interfaces;
 
 namespace JobPostManagement.Pages.Jobs
 {
     public class EditModel : PageModel
     {
-        public readonly AppDbContext context;
+        public readonly IJobService jobService;
 
-        public EditModel(AppDbContext context)
+        public EditModel(IJobService jobService)
         {
-            this.context = context;
+            this.jobService = jobService;
         }
         [BindProperty]
         public Job Job { get; set; } = new();
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             var role = HttpContext.Session.GetString("UserRole");
             if (role != "Admin")
@@ -23,7 +24,7 @@ namespace JobPostManagement.Pages.Jobs
                 return RedirectToPage("/Account/Login");
             }
 
-            var job = context.Jobs.Find(id);
+            var job = await jobService.GetJobByIdAsync(id);
 
             if (job == null)
             {
@@ -47,8 +48,7 @@ namespace JobPostManagement.Pages.Jobs
                 return Page();
             }
 
-            context.Jobs.Update(Job);
-            await context.SaveChangesAsync();
+            await jobService.UpdateJobAsync(Job);
             return RedirectToPage("/Jobs/Index");
         }
     }

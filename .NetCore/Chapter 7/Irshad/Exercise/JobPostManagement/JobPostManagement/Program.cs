@@ -1,16 +1,17 @@
 ﻿using JobPostManagement.Data;
 using JobPostManagement.Helpers;
+using JobPostManagement.Interfaces;
 using JobPostManagement.Models;
 using Microsoft.EntityFrameworkCore;
+using JobPostManagement.Services;
+using JobPostManagement.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-// ✅ Add DbContext
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddServiceExtensions(builder.Configuration);
 
 // ✅ Add Session
 builder.Services.AddSession();

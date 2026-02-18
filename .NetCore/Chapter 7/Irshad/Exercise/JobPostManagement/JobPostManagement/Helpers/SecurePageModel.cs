@@ -11,9 +11,15 @@ namespace JobPostManagement.Helpers
         {
             this.context = context;
         }
-        public async Task<IActionResult> OnPostAsync()
+
+        public System.Security.Principal.IIdentity? GetIdentity()
         {
-            if (!User.Identity.IsAuthenticated)
+            return User.Identity;
+        }
+
+        public async Task<IActionResult> OnPostAsync(System.Security.Principal.IIdentity? identity)
+        {
+            if (!identity.IsAuthenticated)
             {
                 return Redirect("/Account/Login");
             }

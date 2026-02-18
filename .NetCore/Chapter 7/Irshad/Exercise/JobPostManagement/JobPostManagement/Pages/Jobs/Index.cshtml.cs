@@ -2,26 +2,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using JobPostManagement.Data;
 using JobPostManagement.Models;
+using JobPostManagement.Interfaces;
+using System.Threading.Tasks;
 
 namespace JobPostManagement.Pages.Jobs
 {
     public class IndexModel : PageModel
     {
-        public readonly AppDbContext context;
-
-        public IndexModel(AppDbContext context)
+        public readonly IJobService jobService;
+        public IndexModel(IJobService jobService)
         {
-            this.context = context;
+            this.jobService = jobService;
         }
         public List<Job> Jobs { get; set; } = new();
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
             if(HttpContext.Session.GetString("UserId") == null) 
             {
                 return RedirectToPage("/Account/Login");
             }
 
-            Jobs = context.Jobs.ToList();
+            Jobs = await jobService.GetAllJobsAsync();
             return Page();
         }
     }
