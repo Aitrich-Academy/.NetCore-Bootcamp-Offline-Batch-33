@@ -24,6 +24,9 @@ namespace JobPostManagement.Extensions
             builder.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
             builder.AddScoped<IJobRepository, JobRepository>();
 
+
+            builder.AddAutoMapper(typeof(Program).Assembly);
+
             return builder;
         }
     }

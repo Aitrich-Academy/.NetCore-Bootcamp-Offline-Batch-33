@@ -1,0 +1,32 @@
+﻿@page
+@model LibraryManagementSystem.Pages.Book.IndexModel
+@{
+    ViewData["Title"] = "Book Index";
+}
+
+<h1>Book Index</h1>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Quantity</th>
+            <th>Published Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.Books)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Quantity</td>
+                <td>@book.CreatedAt.ToShortDateString()</td>
+                <td><a asp-page="./Details" asp-route-id="@book.Id">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

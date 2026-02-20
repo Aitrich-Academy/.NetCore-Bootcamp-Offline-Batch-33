@@ -1,0 +1,46 @@
+﻿@page
+@model LibraryManagementSystem.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+<hr />
+
+
+<form method="post">
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="user.FirstName" class="control-label">First Name</label>
+        <input asp-for="user.FirstName" class="form-control" />
+        <span asp-validation-for="user.FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="user.LastName" class="control-label">Last Name</label>
+        <input asp-for="user.LastName" class="form-control" />
+        <span asp-validation-for="user.LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="user.Email" class="control-label">Email</label>
+        <input asp-for="user.Email" class="form-control" />
+        <span asp-validation-for="user.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="user.Password" class="control-label">Password</label>
+        <input asp-for="user.Password" type="password" class="form-control" />
+        <span asp-validation-for="user.Password" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

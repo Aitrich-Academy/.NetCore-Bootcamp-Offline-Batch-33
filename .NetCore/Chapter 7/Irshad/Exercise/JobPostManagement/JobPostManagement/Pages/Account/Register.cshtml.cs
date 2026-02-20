@@ -5,6 +5,8 @@ using JobPostManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using JobPostManagement.Pages.Jobs;
 using JobPostManagement.Interfaces;
+using JobPostManagement.DTO;
+using JobPostManagement.Helpers;
 
 namespace JobPostManagement.Pages.Account
 {
@@ -21,7 +23,7 @@ namespace JobPostManagement.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-            User.Role = Helpers.Roles.User;
+            User.Role = Roles.User;
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -33,7 +35,12 @@ namespace JobPostManagement.Pages.Account
                 return Page();
             }
             // Set default role to User
-            await usersService.RegisterAsync(User);
+            await usersService.RegisterAsync(new UserDto
+            {
+                Email = User.Email,
+                Password = User.Password,
+                Role = Roles.User
+            });
             return RedirectToPage("Login");
         }
     }
