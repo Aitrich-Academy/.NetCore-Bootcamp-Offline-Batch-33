@@ -1,4 +1,5 @@
-﻿using JobPostManagement.Models;
+﻿using JobPostManagement.DTO;
+using JobPostManagement.Models;
 
 namespace JobPostManagement.Interfaces
 {
@@ -6,7 +7,7 @@ namespace JobPostManagement.Interfaces
     {
         public Task<User?> LoginAsync(string email, string password);
         public Task<bool> EmailExistsAsync(string email);
-        public Task RegisterAsync(User user);
+        public Task RegisterAsync(UserDto dto);
 
     }
 }
