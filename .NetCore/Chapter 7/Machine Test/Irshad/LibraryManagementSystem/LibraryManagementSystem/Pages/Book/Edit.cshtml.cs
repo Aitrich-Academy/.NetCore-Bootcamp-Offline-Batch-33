@@ -18,6 +18,11 @@ namespace LibraryManagementSystem.Pages.Book
         public Books Books { get; set; } = default!;
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var role = HttpContext.Session.GetString("UserRole");
+            if (role != "Admin")
+            {
+                return RedirectToPage("/Account/Login");
+            }
             if (id == null)
             {
                 return RedirectToPage("./Index");
@@ -38,6 +43,11 @@ namespace LibraryManagementSystem.Pages.Book
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var role = HttpContext.Session.GetString("UserRole");
+            if (role != "Admin")
+            {
+                return RedirectToPage("/Account/Login");
+            }
             if (!ModelState.IsValid)
             {
                 return Page();

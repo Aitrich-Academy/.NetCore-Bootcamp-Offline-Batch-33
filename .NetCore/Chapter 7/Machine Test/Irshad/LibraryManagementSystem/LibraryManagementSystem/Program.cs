@@ -1,6 +1,9 @@
 using LibraryManagementSystem.Data;
 using LibraryManagementSystem.Helpers;
+using LibraryManagementSystem.Interfaces;
 using LibraryManagementSystem.Models;
+using LibraryManagementSystem.Repositories;
+using LibraryManagementSystem.Services;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -11,6 +14,14 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -24,6 +35,7 @@ using (var scope = app.Services.CreateScope())
         {
             
             FirstName = "Admin",
+            LastName = "System",
             Email = "admin@gmail.com",
             Password = "Admin@123",
             Role = Roles.Admin
@@ -45,6 +57,9 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+app.UseSession();
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

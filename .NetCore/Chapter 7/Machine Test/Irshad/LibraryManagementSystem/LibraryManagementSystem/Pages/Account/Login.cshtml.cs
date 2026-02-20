@@ -15,9 +15,9 @@ namespace LibraryManagementSystem.Pages.Account
         }
 
         [BindProperty]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         [BindProperty]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         public IActionResult OnGet()
         {
@@ -39,7 +39,7 @@ namespace LibraryManagementSystem.Pages.Account
             // Set user session or cookie here
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("UserRole", user.Role.ToString());
-            HttpContext.Session.SetString("Username", user.FirstName);
+            HttpContext.Session.SetString("FirstName", user.FirstName);
 
             return RedirectToPage("/Book/Index");
         }
