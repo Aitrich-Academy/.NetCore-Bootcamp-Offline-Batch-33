@@ -1,0 +1,36 @@
+﻿@page
+@model LibraryManagementSystem.Pages.Book.EditModel
+@{
+    ViewData["Title"] = "Edit Book";
+}
+<h1>View Book</h1>
+<hr />
+
+<div class="row">
+    <div class="col-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Books.Id" />
+            <div class="form-group">
+                <label asp-for="Books.Title" class="form-label"></label>
+                <input asp-for="Books.Title" class="form-control"  />
+                <span asp-validation-for="Books.Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="Books.Author" class="form-label"></label>
+                <input asp-for="Books.Author" class="form-control" />
+                <span asp-validation-for="Books.Author" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Books.Quantity" class="form-label"></label>
+                <input asp-for="Books.Quantity" class="form-control" />
+                <span asp-validation-for="Books.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <a asp-page="./Index" class="btn btn-danger">Back to List</a>
+                <input type="submit" value="Update" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>

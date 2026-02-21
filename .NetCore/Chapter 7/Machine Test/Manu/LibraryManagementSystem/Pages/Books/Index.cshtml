@@ -1,0 +1,48 @@
+﻿@page
+@model LibraryManagementSystem.Pages.Books.IndexModel
+
+<h2>Books</h2>
+
+<p>
+    Logged in as: <strong>@Model.Username</strong>
+</p>
+
+@if (Model.UserRole == "Admin")
+{
+    <a asp-page="Create" class="btn btn-success mb-2">Add Book</a>
+}
+
+<p><strong>Total Books:</strong> @Model.TotalBooks</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Quantity</th>
+            @if (Model.UserRole == "Admin")
+            {
+                <th>Actions</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.Books)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Quantity</td>
+                @if (Model.UserRole == "Admin")
+                {
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@book.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@book.Id" style="display:inline;">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
