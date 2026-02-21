@@ -1,0 +1,52 @@
+﻿@page
+@model JobPostManagement.Pages.Jobs.IndexModel
+@{
+    ViewData["Title"] = "Job Listings";
+    var role = HttpContext.Session.GetString("UserRole");
+
+    @if(TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
+        </div>
+    }
+}
+
+<h2>Job Listings</h2>
+
+@if (role == "Admin")
+{
+    <a asp-page="/Jobs/Create" class="btn btn-primary">Create Job</a>
+}
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model.Jobs)
+        {
+            <tr>
+                <td>@job.Title</td>
+                <td>@job.Company</td>
+                <td>@job.Location</td>
+                <td>
+                    @if (role == "Admin")
+                    {
+                        <a asp-page="./Edit" asp-route-id="@job.Id" class="btn btn-primary">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@job.Id" class="btn btn-danger">Delete</a>
+                    }
+                    else
+                    {
+                        <a asp-page="./Apply" asp-route-id="@job.Id" class="btn btn-success">Apply</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

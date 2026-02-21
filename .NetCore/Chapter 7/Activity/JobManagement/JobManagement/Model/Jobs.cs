@@ -1,4 +1,5 @@
-﻿namespace JobManagement.Model
+﻿
+namespace JobManagement.Model
 {
     public class Jobs
     {
