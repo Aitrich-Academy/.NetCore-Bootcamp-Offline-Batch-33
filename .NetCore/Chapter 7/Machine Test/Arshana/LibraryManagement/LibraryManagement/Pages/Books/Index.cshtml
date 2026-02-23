@@ -1,0 +1,50 @@
+﻿@page
+@model LibraryManagementSystem.Pages.Books.IndexModel
+@{
+    ViewData["Title"] = "Books";
+    var role = Model.UserRole;
+}
+
+<h2>Books</h2>
+
+<p><b>Role:</b> @(string.IsNullOrEmpty(role) ? "Not Logged In" : role)</p>
+
+@if (string.IsNullOrEmpty(role))
+{
+    <div class="alert alert-warning">
+        Please <a asp-page="/User/Login">Login</a>.
+    </div>
+}
+else
+{
+    @if (role == "Admin")
+    {
+        <div class="mb-3">
+            <a class="btn btn-success" asp-page="/Admin/Create">Add Book</a>
+            <a class="btn btn-danger" asp-page="/Admin/Delete">Delete Books</a>
+            <a class="btn btn-dark" asp-page="/Admin/Index">Dashboard</a>
+        </div>
+    }
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model.Books)
+            {
+                <tr>
+                    <td>@b.Id</td>
+                    <td>@b.Title</td>
+                    <td>@b.Author</td>
+                    <td>@b.Quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

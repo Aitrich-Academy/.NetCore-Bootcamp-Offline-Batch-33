@@ -1,0 +1,15 @@
+﻿@page
+@model LibraryManagementSystem.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+
+<div class="alert alert-info">
+    <strong>Total Books:</strong> @Model.TotalBooks
+</div>
+
+<a class="btn btn-success" asp-page="/Admin/Create">Add Book</a>
+<a class="btn btn-danger" asp-page="/Admin/Delete">Delete Books</a>
+<a class="btn btn-secondary" asp-page="/Index">Back</a>

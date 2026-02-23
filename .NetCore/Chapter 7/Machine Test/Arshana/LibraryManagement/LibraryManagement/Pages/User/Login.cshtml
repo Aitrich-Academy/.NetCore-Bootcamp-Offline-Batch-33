@@ -1,0 +1,18 @@
+﻿@page
+@model LibraryManagementSystem.Pages.User.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login (Session Based)</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Select Role</label>
+        <select class="form-select" asp-for="SelectedRole">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Login</button>
+</form>
