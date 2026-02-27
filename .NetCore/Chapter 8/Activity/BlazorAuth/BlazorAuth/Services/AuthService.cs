@@ -22,7 +22,7 @@ namespace BlazorAuth.Services
 
             var user = new User
             {
-                Username = username,
+                Username = username,    
                 PasswordHash = HashPassword(password),
                 Email = email
             };

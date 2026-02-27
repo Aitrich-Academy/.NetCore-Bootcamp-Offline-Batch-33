@@ -1,0 +1,47 @@
+﻿@page
+@model TravelsDb.Pages.Destinations.EditModel
+@{
+    ViewData["Title"] = "Edit Destination";
+}
+
+<div class="container mt-4">
+    <h4>Edit Destination</h4>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <input type="hidden" asp-for="Destination.Id" />
+
+        <div class="mb-3">
+            <label>Name</label>
+            <input asp-for="Destination.Name" class="form-control" />
+            <span asp-validation-for="Destination.Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label>Description</label>
+            <textarea asp-for="Destination.Description"
+                      class="form-control"></textarea>
+            <span asp-validation-for="Destination.Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label>Change Image (optional)</label>
+            <input asp-for="ImageFile"
+                   type="file"
+                   class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Update
+        </button>
+
+        <a asp-page="Index" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,56 @@
+﻿@page
+@model TravelsDb.Pages.Destinations.IndexModel
+@{
+    ViewData["Title"] = "Destinations";
+    var role = HttpContext.Session.GetString("UserRole");
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between mb-4">
+        <h4>Destinations</h4>
+
+        @if (role == "Admin")
+        {
+            <a asp-page="Create"
+               class="btn btn-primary rounded-pill">
+                + Add Destination
+            </a>
+        }
+    </div>
+
+    <div class="row g-4">
+        @foreach (var item in Model.Destinations)
+        {
+            <div class="col-md-3">
+                <div class="card shadow-sm rounded-4">
+
+                    <img src="@item.ImagePath"
+                         class="card-img-top"
+                         style="height:180px; object-fit:cover;" />
+
+                    <div class="card-body">
+                        <h6>@item.Name</h6>
+                        <p class="small text-muted">@item.Description</p>
+
+                        @if (role == "Admin")
+                        {
+                            <a asp-page="Edit"
+                               asp-route-id="@item.Id"
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <a asp-page="Delete"
+                               asp-route-id="@item.Id"
+                               class="btn btn-danger btn-sm">
+                                Delete
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
