@@ -34,12 +34,12 @@ namespace TravelsDb.Pages.Account
                 HttpContext.Session.SetString("UserName", user.UserName);
                 HttpContext.Session.SetString("UserRole", user.Role.ToString());
 
-                return RedirectToPage("/Work/Index");
+                return RedirectToPage("/Destinations/Index");
             }
             // Set session or cookie for logged-in user
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("UserName", user.UserName);
-            return RedirectToPage("/Work/Index");
+            return RedirectToPage("/Destinations/Index");
         }
     }
 }
