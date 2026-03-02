@@ -64,6 +64,12 @@ app.UseSession();
 
 app.UseAuthorization();
 
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/TourManage/Index");
+    return Task.CompletedTask;
+});
+
 app.MapRazorPages();
 
 app.Run();

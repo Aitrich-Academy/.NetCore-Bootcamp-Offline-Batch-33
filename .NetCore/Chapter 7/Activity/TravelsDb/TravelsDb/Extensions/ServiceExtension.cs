@@ -20,6 +20,9 @@ namespace TravelsDb.Extensions
             service.AddScoped<IDestinationRepository, DestinationRepository>();
             service.AddScoped<IDestinationService, DestinationService>();
 
+            service.AddScoped<ITourRepository, TourRepository>();
+            service.AddScoped<ITourService, TourService>();
+
             service.AddAutoMapper(typeof(Program).Assembly);
 
             return service;

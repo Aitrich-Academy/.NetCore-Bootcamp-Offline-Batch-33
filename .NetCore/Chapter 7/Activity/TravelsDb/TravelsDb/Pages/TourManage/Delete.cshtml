@@ -1,0 +1,30 @@
+﻿@page
+@model TravelsDb.Pages.Tours.DeleteModel
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm p-4">
+
+        <h4 class="text-danger">Delete Tour</h4>
+
+        <p>Are you sure you want to delete this tour?</p>
+
+        <ul>
+            <li><strong>Title:</strong> @Model.Tour?.Title</li>
+            <li><strong>Price:</strong> ₹@Model.Tour?.Price</li>
+        </ul>
+
+        <form method="post">
+            <input type="hidden" name="id" value="@Model.Tour?.Id" />
+
+            <button type="submit" class="btn btn-danger">
+                Yes, Delete
+            </button>
+
+            <a asp-page="Index" class="btn btn-secondary">
+                Cancel
+            </a>
+        </form>
+
+    </div>
+</div>

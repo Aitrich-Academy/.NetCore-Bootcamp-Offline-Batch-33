@@ -1,0 +1,79 @@
+﻿@page
+@model TravelsDb.Pages.Tours.IndexModel
+@{
+    ViewData["Title"] = "Tours & Packages";
+    var role = HttpContext.Session.GetString("UserRole");
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h4 class="fw-bold">Tours & Packages</h4>
+            <span class="badge bg-info text-dark">
+                @Model.Tours.Count Tours Found
+            </span>
+        </div>
+
+        @if (role == "Admin")
+        {
+            <a asp-page="Create"
+               class="btn btn-primary rounded-pill">
+                + Add New Tour
+            </a>
+        }
+    </div>
+
+    <div class="card shadow-sm rounded-4">
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>#</th>
+                        <th class="text-start">Title</th>
+                        <th class="text-start">Description</th>
+                        <th>Destination</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int count = 1;
+                    }
+
+                    @foreach (var tour in Model.Tours)
+                    {
+                        <tr class="text-center">
+                            <td>@count</td>
+                            <td class="text-start fw-bold">@tour.Title</td>
+                            <td class="text-start">@tour.Description</td>
+                            <td>@tour.Destination?.Name</td>
+                            <td class="text-success fw-semibold">
+                                ₹@tour.Price
+                            </td>
+                            <td>
+                                @if (role == "Admin")
+                                {
+                                    <a asp-page="Edit"
+                                       asp-route-id="@tour.Id"
+                                       class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
+
+                                    <a asp-page="Delete"
+                                       asp-route-id="@tour.Id"
+                                       class="btn btn-danger btn-sm">
+                                        Delete
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                        count++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
