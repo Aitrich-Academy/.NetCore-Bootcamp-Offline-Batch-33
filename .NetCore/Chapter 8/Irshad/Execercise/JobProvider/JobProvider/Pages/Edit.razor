@@ -1,0 +1,88 @@
+﻿@page "/edit/{id:int}"
+@using JobProvider.Model
+@inject IJobService JobService
+@inject NavigationManager Nav
+@using Microsoft.AspNetCore.Components
+
+<h3 class="mb-4 text-center">Edit Job</h3>
+
+@if (job == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="container" style="max-width:800px;">
+        <div class="card shadow p-4">
+
+            <EditForm Model="@job" OnValidSubmit="UpdateJob">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="mb-3">
+                    <label>Job Title</label>
+                    <InputText class="form-control" @bind-Value="job.JobTitle" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Description</label>
+                    <InputTextArea class="form-control" @bind-Value="job.JobDescription" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Salary</label>
+                    <InputNumber class="form-control" @bind-Value="job.Salary" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Experience</label>
+                    <InputText class="form-control" @bind-Value="job.JobExperience" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Type Of Work</label>
+                    <InputText class="form-control" @bind-Value="job.TypeOfWork" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Location</label>
+                    <InputText class="form-control" @bind-Value="job.Location" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Update Job
+                </button>
+
+                <button type="button" class="btn btn-secondary ms-2"
+                        @onclick="Cancel">
+                    Cancel
+                </button>
+
+            </EditForm>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public int id { get; set; }
+
+    private Job? job;
+
+    protected override async Task OnInitializedAsync()
+    {
+        job = await JobService.GetJobByIdAsync(id);
+    }
+
+    private async Task UpdateJob()
+    {
+        await JobService.UpdateJobAsync(job!);
+        Nav.NavigateTo("/list");
+    }
+
+    private void Cancel()
+    {
+        Nav.NavigateTo("/list");
+    }
+}
