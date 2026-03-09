@@ -1,0 +1,36 @@
+﻿@page "/create"
+@using TaskManagerApp.Model
+@using TaskManagerApp.Service
+@using TaskManagerApp.Interface
+@inject ITaskService TaskService
+@inject NavigationManager NavigationManager
+
+<h3>Create</h3>
+
+<EditForm Model="newTask" OnValidSubmit="CreateTask">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <InputText id="title" class="form-control" @bind-Value="newTask.Title" />
+    </div>
+    <div class="mb-3">
+        <label for="Description" class="form-label">Description</label>
+        <InputTextArea id="Description" class="form-control" @bind-value="newTask.Description" />
+    </div>
+    <div class="mb-3">
+        <label for="dueDate" class="form-label">Due Date</label>
+        <InputDate id="dueDate" class="form-control" @bind-Value="newTask.DueDate" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Task</button>
+</EditForm>
+
+@code {
+    private TaskList newTask = new TaskList();
+
+    private async Task CreateTask()
+    {
+        await TaskService.AddTaskAsync(newTask);
+        NavigationManager.NavigateTo("/list");
+    }
+}
