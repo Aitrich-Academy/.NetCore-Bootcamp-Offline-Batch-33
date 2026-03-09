@@ -1,0 +1,58 @@
+﻿@page "/add-task"
+
+@rendermode InteractiveServer
+@using MachineTest.Model
+@using MachineTest.Service
+@inject TaskServices TaskService
+@inject NavigationManager Nav
+
+
+<h3>Add Task</h3>
+
+<EditForm Model="task" OnValidSubmit="AddTasks">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Task Title</label>
+        <InputText class="form-control" @bind-Value="task.Name" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <InputText class="form-control" @bind-Value="task.Description" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Due Date</label>
+        <InputDate class="form-control" @bind-Value="task.DueDate" />
+    </div>
+
+    <button class="btn btn-success" type="submit">
+        Save Task
+    </button>
+
+    <button class="btn btn-secondary ms-2" type="button"
+            @onclick="GoBack">
+        Cancel
+    </button>
+
+</EditForm>
+
+@code {
+
+    private TaskItem task = new();
+
+    private async Task AddTasks()
+    {
+        await TaskService.AddTaskAsync(task);
+
+        Nav.NavigateTo("/tasks");
+    }
+
+    private void GoBack()
+    {
+        Nav.NavigateTo("/tasks");
+    }
+
+}

@@ -1,0 +1,88 @@
+﻿@page "/tasks"
+
+@rendermode InteractiveServer
+@using MachineTest.Model
+@using MachineTest.Service
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@inject TaskServices TaskService
+@inject NavigationManager Nav
+
+<h3>Task List</h3>
+
+<button class="btn btn-success mb-3" @onclick="GoToAddTask">
+    Add Task
+</button>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Task Title</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var task in tasks)
+        {
+            <tr>
+                <td>@task.Name</td>
+
+                <td>@task.DueDate</td>
+
+                <td>
+                    @(task.IsCompleted ? "Completed" : "Pending")
+                </td>
+
+                <td>
+
+                    <button class="btn btn-warning btn-sm"
+                            @onclick="() => Status(task.Id)">
+                        Change Status
+                    </button>
+
+                    <button class="btn btn-danger btn-sm"
+                            @onclick="() => DeleteTask(task.Id)">
+                        Delete
+                    </button>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+@code {
+
+    private List<TaskItem> tasks = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        tasks = await TaskService.GetAllTasksAsync();
+    }
+
+    private async Task DeleteTask(int id)
+    {
+        await TaskService.DeleteTaskAsync(id);
+
+        tasks = await TaskService.GetAllTasksAsync();
+    }
+
+    private async Task Status(int id)
+    {
+        await TaskService.StatusAsync(id);
+
+        tasks = await TaskService.GetAllTasksAsync();
+    }
+
+    private void GoToAddTask()
+    {
+        Nav.NavigateTo("/add-task");
+    }
+
+}
