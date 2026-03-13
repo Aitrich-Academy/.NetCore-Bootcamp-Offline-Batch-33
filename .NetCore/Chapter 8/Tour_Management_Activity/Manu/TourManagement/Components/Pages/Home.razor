@@ -1,0 +1,38 @@
+﻿@page "/home"
+@using TourManagement.Service
+
+@inject NavigationManager Navigation
+@inject UserSessionService SessionService
+
+<div class="hero-container">
+
+    <img src="images/home.jpg" class="home-image" />
+
+    <div class="home-overlay">
+
+        <button class="btn btn-primary btn-lg explore-btn"
+                @onclick="GoToDestinations">
+            Explore Now
+        </button>
+
+    </div>
+
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        if (SessionService.CurrentUser == null)
+        {
+            Navigation.NavigateTo("/login", true);
+        }
+    }
+
+
+    private void GoToDestinations()
+    {
+        Navigation.NavigateTo("/destination");
+    }
+
+}

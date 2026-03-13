@@ -1,0 +1,116 @@
+﻿@page "/destination"
+
+
+@using TourManagement.Dto
+@using TourManagement.Interface
+@using TourManagement.Model
+@using TourManagement.Service
+
+@inject IDestinationService DestinationService
+@inject NavigationManager Navigation
+@inject UserSessionService SessionService
+
+<link href="css/destination.css" rel="stylesheet" />
+
+<h3 class="mb-3">Destinations & Packages</h3>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <span class="badge bg-info">
+        @destinations.Count Destinations available
+    </span>
+
+    @if (SessionService.CurrentUser?.Role == Role.Admin)
+    {
+        <button class="btn btn-primary" @onclick="AddDestination">
+            + Add New Destination
+        </button>
+    }
+
+</div>
+
+<div class="row">
+
+    @foreach (var destination in destinations)
+    {
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card shadow-sm destination-card">
+
+                <img src="@destination.ImageUrl"
+                     class="card-img-top" />
+
+                <div class="card-body destination-body">
+
+                    <h5 class="card-title">
+                        @destination.Title
+                    </h5>
+
+                    <p class="card-text text-muted destination-description">
+                        @destination.Description
+                    </p>
+
+                    @if (SessionService.CurrentUser?.Role == Role.Admin)
+                    {
+                        <div class="d-flex justify-content-between destination-actions">
+
+                            <button class="btn btn-outline-primary btn-sm"
+                                    @onclick="() => EditDestination(destination.Id)">
+                                Edit
+                            </button>
+
+                            <button class="btn btn-outline-danger btn-sm"
+                                    @onclick="() => DeleteDestination(destination.Id)">
+                                Delete
+                            </button>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+
+@code {
+
+    private List<DestinationDto> destinations = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (SessionService.CurrentUser == null)
+        {
+            Navigation.NavigateTo("/login", true);
+            return;
+        }
+
+        await LoadDestinations();
+    }
+
+    private async Task LoadDestinations()
+    {
+        destinations = await DestinationService.GetAllDestinationAsync();
+    }
+
+    private async Task DeleteDestination(int id)
+    {
+        await DestinationService.DeleteDestinationAsync(id);
+        await LoadDestinations();
+    }
+
+    private void EditDestination(int id)
+    {
+        Navigation.NavigateTo($"/edit-destination/{id}");
+    }
+
+    private void AddDestination()
+    {
+        Navigation.NavigateTo("/add-destination");
+    }
+
+}

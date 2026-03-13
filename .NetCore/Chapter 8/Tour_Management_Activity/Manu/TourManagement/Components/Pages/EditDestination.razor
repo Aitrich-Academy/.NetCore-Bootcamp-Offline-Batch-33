@@ -1,0 +1,73 @@
+﻿@page "/edit-destination/{Id:int}"
+
+@using TourManagement.Dto
+@using TourManagement.Interface
+
+@inject IDestinationService DestinationService
+@inject NavigationManager Navigation
+
+<div class="container mb-3">
+    <h3 class="mb-4">Edit Destination</h3>
+
+    <EditForm Model="destination" OnValidSubmit="UpdateDestination">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <InputText class="form-control" @bind-Value="destination.Title" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <InputText class="form-control" @bind-Value="destination.Description" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Image URL</label>
+            <InputText class="form-control" @bind-Value="destination.ImageUrl" />
+        </div>
+
+        <button class="btn btn-success me-2" type="submit">
+            Update
+        </button>
+
+        <button class="btn btn-secondary" @onclick="Cancel">
+            Cancel
+        </button>
+
+    </EditForm>
+
+</div>
+
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private DestinationDto destination = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await DestinationService.GetDestinationByIdAsync(Id);
+
+        if (result != null)
+        {
+            destination = result;
+        }
+    }
+
+    private async Task UpdateDestination()
+    {
+        await DestinationService.UpdateDestinationAsync(destination);
+
+        Navigation.NavigateTo("/destination");
+    }
+
+    private void Cancel()
+    {
+        Navigation.NavigateTo("/destination");
+    }
+
+}

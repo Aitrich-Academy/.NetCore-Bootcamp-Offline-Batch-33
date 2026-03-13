@@ -1,0 +1,97 @@
+﻿@page "/add-destination"
+
+@using TourManagement.Dto
+@using TourManagement.Interface
+@using Microsoft.AspNetCore.Components.Forms
+
+@inject IDestinationService DestinationService
+@inject NavigationManager Navigation
+
+<div class="container mb-3">
+
+    <h3 class="mb-4">Add New Destination</h3>
+
+    <EditForm Model="destination" OnValidSubmit="SaveDestination">
+
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <!-- Title -->
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+
+            <InputText class="form-control"
+                       @bind-Value="destination.Title" />
+        </div>
+
+
+        <!-- Description -->
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+
+            <InputText class="form-control"
+                       @bind-Value="destination.Description" />
+        </div>
+
+
+        <!-- Upload Image -->
+        <div class="mb-3">
+            <label class="form-label">Upload Image</label>
+
+            <InputFile OnChange="UploadImage"
+                       class="form-control" />
+        </div>
+
+
+        <!-- Save Button -->
+        <button class="btn btn-success" type="submit">
+            Save
+        </button>
+        <button class="btn btn-secondary ms-2"
+                @onclick="@(() => Navigation.NavigateTo("/destination"))">
+            Cancel
+        </button>
+
+    </EditForm>
+
+</div>
+
+
+@code {
+
+    private DestinationDto destination = new();
+
+    private async Task UploadImage(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+
+        var folderPath = Path.Combine(
+            Directory.GetCurrentDirectory(),
+            "wwwroot/images"
+        );
+
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
+
+        var filePath = Path.Combine(folderPath, fileName);
+
+        using var stream = new FileStream(filePath, FileMode.Create);
+
+        await file.OpenReadStream(10_000_000).CopyToAsync(stream);
+
+        destination.ImageUrl = $"images/{fileName}";
+    }
+
+
+    private async Task SaveDestination()
+    {
+        await DestinationService.AddDestinationAsync(destination);
+
+        Navigation.NavigateTo("/destination");
+    }
+
+}

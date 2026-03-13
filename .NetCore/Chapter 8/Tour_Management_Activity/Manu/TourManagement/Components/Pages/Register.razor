@@ -1,0 +1,156 @@
+﻿@page "/register"
+
+@using TourManagement.Dto
+@using TourManagement.Model
+@using TourManagement.Interface
+@using TourManagement.Service
+
+@inject IAuthService AuthService
+@inject NavigationManager Navigation
+
+
+<div class="d-flex justify-content-center align-items-center">
+
+    <div class="card shadow-lg p-4 mb-4" style="width:100%; max-width:700px;">
+
+        <h2 class="fw-bold text-center mb-2">Welcome</h2>
+        <p class="text-muted text-center mb-4">Create an account</p>
+
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <div class="alert alert-danger">
+                @message
+            </div>
+        }
+
+        <EditForm Model="@registerDto" OnValidSubmit="HandleRegister" FormName="registerForm">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <!-- First Name + Last Name -->
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <label class="form-label">First Name</label>
+                    <InputText class="form-control"
+                               placeholder="First Name"
+                               @bind-Value="registerDto.FirstName" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Last Name</label>
+                    <InputText class="form-control"
+                               placeholder="Last Name"
+                               @bind-Value="registerDto.LastName" />
+                </div>
+
+            </div>
+
+            <!-- Email + Phone -->
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <InputText class="form-control"
+                               placeholder="Email"
+                               @bind-Value="registerDto.Email" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Phone</label>
+                    <InputText class="form-control"
+                               placeholder="Phone Number"
+                               @bind-Value="registerDto.PhoneNumber" />
+                </div>
+
+            </div>
+
+            <!-- Password + Confirm -->
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <label class="form-label">Password</label>
+                    <InputText type="password"
+                               class="form-control"
+                               placeholder="Password"
+                               @bind-Value="registerDto.Password" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Confirm Password</label>
+                    <InputText type="password"
+                               class="form-control"
+                               placeholder="Confirm Password"
+                               @bind-Value="confirmPassword" />
+                </div>
+
+            </div>
+
+            <!-- Gender -->
+            <div class="mb-3">
+
+                <label class="form-label d-block">Gender</label>
+
+                <InputRadioGroup @bind-Value="registerDto.Gender">
+
+                    <div class="form-check form-check-inline">
+                        <InputRadio class="form-check-input" Value="@Gender.Male" />
+                        <label class="form-check-label ms-1">Male</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <InputRadio class="form-check-input" Value="@Gender.Female" />
+                        <label class="form-check-label ms-1">Female</label>
+                    </div>
+
+                </InputRadioGroup>
+
+            </div>
+
+            <!-- Submit -->
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary w-50 mb-3">
+                    Sign up
+                </button>
+            </div>
+
+            <p class="text-center">
+                Already have an account?
+                <a href="/login">Sign in</a>
+            </p>
+
+        </EditForm>
+
+    </div>
+
+</div>
+
+
+@code {
+
+    private RegisterDto registerDto = new();
+    private string? confirmPassword;
+    private string? message;
+
+    private async Task HandleRegister()
+    {
+        if (registerDto.Password != confirmPassword)
+        {
+            message = "Passwords do not match";
+            return;
+        }
+
+        var result = await AuthService.RegisterAsync(registerDto);
+
+        if (result)
+        {
+            Navigation.NavigateTo("/login");
+        }
+        else
+        {
+            message = "Email already exists";
+        }
+    }
+
+}

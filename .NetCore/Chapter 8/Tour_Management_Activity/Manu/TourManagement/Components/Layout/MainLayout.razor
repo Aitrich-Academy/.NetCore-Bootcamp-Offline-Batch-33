@@ -1,0 +1,169 @@
+﻿@inherits LayoutComponentBase
+
+@using TourManagement.Model
+@using TourManagement.Service
+
+@inject UserSessionService SessionService
+@inject NavigationManager Navigation
+
+<div class="container-fluid p-0">
+
+    <!-- HEADER -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+
+                <!-- Logo -->
+                <div class="navbar-brand d-flex align-items-center" href="/home">
+                    <img src="images/logo.png" width="70" />
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    <!-- Menu -->
+                    @if (currentUser != null)
+                    {
+                        <ul class="navbar-nav ms-3">
+
+                            <li class="nav-item me-5">
+                                <NavLink class="nav-link fw-semibold"
+                                         href="/home"
+                                         Match="NavLinkMatch.All">
+                                    Home
+                                </NavLink>
+                            </li>
+
+                            <li class="nav-item me-5">
+                                <NavLink class="nav-link fw-semibold"
+                                         href="/destination">
+                                    Destinations
+                                </NavLink>
+                            </li>
+
+                        </ul>
+                    }
+
+                    <!-- USER PROFILE -->
+                    <div class="ms-auto d-flex align-items-center gap-3">
+
+                        @if (currentUser != null)
+                        {
+                            <div class="profile-circle">
+                                @initials
+                            </div>
+
+                            <span class="fw-semibold">
+                                @currentUser.FirstName
+                            </span>
+
+                            <button class="btn btn-outline-danger btn-sm"
+                                    @onclick="Logout">
+                                Logout
+                            </button>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mt-4">
+        @Body
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-section px-5 py-5">
+
+        <div class="container-fluid footer-container">
+
+            <div class="row d-flex justify-content-center px-5">
+
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+
+                    <p>Home</p>
+                    <p>Destinations</p>
+                    <p>Tours</p>
+                    <p>Booking</p>
+                </div>
+
+                <!-- Support -->
+                <div class="col-md-4">
+                    <h5>Support</h5>
+
+                    <p>FAQs</p>
+                    <p>Contact</p>
+                    <p>Privacy Policy</p>
+                    <p>Terms</p>
+                </div>
+
+                <!-- Subscribe -->
+                <div class="col-md-4">
+
+                    <h5>Subscribe</h5>
+
+                    <div class="subscribe-box">
+
+                        <input class="subscribe-input"
+                               placeholder="Enter your email" />
+
+                        <button class="subscribe-btn">
+                            Join
+                        </button>
+
+                    </div>
+
+                    <div class="social-icons mt-5">
+
+                        <i class="bi bi-instagram"></i>
+                        <i class="bi bi-facebook"></i>
+                        <i class="bi bi-twitter"></i>
+                        <i class="bi bi-youtube"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Bottom -->
+            <div class="copyright d-flex justify-content-center mt-4">
+                <p>© 2026. All rights reserved.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+@code {
+
+    private User? currentUser;
+    private string initials = "";
+
+    protected override void OnParametersSet()
+    {
+        currentUser = SessionService.CurrentUser;
+
+        if (currentUser != null)
+        {
+            var first = currentUser.FirstName?.FirstOrDefault().ToString() ?? "";
+            var last = currentUser.LastName?.FirstOrDefault().ToString() ?? "";
+
+            initials = (first + last).ToUpper();
+        }
+    }
+
+    private async Task Logout()
+    {
+        SessionService.Logout();
+        Navigation.NavigateTo("/login", true);
+    }
+
+}

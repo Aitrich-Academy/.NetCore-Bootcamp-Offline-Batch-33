@@ -1,0 +1,88 @@
+﻿@page "/"
+@page "/login"
+
+@using TourManagement.Dto
+@using TourManagement.Interface
+@using TourManagement.Service
+
+@inject IAuthService AuthService
+@inject UserSessionService SessionService
+@inject NavigationManager Navigation
+
+
+<div class="d-flex justify-content-center align-items-center">
+
+    <div class="card shadow-lg p-4 mb-4" style="width:100%; max-width:500px;">
+
+        <h2 class="fw-bold mb-2 text-center">Welcome</h2>
+        <p class="text-muted text-center mb-4">
+            Sign in to your account
+        </p>
+
+        <EditForm Model="@loginDto" OnValidSubmit="HandleLogin" FormName="loginForm">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="mb-3">
+                <label class="form-label">Email address</label>
+
+                <InputText type="email"
+                           class="form-control"
+                           placeholder="Email address"
+                           @bind-Value="loginDto.Email" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+
+                <InputText type="password"
+                           class="form-control"
+                           placeholder="Password"
+                           @bind-Value="loginDto.Password" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">
+                Sign in
+            </button>
+
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-danger text-center p-2">
+                    @errorMessage
+                </div>
+            }
+
+            <p class="text-center mt-3">
+                Don't have an account?
+                <a href="/register">Sign up</a>
+            </p>
+
+        </EditForm>
+
+    </div>
+
+</div>
+
+
+@code {
+
+    private LoginDto loginDto = new();
+    private string? errorMessage;
+
+    private async Task HandleLogin()
+    {
+        var user = await AuthService.LoginAsync(loginDto);
+
+        if (user != null)
+        {
+            SessionService.SetUser(user);
+            Navigation.NavigateTo("/home", true);
+        }
+        else
+        {
+            errorMessage = "Invalid email or password";
+        }
+    }
+
+}
