@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 class Program
 {
-    // Simple Job class
+
     class Job
     {
         public int Id;
@@ -20,7 +20,7 @@ class Program
         string registeredPassword = "";
         string registeredName = "";
 
-        // Predefined job list
+
         List<Job> jobs = new List<Job>
         {
             new Job { Id = 1, Title = "Software Engineer", Experience = "3+ years", Company = "Acme Inc.", Location = "New York, NY", Salary = "$100,000 - $150,000" },
