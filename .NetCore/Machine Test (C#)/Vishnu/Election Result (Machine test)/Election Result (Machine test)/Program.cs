@@ -3,14 +3,12 @@
     private static void Main(string[] args)
     {
         
-        //decalaring number of votes for 4 candidates
 
         int[] votes = new int[4];
         int totalVotes = 0;
         int maxVotes = 0;
         int winner = 0;
 
-        //Reading votes
 
         for (int  i = 0;  i < 4;  i++)
         {
@@ -19,7 +17,6 @@
             votes[i] = Convert.ToInt32(Console.ReadLine());  
         }
 
-        //Calculating total votes
 
         for (int i = 0; i < 4; i++)
         {
@@ -31,8 +28,6 @@
                 winner = i + 1;
             }
         }
-
-        //Displaying results
 
         Console.WriteLine("\n \tElection Result");
         Console.WriteLine("\t---------------");
