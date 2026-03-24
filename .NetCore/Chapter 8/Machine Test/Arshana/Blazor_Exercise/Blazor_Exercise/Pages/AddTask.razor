@@ -1,0 +1,41 @@
+﻿@page "/addtask"
+
+@using Blazor_Exercise.Dto
+@using Blazor_Exercise.Interface
+
+@inject ITaskService taskService
+@inject NavigationManager nav
+
+<h3>Add Task</h3>
+
+<div>
+    <label>Task Title</label>
+    <input @bind="title" class="form-control" />
+</div>
+
+<div>
+    <label>Due Date</label>
+    <input type="date" @bind="dueDate" class="form-control" />
+</div>
+
+<br>
+
+<button class="btn btn-primary" @onclick="HandleAddTask">Add Task</button>
+
+@code {
+
+    string? title;
+    DateTime dueDate = DateTime.Today;
+
+    async Task HandleAddTask()
+    {
+        await taskService.AddTaskAsync(new TaskItemDto
+        {
+            Title = title,
+            DueDate = dueDate,
+            IsCompleted = false
+        });
+
+        nav.NavigateTo("/tasks");
+    }
+}

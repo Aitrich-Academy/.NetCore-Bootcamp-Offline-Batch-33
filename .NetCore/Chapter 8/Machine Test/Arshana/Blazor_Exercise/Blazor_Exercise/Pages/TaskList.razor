@@ -1,0 +1,88 @@
+﻿@page "/tasks"
+
+@using Blazor_Exercise.Dto
+@using Blazor_Exercise.Interface
+
+@inject ITaskService taskService
+@inject NavigationManager nav
+
+<h3>Task List</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var task in tasks)
+        {
+            <tr>
+                <td>@task.Title</td>
+
+                <td>@task.DueDate.ToShortDateString()</td>
+
+                <td>
+                    @if (task.IsCompleted)
+                    {
+                        <span style="color:green">Completed</span>
+                    }
+                    else
+                    {
+                        <span style="color:orange">Pending</span>
+                    }
+                </td>
+
+                <td>
+                   
+
+                    <button class="btn btn-success me-2"
+                            @onclick="() => CompleteTask(task.Id)">
+                        Complete
+                    </button>
+
+                    <button class="btn btn-danger"
+                            @onclick="() => DeleteTask(task.Id)">
+                        Delete
+                    </button>
+                    <button class="btn btn-secondary ms-2"
+                            @onclick="() => EditTask(task.Id)">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+    List<TaskItemDto> tasks = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        tasks = await taskService.GetAllTasksAsync();
+    }
+
+
+    async Task CompleteTask(int id)
+    {
+        await taskService.CompleteTaskAsync(id);
+        tasks = await taskService.GetAllTasksAsync();
+    }
+
+    async Task DeleteTask(int id)
+    {
+        await taskService.DeleteTaskAsync(id);
+        tasks = await taskService.GetAllTasksAsync();
+    }
+
+    async Task EditTask(int id)
+    {
+        nav.NavigateTo($"/edittask/{id}");
+    }
+}
