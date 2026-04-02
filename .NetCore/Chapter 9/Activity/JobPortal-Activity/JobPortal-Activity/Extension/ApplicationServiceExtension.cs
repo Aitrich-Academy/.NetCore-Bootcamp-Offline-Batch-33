@@ -12,7 +12,7 @@ namespace JobPortal_Activity.Extension
         {
             services.AddDbContext<JobAppDbContext>(options =>
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
-            services.AddAutoMapper(typeof(MappingProfile));
+            //services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<IJobRepository, JobRepository>();
             services.AddScoped<IJobService, JobService>();
 
