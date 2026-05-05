@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HireMeNow_WebApi.Extensions
+namespace Domain.Extensions
 {
     public static class ApplicationServiceExtensions
     {
