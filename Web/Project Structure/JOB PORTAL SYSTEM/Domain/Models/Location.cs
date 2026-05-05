@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models.Master
+namespace Domain.Models
 {
-    public class Skill
+    public class Location
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+
+        public ICollection<Job> Jobs { get; set; } = new List<Job>();
+        public ICollection<Company> Companies { get; set; } = new List<Company>();
 
     }
 }

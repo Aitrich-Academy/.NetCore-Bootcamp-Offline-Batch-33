@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models.Enums
+namespace Domain.Enums
 {
-    public enum Role
+    public enum JobStatus
     {
-        Admin, JobSeeker, JobProvider
+        Active, Closed
     }
 }
