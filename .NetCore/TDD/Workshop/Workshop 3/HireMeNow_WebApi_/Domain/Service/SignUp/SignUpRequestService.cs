@@ -3,7 +3,6 @@ using Domain.Helpers;
 using Domain.Models;
 using Domain.Service.Authuser;
 using Domain.Service.Authuser.Interfaces;
-
 using Domain.Service.SignUp.DTOs;
 using Domain.Service.SignUp.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -67,6 +66,7 @@ namespace Domain.Service.SignUp
 
         public async Task<bool> CreateSignupRequest(JobSeekerSignupRequestDto data)
         {
+            
 
             var signUpRequest = mapper.Map<SignUpRequest>(data);
             var signUpId = jobSeekerRepository.AddSignupRequest(signUpRequest);
