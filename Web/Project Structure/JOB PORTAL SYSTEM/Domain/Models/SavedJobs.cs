@@ -1,19 +1,20 @@
-﻿using Domain.Models.Seeker;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models.Jobs
+namespace Domain.Models
 {
     public class SavedJobs
     {
         public Guid Id { get; set; }
-
+        [ForeignKey("JobSeeker")]
         public Guid JobSeekerId { get; set; }
         public JobSeeker JobSeeker { get; set; }
 
+        [ForeignKey("Job")]
         public Guid JobId { get; set; }
         public Job Job { get; set; }
 

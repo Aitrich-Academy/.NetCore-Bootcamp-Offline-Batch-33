@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models.Enums
+namespace Domain.Enums
 {
-    public enum InterviewStatus
+    public enum ApplicationStatus
     {
-        Scheduled,
-        Completed,
-        Cancelled
+        Applied,
+        Shortlisted,
+        Rejected,
+        Selected
+
     }
 }

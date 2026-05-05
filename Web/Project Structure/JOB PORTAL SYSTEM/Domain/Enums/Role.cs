@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models.Enums
+namespace Domain.Enums
 {
-    public enum CompanyRole
+    public enum Role
     {
-        HR,
-        Recruiter,
-        Manager
+        Admin, JobSeeker, JobProvider
     }
 }

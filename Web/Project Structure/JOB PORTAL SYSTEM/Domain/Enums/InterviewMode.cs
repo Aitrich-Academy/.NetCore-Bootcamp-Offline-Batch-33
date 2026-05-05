@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models.Enums
+namespace Domain.Enums
 {
-    public enum JobStatus
+    public enum InterviewMode
     {
-        Active, Closed
+        Online,
+        Offline
     }
 }
