@@ -11,13 +11,16 @@ namespace Domain.Models
     {
         public Guid Id { get; set; }
 
-        [ForeignKey("User")]
-        public Guid UserId { get; set; }
-        public SystemUser User { get; set; }
+       
 
         [ForeignKey("Industry")]
         public Guid IndustryId { get; set; }
-        public Industry Industry { get; set; }
+        public Industry? Industry { get; set; }
+
+        [ForeignKey("Location")]
+        public Guid LocationId { get; set; }
+        public Location? Location { get; set; }
+
 
         public string CompanyName { get; set; }
         public string Description { get; set; }
