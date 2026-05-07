@@ -1,4 +1,6 @@
 ﻿using Domain.Data;
+using Domain.Services.JobProvider;
+using Domain.Services.JobProvider.Profile.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
@@ -10,6 +12,10 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<ICompanyService, CompanyService>();
+
+            services.AddAutoMapper(map => map.AddProfile(new UseProfileMapping()));
 
             return services;
         }

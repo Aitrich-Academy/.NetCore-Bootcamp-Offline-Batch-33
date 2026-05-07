@@ -11,9 +11,9 @@ namespace Domain.Models
     {
         public Guid Id { get; set; }
 
-        [ForeignKey(nameof(User))]
-        public Guid UserId { get; set; } // Foreign key to SystemUser
-        public SystemUser User { get; set; }
+        [ForeignKey(nameof(AuthUser))]
+        public Guid AuthUserId { get; set; } // Foreign key to AuthUser
+        public AuthUser AuthUser { get; set; }
 
         public JobSeekerProfile Profile { get; set; }
         public Resume Resume { get; set; }
