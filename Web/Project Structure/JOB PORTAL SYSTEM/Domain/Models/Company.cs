@@ -25,6 +25,7 @@ namespace Domain.Models
         public string CompanyName { get; set; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
+        public bool IsVerified { get; set; }
 
         public ICollection<CompanyMember> Members { get; set; } = new List<CompanyMember>();
         public ICollection<Job> Jobs { get; set; } = new List<Job>();
