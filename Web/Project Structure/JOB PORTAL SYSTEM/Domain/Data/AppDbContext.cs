@@ -15,7 +15,8 @@ namespace Domain.Data
         }
 
         public DbSet<AuthUser> AuthUsers { get; set; }
-        //public DbSet<SystemUser> SystemUsers { get; set; }
+        public DbSet<JobProvider> JobProviders { get; set; }
+        public DbSet<SignupRequest> SignupRequests { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<CompanyMember> CompanyMembers { get; set; }
         public DbSet<Industry> Industries { get; set; }
@@ -79,6 +80,19 @@ namespace Domain.Data
                 .WithMany(c => c.Jobs)
                 .HasForeignKey(j => j.CompanyId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<JobProvider>()
+                .HasOne(jp => jp.User)
+                .WithMany(u => u.JobProviders)
+                .HasForeignKey(jp => jp.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<JobProvider>()
+                .HasOne(jp => jp.Company)
+                .WithMany(c => c.JobProviders)
+                .HasForeignKey(jp => jp.CompanyId)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
 
     }
