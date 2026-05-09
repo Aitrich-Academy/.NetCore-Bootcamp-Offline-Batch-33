@@ -2,7 +2,7 @@
 {
     public class JobseekerProfileRequest
     {
-       
+
         public Guid JobSeekerId { get; set; }
 
         public string? ProfileName { get; set; }

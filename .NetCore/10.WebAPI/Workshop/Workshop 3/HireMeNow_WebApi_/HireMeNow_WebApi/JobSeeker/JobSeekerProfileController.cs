@@ -41,7 +41,7 @@ namespace HireMeNow_WebApi.JobSeeker
             _profileService.AddQualificationToProfileAsync(jobseekerId, profileId, JobseekerQualificationDTo);
             return Ok(data);
         }
-        [HttpGet("{jobseekerId}/profiledetails")]
+        [HttpGet("{jobseekerId}/profiledetails")]       
         public ActionResult<List<JobSeekerProfileDTo>> GetProfile(Guid jobseekerId)
         {
             var Profile = _profileService.GetProfile(jobseekerId);

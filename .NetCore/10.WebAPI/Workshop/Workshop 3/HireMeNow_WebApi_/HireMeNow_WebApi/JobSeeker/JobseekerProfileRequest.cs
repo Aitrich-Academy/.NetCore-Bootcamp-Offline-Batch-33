@@ -1,12 +1,12 @@
-﻿namespace HireMeNow_WebApi.JobSeeker
-{
-    public class JobseekerProfileRequest
-    {
+﻿//namespace HireMeNow_WebApi.JobSeeker
+//{
+//    public class JobseekerProfileRequest
+//    {
        
-        public Guid JobSeekerId { get; set; }
+//        public Guid JobSeekerId { get; set; }
 
-        public string? ProfileName { get; set; }
+//        public string? ProfileName { get; set; }
 
-        public string? ProfileSummary { get; set; }
-    }
-}
+//        public string? ProfileSummary { get; set; }
+//    }
+//}
