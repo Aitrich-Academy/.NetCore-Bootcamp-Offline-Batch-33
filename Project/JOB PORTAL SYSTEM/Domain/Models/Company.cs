@@ -11,6 +11,9 @@ namespace Domain.Models
     {
         public Guid Id { get; set; }
 
+
+
+
         [ForeignKey("User")]
         public Guid? UserId { get; set; }
         public AuthUser? User { get; set; }
