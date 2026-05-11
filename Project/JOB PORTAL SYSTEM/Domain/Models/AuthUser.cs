@@ -19,8 +19,7 @@ namespace Domain.Models
         public string Password { get; set; }
 
 
-        public ICollection<JobProvider> JobProviders { get; set; } = new List<JobProvider>();
         public ICollection<JobSeeker> JobSeekers { get; set; } = new List<JobSeeker>();
-        public ICollection<Company> Companies { get; set; } = new List<Company>();
+        public ICollection<JobProvider> JobProviders { get; set; } = new List<JobProvider>();
     }
 }

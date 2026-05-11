@@ -10,9 +10,9 @@ namespace Domain.Services.Job_Provider.CompanyProfile.Interface
 {
     public interface ICompanyService
     {
-        Task<Company> AddCompanyAsync(CreateCompanyProfileRequest request);
+        Task<Company> AddCompanyAsync(CreateCompanyProfileRequest request, Guid providerId);
         Task<Company?> GetCompanyByIdAsync(Guid id);
-        Task<IEnumerable<Company>> GetAllCompaniesByUserIdAsync(Guid userId);
+        Task<IEnumerable<Company>> GetAllCompaniesByProviderIdAsync(Guid providerId);
         Task<Company?> UpdateCompanyAsync(Guid CompanyId, Company company);
         Task<bool> DeleteCompanyAsync(Guid id);
     }

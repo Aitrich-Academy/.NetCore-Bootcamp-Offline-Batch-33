@@ -18,7 +18,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             this.companyRepository = companyRepository;
         }
 
-        public async Task<Company> AddCompanyAsync(CreateCompanyProfileRequest request)
+        public async Task<Company> AddCompanyAsync(CreateCompanyProfileRequest request, Guid providerId)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                     Description = request.Description,
                     IndustryId = request.IndustryId,
                     LocationId = request.LocationId,
-                    UserId = request.UserId,
+                    ProviderId = providerId, // Link to JobProvider
                     CreatedAt = DateTime.UtcNow
                 };
                 // Save company
@@ -44,7 +44,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 var jobProvider = await companyRepository.GetByUserIdAsync(company.Id);
                 if (jobProvider != null)
                 {
-                    jobProvider.CompanyId = createdCompany.Id;
+                    jobProvider.Company = createdCompany;
                     await companyRepository.UpdateAsync(jobProvider);
                 }
 
@@ -68,12 +68,12 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 throw new Exception( ex.Message);
             }
         }
-        public async Task<IEnumerable<Company>> GetAllCompaniesByUserIdAsync(Guid userId)
+        public async Task<IEnumerable<Company>> GetAllCompaniesByProviderIdAsync(Guid providerId)
         {
             try
             {
 
-                return await companyRepository.GetAllByUserIdAsync(userId);
+                return await companyRepository.GetAllByUserIdAsync(providerId);
             }
             catch (Exception ex)
             {
