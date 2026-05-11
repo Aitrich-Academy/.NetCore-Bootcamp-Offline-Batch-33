@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class SavedJobs
+    public class SavedJob
     {
         public Guid Id { get; set; }
         [ForeignKey("JobSeeker")]

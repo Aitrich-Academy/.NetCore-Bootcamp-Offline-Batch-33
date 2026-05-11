@@ -1,21 +1,24 @@
 ﻿using AutoMapper;
+using Domain.Enums;
 using Domain.Models;
-using Domain.Services.JobProvider.Profile.DTO;
-using Domain.Services.JobProvider.Profile.Interface;
+using Domain.Services.Job_Provider.CompanyProfile.DTO;
+using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using JOB_PORTAL_SYSTEM.Api.JobSeeker.RequestObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JobProviderController : ControllerBase
+    public class ProviderCompanyController : ControllerBase
     {
         readonly ICompanyService companyService;
         readonly IMapper mapper;
-        public JobProviderController(ICompanyService companyService, IMapper mapper)
+        public ProviderCompanyController(ICompanyService companyService, IMapper mapper)
         {
             this.companyService = companyService;
             this.mapper = mapper;
@@ -26,12 +29,14 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
         {
             try
             {
+                //var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
                 var company = await companyService.AddCompanyAsync(
                     request.CompanyName,
                     request.Description,
                     request.IndustryId,
                     request.LocationId,
-                    request.AuthId // later replace with user id from token
+                    request.UserId
                     );
                 var response = mapper.Map<CompanyProfileDto>(company);
                 return Ok(response);
@@ -44,7 +49,7 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
             }
         }
 
-        [HttpGet("user/{userId}")]
+        [HttpGet("user")]
         public async Task<IActionResult> GetCompanyProfileByUserId(Guid userId)
         {
             try
@@ -103,7 +108,7 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
             try
             {
                 var deleted = await companyService.DeleteCompanyAsync(id);
-                if (deleted == null)
+                if (!deleted)
                 {
                     return NotFound("Company not found");
                 }
