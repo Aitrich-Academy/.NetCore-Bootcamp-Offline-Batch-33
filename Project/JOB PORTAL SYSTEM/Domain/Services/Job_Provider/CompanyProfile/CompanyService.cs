@@ -61,6 +61,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
         {
             try
             {
+
                 return await companyRepository.GetByIdAsync(Id);
 
             }
