@@ -8,10 +8,11 @@ namespace Domain.Enums
 {
     public enum JobStatus
     {
-        Draft,      // Created but not yet submitted
+        Created,      // Created but not yet submitted
         Pending,    // Submitted, awaiting approval
         Active,     // Approved and live
         Closed,     // No longer accepting applications
-        Archived    // Permanently stored, not visible
+        Archived ,  // Permanently stored, not visible
+        Verified
     }
 }
