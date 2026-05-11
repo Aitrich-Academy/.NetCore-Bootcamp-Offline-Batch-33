@@ -36,6 +36,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                     LocationId = request.LocationId,
                     ProviderId = providerId, // Link to JobProvider
                     CreatedAt = DateTime.UtcNow
+
                 };
                 // Save company
                 var createdCompany = await companyRepository.AddAsync(company);

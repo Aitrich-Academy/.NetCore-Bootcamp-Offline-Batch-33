@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260511172342_com")]
-    partial class com
+    [Migration("20260511181610_first1")]
+    partial class first1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,9 +65,6 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AuthUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -92,8 +89,6 @@ namespace Domain.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthUserId");
 
                     b.HasIndex("IndustryId");
 
@@ -269,6 +264,9 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AuthUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("CompanyRole")
                         .HasColumnType("int");
 
@@ -288,6 +286,8 @@ namespace Domain.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthUserId");
 
                     b.ToTable("JobProviders");
                 });
@@ -516,10 +516,6 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Models.Company", b =>
                 {
-                    b.HasOne("Domain.Models.AuthUser", null)
-                        .WithMany("Companies")
-                        .HasForeignKey("AuthUserId");
-
                     b.HasOne("Domain.Models.Industry", "Industry")
                         .WithMany("Companies")
                         .HasForeignKey("IndustryId");
@@ -614,6 +610,17 @@ namespace Domain.Migrations
                     b.Navigation("JobSeeker");
 
                     b.Navigation("Resume");
+                });
+
+            modelBuilder.Entity("Domain.Models.JobProvider", b =>
+                {
+                    b.HasOne("Domain.Models.AuthUser", "AuthUser")
+                        .WithMany("JobProviders")
+                        .HasForeignKey("AuthUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AuthUser");
                 });
 
             modelBuilder.Entity("Domain.Models.JobSeeker", b =>
@@ -715,7 +722,7 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Models.AuthUser", b =>
                 {
-                    b.Navigation("Companies");
+                    b.Navigation("JobProviders");
 
                     b.Navigation("JobSeekers");
                 });
