@@ -38,7 +38,10 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
                 //    request.LocationId,
                 //    request.UserId
                 //    );
+                await companyService.AddCompanyAsync(request);
+
                 var response = mapper.Map<CompanyProfileDto>(request);
+
                 return Ok(response);
 
             }

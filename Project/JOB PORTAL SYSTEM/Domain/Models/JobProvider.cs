@@ -11,10 +11,6 @@ namespace Domain.Models
     public class JobProvider
     {
         public Guid Id { get; set; }
-
-        [ForeignKey("User")]
-        public Guid? UserId { get; set; }
-        public AuthUser? User { get; set; }
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

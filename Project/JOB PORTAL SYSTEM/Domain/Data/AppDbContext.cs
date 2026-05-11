@@ -81,11 +81,7 @@ namespace Domain.Data
                 .HasForeignKey(j => j.CompanyId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<JobProvider>()
-                .HasOne(jp => jp.User)
-                .WithMany(u => u.JobProviders)
-                .HasForeignKey(jp => jp.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+            
 
             modelBuilder.Entity<JobProvider>()
                 .HasOne(jp => jp.Company)

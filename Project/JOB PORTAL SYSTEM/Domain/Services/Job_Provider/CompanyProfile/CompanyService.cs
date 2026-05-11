@@ -36,7 +36,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 var createdCompany = await companyRepository.AddAsync(company);
 
                 // ✅ Update JobProvider to link this company
-                var jobProvider = await companyRepository.GetByUserIdAsync(request.UserId);
+                var jobProvider = await companyRepository.GetByUserIdAsync(company.Id);
                 if (jobProvider != null)
                 {
                     jobProvider.CompanyId = createdCompany.Id;
