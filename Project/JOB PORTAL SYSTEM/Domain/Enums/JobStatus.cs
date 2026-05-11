@@ -14,5 +14,8 @@ namespace Domain.Enums
         Closed,     // No longer accepting applications
         Archived ,  // Permanently stored, not visible
         Verified
+
+
+
     }
 }
