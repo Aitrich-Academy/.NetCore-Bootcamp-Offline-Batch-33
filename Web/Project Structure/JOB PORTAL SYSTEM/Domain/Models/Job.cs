@@ -32,6 +32,6 @@ namespace Domain.Models
         public DateTime CreatedAt { get; set; }
 
         public ICollection<JobApplication> Applications { get; set; } = new List<JobApplication>();
-        public ICollection<SavedJobs> SavedJobs { get; set; } = new List<SavedJobs>();
+        public ICollection<SavedJob> SavedJobs { get; set; } = new List<SavedJob>();
     }
 }

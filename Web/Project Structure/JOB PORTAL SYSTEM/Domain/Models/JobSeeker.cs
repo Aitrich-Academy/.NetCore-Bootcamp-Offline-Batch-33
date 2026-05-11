@@ -20,6 +20,6 @@ namespace Domain.Models
         public ICollection<JobApplication> Applications { get; set; } = new List<JobApplication>();
         public ICollection<Qualification> Qualifications { get; set; } = new List<Qualification>();
         public ICollection<JobSeekerSkills> Skills { get; set; } = new List<JobSeekerSkills>();
-        public ICollection<SavedJobs> SavedJobs { get; set; } = new List<SavedJobs>();
+        public ICollection<SavedJob> SavedJobs { get; set; } = new List<SavedJob>();
     }   
 }
