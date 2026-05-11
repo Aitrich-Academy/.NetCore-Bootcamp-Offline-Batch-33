@@ -137,7 +137,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<JobProvider?> GetByUserIdAsync(Guid userId)
+        public async Task<Domain.Models.JobProvider?> GetByUserIdAsync(Guid userId)
         {
             return await context.JobProviders
                 .FirstOrDefaultAsync(jp => jp.UserId == userId);
