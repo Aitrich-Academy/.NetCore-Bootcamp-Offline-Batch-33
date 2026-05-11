@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JOB_PORTAL_SYSTEM.Api.JobSeeker.RequestObjects
+namespace Domain.Services.Job_Provider.CompanyProfile.DTO
 {
-    public class CreateCompanyProfileRequest
+    public class CompanyProfileDto
     {
-        public Guid UserId { get; set; }
+        public Guid Id { get; set; }
         public string CompanyName { get; set; }
         public string Description { get; set; }
         public Guid IndustryId { get; set; }
         public Guid LocationId { get; set; }
-
-
-
+        public DateTime CreatedAt { get; set; }
     }
 }
