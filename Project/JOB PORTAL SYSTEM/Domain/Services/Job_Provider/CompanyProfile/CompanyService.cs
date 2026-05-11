@@ -22,6 +22,11 @@ namespace Domain.Services.Job_Provider.CompanyProfile
         {
             try
             {
+
+
+
+
+
                 var company = new Company
                 {
                     Id = Guid.NewGuid(),
