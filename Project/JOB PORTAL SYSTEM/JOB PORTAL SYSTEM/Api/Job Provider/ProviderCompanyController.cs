@@ -25,20 +25,20 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCompanyProfile([FromBody] CreateCompanyProfileRequest request)
+        public async Task<IActionResult> CreateCompanyProfile([FromBody] Domain.Services.Job_Provider.CompanyProfile.DTO.CreateCompanyProfileRequest request)
         {
             try
             {
                 //var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                var company = await companyService.AddCompanyAsync(
-                    request.CompanyName,
-                    request.Description,
-                    request.IndustryId,
-                    request.LocationId,
-                    request.UserId
-                    );
-                var response = mapper.Map<CompanyProfileDto>(company);
+                //var company = await companyService.AddCompanyAsync(
+                //    request.CompanyName,
+                //    request.Description,
+                //    request.IndustryId,
+                //    request.LocationId,
+                //    request.UserId
+                //    );
+                var response = mapper.Map<CompanyProfileDto>(request);
                 return Ok(response);
 
             }

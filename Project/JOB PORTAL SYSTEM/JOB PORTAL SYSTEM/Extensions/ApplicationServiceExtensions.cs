@@ -1,6 +1,4 @@
 ﻿using Domain.Data;
-using Domain.Helper;
-using Domain.Services.Job_Provider;
 using Domain.Services.Job_Provider.CompanyProfile;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using Domain.Services.Job_Provider.Job_Service;
@@ -27,10 +25,10 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             //services.AddScoped<ISignUpRequestService, SignUpRequestService>();
             //services.AddScoped<ILoginRequestRepository, LoginRequestRepository>();
             //services.AddScoped<ILoginRequestService, LoginRequestService>();
-            services.AddScoped<IEmailService, EmailService>();
+            //services.AddScoped<IEmailService, EmailService>();
 
             services.AddAutoMapper(map => map.AddProfile(new UseProfileMapping()));
-            services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
+            //services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddHttpContextAccessor();
 
             return services;
