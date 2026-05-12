@@ -12,7 +12,6 @@ namespace Domain.Enums
         Pending,    // Submitted, awaiting approval
         Active,     // Approved and live
         Closed,     // No longer accepting applications
-        Archived ,  // Permanently stored, not visible
         Verified
 
 
