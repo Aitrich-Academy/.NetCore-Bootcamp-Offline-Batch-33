@@ -22,7 +22,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
         {
             try
             {
-                var user = await context.AuthUsers.FindAsync(company.UserId);
+                var user = await context.AuthUsers.FindAsync(company.Id);
                 if (user == null)
                 {
                     throw new Exception("User not found");
@@ -78,7 +78,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             try
             {
                 return await context.Companies
-                    .Where(c => c.UserId == AuthId)
+                    
                     .Include(c => c.Industry)
                     .Include(c => c.Location)
                     .ToListAsync();

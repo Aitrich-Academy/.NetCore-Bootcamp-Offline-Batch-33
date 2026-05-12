@@ -36,7 +36,9 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
                     request.Description,
                     request.IndustryId,
                     request.LocationId,
-                    request.UserId
+                    request.Email,
+                    request.PhoneNumber,
+                    request.Address
                     );
                 var response = mapper.Map<CompanyProfileDto>(company);
                 return Ok(response);

@@ -8,11 +8,14 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker.RequestObjects
 {
     public class CreateCompanyProfileRequest
     {
-        public Guid UserId { get; set; }
+        
         public string CompanyName { get; set; }
         public string Description { get; set; }
         public Guid IndustryId { get; set; }
         public Guid LocationId { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
 
 
 

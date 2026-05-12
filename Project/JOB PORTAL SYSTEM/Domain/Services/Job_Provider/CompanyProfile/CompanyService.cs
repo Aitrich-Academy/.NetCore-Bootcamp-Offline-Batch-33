@@ -28,7 +28,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                     Description = description,
                     IndustryId = industryId,
                     LocationId = locationId,
-                    UserId = userId,
+                    
                     CreatedAt = DateTime.UtcNow
                 };
                 // Save company

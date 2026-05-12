@@ -1,5 +1,8 @@
 ﻿using Domain.Data;
-using Domain.Helper;
+
+using Domain.Member.Interface;
+using Domain.Member.Repository;
+using Domain.Member.Service;
 using Domain.Services.Job_Provider;
 using Domain.Services.Job_Provider.CompanyProfile;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
@@ -18,20 +21,24 @@ namespace JOB_PORTAL_SYSTEM.Extensions
 
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IMemberRepository, MemberRepository>();
+            services.AddScoped<IMemberService, CompanyMemberService>();
+            services.AddScoped<IApplicationRepository, ApplicationRepository>();
+            services.AddScoped<IApplicationservice,ApplicationService>();
 
-            services.AddScoped<IJobRepository, JobRepository>();
-            services.AddScoped<IJobService, JobService>();
+            //services.AddScoped<IJobRepository, JobRepository>();
+           // services.AddScoped<IJobService, JobService>();
 
             //services.AddScoped<IAuthUserRepository, AuthUserRepository>();
             //services.AddScoped<ISignUpRequestRepository, SignUpRequestRepository>();
             //services.AddScoped<ISignUpRequestService, SignUpRequestService>();
             //services.AddScoped<ILoginRequestRepository, LoginRequestRepository>();
             //services.AddScoped<ILoginRequestService, LoginRequestService>();
-            services.AddScoped<IEmailService, EmailService>();
+           // services.AddScoped<IEmailService, EmailService>();
 
             services.AddAutoMapper(map => map.AddProfile(new UseProfileMapping()));
-            services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
-            services.AddHttpContextAccessor();
+           // services.Configure<Mailsettings>(configuration.GetSection("MailSettings"));
+            //services.AddHttpContextAccessor();
 
             return services;
         }
