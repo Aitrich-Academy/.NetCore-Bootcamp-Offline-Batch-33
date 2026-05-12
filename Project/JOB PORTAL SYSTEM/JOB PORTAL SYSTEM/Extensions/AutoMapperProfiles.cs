@@ -11,9 +11,10 @@ namespace JOB_PORTAL_SYSTEM.Extensions
         public AutoMapperProfiles()
         {
             CreateMap<JobSeekerSignUpRequest, JobSeekerRequestDTO>().ReverseMap();
-            CreateMap<JobSeekerRequestDTO, SignupRequest>().ReverseMap();
-            CreateMap<AuthUser, LoginrequestDto>().ReverseMap();
 
+            CreateMap<JobSeekerRequestDTO, SignupRequest>().ReverseMap();
+
+            CreateMap<AuthUser, LoginrequestDto>().ReverseMap();
         }
     }
 }

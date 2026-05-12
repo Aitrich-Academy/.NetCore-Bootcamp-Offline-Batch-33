@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Service
 {
-    public class SignUpRequestRepository: ISignUpRequestRepository
+    public class SignUpRequestRepository : ISignUpRequestRepository
     {
         private readonly AppDbContext _context;
 
@@ -28,7 +28,7 @@ namespace Domain.Service
             signUpRequest.JobStatus = Enums.JobStatus.Pending;
 
             await _context.SignupRequests.AddAsync(signUpRequest);
-            await _context.SaveChangesAsync(); 
+            await _context.SaveChangesAsync();
 
             return signUpRequest.Id;
         }
@@ -39,7 +39,7 @@ namespace Domain.Service
         public async Task UpdateSignUpRequest(SignupRequest signUpRequest)
         {
             _context.SignupRequests.Update(signUpRequest);
-            await _context.SaveChangesAsync(); 
+            await _context.SaveChangesAsync();
         }
 
         public async Task<bool> JobSeekerExists(Guid jobSeekerId)

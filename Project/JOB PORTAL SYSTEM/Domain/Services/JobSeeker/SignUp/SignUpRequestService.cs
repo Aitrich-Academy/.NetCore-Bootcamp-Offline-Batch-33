@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Service
 {
-    public class SignUpRequestService: ISignUpRequestService
+    public class SignUpRequestService : ISignUpRequestService
     {
         ISignUpRequestRepository _signUp;
         IAuthUserRepository _authuser;
@@ -45,7 +45,7 @@ namespace Domain.Service
 
                 var userId = Guid.NewGuid();
 
-         
+
                 var authUser = new Models.AuthUser
                 {
                     Id = userId,
@@ -58,8 +58,8 @@ namespace Domain.Service
                     Role = Role.JobSeeker
                 };
 
-                await _authuser.AddSystemUser(authUser);
-             
+                await _authuser.AddAuthUser(authUser);
+
                 var jobSeeker = new JobSeeker
                 {
                     Id = Guid.NewGuid(),
@@ -89,7 +89,7 @@ namespace Domain.Service
 
 
             var signUpRequest = _mapper.Map<SignupRequest>(data);
-            var signUpId = await _signUp.AddSignUpRequest(signUpRequest); 
+            var signUpId = await _signUp.AddSignUpRequest(signUpRequest);
 
 
 

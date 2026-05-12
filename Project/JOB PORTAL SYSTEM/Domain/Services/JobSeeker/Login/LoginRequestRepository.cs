@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Service.Login
 {
-    public class LoginRequestRepository:ILoginRequestRepository
+    public class LoginRequestRepository : ILoginRequestRepository
     {
         private readonly AppDbContext _context;
 
@@ -18,7 +18,7 @@ namespace Domain.Service.Login
         {
             _context = context;
         }
-        public Models. AuthUser GetUserByEmail(string email)
+        public Models.AuthUser GetUserByEmail(string email)
         {
             var user = _context.AuthUsers
                 .FirstOrDefault(e => e.Email == email);
