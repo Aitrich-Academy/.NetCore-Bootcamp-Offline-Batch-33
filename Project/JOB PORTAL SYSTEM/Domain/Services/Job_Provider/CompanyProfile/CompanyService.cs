@@ -34,6 +34,9 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                     Description = request.Description,
                     IndustryId = request.IndustryId,
                     LocationId = request.LocationId,
+                    Address = request.Address,
+                    PhoneNumber = request.PhoneNumber,
+                    Email = request.Email,
                     ProviderId = providerId, // Link to JobProvider
                     CreatedAt = DateTime.UtcNow
 
@@ -95,6 +98,9 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 existingCompany.Description = company.Description;
                 existingCompany.IndustryId = company.IndustryId;
                 existingCompany.LocationId = company.LocationId;
+                existingCompany .Address = company.Address;
+                existingCompany .PhoneNumber = company.PhoneNumber;
+                existingCompany .Description = company.Description;
                 return await companyRepository.UpdateAsync(CompanyId, existingCompany);
 
             }
