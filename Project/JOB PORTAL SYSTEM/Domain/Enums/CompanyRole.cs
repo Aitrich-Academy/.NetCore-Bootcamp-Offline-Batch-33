@@ -8,6 +8,7 @@ namespace Domain.Enums
 {
     public enum CompanyRole
     {
+        Owner,
         HR,
         Recruiter,
         Manager
