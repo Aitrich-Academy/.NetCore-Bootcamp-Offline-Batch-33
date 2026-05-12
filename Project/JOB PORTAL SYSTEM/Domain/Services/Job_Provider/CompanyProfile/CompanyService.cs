@@ -22,11 +22,6 @@ namespace Domain.Services.Job_Provider.CompanyProfile
         {
             try
             {
-
-
-
-
-
                 var company = new Company
                 {
                     Id = Guid.NewGuid(),
@@ -34,26 +29,32 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                     Description = request.Description,
                     IndustryId = request.IndustryId,
                     LocationId = request.LocationId,
-                    ProviderId = providerId, // Link to JobProvider
-                    CreatedAt = DateTime.UtcNow
-
+                    Address = request.Address,
+                    PhoneNumber = request.PhoneNumber,
+                    Email = request.Email,
+                    ProviderId = providerId,
+                    CreatedAt = DateTime.UtcNow,
+                    IsVerified = false
                 };
+
                 // Save company
                 var createdCompany = await companyRepository.AddAsync(company);
 
-                // ✅ Update JobProvider to link this company
-                var jobProvider = await companyRepository.GetByUserIdAsync(company.Id);
+                // FIXED HERE
+                var jobProvider = await companyRepository.GetByUserIdAsync(providerId);
+
                 if (jobProvider != null)
                 {
                     jobProvider.Company = createdCompany;
+
                     await companyRepository.UpdateAsync(jobProvider);
                 }
 
                 return createdCompany;
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
-                throw new Exception( ex.Message);
+                throw new Exception(ex.InnerException?.Message ?? ex.Message);
             }
         }
 
@@ -95,6 +96,9 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 existingCompany.Description = company.Description;
                 existingCompany.IndustryId = company.IndustryId;
                 existingCompany.LocationId = company.LocationId;
+                existingCompany .Address = company.Address;
+                existingCompany .PhoneNumber = company.PhoneNumber;
+                existingCompany .Description = company.Description;
                 return await companyRepository.UpdateAsync(CompanyId, existingCompany);
 
             }
