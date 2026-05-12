@@ -15,6 +15,7 @@ namespace Domain.Data
         }
 
         public DbSet<AuthUser> AuthUsers { get; set; }
+
         public DbSet<JobProvider> JobProviders { get; set; }
         public DbSet<SignupRequest> SignupRequests { get; set; }
         public DbSet<Company> Companies { get; set; }
@@ -29,7 +30,7 @@ namespace Domain.Data
         public DbSet<Location> Locations { get; set; }
         public DbSet<JobSeekerSkills> JobSeekerSkills { get; set; }
         public DbSet<Interview> Interviews { get; set; }
-        public DbSet<SavedJobs> SavedJobs { get; set; }
+        public DbSet<SavedJob> SavedJobs { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
         public DbSet<JobCategory> JobCategories { get; set; }
@@ -57,14 +58,14 @@ namespace Domain.Data
                 .HasForeignKey(ja => ja.ResumeId)
                 .OnDelete(DeleteBehavior.Restrict);
            // SavedJobs → JobSeeker(Cascade makes sense: if a seeker is deleted, their saved jobs should go too)
-            modelBuilder.Entity<SavedJobs>()
+            modelBuilder.Entity<SavedJob>()
                 .HasOne(sj => sj.JobSeeker)
                 .WithMany(js => js.SavedJobs)
                 .HasForeignKey(sj => sj.JobSeekerId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // SavedJobs → Job (Restrict: don’t auto-delete saved jobs when a job is deleted)
-            modelBuilder.Entity<SavedJobs>()
+            modelBuilder.Entity<SavedJob>()
                 .HasOne(sj => sj.Job)
                 .WithMany(j => j.SavedJobs)
                 .HasForeignKey(sj => sj.JobId)

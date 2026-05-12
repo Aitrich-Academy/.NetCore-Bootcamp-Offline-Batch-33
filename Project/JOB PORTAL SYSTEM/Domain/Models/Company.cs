@@ -18,7 +18,7 @@ namespace Domain.Models
         public Guid? UserId { get; set; }
         public AuthUser? User { get; set; }
 
-       
+        
         [ForeignKey("Industry")]
         public Guid? IndustryId { get; set; }
         public Industry? Industry { get; set; }
