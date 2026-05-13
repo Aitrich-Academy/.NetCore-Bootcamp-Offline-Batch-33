@@ -51,6 +51,10 @@ namespace Domain.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("AuthUsers");
@@ -90,10 +94,6 @@ namespace Domain.Migrations
                     b.Property<Guid?>("LocationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid?>("ProviderId")
                         .HasColumnType("uniqueidentifier");
 
@@ -103,9 +103,7 @@ namespace Domain.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.HasIndex("ProviderId")
-                        .IsUnique()
-                        .HasFilter("[ProviderId] IS NOT NULL");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Companies");
                 });
@@ -273,7 +271,7 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AuthUserId")
+                    b.Property<Guid?>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("CompanyRole")
@@ -290,13 +288,18 @@ namespace Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthUserId");
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("JobProviders");
                 });
@@ -307,8 +310,34 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AuthUserId")
+                    b.Property<Guid?>("AuthUserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -503,6 +532,10 @@ namespace Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("SignupRequests");
@@ -534,15 +567,15 @@ namespace Domain.Migrations
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Domain.Models.JobProvider", "JobProvider")
-                        .WithOne("Company")
-                        .HasForeignKey("Domain.Models.Company", "ProviderId");
+                    b.HasOne("Domain.Models.AuthUser", "User")
+                        .WithMany("Companies")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Industry");
 
-                    b.Navigation("JobProvider");
-
                     b.Navigation("Location");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Models.CompanyMember", b =>
@@ -623,24 +656,26 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Models.JobProvider", b =>
                 {
-                    b.HasOne("Domain.Models.AuthUser", "AuthUser")
+                    b.HasOne("Domain.Models.Company", "Company")
                         .WithMany("JobProviders")
-                        .HasForeignKey("AuthUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("AuthUser");
+                    b.HasOne("Domain.Models.AuthUser", "User")
+                        .WithMany("JobProviders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Company");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Models.JobSeeker", b =>
                 {
-                    b.HasOne("Domain.Models.AuthUser", "AuthUser")
+                    b.HasOne("Domain.Models.AuthUser", null)
                         .WithMany("JobSeekers")
-                        .HasForeignKey("AuthUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AuthUser");
+                        .HasForeignKey("AuthUserId");
                 });
 
             modelBuilder.Entity("Domain.Models.JobSeekerProfile", b =>
@@ -731,6 +766,8 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Models.AuthUser", b =>
                 {
+                    b.Navigation("Companies");
+
                     b.Navigation("JobProviders");
 
                     b.Navigation("JobSeekers");
@@ -738,6 +775,8 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Models.Company", b =>
                 {
+                    b.Navigation("JobProviders");
+
                     b.Navigation("Jobs");
 
                     b.Navigation("Members");
@@ -763,11 +802,6 @@ namespace Domain.Migrations
             modelBuilder.Entity("Domain.Models.JobCategory", b =>
                 {
                     b.Navigation("Jobs");
-                });
-
-            modelBuilder.Entity("Domain.Models.JobProvider", b =>
-                {
-                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Domain.Models.JobSeeker", b =>
