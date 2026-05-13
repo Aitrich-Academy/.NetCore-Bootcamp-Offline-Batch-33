@@ -12,19 +12,26 @@ namespace Domain.Models
     {
         public Guid Id { get; set; }
 
-        [ForeignKey("AuthUser")]
-        public Guid AuthUserId { get; set; }
-        public AuthUser? AuthUser { get; set; }
+        [ForeignKey("User")]
+        public Guid? UserId { get; set; }
+        public AuthUser? User { get; set; }
 
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
         //Navigation Only(else => Company → JobProvider → Company)
+
+        [ForeignKey("Company")]
+        public Guid? CompanyId { get; set; }
+
         public Company? Company { get; set; }
         public CompanyRole CompanyRole { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
+
+        
+      
 
     }
 }

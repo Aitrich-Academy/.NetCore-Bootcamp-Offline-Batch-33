@@ -6,6 +6,14 @@ using Domain.Services.Job_Seeker.AuthUser.Interface;
 using Domain.Services.Job_Seeker.SignUp.DTO;
 using Domain.Services.Job_Seeker.SignUp.Interface;
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Domain.Services.Job_Seeker.SignUp
 {
     public class SignUpRequestService : ISignUpRequestService

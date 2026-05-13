@@ -1,3 +1,4 @@
+using JOB_PORTAL_SYSTEM;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Controllers
