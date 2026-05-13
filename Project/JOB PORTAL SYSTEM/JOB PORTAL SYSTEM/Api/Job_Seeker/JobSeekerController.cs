@@ -1,18 +1,11 @@
 ﻿using AutoMapper;
-<<<<<<< HEAD
 using Domain.Services.Job_Seeker.Login.DTO;
 using Domain.Services.Job_Seeker.Login.Interface;
 using Domain.Services.Job_Seeker.SignUp.DTO;
 using Domain.Services.Job_Seeker.SignUp.Interface;
 using JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects;
-=======
->>>>>>> d368a2d9021872ac3c7470e4c0208f4720a40b51
+
 using Microsoft.AspNetCore.Mvc;
-using Domain.Services.Job_Seeker.SignUp.DTO;
-using Domain.Services.Job_Seeker.SignUp.Interface;
-using Domain.Services.Job_Seeker.Login.DTO;
-using Domain.Services.Job_Seeker.Login.Interface;
-using JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects;
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
 {

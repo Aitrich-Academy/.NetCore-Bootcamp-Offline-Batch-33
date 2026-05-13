@@ -1,13 +1,13 @@
 ﻿using Domain.Data;
 using Domain.Models;
-using Domain.Services.Signup.Interface;
+using Domain.Services.Job_Provider.Signup.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.Signup
+namespace Domain.Services.Job_Provider.Signup
 {
     public class SignUpRequestRepository:ISignUpRequestRepository 
     {

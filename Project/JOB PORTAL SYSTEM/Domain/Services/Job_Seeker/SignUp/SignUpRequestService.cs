@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Enums;
+using Domain.Helper;
 using Domain.Helpers;
 using Domain.Models;
 using Domain.Services.Job_Seeker.AuthUser.Interface;
@@ -93,7 +94,7 @@ namespace Domain.Services.Job_Seeker.SignUp
 
 
 
-            MailRequest mailRequest = new MailRequest
+            Helper.MailRequest mailRequest = new Helper.MailRequest
             {
                 Subject = "HireMeNow SignUp Verification",
                 Body = $"https://localhost:5001/job-seeker/verify?signupId={signUpId}",
