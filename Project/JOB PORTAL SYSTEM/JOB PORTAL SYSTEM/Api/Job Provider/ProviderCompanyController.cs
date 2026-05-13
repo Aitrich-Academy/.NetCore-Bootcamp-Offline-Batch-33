@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
-using Domain.Enums;
 using Domain.Models;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
-using JOB_PORTAL_SYSTEM.Api.JobSeeker.RequestObjects;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
 {
@@ -25,20 +20,15 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCompanyProfile([FromBody] CreateCompanyProfileRequest request)
+        public async Task<IActionResult> CreateCompanyProfile([FromBody] Domain.Services.Job_Provider.CompanyProfile.DTO.CreateCompanyProfileRequest request, Guid jobproviderId)
         {
             try
             {
-                //var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                
+                var company = await companyService.AddCompanyAsync(request, jobproviderId);
 
-                var company = await companyService.AddCompanyAsync(
-                    request.CompanyName,
-                    request.Description,
-                    request.IndustryId,
-                    request.LocationId,
-                    request.UserId
-                    );
                 var response = mapper.Map<CompanyProfileDto>(company);
+
                 return Ok(response);
 
             }
@@ -50,11 +40,11 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
         }
 
         [HttpGet("user")]
-        public async Task<IActionResult> GetCompanyProfileByUserId(Guid userId)
+        public async Task<IActionResult> GetCompanyProfileByUserId(Guid providerId)
         {
             try
             {
-                var company = await companyService.GetAllCompaniesByUserIdAsync(userId);
+                var company = await companyService.GetAllCompaniesByProviderIdAsync(providerId);
                 var response = mapper.Map<IEnumerable<CompanyProfileDto>>(company);
                 return Ok(response);
 

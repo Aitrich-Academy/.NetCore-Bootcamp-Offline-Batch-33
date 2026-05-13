@@ -30,7 +30,7 @@ namespace Domain.Services.Admin.Skills
                 await _context.SaveChangesAsync();
                 return skill;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Error adding skill: {ex.Message}");
             }
@@ -39,6 +39,43 @@ namespace Domain.Services.Admin.Skills
         public async Task<Skill> GetSkillByIdAsync(Guid skillId)
         {
             return await _context.Skills.FindAsync(skillId);
+        }
+        public async Task<Skill> UpdateSkillAsync(UpdateSkillDto updateSkillDto)
+        {
+            try
+            {
+                var skill = await _context.Skills.FindAsync(updateSkillDto.Id);
+                if (skill == null)
+                {
+                    throw new Exception("Skill not found");
+                }
+                skill.Name = updateSkillDto.Name;
+                _context.Skills.Update(skill);
+                await _context.SaveChangesAsync();
+                return skill;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<Skill> DeleteSkillAsync(Guid skillId)
+        {
+            try
+            {
+                var skill = await _context.Skills.FindAsync(skillId);
+                if (skill == null)
+                {
+                    throw new Exception("Skill not found");
+                }
+                _context.Skills.Remove(skill);
+                await _context.SaveChangesAsync();
+                return skill;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

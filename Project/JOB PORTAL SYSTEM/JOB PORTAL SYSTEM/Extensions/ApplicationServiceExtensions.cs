@@ -4,6 +4,7 @@ using Domain.Services.Admin.CompanyVerification.Interface;
 using Domain.Services.Admin.Skills;
 using Domain.Services.Admin.Skills.Interfaces;
 using Domain.Services.Job_Provider;
+
 using Domain.Services.Job_Provider.CompanyProfile;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using Domain.Services.Job_Provider.Job_Service;
@@ -44,7 +45,7 @@ namespace JOB_PORTAL_SYSTEM.Extensions
 
             services.AddAutoMapper(map => map.AddProfile(new UseProfileMapping()));
             //services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
-            //services.AddHttpContextAccessor();
+
 
             return services;
         }

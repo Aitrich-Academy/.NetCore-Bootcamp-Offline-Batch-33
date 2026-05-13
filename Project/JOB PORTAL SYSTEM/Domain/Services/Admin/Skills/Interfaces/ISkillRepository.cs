@@ -12,5 +12,7 @@ namespace Domain.Services.Admin.Skills.Interfaces
     {
         Task<Skill> AddSkillAsync(AddSkillDto addSkillDto);
         Task<Skill> GetSkillByIdAsync(Guid skillId);
+        Task<Skill> UpdateSkillAsync(UpdateSkillDto updateSkillDto);
+        Task<Skill> DeleteSkillAsync(Guid Id);
     }
 }

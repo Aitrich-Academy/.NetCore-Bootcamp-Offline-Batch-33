@@ -42,5 +42,29 @@ namespace Domain.Services.Admin.Skills
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<UpdateSkillDto> UpdateSkillAsync(UpdateSkillDto updateSkillDto)
+        {
+            try
+            {
+                var skill = await _skillRepository.UpdateSkillAsync(updateSkillDto);
+                return _mapper.Map<UpdateSkillDto>(skill);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<DeleteSkillDto> DeleteSkillAsync(Guid skillId)
+        {
+            try
+            {
+                var skill = await _skillRepository.DeleteSkillAsync(skillId);
+                return _mapper.Map<DeleteSkillDto>(skill);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -11,14 +11,10 @@ namespace Domain.Models
     {
         public Guid Id { get; set; }
 
+        [ForeignKey("JobProvider")]
+        public Guid? ProviderId { get; set; }
+        public JobProvider? JobProvider { get; set; }
 
-
-
-        [ForeignKey("User")]
-        public Guid? UserId { get; set; }
-        public AuthUser? User { get; set; }
-
-        
         [ForeignKey("Industry")]
         public Guid? IndustryId { get; set; }
         public Industry? Industry { get; set; }
@@ -30,10 +26,12 @@ namespace Domain.Models
 
         public string CompanyName { get; set; }
         public string Description { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool IsVerified { get; set; }
 
-        public ICollection<JobProvider> JobProviders { get; set; } = new List<JobProvider>();
         public ICollection<CompanyMember> Members { get; set; } = new List<CompanyMember>();
         public ICollection<Job> Jobs { get; set; } = new List<Job>();
 

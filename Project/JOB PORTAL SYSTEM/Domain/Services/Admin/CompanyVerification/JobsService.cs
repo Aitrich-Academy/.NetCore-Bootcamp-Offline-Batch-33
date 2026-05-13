@@ -24,11 +24,11 @@ namespace Domain.Services.Admin.CompanyVerification
             return new JobStatsDto
             {
                 TotalJobs = await _jobsRepository.GetTotalJobsAsync(companyId),
-                DraftJobs = await _jobsRepository.GetCountByStatusAsync(companyId, JobStatus.Draft),
+                CreatedJobs = await _jobsRepository.GetCountByStatusAsync(companyId, JobStatus.Created),
                 PendingJobs = await _jobsRepository.GetCountByStatusAsync(companyId, JobStatus.Pending),
                 ActiveJobs = await _jobsRepository.GetCountByStatusAsync(companyId, JobStatus.Active),
                 ClosedJobs = await _jobsRepository.GetCountByStatusAsync(companyId, JobStatus.Closed),
-                ArchivedJobs = await _jobsRepository.GetCountByStatusAsync(companyId, JobStatus.Archived)
+                VerifiedJobs = await _jobsRepository.GetCountByStatusAsync(companyId, JobStatus.Verified)
             };
         }
     }

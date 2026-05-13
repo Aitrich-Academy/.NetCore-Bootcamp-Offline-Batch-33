@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,36 +18,43 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             this.companyRepository = companyRepository;
         }
 
-        public async Task<Company> AddCompanyAsync(string name, string description, Guid industryId, Guid locationId, Guid userId)
+        public async Task<Company> AddCompanyAsync(CreateCompanyProfileRequest request, Guid providerId)
         {
             try
             {
                 var company = new Company
                 {
                     Id = Guid.NewGuid(),
-                    CompanyName = name,
-                    Description = description,
-                    IndustryId = industryId,
-                    LocationId = locationId,
-                    UserId = userId,
-                    CreatedAt = DateTime.UtcNow
+                    CompanyName = request.CompanyName,
+                    Description = request.Description,
+                    IndustryId = request.IndustryId,
+                    LocationId = request.LocationId,
+                    Address = request.Address,
+                    PhoneNumber = request.PhoneNumber,
+                    Email = request.Email,
+                    ProviderId = providerId,
+                    CreatedAt = DateTime.UtcNow,
+                    IsVerified = false
                 };
+
                 // Save company
                 var createdCompany = await companyRepository.AddAsync(company);
 
-                // ✅ Update JobProvider to link this company
-                var jobProvider = await companyRepository.GetByUserIdAsync(userId);
+                // FIXED HERE
+                var jobProvider = await companyRepository.GetByUserIdAsync(providerId);
+
                 if (jobProvider != null)
                 {
-                    jobProvider.CompanyId = createdCompany.Id;
+                    jobProvider.Company = createdCompany;
+
                     await companyRepository.UpdateAsync(jobProvider);
                 }
 
                 return createdCompany;
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
-                throw new Exception( ex.Message);
+                throw new Exception(ex.InnerException?.Message ?? ex.Message);
             }
         }
 
@@ -54,6 +62,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
         {
             try
             {
+
                 return await companyRepository.GetByIdAsync(Id);
 
             }
@@ -62,12 +71,12 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 throw new Exception( ex.Message);
             }
         }
-        public async Task<IEnumerable<Company>> GetAllCompaniesByUserIdAsync(Guid userId)
+        public async Task<IEnumerable<Company>> GetAllCompaniesByProviderIdAsync(Guid providerId)
         {
             try
             {
 
-                return await companyRepository.GetAllByUserIdAsync(userId);
+                return await companyRepository.GetAllByUserIdAsync(providerId);
             }
             catch (Exception ex)
             {
@@ -87,6 +96,9 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 existingCompany.Description = company.Description;
                 existingCompany.IndustryId = company.IndustryId;
                 existingCompany.LocationId = company.LocationId;
+                existingCompany .Address = company.Address;
+                existingCompany .PhoneNumber = company.PhoneNumber;
+                existingCompany .Description = company.Description;
                 return await companyRepository.UpdateAsync(CompanyId, existingCompany);
 
             }

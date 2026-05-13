@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Enums
+namespace Domain.Services.Admin.Skills.Dto
 {
-    public enum CompanyRole
+    public class DeleteSkillDto
     {
-        Owner,
-        HR,
-        Recruiter,
-        Manager
+        public Guid Id { get; set; }
     }
 }
