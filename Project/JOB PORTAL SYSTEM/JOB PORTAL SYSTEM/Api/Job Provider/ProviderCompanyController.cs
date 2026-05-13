@@ -3,7 +3,9 @@ using Domain.Models;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
 {
@@ -20,21 +22,29 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCompanyProfile([FromBody] Domain.Services.Job_Provider.CompanyProfile.DTO.CreateCompanyProfileRequest request, Guid jobproviderId)
+        [Authorize]
+        public async Task<IActionResult> CreateCompanyProfile([FromBody] Domain.Services.Job_Provider.CompanyProfile.DTO.CreateCompanyProfileRequest request)
         {
             try
             {
-                
-                var company = await companyService.AddCompanyAsync(request, jobproviderId);
+                // Get JobProviderId from JWT Token
+                var providerIdClaim = User.FindFirst(ClaimTypes.Sid)?.Value;
+
+                if (string.IsNullOrEmpty(providerIdClaim))
+                {
+                    return Unauthorized("Invalid token");
+                }
+
+                Guid providerId = Guid.Parse(providerIdClaim);
+
+                var company = await companyService.AddCompanyAsync(request, providerId);
 
                 var response = mapper.Map<CompanyProfileDto>(company);
 
                 return Ok(response);
-
             }
             catch (Exception ex)
             {
-                // Log the exception (ex) here as needed
                 return BadRequest(ex.Message);
             }
         }

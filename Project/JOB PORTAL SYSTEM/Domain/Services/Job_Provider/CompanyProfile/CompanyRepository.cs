@@ -140,7 +140,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
         public async Task<JobProvider?> GetByUserIdAsync(Guid userId)
         {
             return await context.JobProviders
-                .FirstOrDefaultAsync(jp => jp.Id == userId);
+                .FirstOrDefaultAsync(jp => jp.UserId == userId);
         }
 
         public async Task UpdateAsync(JobProvider jobProvider)
