@@ -1,6 +1,6 @@
 ﻿using Domain.Data;
 using Domain.Models;
-using Domain.Service.Login.Interface;
+using Domain.Services.Job_Seeker.Login.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Service.Login
+namespace Domain.Services.Job_Seeker.Login
 {
     public class LoginRequestRepository : ILoginRequestRepository
     {

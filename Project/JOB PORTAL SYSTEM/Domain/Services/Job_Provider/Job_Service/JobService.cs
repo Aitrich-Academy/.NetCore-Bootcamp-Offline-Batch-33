@@ -35,7 +35,7 @@ namespace Domain.Services.Job_Provider.Job_Service
             catch (Exception ex)
             {
                 // Log the exception (not implemented here)
-                throw new ApplicationException("An error occurred while creating the job.", ex);
+                throw new Exception(ex.Message);
             }
         }
 
@@ -46,14 +46,14 @@ namespace Domain.Services.Job_Provider.Job_Service
                 var job = await jobRepository.GetJobByIdAsync(jobId);
                 if (job == null)
                 {
-                    return null;
+                    throw new Exception("Job not found");
                 }
                 return mapper.Map<JobDto>(job);
             }
             catch (Exception ex)
             {
                 // Log the exception (not implemented here)
-                throw new ApplicationException("An error occurred while retrieving the job.", ex);
+                throw new Exception(ex.Message);
             }
         }
 
@@ -79,7 +79,7 @@ namespace Domain.Services.Job_Provider.Job_Service
             catch (Exception ex)
             {
                 // Log the exception (not implemented here)
-                throw new ApplicationException("An error occurred while retrieving jobs.", ex);
+                throw new Exception(ex.Message);
             }
         }
 
@@ -99,7 +99,7 @@ namespace Domain.Services.Job_Provider.Job_Service
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("An error occurred while updating the job.", ex);
+                throw new Exception(ex.Message);
             }
         }
 
@@ -119,7 +119,7 @@ namespace Domain.Services.Job_Provider.Job_Service
             catch (Exception ex)
             {
                 // Log the exception (not implemented here)
-                throw new ApplicationException("An error occurred while deleting the job.", ex);
+                throw new Exception(ex.Message);
             }
         }
     }

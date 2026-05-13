@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using Domain.Service.Login.DTO;
-using Domain.Service.Login.Interface;
-using Domain.Service.SignUp.DTO;
-using Domain.Service.SignUp.Interface;
-using JOB_PORTAL_SYSTEM.API.JobSeeker.RequestObjects;
+using Domain.Services.Job_Seeker.Login.DTO;
+using Domain.Services.Job_Seeker.Login.Interface;
+using Domain.Services.Job_Seeker.SignUp.DTO;
+using Domain.Services.Job_Seeker.SignUp.Interface;
+using JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JOB_PORTAL_SYSTEM.API
+namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
 {
     [Route("api/[controller]")]
     [ApiController]

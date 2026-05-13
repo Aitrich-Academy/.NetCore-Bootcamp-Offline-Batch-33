@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Service.Login.Interface
+namespace Domain.Services.Job_Seeker.Login.Interface
 {
     public interface ILoginRequestRepository
     {

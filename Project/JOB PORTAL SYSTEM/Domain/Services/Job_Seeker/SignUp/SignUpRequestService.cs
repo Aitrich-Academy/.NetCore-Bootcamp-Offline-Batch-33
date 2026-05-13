@@ -2,19 +2,11 @@
 using Domain.Enums;
 using Domain.Helpers;
 using Domain.Models;
-using Domain.Service.AuthUser;
-using Domain.Service.AuthUser.Interface;
-using Domain.Service.SignUp.DTO;
-using Domain.Service.SignUp.Interface;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Services.Job_Seeker.AuthUser.Interface;
+using Domain.Services.Job_Seeker.SignUp.DTO;
+using Domain.Services.Job_Seeker.SignUp.Interface;
 
-namespace Domain.Service
+namespace Domain.Services.Job_Seeker.SignUp
 {
     public class SignUpRequestService : ISignUpRequestService
     {

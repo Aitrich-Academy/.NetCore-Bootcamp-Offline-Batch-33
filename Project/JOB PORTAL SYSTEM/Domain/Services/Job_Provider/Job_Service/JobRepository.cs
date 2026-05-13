@@ -55,7 +55,7 @@ namespace Domain.Services.Job_Provider.Job_Service
                 var job = await dbContext.Jobs.FindAsync(jobId);
                 if (job == null)
                 {
-                    return null;
+                    throw new Exception("Job not found");
                 }
 
                 return await dbContext.Jobs
@@ -133,7 +133,7 @@ namespace Domain.Services.Job_Provider.Job_Service
                 var job = await dbContext.Jobs.FindAsync(jobId);
                 if (job == null)
                 {
-                    return false;
+                    throw new Exception("Job not found");
                 }
                 dbContext.Jobs.Remove(job);
                 await dbContext.SaveChangesAsync();

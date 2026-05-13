@@ -17,6 +17,6 @@ namespace Domain.Services.Job_Provider.Job_Service.DTO
         public string Description { get; set; }
         public int Salary { get; set; }
 
-        public JobStatus Status { get; set; } = JobStatus.Active; // default(just now)
+        public JobStatus Status { get; set; } 
     }
 }

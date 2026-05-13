@@ -1,6 +1,6 @@
 ﻿using Domain.Data;
 using Domain.Models;
-using Domain.Service.SignUp.Interface;
+using Domain.Services.Job_Seeker.SignUp.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Service
+namespace Domain.Services.Job_Seeker.SignUp
 {
     public class SignUpRequestRepository : ISignUpRequestRepository
     {

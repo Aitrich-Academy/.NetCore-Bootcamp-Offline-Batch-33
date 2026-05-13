@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Service.SignUp.DTO
+namespace Domain.Services.Job_Seeker.SignUp.DTO
 {
     public class JobSeekerRequestDTO
     {

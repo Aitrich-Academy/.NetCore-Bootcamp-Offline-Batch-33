@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Service.AuthUser.DTO
+namespace Domain.Services.Job_Seeker.AuthUser.DTO
 {
     public class AuthUserDto
     {

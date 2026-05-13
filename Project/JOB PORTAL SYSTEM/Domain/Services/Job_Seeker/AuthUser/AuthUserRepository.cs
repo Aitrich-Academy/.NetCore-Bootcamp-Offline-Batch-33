@@ -2,7 +2,7 @@
 using Domain.Data;
 using Domain.Enums;
 using Domain.Models;
-using Domain.Service.AuthUser.Interface;
+using Domain.Services.Job_Seeker.AuthUser.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -13,7 +13,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Service.AuthUser
+namespace Domain.Services.Job_Seeker.AuthUser
 {
     public class AuthUserRepository : IAuthUserRepository
     {

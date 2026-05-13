@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using Domain.Service.AuthUser.Interface;
-using Domain.Service.Login.DTO;
-using Domain.Service.Login.Interface;
+using Domain.Services.Job_Seeker.AuthUser.Interface;
+using Domain.Services.Job_Seeker.Login.DTO;
+using Domain.Services.Job_Seeker.Login.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Service.Login
+namespace Domain.Services.Job_Seeker.Login
 {
     public class LoginRequestServices : ILoginRequestServices
     {

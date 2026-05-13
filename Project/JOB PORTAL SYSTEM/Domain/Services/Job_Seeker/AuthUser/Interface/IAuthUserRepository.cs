@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Service.AuthUser.Interface
+namespace Domain.Services.Job_Seeker.AuthUser.Interface
 {
     public interface IAuthUserRepository
     {

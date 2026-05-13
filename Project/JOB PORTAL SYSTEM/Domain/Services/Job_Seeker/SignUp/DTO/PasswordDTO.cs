@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Service.Login.DTO
+namespace Domain.Services.Job_Seeker.SignUp.DTO
 {
-    public class ForgetPasswordDTO
+    public class PasswordDTO
     {
-        public string Email {  get; set; }
-        public string NewPassword { get; set; }
+        public string Password { get; set; }
         public string ConfirmPassword { get; set; }
     }
 }
+    

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JOB_PORTAL_SYSTEM.API.JobSeeker.RequestObjects
+namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects
 {
     public class JobSeekerSignUpRequest
     {
