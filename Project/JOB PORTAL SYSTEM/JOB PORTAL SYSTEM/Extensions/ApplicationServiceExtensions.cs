@@ -1,17 +1,17 @@
 ﻿using Domain;
 using Domain.Data;
 using Domain.Helpers;
-using Domain.Service;
-using Domain.Service.AuthUser;
-using Domain.Service.AuthUser.Interface;
-using Domain.Service.Login;
-using Domain.Service.Login.Interface;
-using Domain.Service.SignUp.Interface;
 using Domain.Services.Job_Provider;
 using Domain.Services.Job_Provider.CompanyProfile;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using Domain.Services.Job_Provider.Job_Service;
 using Domain.Services.Job_Provider.Job_Service.Interface;
+using Domain.Services.Job_Seeker.AuthUser;
+using Domain.Services.Job_Seeker.AuthUser.Interface;
+using Domain.Services.Job_Seeker.Login;
+using Domain.Services.Job_Seeker.Login.Interface;
+using Domain.Services.Job_Seeker.SignUp;
+using Domain.Services.Job_Seeker.SignUp.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
@@ -30,15 +30,13 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddScoped<IJobService, JobService>();
 
 
-
-
-
-
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
 
-            services.AddScoped<IJobRepository, JobRepository>();
-            services.AddScoped<IJobService, JobService>();
+            services.AddScoped<Domain.Services.Job_Seeker.Jobs.Interfaces.IJobRepository, Domain.Services.Job_Seeker.Jobs.JobRepository>();
+            services.AddScoped<Domain.Services.Job_Seeker.Jobs.Interfaces.IJobService, Domain.Services.Job_Seeker.Jobs.JobService>();
+
+
 
             services.AddScoped<ISignUpRequestService, SignUpRequestService>();
 
