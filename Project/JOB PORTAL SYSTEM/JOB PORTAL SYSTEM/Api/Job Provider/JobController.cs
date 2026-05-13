@@ -80,7 +80,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         {
             try
             {
-                 
+
 
                 // Pass entity into service
                 var updatedJob = await jobService.UpdateJobAsync(id, dto);
