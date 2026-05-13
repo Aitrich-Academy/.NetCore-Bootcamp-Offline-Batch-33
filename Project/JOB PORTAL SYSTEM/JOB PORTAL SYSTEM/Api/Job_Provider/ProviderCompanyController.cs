@@ -2,8 +2,15 @@
 using Domain.Models;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
+<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/JOB PORTAL SYSTEM/Api/Job Provider/ProviderCompanyController.cs
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+=======
 using Microsoft.AspNetCore.Mvc;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+>>>>>>> 3095fad8d7b73eedcdf894a5d944781877b9fd28:Project/JOB PORTAL SYSTEM/JOB PORTAL SYSTEM/Api/Job_Provider/ProviderCompanyController.cs
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 {
@@ -20,26 +27,39 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         }
 
         [HttpPost]
+<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/JOB PORTAL SYSTEM/Api/Job Provider/ProviderCompanyController.cs
+        [Authorize]
+        public async Task<IActionResult> CreateCompanyProfile([FromBody] Domain.Services.Job_Provider.CompanyProfile.DTO.CreateCompanyProfileRequest request)
+=======
         public async Task<IActionResult> CreateCompanyProfile([FromBody] CreateCompanyProfileRequest request, Guid jobproviderId)
+>>>>>>> 3095fad8d7b73eedcdf894a5d944781877b9fd28:Project/JOB PORTAL SYSTEM/JOB PORTAL SYSTEM/Api/Job_Provider/ProviderCompanyController.cs
         {
             try
             {
-                
-                var company = await companyService.AddCompanyAsync(request, jobproviderId);
+                // Get JobProviderId from JWT Token
+                var providerIdClaim = User.FindFirst(ClaimTypes.Sid)?.Value;
+
+                if (string.IsNullOrEmpty(providerIdClaim))
+                {
+                    return Unauthorized("Invalid token");
+                }
+
+                Guid providerId = Guid.Parse(providerIdClaim);
+
+                var company = await companyService.AddCompanyAsync(request, providerId);
 
                 var response = mapper.Map<CompanyProfileDto>(company);
 
                 return Ok(response);
-
             }
             catch (Exception ex)
             {
-                // Log the exception (ex) here as needed
                 return BadRequest(ex.Message);
             }
         }
 
         [HttpGet("user")]
+        [Authorize]
         public async Task<IActionResult> GetCompanyProfileByUserId(Guid providerId)
         {
             try
@@ -55,6 +75,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
             }
         }
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetCompanyProfileById(Guid id)
         {
             try
@@ -73,6 +94,8 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
             }
         }
         [HttpPut("{CompanyId}")]
+        [Authorize]
+
         public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequest request)
         {
             try
@@ -93,6 +116,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteCompanyProfile(Guid id)
         {
             try
@@ -102,7 +126,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
                 {
                     return NotFound("Company not found");
                 }
-                return NoContent();
+                return Ok("Company Deleted");
             }
             catch (Exception ex)
             {

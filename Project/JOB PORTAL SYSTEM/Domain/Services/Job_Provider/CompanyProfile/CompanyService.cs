@@ -18,10 +18,18 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             this.companyRepository = companyRepository;
         }
 
-        public async Task<Company> AddCompanyAsync(CreateCompanyProfileRequest request, Guid providerId)
+        public async Task<Company> AddCompanyAsync(CreateCompanyProfileRequest request,Guid userId)
         {
             try
             {
+                var jobProvider = await companyRepository
+                    .GetByUserIdAsync(userId);
+
+                if (jobProvider == null)
+                {
+                    throw new Exception("Job provider not found");
+                }
+
                 var company = new Company
                 {
                     Id = Guid.NewGuid(),
@@ -32,25 +40,12 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                     Address = request.Address,
                     PhoneNumber = request.PhoneNumber,
                     Email = request.Email,
-                    ProviderId = providerId,
+                    ProviderId = jobProvider.Id,
                     CreatedAt = DateTime.UtcNow,
                     IsVerified = false
                 };
 
-                // Save company
-                var createdCompany = await companyRepository.AddAsync(company);
-
-                // FIXED HERE
-                var jobProvider = await companyRepository.GetByUserIdAsync(providerId);
-
-                if (jobProvider != null)
-                {
-                    jobProvider.Company = createdCompany;
-
-                    await companyRepository.UpdateAsync(jobProvider);
-                }
-
-                return createdCompany;
+                return await companyRepository.AddAsync(company);
             }
             catch (Exception ex)
             {

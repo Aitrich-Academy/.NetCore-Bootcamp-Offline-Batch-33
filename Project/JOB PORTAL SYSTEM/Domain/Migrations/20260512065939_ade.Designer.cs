@@ -4,6 +4,7 @@ using Domain.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260512065939_ade")]
+    partial class ade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -277,6 +280,9 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AuthUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
@@ -294,18 +300,15 @@ namespace Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex("AuthUserId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("JobProviders");
                 });
@@ -641,17 +644,17 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Models.JobProvider", b =>
                 {
+                    b.HasOne("Domain.Models.AuthUser", "AuthUser")
+                        .WithMany("JobProviders")
+                        .HasForeignKey("AuthUserId");
+
                     b.HasOne("Domain.Models.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
 
-                    b.HasOne("Domain.Models.AuthUser", "User")
-                        .WithMany("JobProviders")
-                        .HasForeignKey("UserId");
+                    b.Navigation("AuthUser");
 
                     b.Navigation("Company");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Models.JobSeeker", b =>
