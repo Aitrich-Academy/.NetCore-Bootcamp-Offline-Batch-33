@@ -73,12 +73,12 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             }
         }
 
-        public async Task<IEnumerable<Company>> GetAllByUserIdAsync(Guid providerId)
+        public async Task<IEnumerable<Company>> GetAllByUserIdAsync(Guid companyId)
         {
             try
             {
                 return await context.Companies
-                    .Where(c => c.ProviderId == providerId)
+                    .Where(c => c.Id == companyId)
                     .Include(c => c.Industry)
                     .Include(c => c.Location)
                     .ToListAsync();

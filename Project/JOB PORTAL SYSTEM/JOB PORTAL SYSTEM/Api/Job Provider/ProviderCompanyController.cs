@@ -50,6 +50,7 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
         }
 
         [HttpGet("user")]
+        [Authorize]
         public async Task<IActionResult> GetCompanyProfileByUserId(Guid providerId)
         {
             try
@@ -65,6 +66,7 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
             }
         }
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetCompanyProfileById(Guid id)
         {
             try
@@ -83,6 +85,8 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
             }
         }
         [HttpPut("{CompanyId}")]
+        [Authorize]
+
         public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequest request)
         {
             try
@@ -103,6 +107,7 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteCompanyProfile(Guid id)
         {
             try
@@ -112,7 +117,7 @@ namespace JOB_PORTAL_SYSTEM.Api.JobSeeker
                 {
                     return NotFound("Company not found");
                 }
-                return NoContent();
+                return Ok("Company Deleted");
             }
             catch (Exception ex)
             {
