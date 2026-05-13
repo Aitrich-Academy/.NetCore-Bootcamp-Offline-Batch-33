@@ -1,7 +1,7 @@
 using Domain.Helpers;
-using JOB_PORTAL_SYSTEM.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using JOB_PORTAL_SYSTEM.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
