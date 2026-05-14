@@ -297,7 +297,7 @@ namespace Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex("AuthUserId");
 
                     b.HasIndex("UserId");
 
@@ -513,6 +513,9 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -537,6 +540,8 @@ namespace Domain.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("SignupRequests");
                 });
@@ -567,9 +572,9 @@ namespace Domain.Migrations
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Domain.Models.AuthUser", "User")
-                        .WithMany("Companies")
-                        .HasForeignKey("UserId");
+                    b.HasOne("Domain.Models.JobProvider", "JobProvider")
+                        .WithOne("Company")
+                        .HasForeignKey("Domain.Models.Company", "ProviderId");
 
                     b.Navigation("Industry");
 
@@ -656,17 +661,11 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Models.JobProvider", b =>
                 {
-                    b.HasOne("Domain.Models.Company", "Company")
+                    b.HasOne("Domain.Models.AuthUser", "AuthUser")
                         .WithMany("JobProviders")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Domain.Models.AuthUser", "User")
-                        .WithMany("JobProviders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Company");
+                        .HasForeignKey("AuthUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -762,6 +761,15 @@ namespace Domain.Migrations
                     b.Navigation("Job");
 
                     b.Navigation("JobSeeker");
+                });
+
+            modelBuilder.Entity("Domain.Models.SignupRequest", b =>
+                {
+                    b.HasOne("Domain.Models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId");
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Domain.Models.AuthUser", b =>
