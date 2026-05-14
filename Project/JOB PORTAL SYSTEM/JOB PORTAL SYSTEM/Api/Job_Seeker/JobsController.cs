@@ -1,4 +1,4 @@
-﻿using Domain.Services.Job_Seeker.Jobs.Interfaces;
+﻿using Domain.Services.Jobs.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

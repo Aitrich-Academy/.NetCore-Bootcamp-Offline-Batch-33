@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Enums;
-using Domain.Helpers;
+using Domain.Helper;
 using Domain.Models;
 using Domain.Services.Auth.DTO;
 using Domain.Services.Auth.Interface;

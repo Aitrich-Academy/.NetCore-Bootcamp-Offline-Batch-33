@@ -1,8 +1,6 @@
 
 using Domain.Data;
-using Domain.Helpers;
-using Domain.Interviews;
-using Domain.Interviews.Interface;
+using Domain.Helper;
 using Domain.Services;
 using Domain.Services.Auth;
 using Domain.Services.Auth.Interface;
@@ -13,10 +11,13 @@ using Domain.Services.Auth;
 using Domain.Services.Auth.Interface;
 using Domain.Services.Job_Provider.CompanyProfile;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
-using Domain.Services.Job_Provider.Job_Service;
-using Domain.Services.Job_Provider.Job_Service.Interface;
+
 
 using Microsoft.EntityFrameworkCore;
+using Domain.Services.Job_Provider.Interviews.Interface;
+using Domain.Services.Job_Provider.Interviews;
+using Domain.Services.Jobs.Interfaces;
+using Domain.Services.Jobs;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
@@ -45,8 +46,8 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
 
-            services.AddScoped<Domain.Services.Job_Seeker.Jobs.Interfaces.IJobRepository, Domain.Services.Job_Seeker.Jobs.JobRepository>();
-            services.AddScoped<Domain.Services.Job_Seeker.Jobs.Interfaces.IJobService, Domain.Services.Job_Seeker.Jobs.JobService>();
+            services.AddScoped<IJobRepository, JobRepository>();
+            services.AddScoped<IJobService, JobService>();
 
 
             services.AddScoped<IAuthRepository, AuthRepository>();
