@@ -1,4 +1,5 @@
 ﻿using Domain.Data;
+using AutoMapper;
 using Domain.Services.Admin.CompanyVerification;
 using Domain.Services.Admin.CompanyVerification.Interface;
 using Domain.Services.Admin.Skills;
@@ -42,7 +43,8 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             //services.AddScoped<ILoginRequestService, LoginRequestService>();
             //services.AddScoped<IEmailService, EmailService>();
 
-            services.AddAutoMapper(map => map.AddProfile(new AutoMapperProfiles()));
+            //services.AddAutoMapper(map => map.AddProfile(new AutoMapperProfiles()));
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             //services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddHttpContextAccessor();
 

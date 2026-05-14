@@ -1,4 +1,4 @@
-﻿using Domain.Helpers;
+﻿using Domain.Helper;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -13,7 +13,7 @@ namespace Domain
 {
     public class EmailService : IEmailService
     {
-        private readonly Helpers.MailSettings _mail;
+        private readonly Helper.MailSettings _mail;
         private readonly IConfiguration _config;
 
         public EmailService(IOptions<MailSettings> mail, IConfiguration config)

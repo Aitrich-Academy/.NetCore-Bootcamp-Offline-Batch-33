@@ -45,12 +45,19 @@ namespace JOB_PORTAL_SYSTEM.Api.ADMIN
         [HttpGet("profiles/{id}")]
         public async Task<IActionResult> GetCompanyProfile(Guid id)
         {
-            var profile = await _companyService.GetCompanyProfileByIdAsync(id);
+            try
+            {
+                var profile = await _companyService.GetCompanyProfileByIdAsync(id);
 
-            if (profile == null)
-                return NotFound();
+                if (profile == null)
+                    return NotFound();
 
-            return Ok(profile);
+                return Ok(profile);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet("stats/{companyId}")]
