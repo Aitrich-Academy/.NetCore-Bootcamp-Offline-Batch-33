@@ -1,4 +1,4 @@
-﻿using Domain.Services.Job_Seeker.Jobs.Interfaces;
+﻿using Domain.Services.Jobs.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,7 +40,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
             }
         }
 
-        [HttpGet("search")]
+        [HttpGet]
         public async Task<IActionResult> SearchJobs([FromQuery] string? keyword)
         {
             try

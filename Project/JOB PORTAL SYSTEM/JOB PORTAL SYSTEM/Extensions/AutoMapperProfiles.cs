@@ -6,16 +6,13 @@ using Domain.Services.Job_Seeker.SignUp.DTO;
 using Domain.Services.Job_Seeker.Applications.DTOs;
 using Domain.Services.Job_Seeker.Login.DTO;
 using Domain.Services.Job_Seeker.SavedJobs.DTOs;
-using Domain.Services.Job_Seeker.Jobs.DTOs;
 using JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects;
-//using Domain.Service.Login.DTO;
-//using Domain.Service.SignUp.DTO;
-using Domain.Services.Admin.CompanyVerification.Dto;
-using Domain.Services.Admin.Skills.Dto;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
-using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
-//using JOB_PORTAL_SYSTEM.API.JobSeeker.RequestObjects;
+using Domain.Services.Admin.CompanyVerification.Dto;
+using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
+using Domain.Services.Admin.Skills.Dto;
+using Domain.Services.Jobs.DTOs;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {

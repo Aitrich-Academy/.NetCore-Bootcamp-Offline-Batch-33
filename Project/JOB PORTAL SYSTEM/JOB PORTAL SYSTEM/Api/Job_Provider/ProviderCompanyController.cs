@@ -2,13 +2,11 @@
 using Domain.Models;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
+
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
-using Microsoft.AspNetCore.Mvc;
-using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 {
