@@ -8,7 +8,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile.DTO
 {
     public class CompanyProfileDto
     {
-        public Guid ProviderId { get; set; }
+        public Guid Id { get; set; }
         public string CompanyName { get; set; }
         public string Description { get; set; }
         public string Email { get; set; }
