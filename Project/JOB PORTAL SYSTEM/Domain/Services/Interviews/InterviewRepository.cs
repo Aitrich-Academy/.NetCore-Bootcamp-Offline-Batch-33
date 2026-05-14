@@ -1,0 +1,93 @@
+﻿using Domain.Data;
+using Domain.Models;
+using Domain.Services.Interviews.Dto;
+using Domain.Services.Interviews.Interface;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Domain.Services.Interviews
+{
+    public class InterviewRepository:IInterviewRepository 
+    {
+        private readonly AppDbContext _context;
+
+        public InterviewRepository (AppDbContext context)
+        {
+            _context = context;
+        }
+        public async Task<bool> ScheduleInterviewAsync(Interview interview)
+        {
+            interview.Id = Guid.NewGuid();
+            var user = await _context.JobApplications.FirstOrDefaultAsync(a => a.Id == interview.ApplicationId);
+            if (user == null)
+            {
+                return false;
+            }
+            await _context.Interviews.AddAsync(interview);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        public async Task<List<Interview>> GetInterviewsAsync()
+        {
+            return await _context.Interviews.Include(i => i.Application).ToListAsync();
+        }
+
+        public async Task<Interview> GetInterviewByIdAsync(Guid interviewId)
+        {
+            return await _context.Interviews.Include(i => i.Application).FirstOrDefaultAsync(i => i.Id == interviewId);
+        }
+        public async Task<InterviewResponseDto> UpdateInterviewAsync(UpdateInterviewDto updateInterview)
+        {
+            var existingInterview = await _context.Interviews
+        .FirstOrDefaultAsync(i => i.Id == updateInterview.Id);
+
+            if (existingInterview == null)
+            {
+                throw new InvalidOperationException
+                (
+                    $"Interview with Id {updateInterview.Id} does not exist."
+                );
+            }
+
+            existingInterview.InterviewDate = updateInterview.InterviewDate;
+
+            existingInterview.Mode = updateInterview.Mode;
+
+            existingInterview.Status = updateInterview.Status;
+
+            await _context.SaveChangesAsync();
+
+            return new InterviewResponseDto
+            {
+                Id = existingInterview.Id,
+                ApplicationId = existingInterview.ApplicationId,
+                InterviewDate = existingInterview.InterviewDate,
+                Mode = existingInterview.Mode,
+                Status = existingInterview.Status
+            };
+        }
+        public async Task<bool> DeleteInterviewAsync(Guid interviewId)
+        {
+
+            var interview = await _context.Interviews
+        .FindAsync(interviewId);
+
+            if (interview == null)
+            {
+                return false;
+            }
+
+            _context.Interviews.Remove(interview);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+
+
+        }
+    }
+}
