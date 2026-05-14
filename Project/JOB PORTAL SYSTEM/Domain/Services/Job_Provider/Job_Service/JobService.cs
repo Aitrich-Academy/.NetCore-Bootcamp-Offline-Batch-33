@@ -26,6 +26,7 @@ namespace Domain.Services.Job_Provider.Job_Service
             {
                 var job = mapper.Map<Job>(dto);
                 job.Id = Guid.NewGuid();
+                job.Status = Enums.JobStatus.Created;
                 job.CreatedAt = DateTime.UtcNow;
 
                 var created = await jobRepository.AddJobAsync(job);
@@ -62,18 +63,7 @@ namespace Domain.Services.Job_Provider.Job_Service
             try
             {
                 var jobs = await jobRepository.GetAllJobsAsync();
-                return jobs.Select(job => new JobDto
-                {
-                    Id = job.Id,
-                    CompanyId = job.CompanyId,
-                    CategoryId = job.CategoryId,
-                    LocationId = job.LocationId,
-                    Title = job.Title,
-                    Description = job.Description,
-                    Salary = job.Salary,
-                    Status = job.Status,
-                    CreatedAt = job.CreatedAt
-                });
+                return jobs.Select(job => mapper.Map<JobDto>(job)).ToList();
 
             }
             catch (Exception ex)

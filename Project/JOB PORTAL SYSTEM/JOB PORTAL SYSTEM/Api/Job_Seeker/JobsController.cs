@@ -40,7 +40,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
             }
         }
 
-        [HttpGet]
+        [HttpGet("search")]
         public async Task<IActionResult> SearchJobs([FromQuery] string? keyword)
         {
             try

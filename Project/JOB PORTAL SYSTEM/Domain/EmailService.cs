@@ -1,19 +1,14 @@
-﻿using Domain.Helpers;
+﻿using Domain.Helper;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain
 {
     public class EmailService : IEmailService
     {
-        private readonly Helpers.MailSettings _mail;
+        private readonly MailSettings _mail;
         private readonly IConfiguration _config;
 
         public EmailService(IOptions<MailSettings> mail, IConfiguration config)

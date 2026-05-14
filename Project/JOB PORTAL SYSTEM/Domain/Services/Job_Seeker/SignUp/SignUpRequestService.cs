@@ -1,19 +1,10 @@
 ﻿using AutoMapper;
 using Domain.Enums;
 using Domain.Helper;
-using Domain.Helpers;
 using Domain.Models;
 using Domain.Services.Job_Seeker.AuthUser.Interface;
 using Domain.Services.Job_Seeker.SignUp.DTO;
 using Domain.Services.Job_Seeker.SignUp.Interface;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Services.Job_Seeker.SignUp
 {
@@ -94,7 +85,7 @@ namespace Domain.Services.Job_Seeker.SignUp
 
 
 
-            Helper.MailRequest mailRequest = new Helper.MailRequest
+            MailRequest mailRequest = new MailRequest
             {
                 Subject = "HireMeNow SignUp Verification",
                 Body = $"https://localhost:5001/job-seeker/verify?signupId={signUpId}",

@@ -4,7 +4,6 @@ using Domain.Services.Job_Seeker.Login.Interface;
 using Domain.Services.Job_Seeker.SignUp.DTO;
 using Domain.Services.Job_Seeker.SignUp.Interface;
 using JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects;
-
 using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker

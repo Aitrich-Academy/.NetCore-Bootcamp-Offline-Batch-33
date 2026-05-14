@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Domain.Models;
-using Domain.Services.Job_Provider.Job_Service.DTO;
 using Domain.Services.Job_Seeker.Interviews.DTOs;
 using Domain.Services.Job_Seeker.SignUp.DTO;
 using Domain.Services.Job_Seeker.Applications.DTOs;

@@ -6,13 +6,12 @@ using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc;
-using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "JobProvider")]
     public class ProviderCompanyController : ControllerBase
     {
         readonly ICompanyService companyService;
@@ -24,7 +23,6 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> CreateCompanyProfile([FromBody] Domain.Services.Job_Provider.CompanyProfile.DTO.CreateCompanyProfileRequest request)
         {
             try
