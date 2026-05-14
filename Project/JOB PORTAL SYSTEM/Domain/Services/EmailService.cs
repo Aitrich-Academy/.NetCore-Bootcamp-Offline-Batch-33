@@ -1,4 +1,4 @@
-﻿using Domain.Helper;
+﻿using Domain.Helpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MimeKit;

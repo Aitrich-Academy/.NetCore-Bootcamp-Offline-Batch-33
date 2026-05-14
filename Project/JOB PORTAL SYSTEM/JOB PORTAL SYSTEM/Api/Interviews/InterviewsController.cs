@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Domain.Services.Interviews.Dto;
-using Domain.Services.Interviews.Interface;
+using Domain.Services.Job_Provider.Interviews.Dto;
+using Domain.Services.Job_Provider.Interviews.Interface;
 using JOB_PORTAL_SYSTEM.API.Interviews.RequestObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
