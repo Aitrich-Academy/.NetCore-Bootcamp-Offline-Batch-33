@@ -24,12 +24,12 @@ namespace JOB_PORTAL_SYSTEM.Api.ADMIN
         }
 
         //[Authorize(Roles = "Admin")]
-        [HttpPut("company-verification/{userId}/verify")]
-        public async Task<IActionResult> VerifyCompany(Guid userId)
+        [HttpPut("company-verification/{Id}/verify")]
+        public async Task<IActionResult> VerifyCompany(Guid Id)
         {
             try
             {
-                var result = await _companyService.VerifyCompanyAsync(userId);
+                var result = await _companyService.VerifyCompanyAsync(Id);
 
                 if (!result)
                     return NotFound("Company not found");

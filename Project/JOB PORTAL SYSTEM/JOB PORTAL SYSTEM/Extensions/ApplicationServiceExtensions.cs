@@ -42,7 +42,7 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             //services.AddScoped<ILoginRequestService, LoginRequestService>();
             //services.AddScoped<IEmailService, EmailService>();
 
-            services.AddAutoMapper(map => map.AddProfile(new UseProfileMapping()));
+            services.AddAutoMapper(map => map.AddProfile(new AutoMapperProfiles()));
             //services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddHttpContextAccessor();
 

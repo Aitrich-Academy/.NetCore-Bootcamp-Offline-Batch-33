@@ -51,6 +51,10 @@ namespace Domain.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("AuthUsers");
@@ -102,6 +106,10 @@ namespace Domain.Migrations
                     b.HasIndex("IndustryId");
 
                     b.HasIndex("LocationId");
+
+                    b.HasIndex("ProviderId")
+                        .IsUnique()
+                        .HasFilter("[ProviderId] IS NOT NULL");
 
                     b.ToTable("Companies");
                 });
@@ -263,7 +271,7 @@ namespace Domain.Migrations
                     b.ToTable("JobCategories");
                 });
 
-            modelBuilder.Entity("Domain.Models.JobSeeker", b =>
+            modelBuilder.Entity("Domain.Models.JobProvider", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -271,6 +279,66 @@ namespace Domain.Migrations
 
                     b.Property<Guid>("AuthUserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CompanyRole")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthUserId");
+
+                    b.ToTable("JobProviders");
+                });
+
+            modelBuilder.Entity("Domain.Models.JobSeeker", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AuthUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -465,6 +533,10 @@ namespace Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("SignupRequests");
@@ -494,16 +566,17 @@ namespace Domain.Migrations
                     b.HasOne("Domain.Models.Location", "Location")
                         .WithMany("Companies")
                         .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Domain.Models.JobProvider", "JobProvider")
+                        .WithOne("Company")
+                        .HasForeignKey("Domain.Models.Company", "ProviderId");
 
                     b.Navigation("Industry");
 
                     b.Navigation("JobProvider");
 
                     b.Navigation("Location");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Models.CompanyMember", b =>
@@ -582,15 +655,22 @@ namespace Domain.Migrations
                     b.Navigation("Resume");
                 });
 
-            modelBuilder.Entity("Domain.Models.JobSeeker", b =>
+            modelBuilder.Entity("Domain.Models.JobProvider", b =>
                 {
                     b.HasOne("Domain.Models.AuthUser", "AuthUser")
-                        .WithMany("JobSeekers")
+                        .WithMany("JobProviders")
                         .HasForeignKey("AuthUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AuthUser");
+                });
+
+            modelBuilder.Entity("Domain.Models.JobSeeker", b =>
+                {
+                    b.HasOne("Domain.Models.AuthUser", null)
+                        .WithMany("JobSeekers")
+                        .HasForeignKey("AuthUserId");
                 });
 
             modelBuilder.Entity("Domain.Models.JobSeekerProfile", b =>
@@ -683,15 +763,11 @@ namespace Domain.Migrations
                 {
                     b.Navigation("JobProviders");
 
-                    b.Navigation("JobProviders");
-
                     b.Navigation("JobSeekers");
                 });
 
             modelBuilder.Entity("Domain.Models.Company", b =>
                 {
-                    b.Navigation("JobProviders");
-
                     b.Navigation("Jobs");
 
                     b.Navigation("Members");
