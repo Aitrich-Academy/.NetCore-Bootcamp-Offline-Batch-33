@@ -65,6 +65,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Signup
         {
             try
             {
+
                 var result =
                     await _service.SetPassword(
                         signupId,
