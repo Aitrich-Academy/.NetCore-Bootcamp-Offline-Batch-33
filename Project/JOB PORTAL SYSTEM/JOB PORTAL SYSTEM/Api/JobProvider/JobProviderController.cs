@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Domain.Services.Login.Interface;
-using Domain.Services.Signup.Dto;
-using Domain.Services.Signup.Interface;
+using Domain.Services.Job_Provider.Login.Interface;
+using Domain.Services.Job_Provider.Signup.Dto;
+using Domain.Services.Job_Provider.Signup.Interface;
 using JOB_PORTAL_SYSTEM.API.JobProvider.RequestObjects;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

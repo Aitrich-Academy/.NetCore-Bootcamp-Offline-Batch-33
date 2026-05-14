@@ -2,9 +2,12 @@
 using Domain.Models;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+
+using Microsoft.AspNetCore.Mvc;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
@@ -23,7 +26,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> CreateCompanyProfile([FromBody] CreateCompanyProfileRequest request, Guid jobproviderId)
+        public async Task<IActionResult> CreateCompanyProfile([FromBody] Domain.Services.Job_Provider.CompanyProfile.DTO.CreateCompanyProfileRequest request)
         {
             try
             {
@@ -87,7 +90,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         [HttpPut("{CompanyId}")]
         [Authorize]
 
-        public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequest request)
+        public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequestDTO request)
         {
             try
             {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Models;
 using Domain.Services.Job_Provider.Job_Service.DTO;
-using Domain.Services.Job_Provider.Job_Service.Interface;
+using Domain.Services.Jobs.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
