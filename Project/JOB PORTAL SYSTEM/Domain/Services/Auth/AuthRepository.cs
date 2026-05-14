@@ -1,0 +1,129 @@
+﻿using Domain.Data;
+using Domain.Models;
+using Domain.Services.Auth.Interface;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+
+
+namespace Domain.Services.Auth
+{
+    public class AuthRepository:IAuthRepository
+    {
+        private readonly AppDbContext _context;
+        private readonly IConfiguration _config;
+
+        public AuthRepository(AppDbContext context , IConfiguration config)
+        {
+            _context = context;
+            _config = config;
+        }
+
+        public async Task<Guid> AddSignupRequest(SignupRequest request)
+        {
+            request.JobStatus = Enums.JobStatus.Pending;
+
+            await _context.SignupRequests.AddAsync(request);
+
+            await _context.SaveChangesAsync();
+
+            return request.Id;
+        }
+
+        public async Task<SignupRequest> GetSignupRequest(Guid id)
+        {
+            return await _context.SignupRequests
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task UpdateSignupRequest(SignupRequest request)
+        {
+            _context.SignupRequests.Update(request);
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<AuthUser> GetUserByEmail(string email)
+        {
+            return await _context.AuthUsers
+                .FirstOrDefaultAsync(x => x.Email == email);
+        }
+
+        public async Task AddAuthUser(AuthUser user)
+        {
+            await _context.AuthUsers.AddAsync(user);
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddJobSeeker(JobSeeker seeker)
+        {
+            await _context.JobSeekers.AddAsync(seeker);
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddJobProvider(JobProvider provider)
+        {
+            await _context.JobProviders.AddAsync(provider);
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<JobSeeker> GetJobSeekerByUserId(Guid userId)
+        {
+            return await _context.JobSeekers
+                .FirstOrDefaultAsync(x => x.UserId == userId);
+        }
+
+        public async Task<JobProvider> GetJobProviderByUserId(Guid userId)
+        {
+            return await _context.JobProviders
+                .FirstOrDefaultAsync(x => x.UserId == userId);
+        }
+
+        public async Task UpdateUser(AuthUser user)
+        {
+            _context.AuthUsers.Update(user);
+
+            await _context.SaveChangesAsync();
+        }
+        public string? CreateToken(AuthUser user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), "User object cannot be null.");
+            }
+            string tokenSecret = _config.GetSection("AuthSettings:Token").Value;
+            if (string.IsNullOrEmpty(tokenSecret))
+            {
+                throw new InvalidOperationException("Token secret is missing or empty in configuration.");
+            }
+
+            List<Claim> claims = new List<Claim>
+            {
+
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Sid, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
+            };
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                _config.GetSection("AuthSettings:Token").Value));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: creds);
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return jwt;
+        }
+    }
+}

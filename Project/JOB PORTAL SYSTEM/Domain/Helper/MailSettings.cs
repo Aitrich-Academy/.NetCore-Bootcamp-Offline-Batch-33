@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace Domain.Helper
 {
-    public  class MailSettings
-    {
-        public string UserMail { get; set; }
-        public string DisplayName { get; set; }
-        public string Password { get; set; }
-        public string Host { get; set; }
-        public int Port { get; set; }
-        public bool UseSSL { get; set; }
+
+    
+        public class MailSettings
+        {
+            public string UserMail { get; set; }
+            public string DisplayName { get; set; }
+            public string Password { get; set; }
+            public string Host { get; set; }
+            public int Port { get; set; }
+            public bool UseSSL { get; set; }
+        }
     }
-}
+
+
