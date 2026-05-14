@@ -26,7 +26,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> CreateCompanyProfile([FromBody] CreateCompanyProfileRequest request, Guid jobproviderId)
+        public async Task<IActionResult> CreateCompanyProfile([FromBody] Domain.Services.Job_Provider.CompanyProfile.DTO.CreateCompanyProfileRequest request)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         [HttpPut("{CompanyId}")]
         [Authorize]
 
-        public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequest request)
+        public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequestDTO request)
         {
             try
             {

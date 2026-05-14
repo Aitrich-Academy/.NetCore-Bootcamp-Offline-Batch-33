@@ -1,4 +1,4 @@
-﻿using Domain.Helpers;
+﻿using Domain.Helper;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -6,6 +6,7 @@ using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace Domain
 {
     public class EmailService : IEmailService
     {
-        private readonly Helpers.MailSettings _mail;
+        private readonly Helper.MailSettings _mail;
         private readonly IConfiguration _config;
 
         public EmailService(IOptions<MailSettings> mail, IConfiguration config)
@@ -37,7 +38,7 @@ namespace Domain
                 var builder = new BodyBuilder();
                 builder.HtmlBody = mailRequest.Body;
                 email.Body = builder.ToMessageBody();
-                using var smtp = new SmtpClient();
+                using var smtp = new MailKit.Net.Smtp.SmtpClient();
                 smtp.Connect(_mail.Host, _mail.Port, _mail.UseSSL);
                 smtp.Authenticate(_mail.UserMail, _mail.Password);
 
