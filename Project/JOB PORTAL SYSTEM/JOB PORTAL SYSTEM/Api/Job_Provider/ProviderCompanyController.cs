@@ -90,7 +90,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         [HttpPut("{CompanyId}")]
         [Authorize]
 
-        public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequest request)
+        public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequestDTO request)
         {
             try
             {

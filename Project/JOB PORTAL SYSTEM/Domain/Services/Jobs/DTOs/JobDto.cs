@@ -1,4 +1,4 @@
-﻿namespace Domain.Services.Job_Seeker.Jobs.DTOs
+﻿namespace Domain.Services.Jobs.DTOs
 {
     public class GetJobsDto
     {

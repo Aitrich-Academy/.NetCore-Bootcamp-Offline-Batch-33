@@ -15,8 +15,8 @@ namespace JOB_PORTAL_SYSTEM.Extensions
     {
         public UseProfileMapping()
         {
-            CreateMap<CreateCompanyProfileRequest, Company>();
-            CreateMap<UpdateCompanyProfileRequest, Company>();
+            CreateMap<CreateCompanyProfileRequestDTO, Company>();
+            CreateMap<UpdateCompanyProfileRequestDTO, Company>();
             CreateMap<Company, CompanyProfileDto>();
             CreateMap<AuthUser, JobProvider>().ReverseMap();
 

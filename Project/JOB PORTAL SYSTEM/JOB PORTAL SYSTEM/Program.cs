@@ -1,4 +1,4 @@
-using Domain.Helper;
+using Domain.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using JOB_PORTAL_SYSTEM.Extensions;
@@ -45,13 +45,11 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.Zero
     };
 });
-
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.Configure<MailSettings>(
     builder.Configuration.GetSection("MailSettings")
 );
-
 
 
 builder.Services.AddAuthorization();
@@ -89,11 +87,9 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddApplicationServiceExtension(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -102,6 +98,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

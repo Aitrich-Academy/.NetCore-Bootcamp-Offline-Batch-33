@@ -1,15 +1,12 @@
-﻿using Domain.Models;
-using Domain.Services.Job_Provider.Job_Service.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Services.Job_Provider.Job_Service.DTO;
+using Domain.Services.Jobs.DTOs;
 
-namespace Domain.Services.Job_Provider.Job_Service.Interface
+namespace Domain.Services.Jobs.Interfaces
 {
     public interface IJobService
     {
+        Task<List<GetJobsDto>> GetAllJobsAsync1();
+        Task<List<GetJobsDto>> SearchJobsAsync(string? keyword);
         public Task<JobDto> CreateJobAsync(CreateJobDto dto);
         public Task<JobDto> GetJobByIdAsync(Guid jobId);
         public Task<IEnumerable<JobDto>> GetAllJobsAsync();

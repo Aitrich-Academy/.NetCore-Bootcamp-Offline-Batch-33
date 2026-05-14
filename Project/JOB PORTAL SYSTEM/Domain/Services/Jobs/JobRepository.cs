@@ -1,44 +1,62 @@
 ﻿using Domain.Data;
 using Domain.Models;
-using Domain.Services.Job_Provider.Job_Service.Interface;
+using Domain.Services.Jobs.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Domain.Services.Job_Provider.Job_Service
+namespace Domain.Services.Jobs
 {
     public class JobRepository : IJobRepository
     {
-        private readonly AppDbContext dbContext;
-        public JobRepository(AppDbContext dbContext)
+        private readonly AppDbContext _context;
+
+        public JobRepository(AppDbContext context)
         {
-            this.dbContext = dbContext;
+            _context = context;
         }
 
+        public async Task<List<Job>> GetAllAsync()
+        {
+            return await _context.Jobs
+                .Include(j => j.Company)
+                .Include(j => j.Location)
+                .ToListAsync();
+        }
+
+        public async Task<List<Job>> SearchAsync(string? keyword)
+        {
+            var query = _context.Jobs
+                .Include(j => j.Company)
+                .Include(j => j.Location)
+                .AsQueryable();
+
+            if(string.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(j => j.Title.Contains(keyword));
+            }
+
+            return await query.ToListAsync();
+        }
         public async Task<Job> AddJobAsync(Job job)
         {
             try
             {
-                var company = await dbContext.Companies.FindAsync(job.CompanyId);
+                var company = await _context.Companies.FindAsync(job.CompanyId);
                 if (company == null)
                 {
                     throw new Exception("Company not found");
                 }
-                var category = await dbContext.JobCategories.FindAsync(job.CategoryId);
+                var category = await _context.JobCategories.FindAsync(job.CategoryId);
                 if (category == null)
                 {
                     throw new Exception("Category not found");
                 }
-                var location = await dbContext.Locations.FindAsync(job.LocationId);
+                var location = await _context.Locations.FindAsync(job.LocationId);
                 if (location == null)
                 {
                     throw new Exception("Location not found");
                 }
-                dbContext.Jobs.Add(job);
-                await dbContext.SaveChangesAsync();
+                _context.Jobs.Add(job);
+                await _context.SaveChangesAsync();
                 return job;
 
             }
@@ -52,13 +70,13 @@ namespace Domain.Services.Job_Provider.Job_Service
         {
             try
             {
-                var job = await dbContext.Jobs.FindAsync(jobId);
+                var job = await _context.Jobs.FindAsync(jobId);
                 if (job == null)
                 {
                     return null;
                 }
 
-                return await dbContext.Jobs
+                return await _context.Jobs
                     .Include(j => j.Company)
                     .Include(j => j.Category)
                     .Include(j => j.Location)
@@ -76,11 +94,11 @@ namespace Domain.Services.Job_Provider.Job_Service
         {
             try
             {
-                if (!await dbContext.Jobs.AnyAsync())
+                if (!await _context.Jobs.AnyAsync())
                 {
                     return new List<Job>();
                 }
-                return await dbContext.Jobs
+                return await _context.Jobs
                     .Include(j => j.Company)
                     .Include(j => j.Category)
                     .Include(j => j.Location)
@@ -96,28 +114,28 @@ namespace Domain.Services.Job_Provider.Job_Service
         {
             try
             {
-                var existingJob = await dbContext.Jobs.FindAsync(job.Id);
+                var existingJob = await _context.Jobs.FindAsync(job.Id);
                 if (existingJob == null)
                 {
                     throw new Exception("Job not found");
                 }
-                var company = await dbContext.Companies.FindAsync(job.CompanyId);
+                var company = await _context.Companies.FindAsync(job.CompanyId);
                 if (company == null)
                 {
                     throw new Exception("Company not found");
                 }
-                var category = await dbContext.JobCategories.FindAsync(job.CategoryId);
+                var category = await _context.JobCategories.FindAsync(job.CategoryId);
                 if (category == null)
                 {
                     throw new Exception("Category not found");
                 }
-                var location = await dbContext.Locations.FindAsync(job.LocationId);
+                var location = await _context.Locations.FindAsync(job.LocationId);
                 if (location == null)
                 {
                     throw new Exception("Location not found");
                 }
-                dbContext.Jobs.Update(job);
-                await dbContext.SaveChangesAsync();
+                _context.Jobs.Update(job);
+                await _context.SaveChangesAsync();
                 return job;
             }
             catch (Exception ex)
@@ -130,13 +148,13 @@ namespace Domain.Services.Job_Provider.Job_Service
         {
             try
             {
-                var job = await dbContext.Jobs.FindAsync(jobId);
+                var job = await _context.Jobs.FindAsync(jobId);
                 if (job == null)
                 {
                     return false;
                 }
-                dbContext.Jobs.Remove(job);
-                await dbContext.SaveChangesAsync();
+                _context.Jobs.Remove(job);
+                await _context.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -145,4 +163,6 @@ namespace Domain.Services.Job_Provider.Job_Service
             }
         }
     }
+
 }
+

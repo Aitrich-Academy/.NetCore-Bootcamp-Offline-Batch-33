@@ -1,36 +1,46 @@
 ﻿using AutoMapper;
 using Domain.Models;
 using Domain.Services.Job_Provider.Job_Service.DTO;
-using Domain.Services.Job_Provider.Job_Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Services.Jobs.DTOs;
+using Domain.Services.Jobs.Interfaces;
 
-namespace Domain.Services.Job_Provider.Job_Service
+namespace Domain.Services.Jobs
 {
     public class JobService : IJobService
     {
-        private readonly IJobRepository jobRepository;
-        private readonly IMapper mapper;
-        public JobService(IJobRepository jobRepository, IMapper mapper)
+        private readonly IJobRepository _repo;
+        private readonly IMapper _mapper;
+
+        public JobService(IJobRepository repo, IMapper mapper)
         {
-            this.jobRepository = jobRepository;
-            this.mapper = mapper;
+            _repo = repo;
+            _mapper = mapper;
         }
 
+        public async Task<List<GetJobsDto>> GetAllJobsAsync1()
+        {
+            var jobs = await _repo.GetAllAsync();
+
+            return _mapper.Map<List<GetJobsDto>>(jobs);
+        }
+
+        public async Task<List<GetJobsDto>> SearchJobsAsync(string? keyword)
+        {
+            var jobs = await _repo.SearchAsync(keyword);
+
+            return _mapper.Map<List<GetJobsDto>>(jobs);
+        }
         public async Task<JobDto> CreateJobAsync(CreateJobDto dto)
         {
             try
             {
-                var job = mapper.Map<Job>(dto);
+                var job = _mapper.Map<Job>(dto);
                 job.Id = Guid.NewGuid();
                 job.CreatedAt = DateTime.UtcNow;
 
-                var created = await jobRepository.AddJobAsync(job);
+                var created = await _repo.AddJobAsync(job);
 
-                return mapper.Map<JobDto>(created);
+                return _mapper.Map<JobDto>(created);
             }
             catch (Exception ex)
             {
@@ -43,12 +53,12 @@ namespace Domain.Services.Job_Provider.Job_Service
         {
             try
             {
-                var job = await jobRepository.GetJobByIdAsync(jobId);
+                var job = await _repo.GetJobByIdAsync(jobId);
                 if (job == null)
                 {
                     return null;
                 }
-                return mapper.Map<JobDto>(job);
+                return _mapper.Map<JobDto>(job);
             }
             catch (Exception ex)
             {
@@ -61,7 +71,7 @@ namespace Domain.Services.Job_Provider.Job_Service
         {
             try
             {
-                var jobs = await jobRepository.GetAllJobsAsync();
+                var jobs = await _repo.GetAllJobsAsync();
                 return jobs.Select(job => new JobDto
                 {
                     Id = job.Id,
@@ -87,15 +97,15 @@ namespace Domain.Services.Job_Provider.Job_Service
         {
             try
             {
-                var job = await jobRepository.GetJobByIdAsync(jobId);
+                var job = await _repo.GetJobByIdAsync(jobId);
                 if (job == null)
                 {
                     throw new Exception("Job Not Found");
                 }
-                mapper.Map(dto, job);
+                _mapper.Map(dto, job);
 
-                var updated = await jobRepository.UpdateJobAsync(job);
-                return mapper.Map<JobDto>(updated);
+                var updated = await _repo.UpdateJobAsync(job);
+                return _mapper.Map<JobDto>(updated);
             }
             catch (Exception ex)
             {
@@ -108,12 +118,12 @@ namespace Domain.Services.Job_Provider.Job_Service
         {
             try
             {
-                var job = await jobRepository.GetJobByIdAsync(jobId);
+                var job = await _repo.GetJobByIdAsync(jobId);
                 if (job == null)
                 {
                     throw new Exception("Job not found");
                 }
-                return await jobRepository.DeleteJobAsync(jobId);
+                return await _repo.DeleteJobAsync(jobId);
 
             }
             catch (Exception ex)
@@ -124,3 +134,4 @@ namespace Domain.Services.Job_Provider.Job_Service
         }
     }
 }
+    
