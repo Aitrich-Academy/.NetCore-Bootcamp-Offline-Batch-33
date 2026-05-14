@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Data;
 using Domain.Models;
-using Domain.Services.AuthUser.Interface;
+using Domain.Services.Job_Provider.AuthUser.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Org.BouncyCastle.Math.EC.ECCurve;
 
-namespace Domain.Services.AuthUser
+namespace Domain.Services.Job_Provider.AuthUser
 {
     public class AuthUserRepository : IAuthUserRepository
     {
@@ -57,7 +57,7 @@ namespace Domain.Services.AuthUser
                 new Claim(ClaimTypes.Sid, user.Id.ToString()),
                 new Claim(ClaimTypes.Role, user.Role.ToString())
             };
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
                 _config.GetSection("AuthSettings:Token").Value));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);

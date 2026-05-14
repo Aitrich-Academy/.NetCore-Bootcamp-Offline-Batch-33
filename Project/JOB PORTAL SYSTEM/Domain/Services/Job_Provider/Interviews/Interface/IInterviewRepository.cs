@@ -1,12 +1,12 @@
 ﻿using Domain.Models;
-using Domain.Services.Interviews.Dto;
+using Domain.Services.Job_Provider.Interviews.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.Interviews.Interface
+namespace Domain.Services.Job_Provider.Interviews.Interface
 {
     public interface IInterviewRepository
     {

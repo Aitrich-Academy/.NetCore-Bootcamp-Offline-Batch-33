@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Domain.Models;
-using Domain.Services.Interviews.Dto;
-using Domain.Services.Interviews.Interface;
+using Domain.Services.Job_Provider.Interviews.Dto;
+using Domain.Services.Job_Provider.Interviews.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.Interviews
+namespace Domain.Services.Job_Provider.Interviews
 {
     public class InterviewService:IInterviewService 
     {

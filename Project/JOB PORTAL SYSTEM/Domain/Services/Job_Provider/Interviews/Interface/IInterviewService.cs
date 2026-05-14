@@ -1,8 +1,8 @@
 ﻿using Domain.Models;
-using Domain.Services.Interviews.Dto;
+using Domain.Services.Job_Provider.Interviews.Dto;
 
 
-namespace Domain.Services.Interviews.Interface
+namespace Domain.Services.Job_Provider.Interviews.Interface
 {
     public interface IInterviewService
     {

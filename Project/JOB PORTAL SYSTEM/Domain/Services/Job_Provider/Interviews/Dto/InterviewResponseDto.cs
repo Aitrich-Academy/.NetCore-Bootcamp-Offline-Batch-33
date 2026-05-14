@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.Interviews.Dto
+namespace Domain.Services.Job_Provider.Interviews.Dto
 {
-    public class CreateInterviewDto
+    public class InterviewResponseDto
     {
+        public Guid Id { get; set; }
+
         public Guid ApplicationId { get; set; }
 
         public DateTime InterviewDate { get; set; }

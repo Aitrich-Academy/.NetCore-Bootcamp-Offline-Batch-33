@@ -1,34 +1,36 @@
-<<<<<<< HEAD
-﻿using Domain.Data;
-using Domain.Interviews;
-using Domain.Interviews.Interface;
-using Domain.Services;
-using Domain.Services.AuthUser;
-using Domain.Services.AuthUser.Interface;
-=======
-﻿using Domain;
+
 using Domain.Data;
-using Domain.Helpers;
+using Domain.Services.Job_Provider.Interviews;
+using Domain.Services .Job_Provider .Interviews.Interface;
+using Domain.Services;
+
+using Domain;
+using Domain.Data;
+using Domain.Helper;
 using Domain.Services.Job_Provider;
->>>>>>> 3095fad8d7b73eedcdf894a5d944781877b9fd28
+
 using Domain.Services.Job_Provider.CompanyProfile;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using Domain.Services.Job_Provider.Job_Service;
 using Domain.Services.Job_Provider.Job_Service.Interface;
-<<<<<<< HEAD
-using Domain.Services.Login;
-using Domain.Services.Login.Interface;
-using Domain.Services.Signup;
-using Domain.Services.Signup.Interface;
-=======
+
+
+
+
+
+
 using Domain.Services.Job_Seeker.AuthUser;
 using Domain.Services.Job_Seeker.AuthUser.Interface;
 using Domain.Services.Job_Seeker.Login;
 using Domain.Services.Job_Seeker.Login.Interface;
 using Domain.Services.Job_Seeker.SignUp;
 using Domain.Services.Job_Seeker.SignUp.Interface;
->>>>>>> 3095fad8d7b73eedcdf894a5d944781877b9fd28
+
+
 using Microsoft.EntityFrameworkCore;
+using Domain.Services.Job_Provider.Login;
+using Domain.Services.Job_Provider.Login.Interface;
+using Microsoft.EntityFrameworkCore.Migrations.Internal;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
@@ -45,16 +47,15 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddScoped<IJobRepository, JobRepository>();
             services.AddScoped<IJobService, JobService>();
 
-<<<<<<< HEAD
-            services.AddScoped<ISignUpRequestRepository, SignUpRequestRepository>();
-            services.AddScoped<ISignUpRequestService, SignUpRequestService>();
-            services.AddScoped<IAuthUserRepository, AuthUserRepository>();
-            services.AddScoped<ILoginRequestRepository, LoginRequestRepository>();
+            services.AddScoped<Domain.Services.Job_Seeker.SignUp.Interface.ISignUpRequestRepository, Domain.Services.Job_Seeker.SignUp.SignUpRequestRepository>();
+            services.AddScoped<Domain.Services.Job_Seeker.SignUp.Interface.ISignUpRequestService, Domain.Services.Job_Seeker.SignUp.SignUpRequestService>();
+            services.AddScoped<Domain.Services.Job_Seeker.AuthUser.Interface.IAuthUserRepository, Domain.Services.Job_Seeker.AuthUser.AuthUserRepository>();
+            services.AddScoped<Domain.Services.Job_Seeker.Login.Interface.ILoginRequestRepository, Domain.Services.Job_Seeker.Login.LoginRequestRepository>();
             services.AddScoped<ILoginRequestService, LoginRequestService>();
-            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<Domain.IEmailService, Domain.EmailService>();
             services.AddScoped<IInterviewService, InterviewService>();
             services.AddScoped<IInterviewRepository, InterviewRepository>();
-=======
+
 
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
@@ -64,23 +65,22 @@ namespace JOB_PORTAL_SYSTEM.Extensions
 
 
 
-            services.AddScoped<ISignUpRequestService, SignUpRequestService>();
+            services.AddScoped<Domain.Services.Job_Seeker.SignUp.Interface.ISignUpRequestService, Domain.Services.Job_Seeker.SignUp.SignUpRequestService>();
 
-            services.AddScoped<IAuthUserRepository, AuthUserRepository>();
-            services.AddScoped<ISignUpRequestRepository, SignUpRequestRepository>();
+          
+            services.AddScoped<Domain.Services.Job_Seeker.SignUp.Interface.ISignUpRequestRepository, Domain.Services.Job_Seeker.SignUp.SignUpRequestRepository>();
 
-            services.AddScoped<ILoginRequestRepository, LoginRequestRepository>();
+           
             services.AddScoped<ILoginRequestServices, LoginRequestServices>();
 
-      
 
-            //services.AddScoped<IAuthUserRepository, AuthUserRepository>();
-            //services.AddScoped<ISignUpRequestRepository, SignUpRequestRepository>();
-            //services.AddScoped<ISignUpRequestService, SignUpRequestService>();
-            //services.AddScoped<ILoginRequestRepository, LoginRequestRepository>();
-            //services.AddScoped<ILoginRequestService, LoginRequestService>();
-            services.AddScoped<IEmailService, EmailService>();
->>>>>>> 3095fad8d7b73eedcdf894a5d944781877b9fd28
+
+            services.AddScoped<Domain.Services.Job_Provider.AuthUser.Interface.IAuthUserRepository, Domain.Services.Job_Provider.AuthUser.AuthUserRepository>();
+            services.AddScoped<Domain.Services.Job_Provider.Signup.Interface.ISignUpRequestRepository, Domain.Services.Job_Provider.Signup.SignUpRequestRepository>();
+            services.AddScoped<Domain.Services.Job_Provider.Signup.Interface.ISignUpRequestService, Domain.Services.Job_Provider.Signup.SignUpRequestService>();
+            services.AddScoped<Domain.Services.Job_Provider.Login.Interface.ILoginRequestRepository, Domain.Services.Job_Provider.Login.LoginRequestRepository>();
+            services.AddScoped<Domain.Services.Job_Provider.Login.Interface.ILoginRequestService, Domain.Services.Job_Provider.Login.LoginRequestService>();
+
 
             services.AddAutoMapper(map => map.AddProfile(new AutoMapperProfiles()));
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
