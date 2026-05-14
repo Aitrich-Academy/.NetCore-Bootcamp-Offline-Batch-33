@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Domain.Interviews.Dto;
+using Domain.Services.Job_Provider.Interviews.Dto;
 using Domain.Models;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.Job_Service.DTO;
-using Domain.Services.Login.Dto;
-using Domain.Services.Signup.Dto;
+using Domain.Services.Job_Provider.Login.Dto;
+using Domain.Services.Job_Provider.Signup.Dto;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using JOB_PORTAL_SYSTEM.API.Interviews.RequestObjects;
 using JOB_PORTAL_SYSTEM.API.JobProvider.RequestObjects;
