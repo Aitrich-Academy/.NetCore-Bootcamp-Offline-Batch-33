@@ -1,10 +1,10 @@
-using Domain.Helpers;
+using Domain.Helper;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using JOB_PORTAL_SYSTEM.Extensions;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationServiceExtension(builder.Configuration);
@@ -45,14 +44,10 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.Zero
     };
 });
-
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 builder.Services.Configure<MailSettings>(
     builder.Configuration.GetSection("MailSettings")
 );
-
-
 
 builder.Services.AddAuthorization();
 builder.Services.AddSwaggerGen(options =>

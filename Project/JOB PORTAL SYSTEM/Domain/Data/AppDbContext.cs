@@ -15,6 +15,7 @@ namespace Domain.Data
         }
 
         public DbSet<AuthUser> AuthUsers { get; set; }
+
         public DbSet<JobProvider> JobProviders { get; set; }
         public DbSet<SignupRequest> SignupRequests { get; set; }
         public DbSet<Company> Companies { get; set; }

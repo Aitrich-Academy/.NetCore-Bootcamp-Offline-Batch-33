@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 18
-VisualStudioVersion = 18.4.11626.88 stable
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JOB_PORTAL_SYSTEM", "JOB PORTAL SYSTEM\JOB_PORTAL_SYSTEM.csproj", "{66638E84-C0AF-4BFE-BD04-6E99B4FD4D20}"
 EndProject

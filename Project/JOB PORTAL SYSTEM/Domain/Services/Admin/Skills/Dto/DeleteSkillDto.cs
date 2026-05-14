@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace Domain.Services.Admin.Skills.Dto
 {
-    internal class Admin
+    public class DeleteSkillDto
     {
-        public Guid Id { get; set; }   
-        public string Name { get; set; }    
+        public Guid Id { get; set; }
     }
 }
