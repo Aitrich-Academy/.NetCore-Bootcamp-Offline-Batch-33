@@ -7,7 +7,7 @@ using Domain.Services.Job_Provider;
 using Domain.Services.Job_Provider.CompanyProfile;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using Domain.Services.Job_Provider.Job_Service;
-using Domain.Services.Job_Provider.Job_Service.Interface;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace JOB_PORTAL_SYSTEM.Extensions

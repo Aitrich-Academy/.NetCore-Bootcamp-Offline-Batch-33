@@ -1,6 +1,6 @@
 ﻿namespace JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects
 {
-    public class UpdateCompanyProfileRequest
+    public class UpdateCompanyProfileRequestDTO
     {
         public string CompanyName { get; set; }
         public string Description { get; set; }

@@ -6,8 +6,8 @@ using Domain.Services.Job_Seeker.SignUp.DTO;
 using Domain.Services.Job_Seeker.Applications.DTOs;
 using Domain.Services.Job_Seeker.Login.DTO;
 using Domain.Services.Job_Seeker.SavedJobs.DTOs;
-using Domain.Services.Job_Seeker.Jobs.DTOs;
 using JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects;
+using Domain.Services.Jobs.DTOs;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
