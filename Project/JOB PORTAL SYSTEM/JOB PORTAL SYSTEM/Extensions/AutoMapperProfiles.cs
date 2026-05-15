@@ -2,6 +2,7 @@
 using Domain.Models;
 using Domain.Service.Login.DTO;
 using Domain.Service.SignUp.DTO;
+using Domain.Services.JobSeeker.Profile.DTO;
 using JOB_PORTAL_SYSTEM.API.JobSeeker.RequestObjects;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
@@ -15,6 +16,8 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             CreateMap<JobSeekerRequestDTO, SignupRequest>().ReverseMap();
 
             CreateMap<AuthUser, LoginrequestDto>().ReverseMap();
+
+            CreateMap<CreateJobSeekerProfileDto, JobSeekerProfile>();
         }
     }
 }

@@ -12,6 +12,9 @@ using Domain.Services.Job_Provider.CompanyProfile;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using Domain.Services.Job_Provider.Job_Service;
 using Domain.Services.Job_Provider.Job_Service.Interface;
+using Domain.Services.JobSeeker.Profile.Interface;
+using Domain.Services.JobSeeker.Profile.Repository;
+using Domain.Services.JobSeeker.Profile.Service;
 using Microsoft.EntityFrameworkCore;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
@@ -48,7 +51,15 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddScoped<ILoginRequestRepository, LoginRequestRepository>();
             services.AddScoped<ILoginRequestServices, LoginRequestServices>();
 
-      
+
+
+
+
+            services.AddScoped<IJobSeekerProfileRepository, JobSeekerProfileRepository>();
+
+            services.AddScoped<IJobSeekerProfileService, JobSeekerProfileService>();
+
+
 
             //services.AddScoped<IAuthUserRepository, AuthUserRepository>();
             //services.AddScoped<ISignUpRequestRepository, SignUpRequestRepository>();
