@@ -15,7 +15,6 @@ namespace Domain.Models
         public Guid JobSeekerId { get; set; }
         public JobSeeker JobSeeker { get; set; }
 
-
         [ForeignKey("Skill")]
         public Guid SkillId { get; set; }
         public Skill Skill { get; set; }

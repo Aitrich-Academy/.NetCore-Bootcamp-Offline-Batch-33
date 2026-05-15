@@ -11,12 +11,16 @@ namespace Domain.Models
     public class JobProvider
     {
         public Guid Id { get; set; }
+
+        [ForeignKey("AuthUser")]
+        public Guid AuthUserId { get; set; }
+        public AuthUser? AuthUser { get; set; }
+
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        [ForeignKey("Company")]
-        public Guid? CompanyId { get; set; }
+        //Navigation Only(else => Company → JobProvider → Company)
         public Company? Company { get; set; }
         public CompanyRole CompanyRole { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;

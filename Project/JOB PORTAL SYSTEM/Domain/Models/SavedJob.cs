@@ -17,7 +17,6 @@ namespace Domain.Models
         [ForeignKey("Job")]
         public Guid JobId { get; set; }
         public Job Job { get; set; }
-
         public DateTime SavedAt { get; set; }
 
     }

@@ -83,11 +83,7 @@ namespace Domain.Data
 
             
 
-            modelBuilder.Entity<JobProvider>()
-                .HasOne(jp => jp.Company)
-                .WithMany(c => c.JobProviders)
-                .HasForeignKey(jp => jp.CompanyId)
-                .OnDelete(DeleteBehavior.Restrict);
+            
 
         }
 

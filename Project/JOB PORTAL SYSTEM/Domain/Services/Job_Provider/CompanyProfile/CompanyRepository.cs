@@ -22,8 +22,8 @@ namespace Domain.Services.Job_Provider.CompanyProfile
         {
             try
             {
-                var user = await context.AuthUsers.FindAsync(company.UserId);
-                if (user == null)
+                var provider = await context.JobProviders.FindAsync(company.ProviderId);
+                if (provider == null)
                 {
                     throw new Exception("User not found");
                 }
@@ -73,12 +73,12 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             }
         }
 
-        public async Task<IEnumerable<Company>> GetAllByUserIdAsync(Guid AuthId)
+        public async Task<IEnumerable<Company>> GetAllByUserIdAsync(Guid providerId)
         {
             try
             {
                 return await context.Companies
-                    .Where(c => c.UserId == AuthId)
+                    .Where(c => c.ProviderId == providerId)
                     .Include(c => c.Industry)
                     .Include(c => c.Location)
                     .ToListAsync();
@@ -140,7 +140,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
         public async Task<JobProvider?> GetByUserIdAsync(Guid userId)
         {
             return await context.JobProviders
-                .FirstOrDefaultAsync(jp => jp.UserId == userId);
+                .FirstOrDefaultAsync(jp => jp.Id == userId);
         }
 
         public async Task UpdateAsync(JobProvider jobProvider)

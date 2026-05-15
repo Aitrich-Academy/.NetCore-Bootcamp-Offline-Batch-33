@@ -14,7 +14,6 @@ namespace Domain.Models
         [ForeignKey(nameof(AuthUser))]
         public Guid AuthUserId { get; set; } // Foreign key to AuthUser
         public AuthUser AuthUser { get; set; }
-
         public JobSeekerProfile Profile { get; set; }
         public Resume Resume { get; set; }
         public ICollection<JobApplication> Applications { get; set; } = new List<JobApplication>();

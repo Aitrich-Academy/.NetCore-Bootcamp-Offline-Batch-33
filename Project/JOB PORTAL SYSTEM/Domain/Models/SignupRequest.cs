@@ -11,20 +11,14 @@ namespace Domain.Models
     public class SignupRequest
     {
         public Guid Id { get; set; }
-
-        
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
         public string Phone { get; set; }
 
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-
         public JobStatus JobStatus { get; set; }
 
-        
     }
 }

@@ -17,7 +17,6 @@ namespace Domain.Models
         [ForeignKey("Qualification")]
         public Guid QualificationId { get; set; } // Foreign key to Qualification
         public Qualification Qualification { get; set; } // Navigation property to Qualification
-
         public string University { get; set; }
         public DateTime StartYear { get; set; }
         public DateTime EndYear { get; set; }
