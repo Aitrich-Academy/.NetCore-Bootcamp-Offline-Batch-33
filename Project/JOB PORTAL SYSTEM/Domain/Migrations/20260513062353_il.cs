@@ -5,28 +5,28 @@
 namespace Domain.Migrations
 {
     /// <inheritdoc />
-    public partial class Added : Migration
+    public partial class il : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Address",
-                table: "Companies",
+                name: "Experience",
+                table: "JobSeekerProfiles",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
-                name: "Email",
-                table: "Companies",
+                name: "Qualifications",
+                table: "JobSeekerProfiles",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
-                name: "PhoneNumber",
-                table: "Companies",
+                name: "Skills",
+                table: "JobSeekerProfiles",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
@@ -36,16 +36,16 @@ namespace Domain.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Address",
-                table: "Companies");
+                name: "Experience",
+                table: "JobSeekerProfiles");
 
             migrationBuilder.DropColumn(
-                name: "Email",
-                table: "Companies");
+                name: "Qualifications",
+                table: "JobSeekerProfiles");
 
             migrationBuilder.DropColumn(
-                name: "PhoneNumber",
-                table: "Companies");
+                name: "Skills",
+                table: "JobSeekerProfiles");
         }
     }
 }

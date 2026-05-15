@@ -4,6 +4,7 @@ using Domain.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260514062714_ki")]
+    partial class ki
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -461,11 +464,16 @@ namespace Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("JobSeekerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("JobSeekerId");
 
                     b.ToTable("Qualifications");
                 });
@@ -729,6 +737,13 @@ namespace Domain.Migrations
                     b.Navigation("Skill");
                 });
 
+            modelBuilder.Entity("Domain.Models.Qualification", b =>
+                {
+                    b.HasOne("Domain.Models.JobSeeker", null)
+                        .WithMany("Qualifications")
+                        .HasForeignKey("JobSeekerId");
+                });
+
             modelBuilder.Entity("Domain.Models.Resume", b =>
                 {
                     b.HasOne("Domain.Models.JobSeeker", "JobSeeker")
@@ -806,6 +821,8 @@ namespace Domain.Migrations
 
                     b.Navigation("Profile")
                         .IsRequired();
+
+                    b.Navigation("Qualifications");
 
                     b.Navigation("Resume")
                         .IsRequired();
