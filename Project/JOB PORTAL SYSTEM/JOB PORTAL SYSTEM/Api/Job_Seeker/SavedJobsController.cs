@@ -96,6 +96,6 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
                 });
             }
         }
-        
+
     }
 }

@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Models;
 using Domain.Services.Job_Provider.Job_Service.DTO;
-using Domain.Services.Job_Provider.Job_Service.Interface;
-using Microsoft.AspNetCore.Authorization;
+using Domain.Services.Jobs.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +9,6 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles ="JobProvider")]
     public class JobController : ControllerBase
     {
         IJobService jobService;

@@ -15,6 +15,7 @@ namespace Domain.Data
         }
 
         public DbSet<AuthUser> AuthUsers { get; set; }
+
         public DbSet<JobProvider> JobProviders { get; set; }
         public DbSet<SignupRequest> SignupRequests { get; set; }
         public DbSet<Company> Companies { get; set; }
@@ -34,58 +35,71 @@ namespace Domain.Data
         public DbSet<JobApplication> JobApplications { get; set; }
         public DbSet<JobCategory> JobCategories { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // JobApplication → JobSeeker (Cascade)
-            modelBuilder.Entity<JobApplication>()
-                .HasOne(ja => ja.JobSeeker)
-                .WithMany(js => js.Applications)
-                .HasForeignKey(ja => ja.JobSeekerId)
-                .OnDelete(DeleteBehavior.Cascade);
+            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                // JobApplication → JobSeeker (Cascade)
+                modelBuilder.Entity<JobApplication>()
+                    .HasOne(ja => ja.JobSeeker)
+                    .WithMany(js => js.Applications)
+                    .HasForeignKey(ja => ja.JobSeekerId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
-            // JobApplication → Job (Restrict)
-            modelBuilder.Entity<JobApplication>()
-                .HasOne(ja => ja.Job)
-                .WithMany(j => j.Applications)
-                .HasForeignKey(ja => ja.JobId)
-                .OnDelete(DeleteBehavior.Restrict);
+                // JobApplication → Job (Restrict)
+                modelBuilder.Entity<JobApplication>()
+                    .HasOne(ja => ja.Job)
+                    .WithMany(j => j.Applications)
+                    .HasForeignKey(ja => ja.JobId)
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            // JobApplication → Resume (Restrict)
-            modelBuilder.Entity<JobApplication>()
-                .HasOne(ja => ja.Resume)
-                .WithMany(r => r.JobApplications)
-                .HasForeignKey(ja => ja.ResumeId)
-                .OnDelete(DeleteBehavior.Restrict);
-           // SavedJobs → JobSeeker(Cascade makes sense: if a seeker is deleted, their saved jobs should go too)
-            modelBuilder.Entity<SavedJob>()
-                .HasOne(sj => sj.JobSeeker)
-                .WithMany(js => js.SavedJobs)
-                .HasForeignKey(sj => sj.JobSeekerId)
-                .OnDelete(DeleteBehavior.Cascade);
+                // JobApplication → Resume (Restrict)
+                modelBuilder.Entity<JobApplication>()
+                    .HasOne(ja => ja.Resume)
+                    .WithMany(r => r.JobApplications)
+                    .HasForeignKey(ja => ja.ResumeId)
+                    .OnDelete(DeleteBehavior.Restrict);
+               // SavedJobs → JobSeeker(Cascade makes sense: if a seeker is deleted, their saved jobs should go too)
+                modelBuilder.Entity<SavedJob>()
+                    .HasOne(sj => sj.JobSeeker)
+                    .WithMany(js => js.SavedJobs)
+                    .HasForeignKey(sj => sj.JobSeekerId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
-            // SavedJobs → Job (Restrict: don’t auto-delete saved jobs when a job is deleted)
-            modelBuilder.Entity<SavedJob>()
-                .HasOne(sj => sj.Job)
-                .WithMany(j => j.SavedJobs)
-                .HasForeignKey(sj => sj.JobId)
-                .OnDelete(DeleteBehavior.Restrict);
+                // SavedJobs → Job (Restrict: don’t auto-delete saved jobs when a job is deleted)
+                modelBuilder.Entity<SavedJob>()
+                    .HasOne(sj => sj.Job)
+                    .WithMany(j => j.SavedJobs)
+                    .HasForeignKey(sj => sj.JobId)
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Company>()
-                .HasOne(c => c.Location)
-                .WithMany(l => l.Companies)
-                .HasForeignKey(c => c.LocationId)
-                .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Job>()
-                .HasOne(j => j.Company)
-                .WithMany(c => c.Jobs)
-                .HasForeignKey(j => j.CompanyId)
-                .OnDelete(DeleteBehavior.Restrict);
+                modelBuilder.Entity<Company>()
+                    .HasOne(c => c.Location)
+                    .WithMany(l => l.Companies)
+                    .HasForeignKey(c => c.LocationId)
+                    .OnDelete(DeleteBehavior.Cascade);
+                modelBuilder.Entity<Job>()
+                    .HasOne(j => j.Company)
+                    .WithMany(c => c.Jobs)
+                    .HasForeignKey(j => j.CompanyId)
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            
+            // AuthUser → JobSeeker
+            modelBuilder.Entity<JobSeeker>()
+                .HasOne(js => js.User)
+                .WithMany(u => u.JobSeekers)
+                .HasForeignKey(js => js.UserId);
 
-            
-
+            // AuthUser → JobProvider
+            modelBuilder.Entity<JobProvider>()
+             .HasOne(jp => jp.User)
+             .WithMany(u => u.JobProviders)
+             .HasForeignKey(jp => jp.UserId);
         }
 
+
+
+
+
     }
-}
+
+    }
+

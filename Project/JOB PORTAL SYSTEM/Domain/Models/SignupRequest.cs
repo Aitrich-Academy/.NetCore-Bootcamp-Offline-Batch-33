@@ -15,6 +15,7 @@ namespace Domain.Models
 
 
 
+
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -24,6 +25,8 @@ namespace Domain.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        [Required]
+   
 
         public JobStatus JobStatus { get; set; }
 
@@ -31,6 +34,6 @@ namespace Domain.Models
         [ForeignKey("Company")]
         public Guid? CompanyId { get; set; }
         public Company? Company { get; set; }
-
+        public Role Role { get; internal set; }
     }
 }
