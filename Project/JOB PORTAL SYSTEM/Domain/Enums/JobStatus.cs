@@ -13,5 +13,5 @@ namespace Domain.Enums
         Active,     // Approved and live
         Verified,  // Verified by admin (optional step)
         Closed,     // No longer accepting applications
-    }
+     }
 }

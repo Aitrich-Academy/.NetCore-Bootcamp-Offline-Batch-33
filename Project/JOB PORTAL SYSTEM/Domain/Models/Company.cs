@@ -14,7 +14,11 @@ namespace Domain.Models
         [ForeignKey("JobProvider")]
         public Guid? ProviderId { get; set; }
         public JobProvider? JobProvider { get; set; }
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> c3a084b795415919ea2d0ebc20713324eea677b3
         [ForeignKey("Industry")]
         public Guid? IndustryId { get; set; }
         public Industry? Industry { get; set; }
@@ -24,8 +28,15 @@ namespace Domain.Models
         public Location? Location { get; set; }
         public string CompanyName { get; set; }
         public string Description { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool IsVerified { get; set; }
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3a084b795415919ea2d0ebc20713324eea677b3
         public ICollection<CompanyMember> Members { get; set; } = new List<CompanyMember>();
         public ICollection<Job> Jobs { get; set; } = new List<Job>();
 
