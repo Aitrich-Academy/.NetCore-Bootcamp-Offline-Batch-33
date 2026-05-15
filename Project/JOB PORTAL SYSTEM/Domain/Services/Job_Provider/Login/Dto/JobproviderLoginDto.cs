@@ -20,6 +20,7 @@ namespace Domain.Services.Auth.DTO
         [Required]
         public string LastName { get; set; }
 
+
         [Required]
         public string Phone { get; set; }
 
@@ -31,3 +32,5 @@ namespace Domain.Services.Auth.DTO
         public Role Role { get; set; }
     }
 }
+
+

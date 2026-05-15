@@ -6,6 +6,7 @@ using Domain.Services.Auth.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.Interviews.Dto;
 using Domain.Services.Job_Provider.Job_Service.DTO;
+using Domain.Services.Job_Provider.Login.Dto;
 using Domain.Services.Job_Seeker.Applications.DTOs;
 using Domain.Services.Job_Seeker.Interviews.DTOs;
 
@@ -24,12 +25,19 @@ namespace JOB_PORTAL_SYSTEM.Extensions
     {
         public AutoMapperProfiles()
         {
-            CreateMap<CreateCompanyProfileRequestDTO, Company>();
-            CreateMap<UpdateCompanyProfileRequestDTO, Company>();
-            CreateMap<Company, CompanyProfileDto>();
-            CreateMap<AuthUser, JobProvider>().ReverseMap();
+            CreateMap<CreateCompanyProfileRequest, Company>();
+            CreateMap<UpdateCompanyProfileRequest, Company>();
+            CreateMap<Company, CompanyProfileDto>()
+                .ForMember(dest => dest.IndustryName, opt => opt.MapFrom(src => src.Industry != null ? src.Industry.Name : string.Empty))
+                .ForMember(dest => dest.LocationName, opt => opt.MapFrom(src => src.Location != null ? src.Location.Name : string.Empty));
 
-            CreateMap<Job, JobDto>();
+
+
+
+            CreateMap<Job, JobDto>()
+                .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company != null ? src.Company.CompanyName : string.Empty))
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category != null ? src.Category.Name : string.Empty))
+                .ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.Location != null ? src.Location.Name : string.Empty));
             CreateMap<CreateJobDto, Job>();
             CreateMap<UpdateJobDto, Job>();
 
@@ -41,16 +49,21 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             CreateMap<Interview, InterviewResponseDto>().ReverseMap();
             CreateMap<CreateInterviewRequest, CreateInterviewDto>();
             CreateMap<SignupRequestDTO, SignupRequest>().ReverseMap();
+            
 
 
-            CreateMap<CreateCompanyProfileRequest, Company>();
-            CreateMap<UpdateCompanyProfileRequest, Company>();
-            CreateMap<Company, CompanyProfileDto>();
+            //CreateMap<CreateCompanyProfileRequest, Company>();
+            //CreateMap<UpdateCompanyProfileRequest, Company>();
+            //CreateMap<Company, CompanyProfileDto>();
+
+
             CreateMap<AuthUser, JobProvider>().ReverseMap();
+            CreateMap<AuthUser, LoginDTO>().ReverseMap();
+            
 
-            CreateMap<Job, JobDto>();
-            CreateMap<CreateJobDto, Job>();
-            CreateMap<UpdateJobDto, Job>();
+            //CreateMap<Job, JobDto>();
+            //CreateMap<CreateJobDto, Job>();
+            //CreateMap<UpdateJobDto, Job>();
 
             CreateMap<Company, VerifyCompanyDto>().ReverseMap();
             CreateMap<VerifyCompanyDto, VerifyCompanyRequest>().ReverseMap();

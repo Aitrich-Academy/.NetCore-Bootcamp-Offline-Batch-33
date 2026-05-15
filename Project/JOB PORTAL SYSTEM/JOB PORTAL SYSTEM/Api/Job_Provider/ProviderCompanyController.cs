@@ -2,7 +2,6 @@
 using Domain.Models;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
-
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +11,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "JobProvider")]
     public class ProviderCompanyController : ControllerBase
     {
         readonly ICompanyService companyService;
@@ -23,7 +23,6 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> CreateCompanyProfile([FromBody] Domain.Services.Job_Provider.CompanyProfile.DTO.CreateCompanyProfileRequest request)
         {
             try
@@ -88,7 +87,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         [HttpPut("{CompanyId}")]
         [Authorize]
 
-        public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequestDTO request)
+        public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequest request)
         {
             try
             {

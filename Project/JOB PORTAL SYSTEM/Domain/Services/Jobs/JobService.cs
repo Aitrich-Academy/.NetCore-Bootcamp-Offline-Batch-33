@@ -3,6 +3,7 @@ using Domain.Models;
 using Domain.Services.Job_Provider.Job_Service.DTO;
 using Domain.Services.Jobs.DTOs;
 using Domain.Services.Jobs.Interfaces;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Domain.Services.Jobs
 {
@@ -72,18 +73,7 @@ namespace Domain.Services.Jobs
             try
             {
                 var jobs = await _repo.GetAllJobsAsync();
-                return jobs.Select(job => new JobDto
-                {
-                    Id = job.Id,
-                    CompanyId = job.CompanyId,
-                    CategoryId = job.CategoryId,
-                    LocationId = job.LocationId,
-                    Title = job.Title,
-                    Description = job.Description,
-                    Salary = job.Salary,
-                    Status = job.Status,
-                    CreatedAt = job.CreatedAt
-                });
+                return _mapper.Map<List<JobDto>>(jobs);
 
             }
             catch (Exception ex)
