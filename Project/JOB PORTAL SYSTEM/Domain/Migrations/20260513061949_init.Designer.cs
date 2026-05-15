@@ -12,6 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
+<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514083233_hiiiiii.Designer.cs
+    [Migration("20260514083233_hiiiiii")]
+    partial class hiiiiii
+========
 <<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.Designer.cs
     [Migration("20260513061949_init")]
     partial class init
@@ -19,6 +23,7 @@ namespace Domain.Migrations
     [Migration("20260514045142_New")]
     partial class New
 >>>>>>>> 9dba2f9806ee6806fcb58b89587d77a4501c77fd:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514045142_New.Designer.cs
+>>>>>>>> f3440fd38c67e6901e6c39652dd70e36101788fc:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -324,7 +329,10 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514083233_hiiiiii.Designer.cs
+========
 <<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.Designer.cs
+>>>>>>>> f3440fd38c67e6901e6c39652dd70e36101788fc:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.Designer.cs
                     b.Property<Guid?>("AuthUserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -350,6 +358,8 @@ namespace Domain.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514083233_hiiiiii.Designer.cs
+========
 ========
                     b.Property<string>("Email")
                         .IsRequired()
@@ -374,6 +384,7 @@ namespace Domain.Migrations
                         .HasColumnType("uniqueidentifier");
 
 >>>>>>>> 9dba2f9806ee6806fcb58b89587d77a4501c77fd:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514045142_New.Designer.cs
+>>>>>>>> f3440fd38c67e6901e6c39652dd70e36101788fc:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.Designer.cs
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -715,6 +726,11 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Models.JobSeeker", b =>
                 {
+<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514083233_hiiiiii.Designer.cs
+                    b.HasOne("Domain.Models.AuthUser", null)
+                        .WithMany("JobSeekers")
+                        .HasForeignKey("AuthUserId");
+========
 <<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.Designer.cs
                     b.HasOne("Domain.Models.AuthUser", null)
                         .WithMany("JobSeekers")
@@ -728,6 +744,7 @@ namespace Domain.Migrations
 
                     b.Navigation("User");
 >>>>>>>> 9dba2f9806ee6806fcb58b89587d77a4501c77fd:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514045142_New.Designer.cs
+>>>>>>>> f3440fd38c67e6901e6c39652dd70e36101788fc:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.Designer.cs
                 });
 
             modelBuilder.Entity("Domain.Models.JobSeekerProfile", b =>

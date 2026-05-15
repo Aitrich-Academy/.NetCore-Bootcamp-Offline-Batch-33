@@ -1,18 +1,22 @@
 ﻿using AutoMapper;
 using Domain.Models;
-using Domain.Services.Job_Provider.Job_Service.DTO;
-using Domain.Services.Job_Seeker.Interviews.DTOs;
-using Domain.Services.Job_Seeker.SignUp.DTO;
-using Domain.Services.Job_Seeker.Applications.DTOs;
-using Domain.Services.Job_Seeker.Login.DTO;
-using Domain.Services.Job_Seeker.SavedJobs.DTOs;
-using JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects;
-using Domain.Services.Job_Provider.CompanyProfile.DTO;
-using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using Domain.Services.Admin.CompanyVerification.Dto;
-using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
 using Domain.Services.Admin.Skills.Dto;
+using Domain.Services.Auth.DTO;
+using Domain.Services.Job_Provider.CompanyProfile.DTO;
+using Domain.Services.Job_Provider.Interviews.Dto;
+using Domain.Services.Job_Provider.Job_Service.DTO;
+using Domain.Services.Job_Seeker.Applications.DTOs;
+using Domain.Services.Job_Seeker.Interviews.DTOs;
+
+using Domain.Services.Job_Seeker.SavedJobs.DTOs;
+
 using Domain.Services.Jobs.DTOs;
+using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
+
+using JOB_PORTAL_SYSTEM.API.Interviews.RequestObjects;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
@@ -20,11 +24,24 @@ namespace JOB_PORTAL_SYSTEM.Extensions
     {
         public AutoMapperProfiles()
         {
-            CreateMap<JobSeekerSignUpRequest, JobSeekerRequestDTO>().ReverseMap();
+            CreateMap<CreateCompanyProfileRequestDTO, Company>();
+            CreateMap<UpdateCompanyProfileRequestDTO, Company>();
+            CreateMap<Company, CompanyProfileDto>();
+            CreateMap<AuthUser, JobProvider>().ReverseMap();
 
-            CreateMap<JobSeekerRequestDTO, SignupRequest>().ReverseMap();
+            CreateMap<Job, JobDto>();
+            CreateMap<CreateJobDto, Job>();
+            CreateMap<UpdateJobDto, Job>();
 
-            CreateMap<AuthUser, LoginrequestDto>().ReverseMap();
+            //CreateMap<Domain.JobProviderSignupRequestDto, SignupRequest>().ReverseMap();
+            //CreateMap<JobProviderSignupRequest, JobProviderSignupRequestDto>().ReverseMap();
+            CreateMap<AuthUser, JobProvider>().ReverseMap();
+            //CreateMap<AuthUser, JobproviderLoginDto>();
+            CreateMap<CreateInterviewDto, Interview>().ReverseMap();
+            CreateMap<Interview, InterviewResponseDto>().ReverseMap();
+            CreateMap<CreateInterviewRequest, CreateInterviewDto>();
+            CreateMap<SignupRequestDTO, SignupRequest>().ReverseMap();
+
 
             CreateMap<CreateCompanyProfileRequest, Company>();
             CreateMap<UpdateCompanyProfileRequest, Company>();
