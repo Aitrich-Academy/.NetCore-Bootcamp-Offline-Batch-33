@@ -20,5 +20,6 @@ namespace Domain.Services.JobSeeker.Profile.DTO
         public List<Guid> SkillIds { get; set; }
 
         public List<Guid> QualificationIds { get; set; }
+
     }
 }
