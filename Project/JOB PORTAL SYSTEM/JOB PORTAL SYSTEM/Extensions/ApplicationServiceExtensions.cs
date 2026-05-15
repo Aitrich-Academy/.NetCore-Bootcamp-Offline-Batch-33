@@ -105,7 +105,7 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddHttpContextAccessor();
 
-            services.AddAutoMapper(map => map.AddProfile(new UseProfileMapping()));
+            //services.AddAutoMapper(map => map.AddProfile(new UseProfileMapping()));
            // services.Configure<Mailsettings>(configuration.GetSection("MailSettings"));
             //services.AddHttpContextAccessor();
             //services.AddAutoMapper(map => map.AddProfile(new AutoMapperProfiles()));
