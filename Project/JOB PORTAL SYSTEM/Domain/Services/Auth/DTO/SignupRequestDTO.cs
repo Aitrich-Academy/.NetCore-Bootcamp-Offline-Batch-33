@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Domain.Services.Auth.DTO
 {
     public class SignupRequestDTO
@@ -32,5 +31,3 @@ namespace Domain.Services.Auth.DTO
         public Role Role { get; set; }
     }
 }
-
-
