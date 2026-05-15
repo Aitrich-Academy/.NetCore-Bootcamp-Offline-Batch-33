@@ -149,5 +149,20 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             await context.SaveChangesAsync();
         }
 
+
+        //public async Task<List<Location>> GetLocationsByIdAsync(List<Guid> locationIds)
+        //{
+        //    return await context.Locations
+        //        .Where(loc => locationIds.Contains(loc.Id))
+        //        .ToListAsync();
+        //}
+
+        //public async Task<List<Industry>> GetAllIndustriesByIdAsync(List<Guid> industryIds)
+        //{
+        //    return await context.Industries
+        //        .Where(ind => industryIds.Contains(ind.Id))
+        //        .ToListAsync();
+
+        //}
     }
 }
