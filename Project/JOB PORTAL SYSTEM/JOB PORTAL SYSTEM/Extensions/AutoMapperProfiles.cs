@@ -41,12 +41,15 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             CreateMap<Interview, InterviewResponseDto>().ReverseMap();
             CreateMap<CreateInterviewRequest, CreateInterviewDto>();
             CreateMap<SignupRequestDTO, SignupRequest>().ReverseMap();
+            
 
 
             CreateMap<CreateCompanyProfileRequest, Company>();
             CreateMap<UpdateCompanyProfileRequest, Company>();
             CreateMap<Company, CompanyProfileDto>();
             CreateMap<AuthUser, JobProvider>().ReverseMap();
+            CreateMap<AuthUser, LoginDTO>().ReverseMap();
+            
 
             CreateMap<Job, JobDto>();
             CreateMap<CreateJobDto, Job>();
