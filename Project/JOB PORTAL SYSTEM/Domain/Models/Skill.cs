@@ -11,7 +11,7 @@ namespace Domain.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        public ICollection<JobSeekerSkills> JobSeekerSkills { get; set; } = new List<JobSeekerSkills>();
+        //public ICollection<JobSeekerSkills> JobSeekerSkills { get; set; } = new List<JobSeekerSkills>();
 
 
     }

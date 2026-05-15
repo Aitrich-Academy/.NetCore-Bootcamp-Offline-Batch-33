@@ -13,13 +13,9 @@ using Domain.Services.Job_Provider.Interviews;
 using Domain.Services.Job_Provider.Interviews.Interface;
 using Domain.Services.Job_Provider.Job_Service;
 
-using Domain.Services;
-
-using Domain.Services.Jobs;
-using Domain.Services.Jobs.Interfaces;
-using Domain.Services.Member.Interface;
-using Domain.Services.Member.Repository;
-using Domain.Services.Member.Service;
+using Domain.Services.JobSeeker.Profile.Interface;
+using Domain.Services.JobSeeker.Profile.Repository;
+using Domain.Services.JobSeeker.Profile.Service;
 using Microsoft.EntityFrameworkCore;
 using Domain.Services.Jobs.Interfaces;
 using Domain.Services.Jobs;
@@ -30,6 +26,10 @@ using Microsoft.EntityFrameworkCore.Migrations.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Domain.Services.Auth.Interface;
 using Domain.Services.Auth;
+using Domain.Services;
+using Domain.Services.Member.Interface;
+using Domain.Services.Member.Repository;
+using Domain.Services.Member.Service;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
@@ -78,6 +78,21 @@ namespace JOB_PORTAL_SYSTEM.Extensions
           
 
 
+
+
+
+
+            services.AddScoped<IJobSeekerProfileRepository, JobSeekerProfileRepository>();
+
+            services.AddScoped<IJobSeekerProfileService, JobSeekerProfileService>();
+
+
+
+            //services.AddScoped<IAuthUserRepository, AuthUserRepository>();
+            //services.AddScoped<ISignUpRequestRepository, SignUpRequestRepository>();
+            //services.AddScoped<ISignUpRequestService, SignUpRequestService>();
+            //services.AddScoped<ILoginRequestRepository, LoginRequestRepository>();
+            //services.AddScoped<ILoginRequestService, LoginRequestService>();
             services.AddScoped<IAuthService, AuthService>();
             
            

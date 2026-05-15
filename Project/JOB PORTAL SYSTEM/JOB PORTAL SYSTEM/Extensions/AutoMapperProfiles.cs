@@ -9,6 +9,10 @@ using Domain.Services.Job_Provider.Job_Service.DTO;
 using Domain.Services.Job_Provider.Login.Dto;
 using Domain.Services.Job_Seeker.Applications.DTOs;
 using Domain.Services.Job_Seeker.Interviews.DTOs;
+using Domain.Service.Login.DTO;
+using Domain.Service.SignUp.DTO;
+using Domain.Services.JobSeeker.Profile.DTO;
+using JOB_PORTAL_SYSTEM.API.JobSeeker.RequestObjects;
 
 using Domain.Services.Job_Seeker.SavedJobs.DTOs;
 
@@ -145,6 +149,9 @@ namespace JOB_PORTAL_SYSTEM.Extensions
                 .ForMember(dest => dest.CompanyName,
                 opt => opt.MapFrom(src => src.Job.Company.CompanyName))
 
+            CreateMap<AuthUser, LoginrequestDto>().ReverseMap();
+
+            CreateMap<CreateJobSeekerProfileDto, JobSeekerProfile>();
                 .ForMember(dest => dest.Location,
                 opt => opt.MapFrom(src => src.Job.Location.Name));
         }
