@@ -32,3 +32,5 @@ namespace Domain.Services.Auth.DTO
         public Role Role { get; set; }
     }
 }
+
+
