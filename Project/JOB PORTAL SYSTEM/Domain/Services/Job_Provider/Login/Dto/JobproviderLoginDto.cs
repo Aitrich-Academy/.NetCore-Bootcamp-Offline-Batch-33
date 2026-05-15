@@ -6,23 +6,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.Job_Provider.Login.Dto
-{
-    public class JobproviderLoginDto
-    {
-        public Guid Id { get; set; }
-        public Guid JobProviderId { get; set; }
 
+namespace Domain.Services.Auth.DTO
+{
+    public class SignupRequestDTO
+    {
+        [Required]
         public string UserName { get; set; }
+
+        [Required]
         public string FirstName { get; set; }
+
+        [Required]
         public string LastName { get; set; }
-        public string PhoneNumber { get; set; }
+
+
+        [Required]
+        public string Phone { get; set; }
+
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-        public string Password { get; set; }
-        public Role Role { get; set; }
 
-        public string Token { get; set; }
+        [Required]
+        public Role Role { get; set; }
     }
 }
