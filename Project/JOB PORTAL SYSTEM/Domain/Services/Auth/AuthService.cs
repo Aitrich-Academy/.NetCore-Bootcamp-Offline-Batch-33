@@ -19,6 +19,7 @@ namespace Domain.Services.Auth
 
         private readonly IAuthRepository _authUser;
 
+
         public AuthService(
             IAuthRepository repository,
             IMapper mapper,
