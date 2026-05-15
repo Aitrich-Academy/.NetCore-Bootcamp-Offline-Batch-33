@@ -1,4 +1,4 @@
-﻿namespace JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects
+﻿namespace JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject
 {
     public class UpdateCompanyProfileRequest
     {

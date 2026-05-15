@@ -1,10 +1,11 @@
-using Domain.Helpers;
+using Domain.Helper;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using JOB_PORTAL_SYSTEM.Extensions;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,7 +47,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 builder.Services.Configure<MailSettings>(
     builder.Configuration.GetSection("MailSettings")
 );
