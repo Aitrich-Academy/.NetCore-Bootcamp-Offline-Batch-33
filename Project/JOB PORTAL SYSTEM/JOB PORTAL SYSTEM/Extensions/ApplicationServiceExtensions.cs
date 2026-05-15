@@ -106,10 +106,10 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddHttpContextAccessor();
 
             //services.AddAutoMapper(map => map.AddProfile(new UseProfileMapping()));
-           // services.Configure<Mailsettings>(configuration.GetSection("MailSettings"));
+            // services.Configure<Mailsettings>(configuration.GetSection("MailSettings"));
             //services.AddHttpContextAccessor();
             //services.AddAutoMapper(map => map.AddProfile(new AutoMapperProfiles()));
-            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddHttpContextAccessor();
 
