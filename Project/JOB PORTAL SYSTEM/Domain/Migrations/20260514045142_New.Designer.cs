@@ -12,13 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514082426_hiiiii.Designer.cs
-    [Migration("20260514082426_hiiiii")]
-    partial class hiiiii
+<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.Designer.cs
+    [Migration("20260513061949_init")]
+    partial class init
 ========
-    [Migration("20260514054528_Newest")]
-    partial class Newest
->>>>>>>> f3440fd38c67e6901e6c39652dd70e36101788fc:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514054528_Newest.Designer.cs
+    [Migration("20260514045142_New")]
+    partial class New
+>>>>>>>> 9dba2f9806ee6806fcb58b89587d77a4501c77fd:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514045142_New.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -324,7 +324,7 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514082426_hiiiii.Designer.cs
+<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.Designer.cs
                     b.Property<Guid?>("AuthUserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -373,7 +373,7 @@ namespace Domain.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
->>>>>>>> f3440fd38c67e6901e6c39652dd70e36101788fc:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514054528_Newest.Designer.cs
+>>>>>>>> 9dba2f9806ee6806fcb58b89587d77a4501c77fd:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514045142_New.Designer.cs
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -574,9 +574,6 @@ namespace Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -718,7 +715,7 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Models.JobSeeker", b =>
                 {
-<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514082426_hiiiii.Designer.cs
+<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.Designer.cs
                     b.HasOne("Domain.Models.AuthUser", null)
                         .WithMany("JobSeekers")
                         .HasForeignKey("AuthUserId");
@@ -730,7 +727,7 @@ namespace Domain.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
->>>>>>>> f3440fd38c67e6901e6c39652dd70e36101788fc:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514054528_Newest.Designer.cs
+>>>>>>>> 9dba2f9806ee6806fcb58b89587d77a4501c77fd:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514045142_New.Designer.cs
                 });
 
             modelBuilder.Entity("Domain.Models.JobSeekerProfile", b =>

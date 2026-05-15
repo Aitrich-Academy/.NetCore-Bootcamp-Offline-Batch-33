@@ -6,11 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Domain.Migrations
 {
     /// <inheritdoc />
-<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514082426_hiiiii.cs
-    public partial class hiiiii : Migration
-========
-    public partial class init : Migration
->>>>>>>> f3440fd38c67e6901e6c39652dd70e36101788fc:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.cs
+    public partial class New : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -92,60 +88,20 @@ namespace Domain.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Role = table.Column<int>(type: "int", nullable: false),
-                    AuthUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Role = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_JobSeekers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_JobSeekers_AuthUsers_AuthUserId",
-                        column: x => x.AuthUserId,
+                        name: "FK_JobSeekers_AuthUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AuthUsers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260514082426_hiiiii.cs
-========
-                name: "Companies",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProviderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IndustryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    LocationId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsVerified = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Companies", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Companies_Industries_IndustryId",
-                        column: x => x.IndustryId,
-                        principalTable: "Industries",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Companies_JobProviders_ProviderId",
-                        column: x => x.ProviderId,
-                        principalTable: "JobProviders",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Companies_Locations_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Locations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
->>>>>>>> f3440fd38c67e6901e6c39652dd70e36101788fc:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260513061949_init.cs
                 name: "JobSeekerProfiles",
                 columns: table => new
                 {
@@ -562,9 +518,9 @@ namespace Domain.Migrations
                 column: "QualificationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_JobSeekers_AuthUserId",
+                name: "IX_JobSeekers_UserId",
                 table: "JobSeekers",
-                column: "AuthUserId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_JobSeekerSkills_JobSeekerId",

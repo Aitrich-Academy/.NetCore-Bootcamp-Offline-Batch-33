@@ -7,6 +7,11 @@ using Domain.Services.Job_Seeker.Applications.DTOs;
 using Domain.Services.Job_Seeker.Login.DTO;
 using Domain.Services.Job_Seeker.SavedJobs.DTOs;
 using JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects;
+using Domain.Services.Job_Provider.CompanyProfile.DTO;
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using Domain.Services.Admin.CompanyVerification.Dto;
+using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
+using Domain.Services.Admin.Skills.Dto;
 using Domain.Services.Jobs.DTOs;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
@@ -20,6 +25,33 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             CreateMap<JobSeekerRequestDTO, SignupRequest>().ReverseMap();
 
             CreateMap<AuthUser, LoginrequestDto>().ReverseMap();
+
+            CreateMap<CreateCompanyProfileRequest, Company>();
+            CreateMap<UpdateCompanyProfileRequest, Company>();
+            CreateMap<Company, CompanyProfileDto>();
+            CreateMap<AuthUser, JobProvider>().ReverseMap();
+
+            CreateMap<Job, JobDto>();
+            CreateMap<CreateJobDto, Job>();
+            CreateMap<UpdateJobDto, Job>();
+
+            CreateMap<Company, VerifyCompanyDto>().ReverseMap();
+            CreateMap<VerifyCompanyDto, VerifyCompanyRequest>().ReverseMap();
+
+            CreateMap<Company, CompanyProfilesDto>().ReverseMap();
+            CreateMap<CompanyProfilesDto, CompanyProfileRequest>().ReverseMap();
+
+            CreateMap<Job, JobStatsDto>().ReverseMap();
+            CreateMap<JobStatsDto, JobStatsRequest>().ReverseMap();
+
+            CreateMap<Skill, AddSkillDto>().ReverseMap();
+            CreateMap<AddSkillDto, AddSkillRequest>().ReverseMap();
+
+            CreateMap<Skill, UpdateSkillDto>().ReverseMap();
+            CreateMap<UpdateSkillDto, UpdateSkillRequest>().ReverseMap();
+
+            CreateMap<Skill, DeleteSkillDto>().ReverseMap();
+            CreateMap<DeleteSkillDto, DeleteSkillRequest>().ReverseMap();
 
             CreateMap<ApplyJobDto, JobApplication>();
 

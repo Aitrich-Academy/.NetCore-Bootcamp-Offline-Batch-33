@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
 {
-    [Route("api/v1/jobs")]
+    [Route("api/[controller]")]
     [ApiController]
     public class JobsController : ControllerBase
     {
@@ -40,7 +40,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
             }
         }
 
-        [HttpGet("Search")]
+        [HttpGet("search")]
         public async Task<IActionResult> SearchJobs([FromQuery] string? keyword)
         {
             try
