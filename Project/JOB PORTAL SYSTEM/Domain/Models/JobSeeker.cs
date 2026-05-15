@@ -17,6 +17,9 @@ namespace Domain.Models
         [Required]
         public string Username { get; set; }
 
+        public AuthUser User { get; set; }
+
+
         [Required]
         public string FirstName { get; set; }
 

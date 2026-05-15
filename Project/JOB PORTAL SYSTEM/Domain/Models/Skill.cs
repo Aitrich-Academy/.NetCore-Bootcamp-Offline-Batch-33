@@ -13,5 +13,6 @@ namespace Domain.Models
 
         //public ICollection<JobSeekerSkills> JobSeekerSkills { get; set; } = new List<JobSeekerSkills>();
 
+
     }
 }

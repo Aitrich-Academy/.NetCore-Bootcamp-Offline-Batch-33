@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Domain.Services.Job_Provider.CompanyProfile.DTO
+{
+    public class CreateCompanyProfileRequestDTO
+    {
+
+        public string CompanyName { get; set; }
+        public string Description { get; set; }
+        public Guid IndustryId { get; set; }
+        public Guid LocationId { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+
+     
+
+
+    }
+}
