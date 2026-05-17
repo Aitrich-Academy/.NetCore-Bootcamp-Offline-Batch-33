@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Enums;
 using Domain.Models;
 using Domain.Services.Job_Provider.Job_Service.DTO;
 using Domain.Services.Jobs.DTOs;
@@ -120,6 +121,26 @@ namespace Domain.Services.Jobs
             {
                 // Log the exception (not implemented here)
                 throw new ApplicationException("An error occurred while deleting the job.", ex);
+            }
+        }
+        public async Task<JobStatsDto> GetJobStatsAsync(Guid companyId)
+        {
+            try
+            {
+                return new JobStatsDto
+                {
+                    TotalJobs = await _repo.GetTotalJobsAsync(companyId),
+                    CreatedJobs = await _repo.GetCountByStatusAsync(companyId, JobStatus.Created),
+                    PendingJobs = await _repo.GetCountByStatusAsync(companyId, JobStatus.Pending),
+                    ActiveJobs = await _repo.GetCountByStatusAsync(companyId, JobStatus.Active),
+                    ClosedJobs = await _repo.GetCountByStatusAsync(companyId, JobStatus.Closed),
+                    VerifiedJobs = await _repo.GetCountByStatusAsync(companyId, JobStatus.Verified)
+                };
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (not implemented here)
+                throw new ApplicationException("An error occurred while retrieving job statistics.", ex);
             }
         }
     }
