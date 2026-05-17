@@ -78,6 +78,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
         {
             try
             {
+
                 var companies = await companyRepository.GetAllByUserIdAsync(providerId);
 
                 return companies.Select(c => mapper.Map<CompanyProfileDto>(c)).ToList();

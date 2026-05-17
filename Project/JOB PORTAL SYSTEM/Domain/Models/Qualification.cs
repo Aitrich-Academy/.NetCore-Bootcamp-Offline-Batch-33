@@ -13,7 +13,7 @@ namespace Domain.Models
 
         public string Description { get; set; }
 
-        public ICollection<JobSeekerQualification> JobSeekerQualifications { get; set; } = new List<JobSeekerQualification>();
+        
 
     }
 }
