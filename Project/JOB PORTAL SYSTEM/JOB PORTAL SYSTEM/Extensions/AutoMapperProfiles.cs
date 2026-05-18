@@ -148,9 +148,9 @@ namespace JOB_PORTAL_SYSTEM.Extensions
 
             CreateMap<AuthUser, LoginRequestDTO>().ReverseMap();
 
-            CreateMap<CreateJobSeekerProfileDto, JobSeekerProfile>()
-                .ForMember(dest => dest.ProfileName,
-                opt => opt.MapFrom(src => src.SkillIds.Location.Name));
+            CreateMap<CreateJobSeekerProfileDto, JobSeekerProfile>();
+                //.ForMember(dest => dest.ProfileName,
+                //opt => opt.MapFrom(src => src.SkillIds.Location.Name));
         }
     }
 }
