@@ -1,10 +1,10 @@
-﻿using Domain.Services.Job_Seeker.Jobs.Interfaces;
+﻿using Domain.Services.Jobs.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
 {
-    [Route("api/v1/jobs")]
+    [Route("api/[controller]")]
     [ApiController]
     public class JobsController : ControllerBase
     {
