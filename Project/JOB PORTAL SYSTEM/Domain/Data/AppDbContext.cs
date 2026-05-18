@@ -15,6 +15,7 @@ namespace Domain.Data
         }
 
         public DbSet<AuthUser> AuthUsers { get; set; }
+
         public DbSet<JobProvider> JobProviders { get; set; }
         public DbSet<SignupRequest> SignupRequests { get; set; }
         public DbSet<Company> Companies { get; set; }
@@ -22,12 +23,12 @@ namespace Domain.Data
         public DbSet<Industry> Industries { get; set; }
         public DbSet<JobSeeker> JobSeekers { get; set; }
         public DbSet<JobSeekerProfile> JobSeekerProfiles { get; set; }
-        public DbSet<JobSeekerQualification> JobSeekerQualifications { get; set; }
+        //public DbSet<JobSeekerQualification> JobSeekerQualifications { get; set; }
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<Qualification> Qualifications { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public DbSet<JobSeekerSkills> JobSeekerSkills { get; set; }
+        //public DbSet<JobSeekerSkills> JobSeekerSkills { get; set; }
         public DbSet<Interview> Interviews { get; set; }
         public DbSet<SavedJob> SavedJobs { get; set; }
         public DbSet<Job> Jobs { get; set; }

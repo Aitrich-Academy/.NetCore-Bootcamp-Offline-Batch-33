@@ -10,9 +10,9 @@ namespace Domain.Services.Job_Provider.Job_Service.DTO
     public class JobDto
     {
         public Guid Id { get; set; }
-        public Guid CompanyId { get; set; }
-        public Guid CategoryId { get; set; }
-        public Guid LocationId { get; set; }
+        public string Company { get; set; }
+        public string Category { get; set; }
+        public string Location { get; set; }
 
         public string Title { get; set; }
         public string Description { get; set; }

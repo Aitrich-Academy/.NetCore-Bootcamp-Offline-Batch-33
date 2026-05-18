@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Domain.Services.Auth.DTO
 {
     public class SignupRequestDTO
@@ -19,6 +18,7 @@ namespace Domain.Services.Auth.DTO
 
         [Required]
         public string LastName { get; set; }
+
 
         [Required]
         public string Phone { get; set; }

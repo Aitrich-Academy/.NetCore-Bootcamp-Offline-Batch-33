@@ -1,5 +1,5 @@
-﻿using Domain.Member.DTO;
-using Domain.Member.Interface;
+﻿using Domain.Services.Member.DTO;
+using Domain.Services.Member.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_ProviderModule
