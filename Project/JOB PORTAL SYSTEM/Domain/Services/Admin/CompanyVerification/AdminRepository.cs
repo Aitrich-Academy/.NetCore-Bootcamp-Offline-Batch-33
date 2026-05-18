@@ -1,13 +1,7 @@
 ﻿using Domain.Data;
 using Domain.Models;
-using Domain.Services.Admin.CompanyVerification.Dto;
 using Domain.Services.Admin.CompanyVerification.Interface;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Services.Admin.CompanyVerification
 {

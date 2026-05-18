@@ -1,11 +1,6 @@
 ﻿using Domain.Data;
-using Domain.Services.Admin.Location.Dto;
-using Domain.Services.Admin.Location.Interface;
-using Domain.Services.Admin.Login.Interface;
-using Domain.Services.Admin.Logout.Interface;
-using Domain.Services.Admin.Qualification.Dto;
-using Domain.Services.Admin.Qualification.Interface;
-using Domain.Services.Admin.Users.Interface;
+using Domain.Services.Admin.Dto;
+using Domain.Services.Admin.Interface;
 using JOB_PORTAL_SYSTEM.Api.Admin.RequestObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,19 +11,17 @@ namespace JOB_PORTAL_SYSTEM.Api.Admin
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly IAdminService _adminService;
+        private readonly IAdminServices _adminService;
         private readonly IUserService _userService;
         private readonly ILocationRepository _locationRepository;
         private readonly IQualificationService _qualificationService;
-        private readonly ILogoutService _logoutService;
         private readonly AppDbContext _context;
-        public AdminController(IAdminService adminService, IUserService userService, ILocationRepository locationRepository, IQualificationService qualificationService, ILogoutService logoutService, AppDbContext context)
+        public AdminController(IAdminServices adminService, IUserService userService, ILocationRepository locationRepository, IQualificationService qualificationService, AppDbContext context)
         {
             _adminService = adminService;
             _userService = userService;
             _locationRepository = locationRepository;
             _qualificationService = qualificationService;
-            _logoutService = logoutService;
             _context = context;
         }
 

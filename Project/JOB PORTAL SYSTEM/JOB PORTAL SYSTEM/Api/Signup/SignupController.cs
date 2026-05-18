@@ -1,7 +1,7 @@
 ﻿using Domain.Services.Auth.Interface;
 using Domain.Services.Auth.DTO;
 using Microsoft.AspNetCore.Mvc;
-using Domain.Services.Job_Provider.Login.Dto;
+
 
 namespace JOB_PORTAL_SYSTEM.Api.Signup
 {
@@ -90,7 +90,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Signup
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(
-            LoginRequestDTO dto)
+            LoginrequestDto dto)
         {
             try
             {

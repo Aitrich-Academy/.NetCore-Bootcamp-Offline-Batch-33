@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models
 {
@@ -14,12 +9,6 @@ namespace Domain.Models
         [ForeignKey("JobProvider")]
         public Guid? ProviderId { get; set; }
         public JobProvider? JobProvider { get; set; }
-<<<<<<< HEAD
-       
-=======
-
->>>>>>> c3a084b795415919ea2d0ebc20713324eea677b3
-        [ForeignKey("Industry")]
         public Guid? IndustryId { get; set; }
         public Industry? Industry { get; set; }
 
@@ -33,10 +22,6 @@ namespace Domain.Models
         public string Address { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool IsVerified { get; set; }
-<<<<<<< HEAD
-=======
-
->>>>>>> c3a084b795415919ea2d0ebc20713324eea677b3
         public ICollection<CompanyMember> Members { get; set; } = new List<CompanyMember>();
         public ICollection<Job> Jobs { get; set; } = new List<Job>();
 

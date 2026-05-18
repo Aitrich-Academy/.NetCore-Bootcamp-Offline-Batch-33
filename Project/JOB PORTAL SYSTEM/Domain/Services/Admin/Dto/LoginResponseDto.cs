@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.Auth.DTO
+namespace Domain.Services.Admin.Dto
 {
-    public class LoginrequestDto
+    public class LoginResponseDto
     {
         public string Email { get; set; }
-
         public string Password { get; set; }
     }
 }

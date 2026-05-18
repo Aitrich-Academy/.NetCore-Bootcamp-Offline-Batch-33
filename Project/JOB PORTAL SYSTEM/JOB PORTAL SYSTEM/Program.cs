@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddApplicationServiceExtension(builder.Configuration);
+builder.Services.AddApplicationServiceExtension(builder.Configuration);
 
 //var key = Encoding.UTF8.GetBytes(builder.Configuration["AuthSettings:Token"]);
 //builder.Services.AddAuthentication(options =>
@@ -108,8 +108,7 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
-builder.Services.AddApplicationServiceExtension(
-    builder.Configuration);
+//builder.Services.AddApplicationServiceExtension(builder.Configuration);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

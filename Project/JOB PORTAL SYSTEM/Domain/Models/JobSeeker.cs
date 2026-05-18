@@ -12,11 +12,7 @@ namespace Domain.Models
     {
         public Guid Id { get; set; }
 
-        [ForeignKey(nameof(AuthUser))]
-<<<<<<< HEAD
-        public Guid AuthUserId { get; set; } // Foreign key to AuthUser
-        public AuthUser AuthUser { get; set; }
-=======
+
         public Guid UserId { get; set; } // Foreign key to SystemUser
         [Required]
         public string Username { get; set; }
@@ -39,7 +35,6 @@ namespace Domain.Models
 
         
 
->>>>>>> c3a084b795415919ea2d0ebc20713324eea677b3
         public JobSeekerProfile Profile { get; set; }
 
         public Resume Resume { get; set; }

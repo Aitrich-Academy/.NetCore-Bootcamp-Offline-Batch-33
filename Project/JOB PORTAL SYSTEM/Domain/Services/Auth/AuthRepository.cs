@@ -59,7 +59,7 @@ namespace Domain.Services.Auth
             await _context.SaveChangesAsync();
         }
 
-        public async Task AddJobSeeker(JobSeeker seeker)
+        public async Task AddJobSeeker(Domain.Models.JobSeeker seeker)
         {
             await _context.JobSeekers.AddAsync(seeker);
 
@@ -73,7 +73,7 @@ namespace Domain.Services.Auth
             await _context.SaveChangesAsync();
         }
 
-        public async Task<JobSeeker> GetJobSeekerByUserId(Guid userId)
+        public async Task<Domain.Models.JobSeeker> GetJobSeekerByUserId(Guid userId)
         {
             return await _context.JobSeekers
                 .FirstOrDefaultAsync(x => x.UserId == userId);

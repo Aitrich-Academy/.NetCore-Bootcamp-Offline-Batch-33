@@ -2,11 +2,7 @@
 using Domain.Models;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Domain.Services.Job_Provider.CompanyProfile
 {
@@ -17,7 +13,6 @@ namespace Domain.Services.Job_Provider.CompanyProfile
         {
             this.context = context;
         }
-
         public async Task<Company> AddAsync(Company company)
         {
             try
@@ -44,9 +39,9 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             }
             catch (Exception ex)
             {
-                // Log the exception (you can use a logging framework here)
+                
                 Console.WriteLine($"Error adding company: {ex.Message}");
-                throw; // Re-throw the exception after logging
+                throw; 
             }
         }
 
@@ -111,9 +106,9 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             }
             catch (Exception ex)
             {
-                // Log the exception (you can use a logging framework here)
+                
                 Console.WriteLine($"Error updating company: {ex.Message}");
-                throw; // Re-throw the exception after logging
+                throw; 
             }
         }
 

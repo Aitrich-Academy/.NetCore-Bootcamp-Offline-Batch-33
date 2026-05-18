@@ -3,6 +3,7 @@ using Domain.Models;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.Job_Service.DTO;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
@@ -10,7 +11,7 @@ namespace JOB_PORTAL_SYSTEM.Extensions
     {
         public UseProfileMapping()
         {
-            CreateMap<Domain.Services.Job_Provider.CompanyProfile.DTO.CreateCompanyProfileRequest, Company>();
+            CreateMap<CreateCompanyProfileRequest, Company>();
             CreateMap<UpdateCompanyProfileRequest, Company>();
             CreateMap<Company, CompanyProfileDto>();
             CreateMap<AuthUser, JobProvider>().ReverseMap();
