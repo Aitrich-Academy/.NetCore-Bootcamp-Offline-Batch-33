@@ -106,7 +106,7 @@ namespace Domain.Services.Auth
 
             if (signup.Role == Role.JobSeeker)
             {
-                JobSeeker seeker = new JobSeeker
+                Domain.Models.JobSeeker seeker = new Domain.Models.JobSeeker
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
