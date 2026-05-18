@@ -17,6 +17,9 @@ namespace Domain.Models
         [Required]
         public string Username { get; set; }
 
+        public AuthUser User { get; set; }
+
+
         [Required]
         public string FirstName { get; set; }
 
@@ -30,14 +33,14 @@ namespace Domain.Models
         public string Email { get; set; }
         public int Role { get; set; }
 
-        
+
 
         public JobSeekerProfile Profile { get; set; }
 
         public Resume Resume { get; set; }
         public ICollection<JobApplication> Applications { get; set; } = new List<JobApplication>();
-        public ICollection<Qualification> Qualifications { get; set; } = new List<Qualification>();
-        public ICollection<JobSeekerSkills> Skills { get; set; } = new List<JobSeekerSkills>();
+
+        //public ICollection<JobSeekerSkills> Skills { get; set; } = new List<JobSeekerSkills>();
         public ICollection<SavedJob> SavedJobs { get; set; } = new List<SavedJob>();
     }   
 }

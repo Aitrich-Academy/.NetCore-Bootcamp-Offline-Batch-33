@@ -1,7 +1,7 @@
 
 using Domain.Data;
 using Domain.Services.Job_Provider.Interviews;
-using Domain.Services .Job_Provider .Interviews.Interface;
+using Domain.Services.Job_Provider.Interviews.Interface;
 using Domain.Services;
 
 using Domain;
@@ -27,6 +27,12 @@ using Microsoft.EntityFrameworkCore;
 using Domain.Services.Job_Provider.Login;
 using Domain.Services.Job_Provider.Login.Interface;
 using Microsoft.EntityFrameworkCore.Migrations.Internal;
+using Domain.Services.Job_Provider.Candidate.Interface;
+using Domain.Services.Job_Provider.Candidate;
+using Domain.Services.Job_Provider.ViewJobs.Interface;
+using Domain.Services.Job_Provider.ViewJobs;
+using Domain.Services.Job_Provider.ViewCompanyApplications.Interface;
+using Domain.Services.Job_Provider.ViewCompanyApplications;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
@@ -86,7 +92,16 @@ namespace JOB_PORTAL_SYSTEM.Extensions
 
             services.AddScoped<Domain.Services.Job_Seeker.Applications.Interfaces.IJobApplicationRepository,Domain.Services.Job_Seeker.Applications.JobApplicationRepository>();
 
-            
+            services.AddScoped<ICandidateService, CandidateService>();
+            services .AddScoped <ICandidateRepository , CandidateRepository>();
+
+            services.AddScoped<IViewJobRepository, ViewJobRepository>();
+            services.AddScoped<IViewJobService, ViewJobService>();
+
+            services.AddScoped<IApplicationRepository, ApplicationRepository>();
+            services .AddScoped <IApplicationService , ApplicationService>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddHttpContextAccessor();
 

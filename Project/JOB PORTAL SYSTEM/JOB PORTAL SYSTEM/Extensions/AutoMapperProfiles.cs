@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using Domain.Models;
+using Domain.Services.Job_Provider.Candidate.Dto;
 using Domain.Services.Job_Provider.Job_Service.DTO;
-using Domain.Services.Job_Seeker.Interviews.DTOs;
-using Domain.Services.Job_Seeker.SignUp.DTO;
+using Domain.Services.Job_Provider.ViewCompanyApplications.Dto;
+using Domain.Services.Job_Provider.ViewJobs.Dto;
 using Domain.Services.Job_Seeker.Applications.DTOs;
+using Domain.Services.Job_Seeker.Interviews.DTOs;
+using Domain.Services.Job_Seeker.Jobs.DTOs;
 using Domain.Services.Job_Seeker.Login.DTO;
 using Domain.Services.Job_Seeker.SavedJobs.DTOs;
-using Domain.Services.Job_Seeker.Jobs.DTOs;
+using Domain.Services.Job_Seeker.SignUp.DTO;
 using JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
@@ -85,6 +88,46 @@ namespace JOB_PORTAL_SYSTEM.Extensions
 
                 .ForMember(dest => dest.Location,
                 opt => opt.MapFrom(src => src.Job.Location.Name));
+
+
+            CreateMap<JobSeeker, CandidateDto>()
+                .ForMember(dest => dest.CandidateId,
+                opt => opt.MapFrom(src => src.Id))
+
+                .ForMember(dest => dest.CandidateName,
+                opt => opt.MapFrom(src =>
+                    src.FirstName + " " + src.LastName))
+
+                .ForMember(dest => dest.ProfileName,
+                opt => opt.MapFrom(src => src.Profile.ProfileName))
+
+                .ForMember(dest => dest.ProfileDescription,
+                opt => opt.MapFrom(src => src.Profile.ProfileDescription))
+
+                .ForMember(dest => dest.Experience,
+                opt => opt.MapFrom(src => src.Profile.Experience));
+
+
+            CreateMap<Job, ViewCompanyJobDto>()
+                .ForMember(dest => dest.JobId,
+                opt => opt.MapFrom(src => src.Id))
+
+                .ForMember(dest => dest.CategoryName,
+                opt => opt.MapFrom(src => src.Category.Name))
+
+                .ForMember(dest => dest.LocationName,
+                opt => opt.MapFrom(src => src.Location.Name));
+
+            CreateMap<JobApplication, CompanyApplicationDto>()
+    .ForMember(dest => dest.ApplicationId,
+        opt => opt.MapFrom(src => src.Id))
+
+    .ForMember(dest => dest.JobTitle,
+        opt => opt.MapFrom(src => src.Job.Title))
+
+    .ForMember(dest => dest.CandidateName,
+        opt => opt.MapFrom(src =>
+            src.JobSeeker.FirstName + " " + src.JobSeeker.LastName));
         }
     }
 }
