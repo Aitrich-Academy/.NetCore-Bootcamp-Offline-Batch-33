@@ -1,4 +1,4 @@
-using Domain.Helpers;
+using Domain.Helper;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using JOB_PORTAL_SYSTEM.Extensions;
