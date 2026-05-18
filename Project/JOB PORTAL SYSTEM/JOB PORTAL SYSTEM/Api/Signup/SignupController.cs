@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Api.Signup
 {
+    [Tags("01-Signup")]
     [Route("api/[controller]")]
     [ApiController]
     public class SignupController : ControllerBase
