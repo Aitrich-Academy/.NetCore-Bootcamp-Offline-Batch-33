@@ -54,9 +54,6 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
 
-            
-            services.AddScoped<IJobsRepository, JobsRepository>();
-            services.AddScoped<IJobsService, JobsService>();
 
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IAdminService, AdminService>();

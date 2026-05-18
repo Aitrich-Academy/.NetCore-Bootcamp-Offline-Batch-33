@@ -4,7 +4,7 @@ using Domain.Helper;
 using Domain.Models;
 using Domain.Services.Auth.DTO;
 using Domain.Services.Auth.Interface;
-using Domain.Services.Job_Provider.Login.Dto;
+
 
 
 namespace Domain.Services.Auth
@@ -107,7 +107,7 @@ namespace Domain.Services.Auth
 
             if (signup.Role == Role.JobSeeker)
             {
-                JobSeeker seeker = new JobSeeker
+                Domain.Models.JobSeeker seeker = new Domain.Models.JobSeeker
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,

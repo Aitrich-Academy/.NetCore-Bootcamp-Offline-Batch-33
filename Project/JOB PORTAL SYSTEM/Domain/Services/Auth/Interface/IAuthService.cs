@@ -1,5 +1,4 @@
 ﻿using Domain.Services.Auth.DTO;
-using Domain.Services.Job_Provider.Login.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
