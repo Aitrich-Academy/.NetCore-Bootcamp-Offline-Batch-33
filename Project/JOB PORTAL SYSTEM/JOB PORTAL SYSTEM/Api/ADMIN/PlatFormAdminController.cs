@@ -1,6 +1,7 @@
 ﻿using Domain.Services.Admin.CompanyVerification.Interface;
 using Domain.Services.Admin.Skills.Dto;
 using Domain.Services.Admin.Skills.Interfaces;
+using Domain.Services.Jobs.Interfaces;
 using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +14,10 @@ namespace JOB_PORTAL_SYSTEM.Api.ADMIN
     public class PlatFormAdminController : ControllerBase
     {
         private readonly IAdminService _companyService;
-        private readonly IJobsService _jobsService;
+        private readonly IJobService _jobsService;
         private readonly ISkillService _skillService;
 
-        public PlatFormAdminController(IAdminService companyService, IJobsService jobsService, ISkillService skillService)
+        public PlatFormAdminController(IAdminService companyService, IJobService jobsService, ISkillService skillService)
         {
             _companyService = companyService;
             _jobsService = jobsService;

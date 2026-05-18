@@ -54,9 +54,6 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
 
-            
-            services.AddScoped<IJobsRepository, JobsRepository>();
-            services.AddScoped<IJobsService, JobsService>();
 
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IAdminService, AdminService>();
@@ -121,10 +118,10 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddHttpContextAccessor();
 
             //services.AddAutoMapper(map => map.AddProfile(new UseProfileMapping()));
-           // services.Configure<Mailsettings>(configuration.GetSection("MailSettings"));
+            // services.Configure<Mailsettings>(configuration.GetSection("MailSettings"));
             //services.AddHttpContextAccessor();
             //services.AddAutoMapper(map => map.AddProfile(new AutoMapperProfiles()));
-            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddHttpContextAccessor();
 

@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Domain.Enums;
+using Domain.Models;
 
 namespace Domain.Services.Jobs.Interfaces
 {
@@ -11,5 +12,7 @@ namespace Domain.Services.Jobs.Interfaces
         Task<IEnumerable<Job>> GetAllJobsAsync();
         Task<Job> UpdateJobAsync(Job job);
         Task<bool> DeleteJobAsync(Guid jobId);
+        Task<int> GetTotalJobsAsync(Guid companyId);
+        Task<int> GetCountByStatusAsync(Guid companyId, JobStatus status);
     }
 }
