@@ -6,7 +6,6 @@ using Domain.Services.Auth.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.Interviews.Dto;
 using Domain.Services.Job_Provider.Job_Service.DTO;
-using Domain.Services.Job_Provider.Login.Dto;
 using Domain.Services.Job_Seeker.Applications.DTOs;
 using Domain.Services.Job_Seeker.Interviews.DTOs;
 
@@ -14,7 +13,6 @@ using Domain.Services.Job_Seeker.SavedJobs.DTOs;
 
 using Domain.Services.Jobs.DTOs;
 using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
-using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
 
 using JOB_PORTAL_SYSTEM.API.Interviews.RequestObjects;

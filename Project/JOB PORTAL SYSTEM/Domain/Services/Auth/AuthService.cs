@@ -4,7 +4,6 @@ using Domain.Helper;
 using Domain.Models;
 using Domain.Services.Auth.DTO;
 using Domain.Services.Auth.Interface;
-using Domain.Services.Job_Provider.Login.Dto;
 
 
 namespace Domain.Services.Auth
