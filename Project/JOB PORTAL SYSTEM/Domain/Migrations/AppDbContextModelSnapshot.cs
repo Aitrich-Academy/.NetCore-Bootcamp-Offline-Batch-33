@@ -11,7 +11,12 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
+<<<<<<<< HEAD:Project/JOB PORTAL SYSTEM/Domain/Migrations/AppDbContextModelSnapshot.cs
     partial class AppDbContextModelSnapshot : ModelSnapshot
+========
+    [Migration("20260518045610_init")]
+    partial class init
+>>>>>>>> 19b7b99afeb41c0461bd72577a577ec9411b7950:Project/JOB PORTAL SYSTEM/Domain/Migrations/20260518045610_init.Designer.cs
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
