@@ -19,11 +19,11 @@ namespace Domain.Services.Auth.Interface
 
         Task AddAuthUser(AuthUser user);
 
-        Task AddJobSeeker(JobSeeker seeker);
+        Task AddJobSeeker( Models.JobSeeker seeker);
 
         Task AddJobProvider(JobProvider provider);
 
-        Task<JobSeeker> GetJobSeekerByUserId(Guid userId);
+        Task<Models.JobSeeker> GetJobSeekerByUserId(Guid userId);
 
         Task<JobProvider> GetJobProviderByUserId(Guid userId);
 

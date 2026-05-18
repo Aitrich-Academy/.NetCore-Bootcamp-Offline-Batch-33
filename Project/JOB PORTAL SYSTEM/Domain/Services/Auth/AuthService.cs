@@ -6,6 +6,7 @@ using Domain.Services.Auth.DTO;
 using Domain.Services.Auth.Interface;
 
 
+
 namespace Domain.Services.Auth
 {
     public class AuthService:IAuthService
@@ -106,7 +107,7 @@ namespace Domain.Services.Auth
 
             if (signup.Role == Role.JobSeeker)
             {
-                JobSeeker seeker = new JobSeeker
+               Models. JobSeeker seeker = new Models.JobSeeker
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,

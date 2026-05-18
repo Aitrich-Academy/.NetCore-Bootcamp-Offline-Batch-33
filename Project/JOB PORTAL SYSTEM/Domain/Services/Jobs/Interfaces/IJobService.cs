@@ -12,5 +12,6 @@ namespace Domain.Services.Jobs.Interfaces
         public Task<IEnumerable<JobDto>> GetAllJobsAsync();
         public Task<JobDto> UpdateJobAsync(Guid jobId, UpdateJobDto dto);
         public Task<bool> DeleteJobAsync(Guid jobId);
+        Task<JobStatsDto> GetJobStatsAsync(Guid companyId);
     }
 }

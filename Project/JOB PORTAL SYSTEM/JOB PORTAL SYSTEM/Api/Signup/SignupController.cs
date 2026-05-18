@@ -2,6 +2,7 @@
 using Domain.Services.Auth.DTO;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace JOB_PORTAL_SYSTEM.Api.Signup
 {
     [Route("api/[controller]")]

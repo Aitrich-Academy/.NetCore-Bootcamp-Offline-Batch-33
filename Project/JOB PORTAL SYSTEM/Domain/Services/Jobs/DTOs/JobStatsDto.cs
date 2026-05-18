@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.Admin.CompanyVerification.Dto
+namespace Domain.Services.Jobs.DTOs
 {
     public class JobStatsDto
     {
