@@ -6,7 +6,6 @@ using Domain.Services.Job_Provider.Job_Service.DTO;
 using Domain.Services.Job_Provider.Login.Dto;
 using Domain.Services.Job_Provider.Signup.Dto;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
-using JOB_PORTAL_SYSTEM.API.Interviews.RequestObjects;
 using JOB_PORTAL_SYSTEM.API.JobProvider.RequestObjects;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
