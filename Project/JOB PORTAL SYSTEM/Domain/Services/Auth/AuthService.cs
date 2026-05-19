@@ -107,7 +107,7 @@ namespace Domain.Services.Auth
 
             if (signup.Role == Role.JobSeeker)
             {
-               Models. JobSeeker seeker = new Models.JobSeeker
+                Domain.Models.JobSeeker seeker = new Domain.Models.JobSeeker
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
@@ -146,7 +146,7 @@ namespace Domain.Services.Auth
             return "Account Created Successfully";
         }
 
-        public async Task<LoginDTO> Login(LoginRequestDTO dto)
+        public async Task<LoginDTO> Login(LoginrequestDto dto)
         {
             var user =
                 await _repository.GetUserByEmail(dto.Email);

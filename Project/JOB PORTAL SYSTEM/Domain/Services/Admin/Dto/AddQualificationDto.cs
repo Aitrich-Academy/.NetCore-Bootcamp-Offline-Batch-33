@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.Admin.Skills.Dto
+namespace Domain.Services.Admin.Dto
 {
-    public class AddSkillDto
+    public class AddQualificationDto
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

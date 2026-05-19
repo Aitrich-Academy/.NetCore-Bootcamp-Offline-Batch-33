@@ -1,14 +1,14 @@
 ﻿using Domain.Data;
 using Domain.Models;
-using Domain.Services.Admin.Skills.Dto;
-using Domain.Services.Admin.Skills.Interfaces;
+using Domain.Services.Admin.Dto;
+using Domain.Services.Admin.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.Admin.Skills
+namespace Domain.Services.Admin.Repository
 {
     public class SkillRepository : ISkillRepository
     {

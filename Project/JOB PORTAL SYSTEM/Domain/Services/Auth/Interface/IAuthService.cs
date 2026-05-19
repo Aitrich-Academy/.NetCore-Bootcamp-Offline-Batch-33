@@ -15,7 +15,7 @@ namespace Domain.Services.Auth.Interface
 
         Task<string> SetPassword(Guid signupId, PasswordDTO dto);
 
-        Task<LoginDTO> Login(LoginRequestDTO dto);
+        Task<LoginDTO> Login(LoginrequestDto dto);
 
         Task<string> ForgetPassword(ForgetPasswordDTO dto);
     }
