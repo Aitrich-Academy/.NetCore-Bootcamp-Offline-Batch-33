@@ -11,34 +11,34 @@ namespace JOB_PORTAL_SYSTEM.Api.Admin
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly IAdminServices _adminService;
+        //private readonly IAdminServices _adminService;
         private readonly IUserService _userService;
         private readonly ILocationRepository _locationRepository;
         private readonly IQualificationService _qualificationService;
         private readonly AppDbContext _context;
-        public AdminController(IAdminServices adminService, IUserService userService, ILocationRepository locationRepository, IQualificationService qualificationService, AppDbContext context)
+        public AdminController( IUserService userService, ILocationRepository locationRepository, IQualificationService qualificationService, AppDbContext context)
         {
-            _adminService = adminService;
+            //_adminService = adminService;
             _userService = userService;
             _locationRepository = locationRepository;
             _qualificationService = qualificationService;
             _context = context;
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login(AdminLoginRequestDto dto)
-        {
-            try
-            {
-                var token = await _adminService.LoginAsync(dto.Email, dto.Password);
+        //[HttpPost("login")]
+        //public async Task<IActionResult> Login(AdminLoginRequestDto dto)
+        //{
+        //    try
+        //    {
+        //        var token = await _adminService.LoginAsync(dto.Email, dto.Password);
 
-                return Ok(token);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //        return Ok(token);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
 
         [Authorize(Roles = "Admin")]
         [HttpGet("users")]

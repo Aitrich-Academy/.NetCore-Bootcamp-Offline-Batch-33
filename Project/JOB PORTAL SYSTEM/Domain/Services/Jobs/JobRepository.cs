@@ -1,4 +1,5 @@
 ﻿using Domain.Data;
+using Domain.Enums;
 using Domain.Models;
 using Domain.Services.Jobs.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -160,6 +161,34 @@ namespace Domain.Services.Jobs
             catch (Exception ex)
             {
                 throw new Exception($"Error deleting job: {ex.Message}");
+            }
+        }
+
+        public async Task<int> GetTotalJobsAsync(Guid companyId)
+        {
+            try
+            {
+                return await _context.Jobs
+                    .Where(j => j.CompanyId == companyId)
+                    .CountAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error counting jobs: {ex.Message}");
+            }
+        }
+
+        public async Task<int> GetCountByStatusAsync(Guid companyId, JobStatus status)
+        {
+            try
+            {
+                return await _context.Jobs
+                    .Where(j => j.CompanyId == companyId && j.Status == status)
+                    .CountAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error counting jobs by status: {ex.Message}");
             }
         }
     }

@@ -28,7 +28,9 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
             }
 
             // Get user id from JWT token
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        
+            var userIdClaim = User.FindFirst(ClaimTypes.Sid)?.Value;
+
 
             if (string.IsNullOrEmpty(userIdClaim))
             {
@@ -50,7 +52,9 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
         [HttpGet("get-profile")]
         public async Task<IActionResult> GetProfile()
         {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var userIdClaim = User.FindFirst(ClaimTypes.Sid)?.Value;
+
 
             if (string.IsNullOrEmpty(userIdClaim))
             {
@@ -76,7 +80,8 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
                 return BadRequest(ModelState);
             }
 
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userIdClaim = User.FindFirst(ClaimTypes.Sid)?.Value;
+
 
             if (string.IsNullOrEmpty(userIdClaim))
             {
@@ -96,7 +101,8 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
         [HttpDelete("delete-profile")]
         public async Task<IActionResult> DeleteProfile()
         {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userIdClaim = User.FindFirst(ClaimTypes.Sid)?.Value;
+
 
             if (string.IsNullOrEmpty(userIdClaim))
                 return Unauthorized("User not logged in");

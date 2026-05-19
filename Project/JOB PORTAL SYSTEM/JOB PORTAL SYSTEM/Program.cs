@@ -1,3 +1,4 @@
+using Domain.Helpers;
 using JOB_PORTAL_SYSTEM.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
