@@ -22,7 +22,6 @@ namespace Domain.Models
         [ForeignKey("Resume")]
         public Guid ResumeId { get; set; }
         public Resume Resume { get; set; }
-
         public DateTime AppliedDate { get; set; }
         public ApplicationStatus Status { get; set; }
         public ICollection<Interview> Interviews { get; set; } = new List<Interview>();

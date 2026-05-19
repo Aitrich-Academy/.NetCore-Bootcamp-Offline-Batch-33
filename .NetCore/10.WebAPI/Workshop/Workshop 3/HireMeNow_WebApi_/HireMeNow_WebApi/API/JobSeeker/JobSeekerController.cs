@@ -32,10 +32,8 @@ namespace HireMeNow_WebApi.API.JobSeeker
 			jobSeekerService = _jobSeekerService;
 			loginRequestService = _loginRequestService;
 			mapper = _mapper;
-
-			
-
 		}
+
 		[HttpPost]
 		[Route("job-seeker/signup")]
 		public async Task<ActionResult> createJobSeekerSignupRequest(JobSeekerSignupRequest data)
@@ -46,6 +44,7 @@ namespace HireMeNow_WebApi.API.JobSeeker
 		}
 		[HttpGet]
 		[Route("job-seeker/signup/{jobSeekerSignupRequestId}/verify-email")]
+
 		public async Task<ActionResult> VerifyJobSeekerEmail(Guid jobSeekerSignupRequestId)
 		{
 			var isVerified = await jobSeekerService.VerifyEmailAsync(jobSeekerSignupRequestId);
@@ -81,7 +80,5 @@ namespace HireMeNow_WebApi.API.JobSeeker
 			}
 			return Ok(user);
 		}
-	
-	
 	}
 }

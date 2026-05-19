@@ -23,14 +23,11 @@ namespace Domain.Models
         [ForeignKey("Location")]
         public Guid LocationId { get; set; }
         public Location Location { get; set; }
-
         public string Title { get; set; }
         public string Description { get; set; }
         public int Salary { get; set; }
-
         public JobStatus Status { get; set; }
         public DateTime CreatedAt { get; set; }
-
         public ICollection<JobApplication> Applications { get; set; } = new List<JobApplication>();
         public ICollection<SavedJob> SavedJobs { get; set; } = new List<SavedJob>();
     }

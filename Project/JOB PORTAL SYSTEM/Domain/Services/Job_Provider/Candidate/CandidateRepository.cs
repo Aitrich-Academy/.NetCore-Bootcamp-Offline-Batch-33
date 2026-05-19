@@ -20,7 +20,7 @@ namespace Domain.Services.Job_Provider.Candidate
             _context = context;
         }
 
-        public async Task<List<JobSeeker>> FilterCandidatesAsync(string skill)
+        public async Task<List<Domain.Models.JobSeeker>> FilterCandidatesAsync(string skill)
         {
             var candidates = await _context.JobSeekers
                 .Include(x => x.Profile)
