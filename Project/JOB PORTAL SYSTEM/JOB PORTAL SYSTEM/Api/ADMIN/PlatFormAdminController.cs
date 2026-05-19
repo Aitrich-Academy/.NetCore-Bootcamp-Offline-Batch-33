@@ -1,6 +1,7 @@
 ﻿using Domain.Services.Admin.CompanyVerification.Interface;
 using Domain.Services.Admin.Dto;
 using Domain.Services.Admin.Interface;
+using Domain.Services.Jobs.Interfaces;
 using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -13,13 +14,13 @@ namespace JOB_PORTAL_SYSTEM.Api.ADMIN
     public class PlatFormAdminController : ControllerBase
     {
         private readonly Domain.Services.Admin.CompanyVerification.Interface.IAdminService _companyService;
-        private readonly IJobsService _jobsService;
+        private readonly IJobService _jobService;
         private readonly ISkillService _skillService;
 
-        public PlatFormAdminController(Domain.Services.Admin.CompanyVerification.Interface.IAdminService companyService, IJobsService jobsService, ISkillService skillService)
+        public PlatFormAdminController(Domain.Services.Admin.CompanyVerification.Interface.IAdminService companyService, IJobService jobService, ISkillService skillService)
         {
             _companyService = companyService;
-            _jobsService = jobsService;
+            _jobService = jobService;
             _skillService = skillService;
         }
 
@@ -65,7 +66,7 @@ namespace JOB_PORTAL_SYSTEM.Api.ADMIN
         {
             try
             {
-                var stats = await _jobsService.GetJobStatsAsync(companyId);
+                var stats = await _jobService.GetJobStatsAsync(companyId);
                 return Ok(stats);
             }
             catch (Exception ex)

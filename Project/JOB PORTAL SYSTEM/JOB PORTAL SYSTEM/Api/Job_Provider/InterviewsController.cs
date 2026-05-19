@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Domain.Services.Job_Provider.Interviews.Dto;
 using Domain.Services.Job_Provider.Interviews.Interface;
-using JOB_PORTAL_SYSTEM.API.Interviews.RequestObjects;
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JOB_PORTAL_SYSTEM.API.Interviews
+namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 {
     [Route("api/[controller]")]
     [ApiController]

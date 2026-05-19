@@ -1,6 +1,6 @@
 ﻿using Domain.Enums;
 
-namespace JOB_PORTAL_SYSTEM.API.Interviews.RequestObjects
+namespace JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects
 {
     public class CreateInterviewRequest
     {

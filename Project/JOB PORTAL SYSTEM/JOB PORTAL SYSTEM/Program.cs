@@ -1,4 +1,4 @@
-using Domain.Helpers;
+using Domain.Helper;
 using JOB_PORTAL_SYSTEM.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -15,58 +15,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationServiceExtension(builder.Configuration);
 
-//var key = Encoding.UTF8.GetBytes(builder.Configuration["AuthSettings:Token"]);
-//builder.Services.AddAuthentication(options =>
-//{
-//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//})
-//.AddJwtBearer(options =>
-//{
-//    options.RequireHttpsMetadata = false;
-//    options.SaveToken = true;
-
-//    options.TokenValidationParameters = new TokenValidationParameters
-//    {
-//        ValidateIssuerSigningKey = true,
-//        IssuerSigningKey = new SymmetricSecurityKey(key),
-
-//        ValidateIssuer = false,
-//        ValidateAudience = false,
-
-//        ValidateLifetime = true,
-//        ClockSkew = TimeSpan.Zero
-//    };
-//});
-
-//builder.Services.AddAuthorization();
-//builder.Services.AddSwaggerGen(options =>
-//{
-//    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-//    {
-//        Name = "Authorization",
-//        Type = SecuritySchemeType.Http,
-//        Scheme = "bearer",
-//        BearerFormat = "JWT",
-//        In = ParameterLocation.Header,
-//        Description = "Enter: Bearer YOUR_TOKEN"
-//    });
-
-//    options.AddSecurityRequirement(new OpenApiSecurityRequirement
-//    {
-//        {
-//            new OpenApiSecurityScheme
-//            {
-//                Reference = new OpenApiReference
-//                {
-//                    Type = ReferenceType.SecurityScheme,
-//                    Id = "Bearer"
-//                }
-//            },
-//            new string[] {}
-//        }
-//    });
-//});
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -109,7 +57,7 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
-//builder.Services.AddApplicationServiceExtension(builder.Configuration);
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

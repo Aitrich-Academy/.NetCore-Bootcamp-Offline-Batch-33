@@ -17,9 +17,9 @@ namespace Domain.Models
 
         public string ProfileDescription { get; set; }
 
-        public  string Experience {  get; set; }
+        public string Experience { get; set; }
 
-        public  string Skills { get; set; }
+        public string Skills { get; set; }
 
         public string Qualifications { get; set; }
     }
