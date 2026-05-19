@@ -1,7 +1,7 @@
 ﻿using Domain.Services.Auth.Interface;
 using Domain.Services.Auth.DTO;
 using Microsoft.AspNetCore.Mvc;
-
+using Domain.Services.Job_Provider.Login.Dto;
 
 namespace JOB_PORTAL_SYSTEM.Api.Signup
 {
