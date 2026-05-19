@@ -6,7 +6,7 @@ namespace Domain.Services.Job_Provider.Candidate.Interface
 {
     public interface ICandidateRepository
     {
-        Task<List<JobSeeker>> FilterCandidatesAsync(string skill);
+        Task<List<Domain.Models.JobSeeker>> FilterCandidatesAsync(string skill);
 
     }
 }

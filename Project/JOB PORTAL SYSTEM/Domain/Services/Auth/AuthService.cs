@@ -188,6 +188,7 @@ namespace Domain.Services.Auth
                 if (provider != null)
                     result.JobProviderId = provider.Id;
             }
+            
 
             return result;
         }

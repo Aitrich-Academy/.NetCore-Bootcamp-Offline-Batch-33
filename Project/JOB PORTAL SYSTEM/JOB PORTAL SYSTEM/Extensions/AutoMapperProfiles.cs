@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
 using Domain.Models;
+using Domain.Services.Auth.DTO;
 using Domain.Services.Job_Provider.Candidate.Dto;
 using Domain.Services.Job_Provider.Job_Service.DTO;
 using Domain.Services.Job_Provider.ViewCompanyApplications.Dto;
 using Domain.Services.Job_Provider.ViewJobs.Dto;
 using Domain.Services.Job_Seeker.Applications.DTOs;
 using Domain.Services.Job_Seeker.Interviews.DTOs;
-using Domain.Services.Job_Seeker.Jobs.DTOs;
-using Domain.Services.Job_Seeker.Login.DTO;
 using Domain.Services.Job_Seeker.SavedJobs.DTOs;
-using Domain.Services.Job_Seeker.SignUp.DTO;
-using JOB_PORTAL_SYSTEM.Api.Job_Seeker.RequestObjects;
+using Domain.Services.Jobs.DTOs;
+
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
@@ -18,11 +17,11 @@ namespace JOB_PORTAL_SYSTEM.Extensions
     {
         public AutoMapperProfiles()
         {
-            CreateMap<JobSeekerSignUpRequest, JobSeekerRequestDTO>().ReverseMap();
+            CreateMap<AuthUser, LoginDTO>().ReverseMap();
 
-            CreateMap<JobSeekerRequestDTO, SignupRequest>().ReverseMap();
+            CreateMap<SignupRequestDTO, SignupRequest>().ReverseMap();
 
-            CreateMap<AuthUser, LoginrequestDto>().ReverseMap();
+            CreateMap<AuthUser, LoginRequestDTO>().ReverseMap();
 
             CreateMap<ApplyJobDto, JobApplication>();
 

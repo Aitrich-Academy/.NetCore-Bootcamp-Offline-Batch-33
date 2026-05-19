@@ -24,7 +24,7 @@ namespace JOB_PORTAL_SYSTEM.Api.ADMIN
             _skillService = skillService;
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("company-verification/{Id}/verify")]
         public async Task<IActionResult> VerifyCompany(Guid Id)
         {
