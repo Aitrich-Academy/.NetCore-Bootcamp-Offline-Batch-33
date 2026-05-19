@@ -2,6 +2,7 @@
 using Domain.Models;
 using Domain.Services.Admin.CompanyVerification.Dto;
 using Domain.Services.Admin.Dto;
+
 using Domain.Services.Auth.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.Interviews.Dto;
@@ -14,6 +15,13 @@ using Domain.Services.JobSeeker_Module.Profile.DTO;
 using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
+
+using Domain.Services.JobSeeker_Module.Profile.DTO;
+using Domain.Services.Job_Seeker.SavedJobs.DTOs;
+using Domain.Services.Jobs.DTOs;
+using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
+using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
+using Domain.Services.Admin.Dto;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
