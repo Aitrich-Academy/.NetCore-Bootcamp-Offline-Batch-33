@@ -22,5 +22,7 @@ namespace Domain.Services.Auth.DTO
         public Role Role { get; set; }
 
         public string Token { get; set; }
+
+        public Guid AdminId { get; set; }
     }
 }

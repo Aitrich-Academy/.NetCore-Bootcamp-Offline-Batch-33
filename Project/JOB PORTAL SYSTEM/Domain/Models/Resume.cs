@@ -13,9 +13,7 @@ namespace Domain.Models
         [ForeignKey("JobSeeker")]
         public Guid JobSeekerId { get; set; } // Foreign key to JobSeeker
         public JobSeeker JobSeeker { get; set; } // Navigation property to JobSeeker
-
         public string FilePath { get; set; } // Path to the resume file
-
         public ICollection<JobApplication> JobApplications { get; set; } = new List<JobApplication>(); // Navigation property to JobApplications
     }
 }

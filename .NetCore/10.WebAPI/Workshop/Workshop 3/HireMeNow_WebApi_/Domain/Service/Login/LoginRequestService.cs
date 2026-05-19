@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using Domain.Service.Authuser;
+﻿using AutoMapper;
 using Domain.Service.Authuser.Interfaces;
 using Domain.Service.Login.DTOs;
 using Domain.Service.Login.Interfaces;
-using Domain.Service.SignUp.Interfaces;
+
 
 namespace Domain.Service.Login
 {

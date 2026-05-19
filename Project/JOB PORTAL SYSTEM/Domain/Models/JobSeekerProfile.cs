@@ -13,8 +13,6 @@ namespace Domain.Models
         [ForeignKey("JobSeeker")]
         public Guid JobSeekerId { get; set; } // Foreign key to JobSeeker
         public JobSeeker JobSeeker { get; set; } // Navigation property
-
-
         public string ProfileName { get; set; }
 
         public string ProfileDescription { get; set; }

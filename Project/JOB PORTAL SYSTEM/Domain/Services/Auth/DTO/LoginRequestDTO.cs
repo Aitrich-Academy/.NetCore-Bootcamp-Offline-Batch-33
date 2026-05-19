@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Services.Auth.DTO
 {
-    public class LoginRequestDTO
+    public class LoginrequestDto
     {
         public string Email { get; set; }
 
