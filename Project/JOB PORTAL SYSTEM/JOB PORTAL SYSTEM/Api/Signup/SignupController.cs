@@ -140,31 +140,12 @@ namespace JOB_PORTAL_SYSTEM.Api.Signup
             }
         }
 
-        // ================= ADMIN TEST =================
-
         [Authorize(Roles = "Admin")]
-        [HttpGet("admin-test")]
-        public IActionResult AdminTest()
+        [HttpPost("logout")]
+
+        public IActionResult Logout()
         {
-            return Ok("Admin Access Granted");
-        }
-
-        // ================= JOB PROVIDER TEST =================
-
-        [Authorize(Roles = "JobProvider")]
-        [HttpGet("provider-test")]
-        public IActionResult ProviderTest()
-        {
-            return Ok("Job Provider Access Granted");
-        }
-
-        // ================= JOB SEEKER TEST =================
-
-        [Authorize(Roles = "JobSeeker")]
-        [HttpGet("seeker-test")]
-        public IActionResult SeekerTest()
-        {
-            return Ok("Job Seeker Access Granted");
+            return Ok("Logged Out Successfully");
         }
     }
 }
