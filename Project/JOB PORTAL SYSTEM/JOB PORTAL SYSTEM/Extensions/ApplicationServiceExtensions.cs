@@ -12,6 +12,8 @@ using Domain.Services.Job_Provider.CompanyProfile;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
 using Domain.Services.Job_Provider.Interviews;
 using Domain.Services.Job_Provider.Interviews.Interface;
+using Domain.Services.Job_Seeker.Resume;
+using Domain.Services.Job_Seeker.Resume.Interfaces;
 using Domain.Services.Jobs;
 using Domain.Services.Jobs.Interfaces;
 using Domain.Services.JobSeeker.Profile.Interface;
@@ -68,6 +70,9 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             //services.AddScoped<IAdminRepositories, AdminRepositories>();
             services.AddScoped<IQualificationRepository, QualificationRepository>();
             services.AddScoped<IQualificationService, QualificationService>();
+
+            services.AddScoped<IResumeRepository, ResumeRepository>();
+            services.AddScoped<IResumeService, ResumeService>();
 
 
 
