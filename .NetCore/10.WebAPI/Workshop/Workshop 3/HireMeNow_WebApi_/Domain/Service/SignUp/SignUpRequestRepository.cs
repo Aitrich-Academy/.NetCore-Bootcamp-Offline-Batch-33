@@ -36,7 +36,7 @@ namespace Domain.Service.SignUp
             _context.SaveChanges();
             return signUpRequest.Id;
         }
-        
+
         public async Task<SignUpRequest> GetSignupRequestByIdAsync(Guid jobSeekerSignupRequestId)
         {
             return await _context.SignUpRequests.FindAsync(jobSeekerSignupRequestId);

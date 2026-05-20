@@ -14,7 +14,6 @@ namespace Domain.Models
         [ForeignKey("Application")]
         public Guid ApplicationId { get; set; }
         public JobApplication Application { get; set; }
-
         public DateTime InterviewDate { get; set; }
         public InterviewMode Mode { get; set; }
         public InterviewStatus Status { get; set; }

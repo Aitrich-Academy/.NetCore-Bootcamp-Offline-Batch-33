@@ -2,12 +2,7 @@
 using Domain.Models;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Domain.Services.Job_Provider.CompanyProfile
 {
@@ -21,12 +16,11 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             this.mapper = mapper;
         }
 
-        public async Task<CompanyProfileDto> AddCompanyAsync(CreateCompanyProfileRequest request,Guid userId)
+        public async Task<CompanyProfileDto> AddCompanyAsync(CreateCompanyProfileRequest request, Guid userId)
         {
             try
             {
-                var jobProvider = await companyRepository
-                    .GetByUserIdAsync(userId);
+                var jobProvider = await companyRepository.GetByUserIdAsync(userId);
 
                 if (jobProvider == null)
                 {
@@ -66,12 +60,12 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             {
                 var company = await companyRepository.GetByIdAsync(Id);
                 return company == null ? null : mapper.Map<CompanyProfileDto>(company);
-                
+
 
             }
             catch (Exception ex)
             {
-                throw new Exception( ex.Message);
+                throw new Exception(ex.Message);
             }
         }
         public async Task<IEnumerable<CompanyProfileDto>> GetAllCompaniesByProviderIdAsync(Guid providerId)
@@ -85,7 +79,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile
             }
             catch (Exception ex)
             {
-                throw new Exception( ex.Message);
+                throw new Exception(ex.Message);
             }
         }
         public async Task<CompanyProfileDto?> UpdateCompanyAsync(Guid CompanyId, Company company)
@@ -129,6 +123,5 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 throw new Exception(ex.Message);
             }
         }
-
     }
 }

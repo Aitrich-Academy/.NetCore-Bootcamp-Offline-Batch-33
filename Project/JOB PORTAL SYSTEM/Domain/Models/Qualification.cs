@@ -10,8 +10,8 @@ namespace Domain.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-
         public string Description { get; set; }
+        public ICollection<JobSeekerQualification> JobSeekerQualifications { get; set; } = new List<JobSeekerQualification>();
 
         
 
