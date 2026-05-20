@@ -12,8 +12,10 @@ using Domain.Services.Job_Seeker.SavedJobs.DTOs;
 using Domain.Services.Jobs.DTOs;
 using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
 using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
+
 using Domain.Services.Admin.Dto;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
@@ -72,14 +74,22 @@ namespace JOB_PORTAL_SYSTEM.Extensions
 
             CreateMap<Skill, AddSkillDto>().ReverseMap();
             CreateMap<AddSkillDto, AddSkillRequest>().ReverseMap();
+            
+
+            CreateMap<ApplyJobDto, JobApplication>();
 
             CreateMap<Skill, UpdateSkillDto>().ReverseMap();
             CreateMap<UpdateSkillDto, UpdateSkillRequest>().ReverseMap();
 
             CreateMap<Skill, DeleteSkillDto>().ReverseMap();
             CreateMap<DeleteSkillDto, DeleteSkillRequest>().ReverseMap();
+            CreateMap<SignupRequestDTO, SignupRequest>().ReverseMap();
+            CreateMap<AuthUser, LoginDTO>().ReverseMap();
 
-            CreateMap<ApplyJobDto, JobApplication>();
+            CreateMap<
+            Domain.Services.JobSeeker.Profile.DTO.CreateJobSeekerProfileDto,
+            Domain.Models.JobSeekerProfile>()
+            .ReverseMap();
 
             CreateMap<JobApplication, MyApplicationDto>()
                 .ForMember(dest => dest.JobId,

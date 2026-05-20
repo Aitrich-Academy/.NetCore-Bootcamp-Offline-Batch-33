@@ -8,11 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Api.Admin
 {
+    [Tags("02-Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class AdminController : ControllerBase
     {
-        
+
         private readonly IUserService _userService;
         private readonly ILocationRepository _locationRepository;
         private readonly IQualificationService _qualificationService;
@@ -20,9 +21,9 @@ namespace JOB_PORTAL_SYSTEM.Api.Admin
         private readonly Domain.Services.Admin.CompanyVerification.Interface.IAdminService _companyService;
         private readonly IJobService _jobService;
         private readonly ISkillService _skillService;
-        public AdminController( IUserService userService, ILocationRepository locationRepository, IQualificationService qualificationService, AppDbContext context, Domain.Services.Admin.CompanyVerification.Interface.IAdminService companyService, IJobService jobService, ISkillService skillService)
+        public AdminController(IUserService userService, ILocationRepository locationRepository, IQualificationService qualificationService, AppDbContext context, Domain.Services.Admin.CompanyVerification.Interface.IAdminService companyService, IJobService jobService, ISkillService skillService)
         {
-            
+
             _userService = userService;
             _locationRepository = locationRepository;
             _qualificationService = qualificationService;
@@ -32,7 +33,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Admin
             _skillService = skillService;
         }
 
-        
+
         [Authorize(Roles = "Admin")]
         [HttpGet("users")]
         public async Task<IActionResult> GetAllUsers()
@@ -225,6 +226,6 @@ namespace JOB_PORTAL_SYSTEM.Api.Admin
         //{
         //    return Ok("Logged Out Successfully");
         //}
-        
+
     }
 }

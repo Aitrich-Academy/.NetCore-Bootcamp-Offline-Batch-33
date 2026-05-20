@@ -4,11 +4,11 @@ using Domain.Data;
 using Domain.Data;
 using Domain.Helper;
 using Domain.Services;
-using Domain.Services.Auth;
-using Domain.Services.Auth.Interface;
+using Domain.Services.Admin.Interface;
+using Domain.Services.Admin.Repository;
+using Domain.Services.Admin.Services;
 using Domain.Services.Job_Provider;
 using Domain.Services.Job_Provider.Candidate;
-
 using Domain.Services.Job_Provider.Candidate.Interface;
 using Domain.Services.Job_Provider.CompanyProfile;
 using Domain.Services.Job_Provider.CompanyProfile.Interface;
@@ -19,12 +19,15 @@ using Domain.Services.Job_Provider.ViewCompanyApplications;
 using Domain.Services.Job_Provider.ViewCompanyApplications.Interface;
 using Domain.Services.Job_Provider.ViewJobs;
 using Domain.Services.Job_Provider.ViewJobs.Interface;
+using Domain.Services.Job_Seeker.Resume;
+using Domain.Services.Job_Seeker.Resume.Interfaces;
 using Domain.Services.Jobs;
 using Domain.Services.Jobs.Interfaces;
-
-
-
+using Domain.Services.JobSeeker.Profile.Interface;
+using Domain.Services.JobSeeker.Profile.Repository;
+using Domain.Services.JobSeeker.Profile.Service;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations.Internal;
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
@@ -40,17 +43,39 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddScoped<IJobRepository, JobRepository>();
             services.AddScoped<IJobService, JobService>();
 
-            services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IAuthRepository, AuthRepository>();
+           
+            services.AddScoped<Domain.Services.Auth.Interface.IAuthRepository, Domain.Services.Auth.AuthRepository>();
+            services.AddScoped<Domain.Services.Auth.Interface.IAuthService, Domain.Services.Auth.AuthService>();
 
 
-            services.AddScoped<Domain.Services.IEmailService, Domain.Services.EmailService>();
+            services.AddScoped<IJobSeekerProfileService,JobSeekerProfileService>();
+            services.AddScoped<IJobSeekerProfileRepository,JobSeekerProfileRepository>();
+
+            services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IInterviewService, InterviewService>();
             services.AddScoped<IInterviewRepository, InterviewRepository>();
 
 
+            services.AddScoped<ILocationRepository, LocationRepository>();
+            //services.AddScoped<IAdminServices, AdminServices>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            //services.AddScoped<IAdminRepositories, AdminRepositories>();
+            services.AddScoped<IQualificationRepository, QualificationRepository>();
+            services.AddScoped<IQualificationService, QualificationService>();
+
+            services.AddScoped<IResumeRepository, ResumeRepository>();
+            services.AddScoped<IResumeService, ResumeService>();
+
+
+
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
+
+            services.AddScoped<IJobRepository, JobRepository>();
+            services.AddScoped<IJobService, JobService>();
+
+
 
             
 
@@ -76,7 +101,8 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddHttpContextAccessor();
-            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
+            services.AddAutoMapper(typeof(AutoMapperProfiles));
 
             return services;
         }
