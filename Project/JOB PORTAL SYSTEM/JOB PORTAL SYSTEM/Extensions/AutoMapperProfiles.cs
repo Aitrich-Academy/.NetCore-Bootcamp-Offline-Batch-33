@@ -12,8 +12,9 @@ using Domain.Services.Job_Seeker.SavedJobs.DTOs;
 using Domain.Services.Jobs.DTOs;
 using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
 using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
-using JOB_PORTAL_SYSTEM.API.Interviews.RequestObjects;
+
 using Domain.Services.Admin.Dto;
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 
 
 namespace JOB_PORTAL_SYSTEM.Extensions
