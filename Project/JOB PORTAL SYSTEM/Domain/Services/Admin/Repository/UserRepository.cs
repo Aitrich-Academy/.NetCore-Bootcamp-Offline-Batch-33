@@ -14,17 +14,17 @@ namespace Domain.Services.Admin.Repository
             _context = context;
         }
 
-        public async Task<List<UserResponseDto>>
-            GetAllUsersAsync()
+        public async Task<UserResponseDto?> GetUserByIdAsync(Guid id)
         {
             try
             {
-                // JobSeekers
 
-                var jobSeekers =
-                    await _context.JobSeekers
+                // JobSeeker
 
+                var jobSeeker = await _context.JobSeekers
                     .Include(x => x.User)
+
+                    .Where(x => x.Id == id)
 
                     .Select(x => new UserResponseDto
                     {
@@ -42,67 +42,12 @@ namespace Domain.Services.Admin.Repository
                         Role = "JobSeeker"
                     })
 
-                    .ToListAsync();
+                    .FirstOrDefaultAsync();
 
-                // JobProviders
-
-                var jobProviders =
-                    await _context.JobProviders
-
-                    .Select(x => new UserResponseDto
-                    {
-                        Id = x.Id,
-
-                        FullName =
-                            x.FirstName + " " +
-                            x.LastName,
-
-                        Email = "",
-
-                        PhoneNumber = "",
-
-                        Role = "JobProvider"
-                    })
-
-                    .ToListAsync();
-
-                return jobSeekers
-                    .Concat(jobProviders)
-                    .ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(
-                    $"Error while fetching users : {ex.Message}");
-            }
-        }
-
-        public async Task<UserResponseDto?>
-            GetUserByIdAsync(Guid id)
-        {
-            try
-            {
-                // JobSeeker
-
-                var jobSeekers =
-                 await _context.JobSeekers.Include(x => x.User).Select(x => new UserResponseDto
-            {
-                Id = x.Id,
-
-                 FullName = x.User.FirstName + " " +
-             x.User.LastName,
-
-         Email = x.User.Email,
-
-         PhoneNumber =
-             x.User.PhoneNumber,
-
-         Role = "JobSeeker"
-     })
-
-     .ToListAsync();
-
-               
+                if (jobSeeker != null)
+                {
+                    return jobSeeker;
+                }
 
                 // JobProvider
 
@@ -136,5 +81,46 @@ namespace Domain.Services.Admin.Repository
                     $"Error while fetching user by id : {ex.Message}");
             }
         }
+
+        public async Task<List<UserResponseDto>> GetAllUsersAsync()
+        {
+            try
+            {
+                
+                var jobSeekers = await _context.JobSeekers
+                    .Include(x => x.User)
+                    .Select(x => new UserResponseDto
+                    {
+                        Id = x.Id,
+                        FullName =
+                            x.User.FirstName + " " +
+                            x.User.LastName,
+                        Email = x.User.Email,
+                        PhoneNumber =
+                            x.User.PhoneNumber,
+                        Role = "JobSeeker"
+                    })
+                    .ToListAsync();
+                var jobProviders = await _context.JobProviders
+                    .Select(x => new UserResponseDto
+                    {
+                        Id = x.Id,
+                        FullName =
+                            x.FirstName + " " +
+                            x.LastName,
+                        Email = "",
+                        PhoneNumber = "",
+                        Role = "JobProvider"
+                    })
+                    .ToListAsync();
+                return jobSeekers.Concat(jobProviders).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(
+                    $"Error while fetching all users : {ex.Message}");
+            }
+        }
+
     }
 }
