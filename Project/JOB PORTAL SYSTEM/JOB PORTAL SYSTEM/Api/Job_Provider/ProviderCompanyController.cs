@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 {
 
-    [Tags("03-Auth")]
+    [Tags("03-ProviderCompany")]
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = "JobProvider")]
