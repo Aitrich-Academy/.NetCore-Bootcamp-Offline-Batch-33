@@ -163,8 +163,7 @@ namespace Domain.Services.Auth
         }
 
         // LOGIN
-        public async Task<LoginDTO> Login(
-            LoginrequestDto dto)
+        public async Task<LoginDTO> Login(LoginrequestDto dto)
         {
             var user =
                 await _repository
@@ -173,7 +172,7 @@ namespace Domain.Services.Auth
             if (user == null)
                 return null;
 
-            // PLAIN TEXT PASSWORD CHECK
+          
             if (dto.Password != user.Password)
                 return null;
 
@@ -204,7 +203,6 @@ namespace Domain.Services.Auth
                 if (provider != null)
                     result.JobProviderId = provider.Id;
             }
-            
 
             return result;
         }

@@ -23,6 +23,6 @@ namespace Domain.Services.Auth.DTO
 
         public string Token { get; set; }
 
-        public Guid AdminId { get; set; }
+        
     }
 }
