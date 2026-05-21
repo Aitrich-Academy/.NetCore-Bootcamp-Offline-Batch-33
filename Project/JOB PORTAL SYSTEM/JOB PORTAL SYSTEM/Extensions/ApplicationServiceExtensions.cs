@@ -4,6 +4,8 @@ using Domain.Data;
 using Domain.Data;
 using Domain.Helper;
 using Domain.Services;
+using Domain.Services.Admin.CompanyVerification;
+using Domain.Services.Admin.CompanyVerification.Interface;
 using Domain.Services.Admin.Interface;
 using Domain.Services.Admin.Repository;
 using Domain.Services.Admin.Services;
@@ -57,10 +59,12 @@ namespace JOB_PORTAL_SYSTEM.Extensions
 
 
             services.AddScoped<ILocationRepository, LocationRepository>();
-            //services.AddScoped<IAdminServices, AdminServices>();
+            services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
-            //services.AddScoped<IAdminRepositories, AdminRepositories>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<ISkillRepository, SkillRepository>();
+            services.AddScoped<ISkillService, SkillService>();
             services.AddScoped<IQualificationRepository, QualificationRepository>();
             services.AddScoped<IQualificationService, QualificationService>();
 
