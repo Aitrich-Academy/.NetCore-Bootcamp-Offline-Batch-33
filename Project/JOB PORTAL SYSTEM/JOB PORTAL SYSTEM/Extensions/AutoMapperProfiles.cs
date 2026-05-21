@@ -24,6 +24,7 @@ using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
 
 using Domain.Services.Admin.Dto;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using Domain.Enums;
 
 
 namespace JOB_PORTAL_SYSTEM.Extensions
@@ -44,7 +45,9 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             CreateMap<Job, JobDto>()
                 .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company != null ? src.Company.CompanyName : string.Empty))
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category != null ? src.Category.Name : string.Empty))
-                .ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.Location != null ? src.Location.Name : string.Empty));
+                .ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.Location != null ? src.Location.Name : string.Empty))
+                .ForMember(dest => dest.PostedBy, opt => opt.MapFrom(src => src.CompanyMember != null ? src.CompanyMember.Name : string.Empty))
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.CompanyMember != null ? src.CompanyMember.Role : CompanyRole.Recruiter));
             CreateMap<CreateJobDto, Job>();
             CreateMap<UpdateJobDto, Job>();
 
@@ -59,18 +62,8 @@ namespace JOB_PORTAL_SYSTEM.Extensions
 
 
 
-            //CreateMap<CreateCompanyProfileRequest, Company>();
-            //CreateMap<UpdateCompanyProfileRequest, Company>();
-            //CreateMap<Company, CompanyProfileDto>();
-
-
             CreateMap<AuthUser, JobProvider>().ReverseMap();
             CreateMap<AuthUser, LoginDTO>().ReverseMap();
-
-
-            //CreateMap<Job, JobDto>();
-            //CreateMap<CreateJobDto, Job>();
-            //CreateMap<UpdateJobDto, Job>();
 
             CreateMap<Company, VerifyCompanyDto>().ReverseMap();
             CreateMap<VerifyCompanyDto, VerifyCompanyRequest>().ReverseMap();

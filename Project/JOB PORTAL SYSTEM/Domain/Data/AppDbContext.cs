@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,9 +91,22 @@ namespace Domain.Data
 
             // AuthUser → JobProvider
             modelBuilder.Entity<JobProvider>()
-             .HasOne(jp => jp.User)
-             .WithMany(u => u.JobProviders)
-             .HasForeignKey(jp => jp.UserId);
+                 .HasOne(jp => jp.User)
+                 .WithMany(u => u.JobProviders)
+                 .HasForeignKey(jp => jp.UserId);
+
+            modelBuilder.Entity<Job>()
+                .HasOne(j => j.CompanyMember)
+                .WithMany(cm => cm.Jobs)
+                .HasForeignKey(j => j.CompanyMemberId)
+                .OnDelete(DeleteBehavior.Restrict); // or NoAction
+
+            modelBuilder.Entity<CompanyMember>()
+                .HasOne(cm => cm.Company)
+                .WithMany(c => c.Members)
+                .HasForeignKey(cm => cm.CompanyId)
+                .OnDelete(DeleteBehavior.Restrict); // or NoAction
+
         }
 
 

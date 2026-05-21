@@ -17,6 +17,8 @@ namespace Domain.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public CompanyRole Role { get; set; } // Enum for Company roles (e.g., HR, Recruiter, Manager)
-    
+
+        public ICollection<Job> Jobs { get; set; } = new List<Job>(); // Navigation property for related jobs
+
     }
 }

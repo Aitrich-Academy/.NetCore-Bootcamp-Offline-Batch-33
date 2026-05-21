@@ -12,7 +12,6 @@ namespace Domain.Models
     {
         public Guid Id { get; set; }
 
-
         public Guid UserId { get; set; } // Foreign key to SystemUser
         [Required]
         public string Username { get; set; }
