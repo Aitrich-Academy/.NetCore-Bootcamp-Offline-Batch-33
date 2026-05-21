@@ -10,6 +10,8 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles ="JobProvider")]
+    
+
     public class JobController : ControllerBase
     {
         IJobService jobService;
@@ -25,10 +27,10 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         {
             try
             {
-                var job = mapper.Map<Job>(dto);
+                //var job = mapper.Map<Job>(dto);
 
-                job.Id = Guid.NewGuid();
-                job.CreatedAt = DateTime.UtcNow;
+                //job.Id = Guid.NewGuid();
+                //job.CreatedAt = DateTime.UtcNow;
 
                 var createdJob = await jobService.CreateJobAsync(dto);
 

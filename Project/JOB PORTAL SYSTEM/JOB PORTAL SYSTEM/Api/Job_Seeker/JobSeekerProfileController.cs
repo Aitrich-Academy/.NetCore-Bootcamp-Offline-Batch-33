@@ -1,5 +1,5 @@
-﻿using Domain.Services.JobSeeker.Profile.DTO;
-using Domain.Services.JobSeeker.Profile.Interface;
+﻿using Domain.Services.JobSeeker_Module.Profile.DTO;
+using Domain.Services.JobSeeker_Module.Profile.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

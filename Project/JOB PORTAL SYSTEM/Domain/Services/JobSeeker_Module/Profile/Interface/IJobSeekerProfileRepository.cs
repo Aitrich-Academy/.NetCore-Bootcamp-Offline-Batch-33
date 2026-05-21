@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.JobSeeker.Profile.Interface
+namespace Domain.Services.JobSeeker_Module.Profile.Interface
 {
     public interface IJobSeekerProfileRepository
     {
         Task<JobSeekerProfile> CreateAsync(JobSeekerProfile profile);
-        Task<Models.JobSeeker> GetJobSeekerByAuthUserId(Guid authUserId);
+        Task<JobSeeker> GetJobSeekerByAuthUserId(Guid authUserId);
 
         Task<JobSeekerProfile?> GetProfileByJobSeekerId(Guid jobSeekerId);
 

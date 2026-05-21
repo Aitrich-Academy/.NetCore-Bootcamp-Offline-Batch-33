@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Domain.Models;
-using Domain.Services.JobSeeker.Profile.DTO;
-using Domain.Services.JobSeeker.Profile.Interface;
+using Domain.Services.JobSeeker_Module.Profile.DTO;
+using Domain.Services.JobSeeker_Module.Profile.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.JobSeeker.Profile.Service
+namespace Domain.Services.JobSeeker_Module.Profile.Service
 {
     public class JobSeekerProfileService : IJobSeekerProfileService
     {

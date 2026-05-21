@@ -20,5 +20,8 @@ namespace Domain.Services.Job_Provider.Job_Service.DTO
 
         public JobStatus Status { get; set; }
         public DateTime CreatedAt { get; set; }
+
+        public string PostedBy { get; set; } // Company member name
+        public CompanyRole Role { get; set; }
     }
 }

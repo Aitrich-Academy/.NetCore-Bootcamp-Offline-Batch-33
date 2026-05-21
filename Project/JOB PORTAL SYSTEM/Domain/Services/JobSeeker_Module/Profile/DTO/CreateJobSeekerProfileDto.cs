@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.JobSeeker.Profile.DTO
+namespace Domain.Services.JobSeeker_Module.Profile.DTO
 {
     public class CreateJobSeekerProfileDto
     {
