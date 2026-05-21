@@ -24,6 +24,8 @@ namespace Domain.Services.Job_Provider.ViewCompanyApplications
             return await _context.JobApplications
                 .Include(x => x.Job)
                 .Include(x => x.JobSeeker)
+                .Include(x => x.Resume)
+                .Include(x => x.Interviews)
                 .Where(x => x.Job.CompanyId == companyId)
                 .ToListAsync();
         }

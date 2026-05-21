@@ -193,6 +193,9 @@ namespace Domain.Migrations
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CompanyMemberId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -218,6 +221,8 @@ namespace Domain.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("CompanyMemberId");
 
                     b.HasIndex("LocationId");
 
@@ -553,7 +558,7 @@ namespace Domain.Migrations
                     b.HasOne("Domain.Models.Company", "Company")
                         .WithMany("Members")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Company");
@@ -584,6 +589,12 @@ namespace Domain.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Domain.Models.CompanyMember", "CompanyMember")
+                        .WithMany("Jobs")
+                        .HasForeignKey("CompanyMemberId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Domain.Models.Location", "Location")
                         .WithMany("Jobs")
                         .HasForeignKey("LocationId")
@@ -593,6 +604,8 @@ namespace Domain.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Company");
+
+                    b.Navigation("CompanyMember");
 
                     b.Navigation("Location");
                 });
@@ -712,6 +725,11 @@ namespace Domain.Migrations
                     b.Navigation("Jobs");
 
                     b.Navigation("Members");
+                });
+
+            modelBuilder.Entity("Domain.Models.CompanyMember", b =>
+                {
+                    b.Navigation("Jobs");
                 });
 
             modelBuilder.Entity("Domain.Models.Industry", b =>

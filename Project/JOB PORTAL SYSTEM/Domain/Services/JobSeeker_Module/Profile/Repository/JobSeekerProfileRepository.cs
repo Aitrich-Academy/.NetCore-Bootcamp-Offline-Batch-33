@@ -1,6 +1,6 @@
 ﻿using Domain.Data;
 using Domain.Models;
-using Domain.Services.JobSeeker.Profile.Interface;
+using Domain.Services.JobSeeker_Module.Profile.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.JobSeeker.Profile.Repository
+namespace Domain.Services.JobSeeker_Module.Profile.Repository
 {
     public class JobSeekerProfileRepository : IJobSeekerProfileRepository
     {
@@ -29,7 +29,7 @@ namespace Domain.Services.JobSeeker.Profile.Repository
            await _context.SaveChangesAsync();
             return profile;
         }
-        public async Task<Models.JobSeeker?> GetJobSeekerByAuthUserId(Guid authUserId)
+        public async Task<JobSeeker?> GetJobSeekerByAuthUserId(Guid authUserId)
         {
             return await _context.JobSeekers .FirstOrDefaultAsync(x => x.UserId == authUserId);
         }

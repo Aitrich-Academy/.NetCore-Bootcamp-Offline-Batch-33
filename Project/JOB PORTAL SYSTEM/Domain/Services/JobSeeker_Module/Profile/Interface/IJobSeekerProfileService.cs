@@ -1,12 +1,12 @@
-﻿    using Domain.Services.JobSeeker.Profile.DTO;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using Domain.Services.JobSeeker_Module.Profile.DTO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-    namespace Domain.Services.JobSeeker.Profile.Interface
-    {
+namespace Domain.Services.JobSeeker_Module.Profile.Interface
+{
         public interface IJobSeekerProfileService
         {
             Task<string> CreateAsync(Guid userId,CreateJobSeekerProfileDto dto);

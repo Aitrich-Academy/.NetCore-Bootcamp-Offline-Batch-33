@@ -20,6 +20,7 @@ namespace Domain.Services.Jobs
             return await _context.Jobs
                 .Include(j => j.Company)
                 .Include(j => j.Location)
+                .Include(j => j.CompanyMember)
                 .ToListAsync();
         }
 
@@ -28,9 +29,10 @@ namespace Domain.Services.Jobs
             var query = _context.Jobs
                 .Include(j => j.Company)
                 .Include(j => j.Location)
+                .Include(j => j.CompanyMember)
                 .AsQueryable();
 
-            if(string.IsNullOrEmpty(keyword))
+            if(!string.IsNullOrEmpty(keyword))
             {
                 query = query.Where(j => j.Title.Contains(keyword));
             }
@@ -56,6 +58,15 @@ namespace Domain.Services.Jobs
                 {
                     throw new Exception("Location not found");
                 }
+
+                var member = await _context.CompanyMembers.FindAsync(job.CompanyMemberId);
+                if (member == null || member.CompanyId != job.CompanyId)
+                {
+                    throw new Exception("Company member not found or does not belong to this company");
+                }
+
+
+
                 _context.Jobs.Add(job);
                 await _context.SaveChangesAsync();
                 return job;
@@ -81,6 +92,7 @@ namespace Domain.Services.Jobs
                     .Include(j => j.Company)
                     .Include(j => j.Category)
                     .Include(j => j.Location)
+                    .Include(j => j.CompanyMember)
                     .FirstOrDefaultAsync(j => j.Id == jobId);
 
             }
@@ -103,6 +115,7 @@ namespace Domain.Services.Jobs
                     .Include(j => j.Company)
                     .Include(j => j.Category)
                     .Include(j => j.Location)
+                    .Include(j => j.CompanyMember)
                     .ToListAsync();
             }
             catch (Exception ex)
