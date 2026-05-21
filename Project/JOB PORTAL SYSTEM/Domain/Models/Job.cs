@@ -16,6 +16,10 @@ namespace Domain.Models
         public Guid CompanyId { get; set; }
         public Company Company { get; set; }
 
+        [ForeignKey("CompanyMember")]
+        public Guid CompanyMemberId { get; set; }
+        public CompanyMember? CompanyMember { get; set; }
+
         [ForeignKey("Category")]
         public Guid CategoryId { get; set; }
         public JobCategory Category { get; set; }

@@ -3,7 +3,7 @@ using Domain.Services.Auth.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace JOB_PORTAL_SYSTEM.Api.Signup
+namespace JOB_PORTAL_SYSTEM.Api.Auth
 {
     [Tags("01-Auth")]
     [Route("api/[controller]")]

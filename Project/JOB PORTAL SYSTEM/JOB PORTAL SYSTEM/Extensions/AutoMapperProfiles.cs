@@ -1,13 +1,22 @@
 ﻿using AutoMapper;
 using Domain.Models;
 using Domain.Services.Admin.CompanyVerification.Dto;
+using Domain.Services.Admin.Dto;
+
 using Domain.Services.Auth.DTO;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.Interviews.Dto;
 using Domain.Services.Job_Provider.Job_Service.DTO;
 using Domain.Services.Job_Seeker.Applications.DTOs;
 using Domain.Services.Job_Seeker.Interviews.DTOs;
-using Domain.Services.JobSeeker.Profile.DTO;
+using Domain.Services.Job_Seeker.SavedJobs.DTOs;
+using Domain.Services.Jobs.DTOs;
+using Domain.Services.JobSeeker_Module.Profile.DTO;
+using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
+
+using Domain.Services.JobSeeker_Module.Profile.DTO;
 using Domain.Services.Job_Seeker.SavedJobs.DTOs;
 using Domain.Services.Jobs.DTOs;
 using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
@@ -15,6 +24,7 @@ using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
 
 using Domain.Services.Admin.Dto;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using Domain.Enums;
 
 
 namespace JOB_PORTAL_SYSTEM.Extensions
@@ -35,7 +45,9 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             CreateMap<Job, JobDto>()
                 .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company != null ? src.Company.CompanyName : string.Empty))
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category != null ? src.Category.Name : string.Empty))
-                .ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.Location != null ? src.Location.Name : string.Empty));
+                .ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.Location != null ? src.Location.Name : string.Empty))
+                .ForMember(dest => dest.PostedBy, opt => opt.MapFrom(src => src.CompanyMember != null ? src.CompanyMember.Name : string.Empty))
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.CompanyMember != null ? src.CompanyMember.Role : CompanyRole.Recruiter));
             CreateMap<CreateJobDto, Job>();
             CreateMap<UpdateJobDto, Job>();
 
@@ -50,18 +62,8 @@ namespace JOB_PORTAL_SYSTEM.Extensions
 
 
 
-            //CreateMap<CreateCompanyProfileRequest, Company>();
-            //CreateMap<UpdateCompanyProfileRequest, Company>();
-            //CreateMap<Company, CompanyProfileDto>();
-
-
             CreateMap<AuthUser, JobProvider>().ReverseMap();
             CreateMap<AuthUser, LoginDTO>().ReverseMap();
-
-
-            //CreateMap<Job, JobDto>();
-            //CreateMap<CreateJobDto, Job>();
-            //CreateMap<UpdateJobDto, Job>();
 
             CreateMap<Company, VerifyCompanyDto>().ReverseMap();
             CreateMap<VerifyCompanyDto, VerifyCompanyRequest>().ReverseMap();
@@ -86,10 +88,7 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             CreateMap<SignupRequestDTO, SignupRequest>().ReverseMap();
             CreateMap<AuthUser, LoginDTO>().ReverseMap();
 
-            CreateMap<
-            Domain.Services.JobSeeker.Profile.DTO.CreateJobSeekerProfileDto,
-            Domain.Models.JobSeekerProfile>()
-            .ReverseMap();
+            CreateMap<CreateJobSeekerProfileDto,JobSeekerProfile>().ReverseMap();
 
             CreateMap<JobApplication, MyApplicationDto>()
                 .ForMember(dest => dest.JobId,
