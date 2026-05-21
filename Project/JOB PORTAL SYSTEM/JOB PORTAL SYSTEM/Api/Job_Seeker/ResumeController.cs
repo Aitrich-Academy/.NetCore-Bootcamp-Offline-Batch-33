@@ -3,7 +3,7 @@ using Domain.Services.Job_Seeker.Resume.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JobPortalSystem.API.JobSeekerControllers
+namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
 {
     [Route("api/v1/jobseekers/{jobSeekerId}/resume")]
     [ApiController]
