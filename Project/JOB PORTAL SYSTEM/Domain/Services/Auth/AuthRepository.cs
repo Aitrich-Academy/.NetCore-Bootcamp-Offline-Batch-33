@@ -1,4 +1,5 @@
 ﻿using Domain.Data;
+using Domain.Enums;
 using Domain.Models;
 using Domain.Services.Auth.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -93,6 +94,12 @@ namespace Domain.Services.Auth
         {
             return await _context.JobProviders
                 .FirstOrDefaultAsync(x => x.UserId == userId);
+        }
+
+        public async Task<AuthUser> GetAdminUserById(Guid id)
+        {
+            return await _context.AuthUsers
+                .FirstOrDefaultAsync(x => x.Id == id && x.Role == Role.Admin);
         }
 
         public async Task UpdateUser(AuthUser user)

@@ -4,6 +4,7 @@ using Domain.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260519054214_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,9 +196,6 @@ namespace Domain.Migrations
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CompanyMemberId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -221,8 +221,6 @@ namespace Domain.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("CompanyMemberId");
 
                     b.HasIndex("LocationId");
 
@@ -431,10 +429,6 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FilePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -558,7 +552,7 @@ namespace Domain.Migrations
                     b.HasOne("Domain.Models.Company", "Company")
                         .WithMany("Members")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Company");
@@ -589,12 +583,6 @@ namespace Domain.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.CompanyMember", "CompanyMember")
-                        .WithMany("Jobs")
-                        .HasForeignKey("CompanyMemberId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Domain.Models.Location", "Location")
                         .WithMany("Jobs")
                         .HasForeignKey("LocationId")
@@ -604,8 +592,6 @@ namespace Domain.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Company");
-
-                    b.Navigation("CompanyMember");
 
                     b.Navigation("Location");
                 });
@@ -725,11 +711,6 @@ namespace Domain.Migrations
                     b.Navigation("Jobs");
 
                     b.Navigation("Members");
-                });
-
-            modelBuilder.Entity("Domain.Models.CompanyMember", b =>
-                {
-                    b.Navigation("Jobs");
                 });
 
             modelBuilder.Entity("Domain.Models.Industry", b =>
