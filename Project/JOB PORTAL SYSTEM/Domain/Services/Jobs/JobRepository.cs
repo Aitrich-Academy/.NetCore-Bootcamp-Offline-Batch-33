@@ -39,6 +39,8 @@ namespace Domain.Services.Jobs
                 query = query.Where(j => j.Title.Contains(keyword));
             }
 
+
+
             return await query.ToListAsync();
         }
         public async Task<Job> AddJobAsync(Job job)
