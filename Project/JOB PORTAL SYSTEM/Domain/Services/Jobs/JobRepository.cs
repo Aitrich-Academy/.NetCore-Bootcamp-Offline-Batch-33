@@ -32,10 +32,14 @@ namespace Domain.Services.Jobs
                 .Include(j => j.CompanyMember)
                 .AsQueryable();
 
+
+
             if(!string.IsNullOrEmpty(keyword))
             {
                 query = query.Where(j => j.Title.Contains(keyword));
             }
+
+
 
             return await query.ToListAsync();
         }
