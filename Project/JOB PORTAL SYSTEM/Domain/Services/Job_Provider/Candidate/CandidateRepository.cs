@@ -20,16 +20,18 @@ namespace Domain.Services.Job_Provider.Candidate
             _context = context;
         }
 
-        public async Task<List<Domain.Models.JobSeeker>> FilterCandidatesAsync(string skill)
+        public async Task<List<JobSeeker>> FilterCandidatesAsync(Guid skillId)
         {
             var candidates = await _context.JobSeekers
                 .Include(x => x.Profile)
+                    .ThenInclude(p => p.Skills) // include skills
                 .Where(x =>
                     x.Profile != null &&
-                    x.Profile.Skills.Contains(skill))
+                    x.Profile.Skills.Any(s => s.Id == skillId)) // check if skill exists
                 .ToListAsync();
 
             return candidates;
         }
+
     }
 }
