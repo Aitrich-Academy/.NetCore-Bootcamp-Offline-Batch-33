@@ -61,12 +61,12 @@ namespace Domain.Services.Admin.Repository
                         Id = x.Id,
 
                         FullName =
-                            x.FirstName + " " +
-                            x.LastName,
+                            x.User.FirstName + " " +
+                            x.User.LastName,
 
-                        Email = "",
+                        Email = x.User.Email,
 
-                        PhoneNumber = "",
+                        PhoneNumber = x.User.PhoneNumber,
 
                         Role = "JobProvider"
                     })
