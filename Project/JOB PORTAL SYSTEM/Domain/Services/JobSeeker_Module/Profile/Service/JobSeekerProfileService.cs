@@ -38,9 +38,8 @@ namespace Domain.Services.JobSeeker_Module.Profile.Service
             // Correct FK
             profile.JobSeekerId = jobSeeker.Id;
 
-            profile.Skills = string.Join(",", dto.SkillIds);
-
-            profile.Qualifications =string.Join(",", dto.QualificationIds);
+            profile.Skills = await _repository.GetSkillsByIds(dto.SkillIds);
+            profile.Qualifications = await _repository.GetQualificationsByIds(dto.QualificationIds);
 
 
             await _repository.CreateAsync(profile);
@@ -65,30 +64,17 @@ namespace Domain.Services.JobSeeker_Module.Profile.Service
                 throw new Exception("Profile not found");
             }
 
-            var skillIds = profile.Skills.Split(',').Select(Guid.Parse).ToList();
+            //var skillIds = profile.Skills.Split(',').Select(Guid.Parse).ToList();
 
-            var skills = await _repository.GetSkillsByIds(skillIds);
+            //var skills = await _repository.GetSkillsByIds(skillIds);
 
 
-            var qualificationIds = profile.Qualifications .Split(',', StringSplitOptions.RemoveEmptyEntries)
-             .Select(Guid.Parse) .ToList();
+            //var qualificationIds = profile.Qualifications .Split(',', StringSplitOptions.RemoveEmptyEntries)
+            // .Select(Guid.Parse) .ToList();
 
-            var qualifications = await _repository.GetQualificationsByIds(qualificationIds);
+            //var qualifications = await _repository.GetQualificationsByIds(qualificationIds);
 
-            return new JobSeekerProfileResponseDto
-            {
-                Id = profile.Id,
-
-                ProfileName = profile.ProfileName,
-
-                ProfileDescription = profile.ProfileDescription,
-
-                Experience = profile.Experience,
-
-                Skills = skills.Select(x => x.Name).ToList(),
-
-                Qualifications = qualifications .Select(x => x.Name) .ToList()
-            };
+            return _mapper.Map<JobSeekerProfileResponseDto>(profile);
         }
 
         public async Task<string> UpdateAsync(Guid userId,UpdateJobSeekerProfileDto dto)
@@ -113,9 +99,9 @@ namespace Domain.Services.JobSeeker_Module.Profile.Service
 
             profile.Experience = dto.Experience;
 
-            profile.Skills = string.Join(",", dto.SkillIds);
+            profile.Skills = profile.Skills = await _repository.GetSkillsByIds(dto.SkillIds);
 
-            profile.Qualifications = string.Join(",", dto.QualificationIds);
+            profile.Qualifications = await _repository.GetQualificationsByIds(dto.QualificationIds);
 
             await _repository.UpdateAsync(profile);
 

@@ -68,12 +68,12 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<IEnumerable<CompanyProfileDto>> GetAllCompaniesByProviderIdAsync(Guid providerId)
+        public async Task<IEnumerable<CompanyProfileDto>> GetAllCompaniesByProviderIdAsync()
         {
             try
             {
 
-                var companies = await companyRepository.GetAllByUserIdAsync(providerId);
+                var companies = await companyRepository.GetAllByUserIdAsync();
 
                 return companies.Select(c => mapper.Map<CompanyProfileDto>(c)).ToList();
             }

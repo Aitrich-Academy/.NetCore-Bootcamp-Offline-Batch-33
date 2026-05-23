@@ -1,30 +1,30 @@
 ﻿using AutoMapper;
+using Domain.Enums;
 using Domain.Models;
 using Domain.Services.Admin.CompanyVerification.Dto;
 using Domain.Services.Admin.Dto;
-
+using Domain.Services.Admin.Dto;
 using Domain.Services.Auth.DTO;
+using Domain.Services.Job_Provider.Candidate.Dto;
 using Domain.Services.Job_Provider.CompanyProfile.DTO;
 using Domain.Services.Job_Provider.Interviews.Dto;
 using Domain.Services.Job_Provider.Job_Service.DTO;
+using Domain.Services.Job_Provider.ViewCompanyApplications.Dto;
+using Domain.Services.Job_Provider.ViewJobs.Dto;
 using Domain.Services.Job_Seeker.Applications.DTOs;
 using Domain.Services.Job_Seeker.Interviews.DTOs;
 using Domain.Services.Job_Seeker.SavedJobs.DTOs;
-using Domain.Services.Jobs.DTOs;
-using Domain.Services.JobSeeker_Module.Profile.DTO;
-using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
-using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
-using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
-
-using Domain.Services.JobSeeker_Module.Profile.DTO;
 using Domain.Services.Job_Seeker.SavedJobs.DTOs;
 using Domain.Services.Jobs.DTOs;
+using Domain.Services.Jobs.DTOs;
+using Domain.Services.JobSeeker_Module.Profile.DTO;
+using Domain.Services.JobSeeker_Module.Profile.DTO;
 using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
-using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
-
-using Domain.Services.Admin.Dto;
+using JOB_PORTAL_SYSTEM.Api.ADMIN.RequestObjects;
 using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
-using Domain.Enums;
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
+using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
 
 
 namespace JOB_PORTAL_SYSTEM.Extensions
@@ -150,11 +150,58 @@ namespace JOB_PORTAL_SYSTEM.Extensions
                 .ForMember(dest => dest.CompanyName,
                 opt => opt.MapFrom(src => src.Job.Company.CompanyName));
 
+
+            CreateMap<JobApplication, CompanyApplicationDto>()
+                .ForMember(dest => dest.ApplicationId,
+                    opt => opt.MapFrom(src => src.Id))
+
+                .ForMember(dest => dest.JobTitle,
+                    opt => opt.MapFrom(src => src.Job.Title))
+
+                .ForMember(dest => dest.CandidateName,
+                    opt => opt.MapFrom(src =>
+                        src.JobSeeker.FirstName + " " + src.JobSeeker.LastName));
+
+
+            CreateMap<Job, ViewCompanyJobDto>()
+                .ForMember(dest => dest.JobId,
+                    opt => opt.MapFrom(src => src.Id))
+
+                .ForMember(dest => dest.CategoryName,
+                    opt => opt.MapFrom(src => src.Category.Name))
+
+                .ForMember(dest => dest.LocationName,
+                    opt => opt.MapFrom(src => src.Location.Name));
+
+
+            CreateMap<JobSeeker, CandidateDto>()
+                .ForMember(dest => dest.CandidateId,
+                    opt => opt.MapFrom(src => src.Id))
+
+                .ForMember(dest => dest.CandidateName,
+                    opt => opt.MapFrom(src =>
+                        src.FirstName + " " + src.LastName))
+
+                .ForMember(dest => dest.ProfileName,
+                    opt => opt.MapFrom(src => src.Profile.ProfileName))
+
+                .ForMember(dest => dest.ProfileDescription,
+                    opt => opt.MapFrom(src => src.Profile.ProfileDescription))
+
+                .ForMember(dest => dest.Experience,
+                    opt => opt.MapFrom(src => src.Profile.Experience));
+
+
             CreateMap<AuthUser, LoginrequestDto>().ReverseMap();
 
             CreateMap<CreateJobSeekerProfileDto, JobSeekerProfile>();
-                //.ForMember(dest => dest.Location,
-                //opt => opt.MapFrom(src => src.Job.Location.Name));
+            CreateMap<JobSeekerProfile, JobSeekerProfileResponseDto>()
+                .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.Skills.Select(s => s.Name)))
+                .ForMember(dest => dest.Qualifications, opt => opt.MapFrom(src => src.Qualifications.Select(q => q.Name)));
+            //.ForMember(dest => dest.Location,
+            //opt => opt.MapFrom(src => src.Job.Location.Name));
+            CreateMap<UpdateJobSeekerProfileDto, JobSeekerProfile>();
+                
         }
     }
 }

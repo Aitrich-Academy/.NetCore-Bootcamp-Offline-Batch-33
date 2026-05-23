@@ -27,7 +27,7 @@ namespace Domain.Services.Admin.Services
                 {
                         Id = Guid.NewGuid(),
                         Name = dto.Name,
-                        Description = dto.Description
+                        //Description = dto.Description
                 };
 
                 await _qualificationRepository.AddQualificationAsync(qualification);

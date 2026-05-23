@@ -35,7 +35,10 @@ namespace Domain.Services.JobSeeker_Module.Profile.Repository
         }
         public async Task<JobSeekerProfile?> GetProfileByJobSeekerId(Guid jobSeekerId)
         {
-            return await _context.JobSeekerProfiles .FirstOrDefaultAsync(x => x.JobSeekerId == jobSeekerId);
+            return await _context.JobSeekerProfiles
+                .Include(p => p.Skills)
+                .Include(p => p.Qualifications)
+                .FirstOrDefaultAsync(x => x.JobSeekerId == jobSeekerId);
         }
         public async Task<JobSeekerProfile> UpdateAsync(JobSeekerProfile profile)
         {

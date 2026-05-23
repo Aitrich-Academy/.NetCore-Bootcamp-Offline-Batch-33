@@ -53,11 +53,11 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 
         [HttpGet("user")]
         [Authorize]
-        public async Task<IActionResult> GetCompanyProfileByUserId(Guid providerId)
+        public async Task<IActionResult> GetCompanyProfileByUserId()
         {
             try
             {
-                var company = await companyService.GetAllCompaniesByProviderIdAsync(providerId);
+                var company = await companyService.GetAllCompaniesByProviderIdAsync();
                 var response = mapper.Map<IEnumerable<CompanyProfileDto>>(company);
                 return Ok(response);
 

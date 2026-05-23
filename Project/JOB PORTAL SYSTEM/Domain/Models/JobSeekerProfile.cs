@@ -19,8 +19,8 @@ namespace Domain.Models
 
         public string Experience { get; set; }
 
-        public string Skills { get; set; }
+        public ICollection<Skill> Skills { get; set; } = new List<Skill>();
 
-        public string Qualifications { get; set; }
+        public ICollection<Qualification> Qualifications { get; set; } = new List<Qualification>();
     }
 }

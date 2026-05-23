@@ -12,7 +12,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile.Interface
     {
         Task<CompanyProfileDto> AddCompanyAsync(CreateCompanyProfileRequest request, Guid userId);
         Task<CompanyProfileDto?> GetCompanyByIdAsync(Guid id);
-        Task<IEnumerable<CompanyProfileDto>> GetAllCompaniesByProviderIdAsync(Guid providerId);
+        Task<IEnumerable<CompanyProfileDto>> GetAllCompaniesByProviderIdAsync();
         Task<CompanyProfileDto?> UpdateCompanyAsync(Guid CompanyId, Company company);
         Task<bool> DeleteCompanyAsync(Guid id);
     }
