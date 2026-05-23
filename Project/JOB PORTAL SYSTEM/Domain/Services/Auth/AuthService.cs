@@ -146,6 +146,7 @@ namespace Domain.Services.Auth
                         UserName = signup.UserName,
                         FirstName = signup.FirstName,
                         LastName = signup.LastName,
+                        CompanyId = null,
                         CreatedAt = DateTime.Now
                     };
 

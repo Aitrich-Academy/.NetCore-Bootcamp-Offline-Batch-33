@@ -26,6 +26,11 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 {
                     throw new Exception("Job provider not found");
                 }
+                if (jobProvider.CompanyId != null)
+                {
+                    throw new Exception("This provider already has a company assigned.");
+                }
+
 
                 var company = new Company
                 {
@@ -43,6 +48,9 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 };
 
                 await companyRepository.AddAsync(company);
+
+                jobProvider.CompanyId = company.Id;
+                await companyRepository.UpdateAsync(jobProvider);
 
                 var savedcompany = await companyRepository.GetByIdAsync(company.Id);
 
