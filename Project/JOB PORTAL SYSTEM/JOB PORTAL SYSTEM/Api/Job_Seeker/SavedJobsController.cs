@@ -73,7 +73,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
             }
         }
 
-        [HttpDelete("{JobId}")]
+        [HttpDelete("{jobId}")]
         public async Task<IActionResult> DeleteSavedJob(Guid jobId, Guid jobSeekerId)
         {
             try

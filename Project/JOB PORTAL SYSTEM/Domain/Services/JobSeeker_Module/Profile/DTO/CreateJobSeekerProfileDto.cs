@@ -17,7 +17,7 @@ namespace Domain.Services.JobSeeker_Module.Profile.DTO
 
         public string Experience { get; set; }
 
-        public List<Guid> SkillIds { get; set; }
+        public List<Guid>? SkillIds { get; set; }
 
         public List<Guid> QualificationIds { get; set; }
 

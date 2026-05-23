@@ -26,6 +26,22 @@ using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
 using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
 using JOB_PORTAL_SYSTEM.Api.Job_ProviderModule.RequestObject;
 
+using Domain.Services.Admin.Dto;
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using Domain.Enums;
+
+
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using Domain.Enums;
+
+
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using Domain.Enums;
+
+
+using JOB_PORTAL_SYSTEM.Api.Job_Provider.RequestObjects;
+using Domain.Enums;
+
 
 namespace JOB_PORTAL_SYSTEM.Extensions
 {
@@ -88,7 +104,9 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             CreateMap<SignupRequestDTO, SignupRequest>().ReverseMap();
             CreateMap<AuthUser, LoginDTO>().ReverseMap();
 
-            CreateMap<CreateJobSeekerProfileDto,JobSeekerProfile>().ReverseMap();
+            CreateMap<CreateJobSeekerProfileDto, JobSeekerProfile>();
+            CreateMap<UpdateJobSeekerProfileDto, JobSeekerProfile>();
+            CreateMap<JobSeekerProfile, JobSeekerProfileResponseDto>();
 
             CreateMap<JobApplication, MyApplicationDto>()
                 .ForMember(dest => dest.JobId,
@@ -195,13 +213,8 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             CreateMap<AuthUser, LoginrequestDto>().ReverseMap();
 
             CreateMap<CreateJobSeekerProfileDto, JobSeekerProfile>();
-            CreateMap<JobSeekerProfile, JobSeekerProfileResponseDto>()
-                .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.Skills.Select(s => s.Name)))
-                .ForMember(dest => dest.Qualifications, opt => opt.MapFrom(src => src.Qualifications.Select(q => q.Name)));
-            //.ForMember(dest => dest.Location,
-            //opt => opt.MapFrom(src => src.Job.Location.Name));
-            CreateMap<UpdateJobSeekerProfileDto, JobSeekerProfile>();
-                
+                //.ForMember(dest => dest.Location,
+                //opt => opt.MapFrom(src => src.Job.Location.Name));
         }
     }
 }
