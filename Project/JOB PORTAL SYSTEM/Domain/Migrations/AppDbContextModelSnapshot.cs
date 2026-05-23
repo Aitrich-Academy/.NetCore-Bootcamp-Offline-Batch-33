@@ -404,10 +404,6 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -525,15 +521,15 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("JobSeekerProfileQualification", b =>
                 {
+                    b.Property<Guid>("JobSeekerProfilesId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("QualificationsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("jobSeekerProfilesId")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasKey("JobSeekerProfilesId", "QualificationsId");
 
-                    b.HasKey("QualificationsId", "jobSeekerProfilesId");
-
-                    b.HasIndex("jobSeekerProfilesId");
+                    b.HasIndex("QualificationsId");
 
                     b.ToTable("JobSeekerProfileQualification");
                 });
@@ -737,15 +733,15 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("JobSeekerProfileQualification", b =>
                 {
-                    b.HasOne("Domain.Models.Qualification", null)
+                    b.HasOne("Domain.Models.JobSeekerProfile", null)
                         .WithMany()
-                        .HasForeignKey("QualificationsId")
+                        .HasForeignKey("JobSeekerProfilesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.JobSeekerProfile", null)
+                    b.HasOne("Domain.Models.Qualification", null)
                         .WithMany()
-                        .HasForeignKey("jobSeekerProfilesId")
+                        .HasForeignKey("QualificationsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
