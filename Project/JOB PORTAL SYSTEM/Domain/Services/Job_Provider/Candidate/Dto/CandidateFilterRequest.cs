@@ -2,7 +2,7 @@
 {
     public class CandidateFilterRequest
     {
-        public Guid Skill { get; set; }
+        public Guid SkillId { get; set; }
 
     }
 }

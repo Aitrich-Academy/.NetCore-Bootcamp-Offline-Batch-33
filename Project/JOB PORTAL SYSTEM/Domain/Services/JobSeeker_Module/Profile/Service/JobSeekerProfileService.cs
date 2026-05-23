@@ -22,84 +22,81 @@ namespace Domain.Services.JobSeeker_Module.Profile.Service
             _mapper = mapper;
         }
 
-        public async Task<string> CreateAsync(Guid userId,CreateJobSeekerProfileDto dto)
+        public async Task<string> CreateAsync(Guid userId, CreateJobSeekerProfileDto dto)
         {
             var jobSeeker = await _repository.GetJobSeekerByAuthUserId(userId);
 
             if (jobSeeker == null)
-            {
                 throw new Exception("JobSeeker not found");
-            }
 
             var profile = _mapper.Map<JobSeekerProfile>(dto);
 
             profile.Id = Guid.NewGuid();
-
-            // Correct FK
             profile.JobSeekerId = jobSeeker.Id;
 
             profile.Skills = await _repository.GetSkillsByIds(dto.SkillIds);
             profile.Qualifications = await _repository.GetQualificationsByIds(dto.QualificationIds);
+
+            //profile.Qualifications =string.Join(",", dto.QualificationIds);
 
 
             await _repository.CreateAsync(profile);
 
             return "Profile Created Successfully";
         }
-       
 
-        public async Task<JobSeekerProfileResponseDto>GetProfileAsync(Guid userId)
+        public async Task<JobSeekerProfileResponseDto> GetProfileAsync(Guid userId)
         {
-            var jobSeeker = await _repository .GetJobSeekerByAuthUserId(userId);
+            var jobSeeker = await _repository
+                .GetJobSeekerByAuthUserId(userId);
 
             if (jobSeeker == null)
             {
                 throw new Exception("JobSeeker not found");
             }
 
-            var profile = await _repository.GetProfileByJobSeekerId(jobSeeker.Id);
+            var profile = await _repository
+                .GetProfileByJobSeekerId(jobSeeker.Id);
 
             if (profile == null)
             {
                 throw new Exception("Profile not found");
             }
 
-            //var skillIds = profile.Skills.Split(',').Select(Guid.Parse).ToList();
+            
+            return new JobSeekerProfileResponseDto
+            {
+                Id = profile.Id,
 
-            //var skills = await _repository.GetSkillsByIds(skillIds);
+                ProfileName = profile.ProfileName,
 
+                ProfileDescription = profile.ProfileDescription,
 
-            //var qualificationIds = profile.Qualifications .Split(',', StringSplitOptions.RemoveEmptyEntries)
-            // .Select(Guid.Parse) .ToList();
+                Experience = profile.Experience,
 
-            //var qualifications = await _repository.GetQualificationsByIds(qualificationIds);
+                Skills = profile.Skills.Select(x => x.Name).ToList(),
 
-            return _mapper.Map<JobSeekerProfileResponseDto>(profile);
+                Qualifications = profile.Qualifications.Select(x => x.Name).ToList()
+            };
         }
 
-        public async Task<string> UpdateAsync(Guid userId,UpdateJobSeekerProfileDto dto)
+      public async Task<string> UpdateAsync(Guid userId, UpdateJobSeekerProfileDto dto)
         {
             var jobSeeker = await _repository.GetJobSeekerByAuthUserId(userId);
 
             if (jobSeeker == null)
-            {
                 throw new Exception("JobSeeker not found");
-            }
 
             var profile = await _repository.GetProfileByJobSeekerId(jobSeeker.Id);
 
             if (profile == null)
-            {
                 throw new Exception("Profile not found");
-            }
 
             profile.ProfileName = dto.ProfileName;
-
             profile.ProfileDescription = dto.ProfileDescription;
-
             profile.Experience = dto.Experience;
 
-            profile.Skills = profile.Skills = await _repository.GetSkillsByIds(dto.SkillIds);
+            profile.Skills = await _repository.GetSkillsByIds(dto.SkillIds);
 
             profile.Qualifications = await _repository.GetQualificationsByIds(dto.QualificationIds);
 
