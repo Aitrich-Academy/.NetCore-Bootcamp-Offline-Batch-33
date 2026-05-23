@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260520045726_last")]
-    partial class last
+    [Migration("20260522062057_add")]
+    partial class add
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -196,6 +196,9 @@ namespace Domain.Migrations
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CompanyMemberId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -221,6 +224,8 @@ namespace Domain.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("CompanyMemberId");
 
                     b.HasIndex("LocationId");
 
@@ -373,72 +378,12 @@ namespace Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Qualifications")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Skills")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("JobSeekerId")
                         .IsUnique();
 
                     b.ToTable("JobSeekerProfiles");
-                });
-
-            modelBuilder.Entity("Domain.Models.JobSeekerQualification", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("EndYear")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("JobSeekerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("QualificationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("StartYear")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("University")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("JobSeekerId");
-
-                    b.HasIndex("QualificationId");
-
-                    b.ToTable("JobSeekerQualification");
-                });
-
-            modelBuilder.Entity("Domain.Models.JobSeekerSkills", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("JobSeekerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SkillId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("JobSeekerId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("JobSeekerSkills");
                 });
 
             modelBuilder.Entity("Domain.Models.Location", b =>
@@ -461,10 +406,6 @@ namespace Domain.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -581,6 +522,36 @@ namespace Domain.Migrations
                     b.ToTable("Skills");
                 });
 
+            modelBuilder.Entity("JobSeekerProfileQualification", b =>
+                {
+                    b.Property<Guid>("JobSeekerProfilesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("QualificationsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("JobSeekerProfilesId", "QualificationsId");
+
+                    b.HasIndex("QualificationsId");
+
+                    b.ToTable("JobSeekerProfileQualification");
+                });
+
+            modelBuilder.Entity("JobSeekerProfileSkill", b =>
+                {
+                    b.Property<Guid>("JobSeekerProfilesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SkillsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("JobSeekerProfilesId", "SkillsId");
+
+                    b.HasIndex("SkillsId");
+
+                    b.ToTable("JobSeekerProfileSkill");
+                });
+
             modelBuilder.Entity("Domain.Models.Company", b =>
                 {
                     b.HasOne("Domain.Models.Industry", "Industry")
@@ -608,7 +579,7 @@ namespace Domain.Migrations
                     b.HasOne("Domain.Models.Company", "Company")
                         .WithMany("Members")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Company");
@@ -639,6 +610,12 @@ namespace Domain.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Domain.Models.CompanyMember", "CompanyMember")
+                        .WithMany("Jobs")
+                        .HasForeignKey("CompanyMemberId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Domain.Models.Location", "Location")
                         .WithMany("Jobs")
                         .HasForeignKey("LocationId")
@@ -648,6 +625,8 @@ namespace Domain.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Company");
+
+                    b.Navigation("CompanyMember");
 
                     b.Navigation("Location");
                 });
@@ -716,44 +695,6 @@ namespace Domain.Migrations
                     b.Navigation("JobSeeker");
                 });
 
-            modelBuilder.Entity("Domain.Models.JobSeekerQualification", b =>
-                {
-                    b.HasOne("Domain.Models.JobSeeker", "JobSeeker")
-                        .WithMany()
-                        .HasForeignKey("JobSeekerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Models.Qualification", "Qualification")
-                        .WithMany("JobSeekerQualifications")
-                        .HasForeignKey("QualificationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("JobSeeker");
-
-                    b.Navigation("Qualification");
-                });
-
-            modelBuilder.Entity("Domain.Models.JobSeekerSkills", b =>
-                {
-                    b.HasOne("Domain.Models.JobSeeker", "JobSeeker")
-                        .WithMany()
-                        .HasForeignKey("JobSeekerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Models.Skill", "Skill")
-                        .WithMany("JobSeekerSkills")
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("JobSeeker");
-
-                    b.Navigation("Skill");
-                });
-
             modelBuilder.Entity("Domain.Models.Resume", b =>
                 {
                     b.HasOne("Domain.Models.JobSeeker", "JobSeeker")
@@ -793,6 +734,36 @@ namespace Domain.Migrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("JobSeekerProfileQualification", b =>
+                {
+                    b.HasOne("Domain.Models.JobSeekerProfile", null)
+                        .WithMany()
+                        .HasForeignKey("JobSeekerProfilesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.Qualification", null)
+                        .WithMany()
+                        .HasForeignKey("QualificationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("JobSeekerProfileSkill", b =>
+                {
+                    b.HasOne("Domain.Models.JobSeekerProfile", null)
+                        .WithMany()
+                        .HasForeignKey("JobSeekerProfilesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.Skill", null)
+                        .WithMany()
+                        .HasForeignKey("SkillsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Domain.Models.AuthUser", b =>
                 {
                     b.Navigation("JobProviders");
@@ -805,6 +776,11 @@ namespace Domain.Migrations
                     b.Navigation("Jobs");
 
                     b.Navigation("Members");
+                });
+
+            modelBuilder.Entity("Domain.Models.CompanyMember", b =>
+                {
+                    b.Navigation("Jobs");
                 });
 
             modelBuilder.Entity("Domain.Models.Industry", b =>
@@ -849,19 +825,9 @@ namespace Domain.Migrations
                     b.Navigation("Jobs");
                 });
 
-            modelBuilder.Entity("Domain.Models.Qualification", b =>
-                {
-                    b.Navigation("JobSeekerQualifications");
-                });
-
             modelBuilder.Entity("Domain.Models.Resume", b =>
                 {
                     b.Navigation("JobApplications");
-                });
-
-            modelBuilder.Entity("Domain.Models.Skill", b =>
-                {
-                    b.Navigation("JobSeekerSkills");
                 });
 #pragma warning restore 612, 618
         }
