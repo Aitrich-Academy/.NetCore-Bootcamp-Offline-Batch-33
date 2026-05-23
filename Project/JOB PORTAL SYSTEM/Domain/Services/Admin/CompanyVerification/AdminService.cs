@@ -45,7 +45,7 @@ namespace Domain.Services.Admin.CompanyVerification
 
         public async Task<CompanyProfilesDto> GetCompanyProfileByIdAsync(Guid id)
         {
-            var company = await _companyRepository.GetCompanyByIdAsync(id);
+            var company = await _companyRepository.GetCompanyProfileByIdAsync(id);
 
             if (company == null)
                 return null;
