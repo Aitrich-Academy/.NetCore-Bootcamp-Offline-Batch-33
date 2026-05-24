@@ -58,7 +58,9 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             CreateMap<AuthUser, JobProvider>().ReverseMap();
             CreateMap<AuthUser, LoginDTO>().ReverseMap();
 
-            CreateMap<Company, VerifyCompanyDto>().ReverseMap();
+            CreateMap<Company, CompanyProfilesDto>()
+    .ForMember(dest => dest.IndustryName,
+        opt => opt.MapFrom(src => src.Industry.Name));
             CreateMap<VerifyCompanyDto, VerifyCompanyRequest>().ReverseMap();
 
             CreateMap<Company, CompanyProfilesDto>().ReverseMap();

@@ -9,7 +9,7 @@ namespace Domain.Services.Admin.CompanyVerification.Dto
     public class CompanyProfilesDto
     {
         public Guid Id { get; set; }
-        public Guid IndustryId { get; set; }
+        public string IndustryName { get; set; }
         public string CompanyName { get; set; }
         public string Description { get; set; }
         public string Email { get; set; }
