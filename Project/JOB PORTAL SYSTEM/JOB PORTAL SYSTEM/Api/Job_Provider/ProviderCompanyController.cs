@@ -39,6 +39,15 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 
                 Guid providerId = Guid.Parse(providerIdClaim);
 
+                //var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                //if (string.IsNullOrEmpty(companyIdClaim))
+                //{
+                //    return Unauthorized("Invalid token");
+                //}
+
+                //var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+
                 var company = await companyService.AddCompanyAsync(request, providerId);
 
                 var response = mapper.Map<CompanyProfileDto>(company);
@@ -51,9 +60,9 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
             }
         }
 
-        [HttpGet("user")]
+        [HttpGet("All")]
         [Authorize]
-        public async Task<IActionResult> GetCompanyProfileByUserId()
+        public async Task<IActionResult> GetAllCompanyProfiles()
         {
             try
             {
@@ -67,13 +76,21 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("{id}")]
+        [HttpGet()]
         [Authorize]
-        public async Task<IActionResult> GetCompanyProfileById(Guid id)
+        public async Task<IActionResult> GetCompanyProfileById()
         {
             try
             {
-                var company = await companyService.GetCompanyByIdAsync(id);
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                    return Unauthorized();
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+
+
+                var company = await companyService.GetCompanyByIdAsync(loggedInCompanyId);
                 if (company == null)
                 {
                     return NotFound("Company not found");
@@ -89,12 +106,20 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         [HttpPut("{CompanyId}")]
         [Authorize]
 
-        public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequest request)
+        public async Task<IActionResult> UpdateCompanyProfile([FromBody] UpdateCompanyProfileRequest request)
         {
             try
             {
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                    return Unauthorized();
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+
+
                 var company = mapper.Map<Company>(request);
-                var updatedCompany = await companyService.UpdateCompanyAsync(CompanyId, company);
+                var updatedCompany = await companyService.UpdateCompanyAsync(loggedInCompanyId, company);
                 if (updatedCompany == null)
                 {
                     return NotFound("Company not found");
@@ -110,11 +135,20 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 
         [HttpDelete("{id}")]
         [Authorize]
-        public async Task<IActionResult> DeleteCompanyProfile(Guid id)
+        public async Task<IActionResult> DeleteCompanyProfile()
         {
             try
             {
-                var deleted = await companyService.DeleteCompanyAsync(id);
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                {
+                    return Unauthorized();
+                }
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+
+                var deleted = await companyService.DeleteCompanyAsync(loggedInCompanyId);
                 if (!deleted)
                 {
                     return NotFound("Company not found");

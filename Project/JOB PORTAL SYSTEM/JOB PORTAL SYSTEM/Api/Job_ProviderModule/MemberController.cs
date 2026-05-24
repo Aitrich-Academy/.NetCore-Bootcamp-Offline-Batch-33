@@ -1,5 +1,6 @@
 ﻿using Domain.Services.Member.DTO;
 using Domain.Services.Member.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_ProviderModule
@@ -7,6 +8,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_ProviderModule
 
     [ApiController]
     [Route("api/providers/members")]
+    [Authorize(Roles = "JobProvider")]
     public class CompanyMemberController : ControllerBase
     {
         private readonly IMemberService _service;

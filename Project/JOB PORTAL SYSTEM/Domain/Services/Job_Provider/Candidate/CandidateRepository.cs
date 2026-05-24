@@ -24,7 +24,6 @@ namespace Domain.Services.Job_Provider.Candidate
         {
             var candidates = await _context.JobSeekers
                 .Include(x => x.Profile)
-                    .ThenInclude(p => p.Skills)
                 .Where(x =>
                     x.Profile != null &&
                     x.Profile.Skills.Any(s => s.Id == skillId))
@@ -33,5 +32,6 @@ namespace Domain.Services.Job_Provider.Candidate
 
             return candidates;
         }
+
     }
 }
