@@ -9,7 +9,7 @@ namespace Domain.Services.Jobs.Interfaces
         Task<List<Job>> SearchAsync(string? keyword);
         Task<Job> AddJobAsync(Job job);
         Task<Job?> GetJobByIdAsync(Guid jobId);
-        Task<IEnumerable<Job>> GetAllJobsAsync();
+        Task<IEnumerable<Job>> GetAllJobsAsync(Guid companyId);
         Task<Job> UpdateJobAsync(Job job);
         Task<bool> DeleteJobAsync(Guid jobId);
         Task<int> GetTotalJobsAsync(Guid companyId);

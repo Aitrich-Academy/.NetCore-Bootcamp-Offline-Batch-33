@@ -1,4 +1,5 @@
 ﻿using Domain.Services.Job_Provider.ViewCompanyApplications.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "JobProvider")]
     public class ApplicationController : ControllerBase
     {
         private readonly IApplicationService _applicationService;
@@ -15,12 +17,28 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
             _applicationService = applicationService;
         }
 
-        [HttpGet("company/{companyId}")]
-        public async Task<IActionResult> GetApplicationsByCompany(Guid companyId)
+        [HttpGet("company")]
+        public async Task<IActionResult> GetApplicationsByCompany()
         {
-            var applications = await _applicationService.GetApplicationsByCompanyAsync(companyId);
+            try
+            {
 
-            return Ok(applications);
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                {
+                    return Unauthorized("CompanyId claim is missing or invalid");
+                }
+                var companyId = Guid.Parse(companyIdClaim);
+
+
+                var applications = await _applicationService.GetApplicationsByCompanyAsync(companyId);
+
+                return Ok(applications);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

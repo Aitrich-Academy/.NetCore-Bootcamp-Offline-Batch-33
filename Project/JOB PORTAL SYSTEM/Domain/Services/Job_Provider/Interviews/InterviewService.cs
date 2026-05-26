@@ -27,29 +27,29 @@ namespace Domain.Services.Job_Provider.Interviews
             return await _interviewRepository.ScheduleInterviewAsync(interview);
         }
 
-        public async Task<List<InterviewResponseDto>> GetInterviewsAsync()
+        public async Task<List<InterviewResponseDto>> GetInterviewsAsync(Guid comapanyId)
         {
-            var interviews = await _interviewRepository .GetInterviewsAsync();
+            var interviews = await _interviewRepository.GetInterviewsByCompanyAsync(comapanyId);
             return _mapper.Map<List<InterviewResponseDto>>(interviews);
         }
-        public async Task<InterviewResponseDto> GetInterviewByIdAsync(Guid interviewId)
+        public async Task<InterviewResponseDto> GetInterviewByIdAsync(Guid interviewId, Guid companyId)
         {
-            var interview = await _interviewRepository.GetInterviewByIdAsync(interviewId);
+            var interview = await _interviewRepository.GetInterviewByIdAsync(interviewId, companyId);
             if (interview == null)
             {
-                return null;
+                throw new DirectoryNotFoundException($"Interview with Id {interviewId} for CompanyId {companyId} not found.");
             }
 
             return _mapper.Map<InterviewResponseDto>(interview);
         }
-        public async Task<InterviewResponseDto> UpdateInterviewAsync(UpdateInterviewDto updateInterviewDto)
+        public async Task<InterviewResponseDto> UpdateInterviewAsync(UpdateInterviewDto updateInterviewDto, Guid companyId)
         {
-            var updatedInterview = await _interviewRepository .UpdateInterviewAsync(updateInterviewDto);
+            var updatedInterview = await _interviewRepository.UpdateInterviewAsync(updateInterviewDto, companyId);
             return _mapper.Map<InterviewResponseDto>(updatedInterview);
         }
-        public async Task<bool> DeleteInterviewAsync(Guid interviewId)
+        public async Task<bool> DeleteInterviewAsync(Guid interviewId, Guid companyId)
         {
-            return await _interviewRepository .DeleteInterviewAsync (interviewId);
+            return await _interviewRepository.DeleteInterviewAsync(interviewId, companyId);
         }
     }
 }

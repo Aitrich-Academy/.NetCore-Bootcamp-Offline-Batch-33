@@ -34,7 +34,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 
                 if (string.IsNullOrEmpty(providerIdClaim))
                 {
-                    return Unauthorized("Invalid token");
+                    return Unauthorized("You are not authorized to perform this action");
                 }
 
                 Guid providerId = Guid.Parse(providerIdClaim);
@@ -50,13 +50,18 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 
                 var company = await companyService.AddCompanyAsync(request, providerId);
 
+                if (company == null)
+                {
+                    return BadRequest("Failed to create company profile.");
+                }
+
                 var response = mapper.Map<CompanyProfileDto>(company);
 
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -73,7 +78,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpGet()]
@@ -84,7 +89,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
             {
                 var companyIdClaim = User.FindFirst("CompanyId")?.Value;
                 if (string.IsNullOrEmpty(companyIdClaim))
-                    return Unauthorized();
+                    return Unauthorized("You are not authorized to perform this action.");
 
                 var loggedInCompanyId = Guid.Parse(companyIdClaim);
 
@@ -93,14 +98,14 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
                 var company = await companyService.GetCompanyByIdAsync(loggedInCompanyId);
                 if (company == null)
                 {
-                    return NotFound("Company not found");
+                    return NotFound("No records found for the given CompanyId");
                 }
                 var response = mapper.Map<CompanyProfileDto>(company);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpPut("{CompanyId}")]
@@ -112,7 +117,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
             {
                 var companyIdClaim = User.FindFirst("CompanyId")?.Value;
                 if (string.IsNullOrEmpty(companyIdClaim))
-                    return Unauthorized();
+                    return Unauthorized("CompanyId claim is missing or invalid.");
 
                 var loggedInCompanyId = Guid.Parse(companyIdClaim);
 
@@ -122,14 +127,14 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
                 var updatedCompany = await companyService.UpdateCompanyAsync(loggedInCompanyId, company);
                 if (updatedCompany == null)
                 {
-                    return NotFound("Company not found");
+                    return NotFound("No records found for the given CompanyId");
                 }
                 var response = mapper.Map<CompanyProfileDto>(updatedCompany);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -142,7 +147,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
                 var companyIdClaim = User.FindFirst("CompanyId")?.Value;
                 if (string.IsNullOrEmpty(companyIdClaim))
                 {
-                    return Unauthorized();
+                    return Unauthorized("CompanyId claim is missing or invalid.");
                 }
 
                 var loggedInCompanyId = Guid.Parse(companyIdClaim);
@@ -151,13 +156,13 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
                 var deleted = await companyService.DeleteCompanyAsync(loggedInCompanyId);
                 if (!deleted)
                 {
-                    return NotFound("Company not found");
+                    return NotFound("No records found for the given CompanyId");
                 }
                 return Ok("Company Deleted");
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
     }
