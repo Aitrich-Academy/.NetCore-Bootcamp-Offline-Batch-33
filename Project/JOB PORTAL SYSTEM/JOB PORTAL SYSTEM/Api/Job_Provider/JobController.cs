@@ -2,6 +2,7 @@
 using Domain.Models;
 using Domain.Services.Job_Provider.Job_Service.DTO;
 using Domain.Services.Jobs.Interfaces;
+using Domain.Services.Member.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
     public class JobController : ControllerBase
     {
         IJobService jobService;
+        IMemberService memberService;
         IMapper mapper;
         public JobController(IJobService jobService, IMapper mapper)
         {
@@ -27,12 +29,19 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         {
             try
             {
-                //var job = mapper.Map<Job>(dto);
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                    return Unauthorized();
 
-                //job.Id = Guid.NewGuid();
-                //job.CreatedAt = DateTime.UtcNow;
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
 
-                var createdJob = await jobService.CreateJobAsync(dto);
+                // validate that the member belongs to this company
+                var member = await memberService.GetByIdAsync(dto.CompanyMemberId);
+
+                if (member == null || member.CompanyId != loggedInCompanyId)
+                    return Forbid();
+
+                var createdJob = await jobService.CreateJobAsync(dto, loggedInCompanyId);
 
                 return CreatedAtAction(nameof(GetJob), new { id = createdJob.Id }, createdJob);
 
@@ -49,12 +58,23 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         {
             try
             {
-                var job = await jobService.GetJobByIdAsync(id);
-                if (job == null)
-                {
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim)) 
+                    return Unauthorized();
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+                var jobEntity = await jobService.GetJobEntityByIdAsync(id);
+                if (jobEntity == null) 
                     return NotFound();
-                }
-                return Ok(job);
+
+                if (jobEntity.CompanyId != loggedInCompanyId) 
+
+                    return Forbid();
+
+
+                var dto = mapper.Map<JobDto>(jobEntity);
+                return Ok(dto);
             }
             catch (Exception ex)
             {
@@ -68,7 +88,14 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         {
             try
             {
-                var jobs = await jobService.GetAllJobsAsync();
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                    return Unauthorized();
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+
+                var jobs = await jobService.GetAllJobsAsync(loggedInCompanyId);
                 return Ok(jobs);
             }
             catch (Exception ex)
@@ -83,6 +110,20 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         {
             try
             {
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim)) 
+                    return Unauthorized();
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+                var jobEntity = await jobService.GetJobEntityByIdAsync(id);
+                if (jobEntity == null) 
+                    return NotFound();
+
+                if (jobEntity.CompanyId != loggedInCompanyId) 
+                    return Forbid();
+
+
 
 
                 // Pass entity into service
@@ -103,11 +144,20 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         {
             try
             {
-                var job = await jobService.GetJobByIdAsync(id);
-                if (job == null)
-                {
-                    return BadRequest();
-                }
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim)) 
+                    return Unauthorized();
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+                var jobEntity = await jobService.GetJobEntityByIdAsync(id);
+                if (jobEntity == null) 
+                    return NotFound();
+
+                if (jobEntity.CompanyId != loggedInCompanyId) 
+                    return Forbid();
+
+
 
                 await jobService.DeleteJobAsync(id);
                 return Ok();

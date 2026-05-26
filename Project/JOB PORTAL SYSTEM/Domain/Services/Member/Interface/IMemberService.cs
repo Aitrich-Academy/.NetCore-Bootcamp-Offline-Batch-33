@@ -11,7 +11,7 @@ namespace Domain.Services.Member.Interface
     {
         Task<MemberResponseDto> CreateAsync(CreateMemberDto dto);
         Task<MemberResponseDto?> GetByIdAsync(Guid id);
-        Task<List<MemberResponseDto>> GetAllAsync();
+        Task<List<MemberResponseDto>> GetAllAsync(Guid companyId);
 
         Task<MemberResponseDto> UpdateAsync(Guid id, UpdateCompanyMemberDto dto);
 
