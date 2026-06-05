@@ -11,9 +11,9 @@ namespace Domain.Services.Job_Provider.Interviews.Interface
     public interface IInterviewRepository
     {
         Task<bool> ScheduleInterviewAsync(Interview interview);
-        Task<List<Interview>> GetInterviewsAsync();
-        Task<Interview> GetInterviewByIdAsync(Guid interviewId);
-        Task<InterviewResponseDto> UpdateInterviewAsync(UpdateInterviewDto updateInterviewDto);
-        Task<bool> DeleteInterviewAsync(Guid interviewId);
+        Task<List<Interview>> GetInterviewsByCompanyAsync(Guid companyId);
+        Task<Interview?> GetInterviewByIdAsync(Guid interviewId, Guid companyId);
+        Task<InterviewResponseDto> UpdateInterviewAsync(UpdateInterviewDto updateInterviewDto, Guid companyId);
+        Task<bool> DeleteInterviewAsync(Guid interviewId, Guid companyId);
     }
 }

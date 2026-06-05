@@ -57,18 +57,20 @@ namespace Domain.Services.Member.Service
             };
         }
 
-        public async Task<List<MemberResponseDto>> GetAllAsync()
+        public async Task<List<MemberResponseDto>> GetAllAsync(Guid companyId)
         {
             var list = await _repository.GetAllAsync();
 
-            return list.Select(x => new MemberResponseDto
-            {
+            return 
+                list.Where(x => x.CompanyId == companyId)
+                .Select(x => new MemberResponseDto
+                {
                 Id = x.Id,
                 CompanyId = x.CompanyId,
                 Name = x.Name,
                 Email = x.Email,
                 Role = x.Role
-            }).ToList();
+                }).ToList();
         }
 
         public async Task<MemberResponseDto> UpdateAsync(Guid id, UpdateCompanyMemberDto dto)

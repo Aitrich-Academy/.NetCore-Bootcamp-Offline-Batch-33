@@ -25,7 +25,7 @@ namespace Domain.Services.Job_Provider.Candidate
 
         public async Task<List<CandidateDto>> FilterCandidatesAsync(CandidateFilterRequest request)
         {
-            var candidates = await _candidateRepository.FilterCandidatesAsync(request.Skill);
+            var candidates = await _candidateRepository.FilterCandidatesAsync(request.SkillIds);
 
             return _mapper.Map<List<CandidateDto>>(candidates);
         }

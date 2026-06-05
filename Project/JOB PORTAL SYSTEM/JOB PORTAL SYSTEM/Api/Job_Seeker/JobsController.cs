@@ -20,7 +20,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
         {
             try
             {
-                var jobs = await _service.GetAllJobsAsync();
+                var jobs = await _service.GetAllJobsAsync1();
 
                 return Ok(new
                 {

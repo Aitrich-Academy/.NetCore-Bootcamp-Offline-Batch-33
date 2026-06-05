@@ -34,9 +34,11 @@ namespace Domain.Services.JobSeeker_Module.Profile.Service
             profile.Id = Guid.NewGuid();
             profile.JobSeekerId = jobSeeker.Id;
 
-            // Fetch skills and qualifications by IDs
             profile.Skills = await _repository.GetSkillsByIds(dto.SkillIds);
             profile.Qualifications = await _repository.GetQualificationsByIds(dto.QualificationIds);
+
+            //profile.Qualifications =string.Join(",", dto.QualificationIds);
+
 
             await _repository.CreateAsync(profile);
 
@@ -60,16 +62,22 @@ namespace Domain.Services.JobSeeker_Module.Profile.Service
             {
                 throw new Exception("Profile not found");
             }
+
+            
             return new JobSeekerProfileResponseDto
             {
                 Id = profile.Id,
-                ProfileName = profile.ProfileName,
-                ProfileDescription = profile.ProfileDescription,
-                Experience = profile.Experience,
-                Skills = profile.Skills?.Select(s => s.Name).ToList(),
-                Qualifications = profile.Qualifications?.Select(q => q.Name).ToList()
-            };
 
+                ProfileName = profile.ProfileName,
+
+                ProfileDescription = profile.ProfileDescription,
+
+                Experience = profile.Experience,
+
+                Skills = profile.Skills.Select(x => x.Name).ToList(),
+
+                Qualifications = profile.Qualifications.Select(x => x.Name).ToList()
+            };
         }
 
       public async Task<string> UpdateAsync(Guid userId, UpdateJobSeekerProfileDto dto)
@@ -88,8 +96,8 @@ namespace Domain.Services.JobSeeker_Module.Profile.Service
             profile.ProfileDescription = dto.ProfileDescription;
             profile.Experience = dto.Experience;
 
-            // Replace collections with fresh entities
             profile.Skills = await _repository.GetSkillsByIds(dto.SkillIds);
+
             profile.Qualifications = await _repository.GetQualificationsByIds(dto.QualificationIds);
 
             await _repository.UpdateAsync(profile);

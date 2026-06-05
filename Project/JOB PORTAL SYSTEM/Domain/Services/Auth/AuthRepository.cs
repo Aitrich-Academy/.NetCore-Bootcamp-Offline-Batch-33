@@ -141,6 +141,20 @@ namespace Domain.Services.Auth
                         user.Role.ToString())
                 };
 
+            // 🔹 Add role-specific claims
+            if (user.Role == Role.JobProvider)
+            {
+                var jobProvider = _context.JobProviders.FirstOrDefault(jp => jp.UserId == user.Id);
+                if (jobProvider?.CompanyId != null)
+                    claims.Add(new Claim("CompanyId", jobProvider.CompanyId.ToString()));
+            }
+            else if (user.Role == Role.JobSeeker)
+            {
+                var jobSeeker = _context.JobSeekers.FirstOrDefault(js => js.UserId == user.Id);
+                if (jobSeeker != null)
+                    claims.Add(new Claim("JobSeekerId", jobSeeker.Id.ToString()));
+            }
+
             var key =
                 new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(tokenSecret));

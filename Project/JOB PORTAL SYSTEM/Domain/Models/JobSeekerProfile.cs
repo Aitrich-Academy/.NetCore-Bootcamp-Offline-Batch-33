@@ -18,9 +18,9 @@ namespace Domain.Models
         public string ProfileDescription { get; set; }
 
         public string Experience { get; set; }
-         public ICollection<Skill> Skills { get; set; } = new List<Skill>();
+        public ICollection<Skill> Skills { get; set; } = new List<Skill>();
         public ICollection<Qualification> Qualifications { get; set; } = new List<Qualification>();
 
-
+        
     }
 }

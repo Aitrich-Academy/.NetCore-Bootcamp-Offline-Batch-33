@@ -34,12 +34,26 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 
                 if (string.IsNullOrEmpty(providerIdClaim))
                 {
-                    return Unauthorized("Invalid token");
+                    return Unauthorized("You are not authorized to perform this action");
                 }
 
                 Guid providerId = Guid.Parse(providerIdClaim);
 
+                //var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                //if (string.IsNullOrEmpty(companyIdClaim))
+                //{
+                //    return Unauthorized("Invalid token");
+                //}
+
+                //var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+
                 var company = await companyService.AddCompanyAsync(request, providerId);
+
+                if (company == null)
+                {
+                    return BadRequest("Failed to create company profile.");
+                }
 
                 var response = mapper.Map<CompanyProfileDto>(company);
 
@@ -47,83 +61,108 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
-        [HttpGet("user")]
+        [HttpGet("All")]
         [Authorize]
-        public async Task<IActionResult> GetCompanyProfileByUserId(Guid providerId)
+        public async Task<IActionResult> GetAllCompanyProfiles()
         {
             try
             {
-                var company = await companyService.GetAllCompaniesByProviderIdAsync(providerId);
+                var company = await companyService.GetAllCompaniesByProviderIdAsync();
                 var response = mapper.Map<IEnumerable<CompanyProfileDto>>(company);
                 return Ok(response);
 
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
-        [HttpGet("{id}")]
+        [HttpGet()]
         [Authorize]
-        public async Task<IActionResult> GetCompanyProfileById(Guid id)
+        public async Task<IActionResult> GetCompanyProfileById()
         {
             try
             {
-                var company = await companyService.GetCompanyByIdAsync(id);
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                    return Unauthorized("You are not authorized to perform this action.");
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+
+
+                var company = await companyService.GetCompanyByIdAsync(loggedInCompanyId);
                 if (company == null)
                 {
-                    return NotFound("Company not found");
+                    return NotFound("No records found for the given CompanyId");
                 }
                 var response = mapper.Map<CompanyProfileDto>(company);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpPut("{CompanyId}")]
         [Authorize]
 
-        public async Task<IActionResult> UpdateCompanyProfile(Guid CompanyId, [FromBody] UpdateCompanyProfileRequest request)
+        public async Task<IActionResult> UpdateCompanyProfile([FromBody] UpdateCompanyProfileRequest request)
         {
             try
             {
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                    return Unauthorized("CompanyId claim is missing or invalid.");
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+
+
                 var company = mapper.Map<Company>(request);
-                var updatedCompany = await companyService.UpdateCompanyAsync(CompanyId, company);
+                var updatedCompany = await companyService.UpdateCompanyAsync(loggedInCompanyId, company);
                 if (updatedCompany == null)
                 {
-                    return NotFound("Company not found");
+                    return NotFound("No records found for the given CompanyId");
                 }
                 var response = mapper.Map<CompanyProfileDto>(updatedCompany);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
         [HttpDelete("{id}")]
         [Authorize]
-        public async Task<IActionResult> DeleteCompanyProfile(Guid id)
+        public async Task<IActionResult> DeleteCompanyProfile()
         {
             try
             {
-                var deleted = await companyService.DeleteCompanyAsync(id);
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                {
+                    return Unauthorized("CompanyId claim is missing or invalid.");
+                }
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+
+                var deleted = await companyService.DeleteCompanyAsync(loggedInCompanyId);
                 if (!deleted)
                 {
-                    return NotFound("Company not found");
+                    return NotFound("No records found for the given CompanyId");
                 }
                 return Ok("Company Deleted");
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
     }

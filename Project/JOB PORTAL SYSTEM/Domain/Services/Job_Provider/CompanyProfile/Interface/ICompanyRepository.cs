@@ -11,7 +11,7 @@ namespace Domain.Services.Job_Provider.CompanyProfile.Interface
     {
         Task<Company> AddAsync(Company company);
         Task<Company?> GetByIdAsync(Guid id);
-        Task<IEnumerable<Company>> GetAllByUserIdAsync(Guid companyId);
+        Task<IEnumerable<Company>> GetAllByUserIdAsync();
         Task<Company?> UpdateAsync(Guid CompanyId, Company company);
         Task<bool> DeleteAsync(Guid id);
         //---------------------------------------------------------------//

@@ -32,7 +32,7 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
 
             if (!scheduledInterview)
             {
-                return BadRequest("Failed to schedule interview");
+                return BadRequest("ApplicationId is invalid or does not belong to your company.");
             }
 
             return Ok("Interview scheduled successfully");
@@ -42,10 +42,18 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         [Authorize(Roles = "JobProvider")]
         [HttpGet("{interviewId}/GetInterviewById")]
         public async Task<IActionResult> GetInterviewById(Guid interviewId)
-        { 
-            var interview = await _interviewService.GetInterviewByIdAsync(interviewId);
+        {
+            var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+            if (string.IsNullOrEmpty(companyIdClaim))
+                return Unauthorized();
+
+            var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+            var interview = await _interviewService.GetInterviewByIdAsync(interviewId, loggedInCompanyId);
             if (interview == null)
-                return NotFound();
+            {
+                return BadRequest("Interview not found for the given company.");
+            }
             return Ok(interview);
         }
 
@@ -53,9 +61,18 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         [HttpGet("GetInterviews")]
         public async Task<IActionResult> GetInterview()
         {
-            var interview = await _interviewService.GetInterviewsAsync();
+            var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+            if (string.IsNullOrEmpty(companyIdClaim))
+                return Unauthorized();
+
+            var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+            var interview = await _interviewService.GetInterviewsAsync(loggedInCompanyId);
             if (interview == null || !interview.Any())
-                return NotFound();
+            {
+                return BadRequest("No interviews found.");
+            }
+
             return Ok(interview);
         }
 
@@ -65,12 +82,18 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         {
             try
             {
-                var result = await _interviewService.UpdateInterviewAsync(updateInterviewDto);
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                    return Unauthorized();
+
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+                var result = await _interviewService.UpdateInterviewAsync(updateInterviewDto, loggedInCompanyId);
                 if (result != null)
                 {
                     return Ok(result);
                 }
-                return NotFound();
+                return BadRequest("Interview does not exist or is not owned by your company.");
             }
             catch (Exception ex)
             {
@@ -84,11 +107,16 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Provider
         {
             try
             {
+                var companyIdClaim = User.FindFirst("CompanyId")?.Value;
+                if (string.IsNullOrEmpty(companyIdClaim))
+                    return Unauthorized();
 
-                var interview = await _interviewService.DeleteInterviewAsync(interviewId);
-                if (!interview)
+                var loggedInCompanyId = Guid.Parse(companyIdClaim);
+
+                var Deleteinterview = await _interviewService.DeleteInterviewAsync(interviewId, loggedInCompanyId);
+                if (!Deleteinterview)
                 {
-                    return NotFound();
+                    return BadRequest("Interview not found or already deleted.");
                 }
 
                 return Ok("Interview deleted successfully");

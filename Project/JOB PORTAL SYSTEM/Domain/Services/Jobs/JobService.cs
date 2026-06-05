@@ -32,13 +32,14 @@ namespace Domain.Services.Jobs
 
             return _mapper.Map<List<GetJobsDto>>(jobs);
         }
-        public async Task<JobDto> CreateJobAsync(CreateJobDto dto)
+        public async Task<JobDto> CreateJobAsync(CreateJobDto dto, Guid companyId)
         {
             try
             {
                 var job = _mapper.Map<Job>(dto);
                 job.Id = Guid.NewGuid();
                 job.CreatedAt = DateTime.UtcNow;
+                job.CompanyId = companyId;
 
                 var created = await _repo.AddJobAsync(job);
 
@@ -48,6 +49,18 @@ namespace Domain.Services.Jobs
             {
                 // Log the exception (not implemented here)
                 throw new ApplicationException("An error occurred while creating the job.", ex);
+            }
+        }
+
+        public async Task<Job?> GetJobEntityByIdAsync(Guid jobId)
+        {
+            try
+            {
+                return await _repo.GetJobByIdAsync(jobId); // entity with CompanyId
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -69,11 +82,11 @@ namespace Domain.Services.Jobs
             }
         }
 
-        public async Task<IEnumerable<JobDto>> GetAllJobsAsync()
+        public async Task<IEnumerable<JobDto>> GetAllJobsAsync(Guid companyId)
         {
             try
             {
-                var jobs = await _repo.GetAllJobsAsync();
+                var jobs = await _repo.GetAllJobsAsync(companyId);
                 return _mapper.Map<List<JobDto>>(jobs);
 
             }

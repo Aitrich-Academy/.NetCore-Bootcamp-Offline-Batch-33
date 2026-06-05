@@ -27,6 +27,9 @@ namespace JOB_PORTAL_SYSTEM.Api.Auth
         {
             try
             {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+
                 var id = await _service.Signup(dto);
 
                 return Ok(id);
@@ -46,6 +49,9 @@ namespace JOB_PORTAL_SYSTEM.Api.Auth
         {
             try
             {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+
                 var result =
                     await _service.VerifyEmail(signupId);
 
@@ -72,6 +78,9 @@ namespace JOB_PORTAL_SYSTEM.Api.Auth
         {
             try
             {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+
                 var result =
                     await _service.SetPassword(signupId,dto);
 
@@ -97,6 +106,9 @@ namespace JOB_PORTAL_SYSTEM.Api.Auth
         {
             try
             {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+
                 var result =
                     await _service.Login(dto);
 
