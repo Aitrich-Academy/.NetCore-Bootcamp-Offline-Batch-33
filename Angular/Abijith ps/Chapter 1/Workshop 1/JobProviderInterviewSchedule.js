@@ -36,12 +36,23 @@ class JobProvider {
             case '2':
                 this.scheduleInterview();
                 break;
+            case '3':
+                this.showInterview();
+                break;
             case '0':
                 exitProgram = true;
                 break;
             default:
                 console.log('Invalid option');
                 break;
+        }
+    }
+    showInterview() {
+        if (interviewList.length == 0) {
+            console.log("No interviews scheduled");
+        }
+        else {
+            interviewList.forEach(interview => console.log(interview));
         }
     }
     applicantList() {
