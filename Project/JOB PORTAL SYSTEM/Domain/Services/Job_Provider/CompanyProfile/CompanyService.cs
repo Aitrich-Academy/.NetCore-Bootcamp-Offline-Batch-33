@@ -26,6 +26,11 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 {
                     throw new Exception("Job provider not found");
                 }
+                if (jobProvider.CompanyId != null)
+                {
+                    throw new Exception("This provider already has a company assigned.");
+                }
+
 
                 var company = new Company
                 {
@@ -43,6 +48,9 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 };
 
                 await companyRepository.AddAsync(company);
+
+                jobProvider.CompanyId = company.Id;
+                await companyRepository.UpdateAsync(jobProvider);
 
                 var savedcompany = await companyRepository.GetByIdAsync(company.Id);
 
@@ -68,12 +76,12 @@ namespace Domain.Services.Job_Provider.CompanyProfile
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<IEnumerable<CompanyProfileDto>> GetAllCompaniesByProviderIdAsync(Guid providerId)
+        public async Task<IEnumerable<CompanyProfileDto>> GetAllCompaniesByProviderIdAsync()
         {
             try
             {
 
-                var companies = await companyRepository.GetAllByUserIdAsync(providerId);
+                var companies = await companyRepository.GetAllByUserIdAsync();
 
                 return companies.Select(c => mapper.Map<CompanyProfileDto>(c)).ToList();
             }

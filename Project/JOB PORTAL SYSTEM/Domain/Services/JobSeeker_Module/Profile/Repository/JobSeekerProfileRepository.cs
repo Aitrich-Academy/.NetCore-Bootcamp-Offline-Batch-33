@@ -33,11 +33,11 @@ namespace Domain.Services.JobSeeker_Module.Profile.Repository
         {
             return await _context.JobSeekers .FirstOrDefaultAsync(x => x.UserId == authUserId);
         }
-        public async Task<JobSeekerProfile> GetProfileByJobSeekerId(Guid jobSeekerId)
+        public async Task<JobSeekerProfile?> GetProfileByJobSeekerId(Guid jobSeekerId)
         {
             return await _context.JobSeekerProfiles
-                .Include(x => x.Skills)
-                .Include(x => x.Qualifications)
+                .Include(p => p.Skills)
+                .Include(p => p.Qualifications)
                 .FirstOrDefaultAsync(x => x.JobSeekerId == jobSeekerId);
         }
         public async Task<JobSeekerProfile> UpdateAsync(JobSeekerProfile profile)

@@ -9,7 +9,6 @@ namespace Domain.Services.Job_Provider.Job_Service.DTO
 {
     public class CreateJobDto
     {
-        public Guid CompanyId { get; set; }
         public Guid CompanyMemberId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

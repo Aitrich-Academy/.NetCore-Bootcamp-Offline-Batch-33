@@ -31,19 +31,28 @@ namespace Domain.Services.Job_Provider.Interviews
             await _context.SaveChangesAsync();
             return true;
         }
-        public async Task<List<Interview>> GetInterviewsAsync()
+        public async Task<List<Interview>> GetInterviewsByCompanyAsync(Guid companyId)
         {
-            return await _context.Interviews.Include(i => i.Application).ToListAsync();
+            return await _context.Interviews
+                .Include(i => i.Application)
+                .ThenInclude(a => a.Job)
+                .Where(i => i.Application.Job.CompanyId == companyId)
+                .ToListAsync();
         }
 
-        public async Task<Interview> GetInterviewByIdAsync(Guid interviewId)
+        public async Task<Interview?> GetInterviewByIdAsync(Guid interviewId, Guid companyId)
         {
-            return await _context.Interviews.Include(i => i.Application).FirstOrDefaultAsync(i => i.Id == interviewId);
+            return await _context.Interviews
+                .Include(i => i.Application)
+                .ThenInclude(a => a.Job)
+                .FirstOrDefaultAsync(i => i.Id == interviewId && i.Application.Job.CompanyId == companyId);
         }
-        public async Task<InterviewResponseDto> UpdateInterviewAsync(UpdateInterviewDto updateInterview)
+        public async Task<InterviewResponseDto> UpdateInterviewAsync(UpdateInterviewDto updateInterview, Guid companyId)
         {
             var existingInterview = await _context.Interviews
-        .FirstOrDefaultAsync(i => i.Id == updateInterview.Id);
+                .Include(i => i.Application)
+                .ThenInclude(a => a.Job)
+                .FirstOrDefaultAsync(i => i.Id == updateInterview.Id && i.Application.Job.CompanyId == companyId);
 
             if (existingInterview == null)
             {
@@ -70,11 +79,14 @@ namespace Domain.Services.Job_Provider.Interviews
                 Status = existingInterview.Status
             };
         }
-        public async Task<bool> DeleteInterviewAsync(Guid interviewId)
+        public async Task<bool> DeleteInterviewAsync(Guid interviewId, Guid companyId)
         {
 
             var interview = await _context.Interviews
-        .FindAsync(interviewId);
+                .Include(i => i.Application)
+                .ThenInclude(a => a.Job)
+                .FirstOrDefaultAsync(i => i.Id == interviewId && i.Application.Job.CompanyId == companyId);
+
 
             if (interview == null)
             {

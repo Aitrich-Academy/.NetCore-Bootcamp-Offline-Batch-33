@@ -54,6 +54,8 @@ namespace JOB_PORTAL_SYSTEM.Extensions
             services.AddScoped<IInterviewService, InterviewService>();
             services.AddScoped<IInterviewRepository, InterviewRepository>();
 
+            services.AddScoped<ISkillRepository, SkillRepository>();
+            services.AddScoped<ISkillService, SkillService>();
 
             services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<IAdminService, AdminService>();

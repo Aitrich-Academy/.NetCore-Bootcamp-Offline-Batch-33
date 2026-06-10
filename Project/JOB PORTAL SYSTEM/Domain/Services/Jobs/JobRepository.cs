@@ -107,7 +107,7 @@ namespace Domain.Services.Jobs
 
         }
 
-        public async Task<IEnumerable<Job>> GetAllJobsAsync()
+        public async Task<IEnumerable<Job>> GetAllJobsAsync(Guid companyId)
         {
             try
             {
@@ -120,6 +120,8 @@ namespace Domain.Services.Jobs
                     .Include(j => j.Category)
                     .Include(j => j.Location)
                     .Include(j => j.CompanyMember)
+                    .Where(j => j.CompanyId == companyId)
+
                     .ToListAsync();
             }
             catch (Exception ex)
