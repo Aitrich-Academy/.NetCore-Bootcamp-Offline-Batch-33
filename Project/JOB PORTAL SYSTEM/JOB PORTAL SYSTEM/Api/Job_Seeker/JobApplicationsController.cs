@@ -1,11 +1,13 @@
 ﻿using Domain.Services.Job_Seeker.Applications.DTOs;
 using Domain.Services.Job_Seeker.Applications.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
 {
-    [Route("api/v1/jobseekers/{jobSeekerId}/applications")]
+    [Route("api/jobseekers/applications")]
     [ApiController]
     public class JobApplicationsController : ControllerBase
     {
@@ -17,10 +19,17 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
         }
 
         [HttpPost]
-        public async Task<IActionResult> ApplyJob(Guid jobSeekerId, [FromBody] ApplyJobDto dto)
+        [Authorize(Roles = "JobSeeker")]
+        public async Task<IActionResult> ApplyJob([FromBody] ApplyJobDto dto)
         {
             try
             {
+                var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+
+                if (claim == null)
+                    return Unauthorized();
+
+                var jobSeekerId = Guid.Parse(claim.Value);
                 await _service.ApplyJobAsync(jobSeekerId, dto);
 
                 return Created("", new
@@ -48,10 +57,17 @@ namespace JOB_PORTAL_SYSTEM.Api.Job_Seeker
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMyApplications(Guid jobSeekerId)
+        [Authorize(Roles = "JobSeeker")]
+        public async Task<IActionResult> GetMyApplications()
         {
             try
             {
+                var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+
+                if (claim == null)
+                    return Unauthorized();
+
+                var jobSeekerId = Guid.Parse(claim.Value);
                 var result = await _service.GetMyApplicationsAsync(jobSeekerId);
 
                 return Ok(new

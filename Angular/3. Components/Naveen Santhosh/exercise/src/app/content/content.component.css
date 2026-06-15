@@ -1,0 +1,85 @@
+ body {
+      font-family:'Times New Roman', Times, serif;
+      background-color: #f5f5f5;
+      
+    }
+
+    .table-container {
+      background: white;
+      border-radius: 10px;
+      
+    }
+
+    .job-table {
+      width: 100%;
+      border-collapse: collapse;
+     
+      
+    }
+
+    .job-table th,
+    .job-table td {
+      padding:9px 5px;
+      text-align: left;
+      
+    }
+
+    .job-table th {
+      font-weight: bold;
+    }
+
+    .company {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 35px;
+      height: 35px;
+      background-color: #ddd;
+      border-radius: 5px;
+    }
+
+    .company-name {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .company-type {
+      font-size: 12px;
+      color: gray;
+    }
+
+    .contact-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 50%;
+      background-color: #f3ecff;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .status {
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .pending {
+      border: 1px solid gray;
+      color: gray;
+    }
+
+    .hold {
+      border: 1px solid orange;
+      color: orange;
+    }
+
+    .candidate {
+      background-color: #22c55e;
+      color: white;
+    }
