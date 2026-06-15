@@ -1,5 +1,5 @@
 export class Interview {
-    jobTitle: string;
+    jobTitle: string='';
     dateOfInterview: Date;
     time: string;
     modeOfInterview: string;
