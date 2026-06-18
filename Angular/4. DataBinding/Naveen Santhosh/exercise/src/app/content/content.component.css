@@ -1,0 +1,160 @@
+ body {
+      font-family:'Times New Roman', Times, serif;
+      background-color: #f5f5f5;
+      
+    }
+
+    .search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: left; 
+    gap: 30px;
+  }
+
+  .heading-info h5 {
+  margin: 0%;
+  font-size: 14px;
+  display: flex;
+
+  
+}
+.boxes{
+  background-color: rgb(234, 194, 234);
+  padding: 5px;
+  border-radius: 9px;
+}
+
+.heading-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #888;
+}
+  
+  .search-link {
+    font-size: 15px;
+    font-weight: bold;
+    align-items: center;
+    position: absolute;
+    left: 25%;
+  }
+
+  .search-name:hover {
+     color: #0a079c;
+  }
+  .search-bar {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .search-bar input[type="text"] {
+   padding-right: 40px;
+   width: 875px;
+   padding: 15px;
+   border-radius: 110px;
+   outline: none;
+   border: none;
+   background-color: #ffffff;
+  }
+ 
+  .find-button{
+    position:absolute;
+    width: 80px;
+    height: 40px;
+    border-radius: 15px;
+    top:50%;
+    left: 800px;
+    background-color: #0a079c;
+    color: #ffffff;
+    transform: translateY(-50%);
+  }
+
+  .find-button:hover{
+    background-color: rgb(112, 128, 142);
+  }
+  
+  .search-img{
+    max-width: 25%;
+  }
+  
+
+    .table-container {
+      background: white;
+      border-radius: 10px;
+      
+    }
+
+    .job-table {
+      width: 100%;
+      border-collapse: collapse;
+     
+      
+    }
+
+    .job-table th,
+    .job-table td {
+      padding:9px 5px;
+      text-align: left;
+      
+    }
+
+    .job-table th {
+      font-weight: bold;
+    }
+
+    .company {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 35px;
+      height: 35px;
+      background-color: #ddd;
+      border-radius: 5px;
+    }
+
+    .company-name {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .company-type {
+      font-size: 12px;
+      color: gray;
+    }
+
+    .contact-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 50%;
+      background-color: #f3ecff;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .status {
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .pending {
+      border: 1px solid gray;
+      color: gray;
+    }
+
+    .hold {
+      border: 1px solid orange;
+      color: orange;
+    }
+
+    .candidate {
+      background-color: #22c55e;
+      color: white;
+    }
+
+  

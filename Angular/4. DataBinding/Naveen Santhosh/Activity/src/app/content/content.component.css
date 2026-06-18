@@ -1,0 +1,8 @@
+.manager {
+  color: white;
+  background-color: green;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+  width: fit-content;
+}
