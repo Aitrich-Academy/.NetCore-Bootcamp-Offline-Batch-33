@@ -8,7 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Api.Admin
 {
+<<<<<<< HEAD
     [Authorize(Roles = "Admin")]
+=======
+
+    [Authorize(Roles ="Admin")]
+
+    [Authorize(Roles = "Admin")]
+
+>>>>>>> e9582579dafeef7087ca3e4f3f8fae3a36fb6c05
     [Tags("02-Admin")]
     [Route("api/[controller]")]
     [ApiController]
