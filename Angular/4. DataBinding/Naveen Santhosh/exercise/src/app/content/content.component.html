@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="search-container">
+    <div class="heading-info">
+  <h5>Showing 45 Applicants</h5>
+  <p>Based Your Preferences</p>
+    </div>
+    <button class="boxes" (click)="filterJobs('All')">All</button>
+     <button class="boxes" (click)="filterJobs('Pending')">Pending</button>
+      <button class="boxes" (click)="filterJobs('Candidate')">Candidate</button>
+       <button class="boxes" (click)="filterJobs('On-Hold')">On-Hold</button>    
+</div>
+  <br>
+  <br>
+  <div class="table-container">
+   <table class="job-table">
+
+    <tr>
+      <th></th>
+      <th>ID</th>
+      <th>Date Applied</th>
+      <th>Company</th>
+      <th>Type</th>
+      <th>Position</th>
+      <th>Contact</th>
+      <th>Status</th>
+    </tr>
+    <br>
+    <tr *ngFor="let job of filteredJobs()">
+    
+  <td><input type="checkbox"></td>
+
+  <td>{{ job.ID }}</td>
+
+  <td>{{ job.DateApplied }}</td>
+
+  <td>
+    <div class="company">
+      <div class="logo"></div>
+
+      <div>
+        <div class="company-name">{{ job.Company }}</div>
+        <div class="company-type"><b>Creative Design Agency</b></div>
+      </div>
+    </div>
+  </td>
+
+  <td>{{ job.jobType }}</td>
+
+  <td>{{ job.position }}</td>
+
+  <td>
+    <button class="contact-btn">📞</button>
+    <button class="contact-btn">📧</button>
+  </td>
+
+  <td>
+    <span
+      class="status"
+      [ngClass]="{
+        pending: job.status === 'Pending',
+        hold: job.status === 'On-Hold',
+        candidate: job.status === 'Candidate'
+      }">
+      {{ job.status }}
+    </span>
+  </td>
+  
+</tr>
+
+  </table>
+  </div>
+</body>
+</html>

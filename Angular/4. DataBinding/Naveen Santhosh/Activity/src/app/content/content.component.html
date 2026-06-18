@@ -1,0 +1,60 @@
+
+<!-- questione 1 -->
+<p><b>Student Name : </b>{{studentName}}</p>
+<p><b>Student Age :</b>{{age}}</p>
+
+<!-- questione 2 -->
+<button [disabled]="isDisabled">Submit</button>
+<button (click)="toggleButton()">Toggle button status</button>
+<br>
+<br>
+<!-- questione 3 -->
+<img src="{{image1}}" alt="image not loaded">
+<button (click)="changeImage()">Change Image</button>
+
+<!-- questione 4 -->
+ <p [ngStyle]="{color : textColor}">Japan captures the kinetic energy of human footsteps using piezoelectric tiles. <br>
+    Embedded in high-traffic areas like Tokyo's Shibuya Station,<br>
+     these tiles convert the pressure from walking into electrical energy,<br>
+      powering LED displays and lights for a smart, sustainable city</p>
+      <button (click)="changetextColor()">Change text Color</button><br><br>
+
+<!-- questione 5 -->
+ <input type="text" [(ngModel)]="username"; placeholder="Enter Your usernme : ">
+ <p>Your username : {{username}}</p><br><br>
+
+ <!-- questione 6 -->
+<button (click)="lightOFF()">Light Switch</button>
+<p *ngIf="islightON">Light is on 💡</p>
+<p *ngIf="!islightON ">Light is off ⭕ </p>
+
+<!-- questione 7 -->
+ <div style="background-color: aqua; width: fit-content;">
+    <p *ngFor="let fruit of fruits" >{{fruit}}</p>
+ </div>
+
+ <!-- questione 8 -->
+<ul style="list-style: none;">
+   <li *ngFor="let emp of employees" [ngClass]="{'manager': emp.isManager}">
+      {{emp.name}} 
+   </li>
+</ul>
+
+
+ <!-- questione 9 -->
+
+ <button (click)="incrementNum()" >➕</button>
+ <button (click)="decrementNum()">➖</button> 
+ <h1>{{num}}</h1>
+ 
+ <!-- questione 10 -->
+  <img  style="width: 200px;" [src]="image3" alt="drishyam3 image"><br>
+  <input style="width: 110px;" type="text" [(ngModel)]="rating" placeholder="Rate Out of Ten "
+   inputmode="numeric" min="0" max="10">
+  <p *ngIf="rating > 8">Hit</p>
+  <p *ngIf="rating >= 5 && rating <= 8">Average</p>
+  <p *ngIf="rating < 5">Flop </p>
+
+ <!-- questione 11 -->
+  <h1 appHighlightDirective>Hover mouse on this heading</h1>
+ 
