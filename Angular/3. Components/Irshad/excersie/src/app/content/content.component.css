@@ -1,0 +1,144 @@
+.hero{
+    position: relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:40px 60px;
+    min-height:700px;
+    overflow:hidden;
+    background:white;
+}
+
+/* Blue diagonal background */
+.rectangle{
+    position:absolute;
+
+    width:800px;
+    height:1000px;
+
+    left:150px;
+    top:-350px;
+
+    background:linear-gradient(
+        192.9deg,
+        #BAD2FF -52.89%,
+        #159EEC 103.53%
+    );
+
+    border-radius:40px;
+    transform:rotate(-30deg);
+    overflow:hidden;
+}
+
+.hero-left{
+    width:45%;
+    position:relative;
+    z-index:2;
+}
+
+.hero-left h1{
+    font-size:60px;
+    color:#242D62;
+    line-height:1.2;
+}
+
+.hero-left p{
+    color:#6D7394;
+    margin:20px 0;
+}
+
+.search-box{
+    display:flex;
+    margin-top:30px;
+}
+
+.search-box input{
+    width:300px;
+    padding:12px;
+    border:none;
+    background:#F1F9FE;
+}
+
+.search-box button{
+    background:#159EEC;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    cursor:pointer;
+}
+
+.tags{
+    margin-top:20px;
+}
+
+.tags button{
+    background:#4AE9A6;
+    border:none;
+    color:white;
+    padding:10px 15px;
+    margin-right:10px;
+    border-radius:4px;
+}
+
+.hero-right{
+    position:relative;
+    width:800px;
+    height:700px;
+}
+
+.main-image{
+    width:600px;
+    height:650px;
+
+    margin-left:-150px;
+    margin-top:350px;
+
+    transform:rotate(30deg);
+}
+
+/* Slack Logo */
+.slack-icon{
+    position:absolute;
+    height: 120px;
+    width:130px;
+    top:70px;
+    left:85px;
+    z-index:3;
+}
+
+/* Facebook/Link Logo */
+.link-icon{
+    position:absolute;
+    width:120px;
+    height: 110px;
+    top:190px;
+    left:250px;
+    z-index:3;
+}
+
+/* Google Logo */
+.google-icon{
+    position:absolute;
+    width:130px;
+    top:100px;
+    right:0px;
+    z-index:3;
+}
+
+/* Application Accepted Card */
+.application-card{
+    position:absolute;
+    width:340px;
+    top:250px;
+    left:100px;
+    z-index:3;
+}
+
+/* 20k+ People Get Job Card */
+.job-card{
+    position:absolute;
+    width:180px;
+    top:420px;
+    right:40px;
+    z-index:3;
+}

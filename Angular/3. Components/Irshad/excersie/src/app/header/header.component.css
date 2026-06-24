@@ -1,0 +1,28 @@
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 60px;
+}
+
+.logo{
+    color:#242D62;
+    font-size:32px;
+    font-weight:bold;
+}
+
+.menu{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+.menu li{
+    cursor:pointer;
+}
+
+.auth{
+    display:flex;
+    gap:20px;
+    font-weight:600;
+}

@@ -1,47 +1,40 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var readline = require("readline");
-var rl = readline.createInterface({
+import * as readline from 'readline';
+const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-var menuOptions = [
+const menuOptions = [
     '1. Show Applicant List',
     '2. Schedule Interview',
     '3. Show Scheduled InterviewList',
     '0. Exit'
 ];
-var exitProgram = false;
+let exitProgram = false;
 var obj;
-var interviewList = [];
+let interviewList = [];
 var localStorage = "";
-var JobProvider = /** @class */ (function () {
-    function JobProvider() {
-    }
-    JobProvider.prototype.showMenu = function () {
-        var _this = this;
+class JobProvider {
+    constructor() { }
+    showMenu() {
         console.log("******************************************************* Welcome To Job Portal********************************************************");
-        menuOptions.forEach(function (option) { return console.log(option); });
-        rl.question('Enter your choice: ', function (input) {
-            _this.selectOption(input);
+        menuOptions.forEach(option => console.log(option));
+        rl.question('Enter your choice: ', (input) => {
+            this.selectOption(input);
             if (exitProgram) {
                 rl.close();
             }
             else {
-                _this.showMenu();
+                this.showMenu();
             }
         });
-    };
-    JobProvider.prototype.selectOption = function (input) {
+    }
+    selectOption(input) {
         switch (input) {
             case '1':
                 this.applicantList();
                 break;
             case '2':
                 this.scheduleInterview();
-                break;
-            case '3':
-                ScheduledInterviewList();
                 break;
             case '0':
                 exitProgram = true;
@@ -50,8 +43,8 @@ var JobProvider = /** @class */ (function () {
                 console.log('Invalid option');
                 break;
         }
-    };
-    JobProvider.prototype.applicantList = function () {
+    }
+    applicantList() {
         var applicantsList = [
             {
                 name: "Akash .A. ",
@@ -79,29 +72,28 @@ var JobProvider = /** @class */ (function () {
             }
         ];
         console.log("\n--------------------------------------------------Applicants List-----------------------------------------------\n");
-        applicantsList.forEach(function (list) {
+        applicantsList.forEach(list => {
             console.log("Name:" + list.name + " JobTitle: " + list.jobTitle + " Qualification: " + list.qualification + " Experience: " + list.experience + "\n");
         });
         console.log("\n------------------------------------------------------------------------------------------------------------\n");
-    };
-    JobProvider.prototype.scheduleInterview = function () {
-        var _this = this;
+    }
+    scheduleInterview() {
         var result = this.auth();
         if (result) {
             console.log("-------------------------Interview Schedule------------------");
-            rl.question('Enter job title: ', function (jobTitle) {
-                rl.question('Enter interview date(yyyy-mm-dd): ', function (interviewDate) {
-                    var dateOfInterview = new Date(interviewDate);
-                    rl.question('Enter interview time: ', function (time) {
-                        rl.question('Enter interview mode: ', function (modeOfInterview) {
-                            var interviewData = {
-                                jobTitle: jobTitle,
-                                dateOfInterview: dateOfInterview,
-                                time: time,
-                                modeOfInterview: modeOfInterview
+            rl.question('Enter job title: ', (jobTitle) => {
+                rl.question('Enter interview date(yyyy-mm-dd): ', (interviewDate) => {
+                    const dateOfInterview = new Date(interviewDate);
+                    rl.question('Enter interview time: ', (time) => {
+                        rl.question('Enter interview mode: ', (modeOfInterview) => {
+                            const interviewData = {
+                                jobTitle,
+                                dateOfInterview,
+                                time,
+                                modeOfInterview
                             };
                             interviewList.push(interviewData);
-                            _this.showMenu();
+                            this.showMenu();
                         });
                     });
                 });
@@ -110,43 +102,33 @@ var JobProvider = /** @class */ (function () {
         else {
             this.login();
         }
-    };
-    JobProvider.prototype.login = function () {
-        var _this = this;
+    }
+    login() {
         console.log("please login");
-        rl.question('Enter your username: ', function (username) {
-            rl.question('Enter your password: ', function (password) {
+        rl.question('Enter your username: ', (username) => {
+            rl.question('Enter your password: ', (password) => {
                 if (username == "admin" && password == "admin123") {
                     console.log('Login successful.');
                     localStorage = "admin";
-                    _this.scheduleInterview();
+                    this.scheduleInterview();
                     return true;
                 }
                 else {
                     console.log('Invalid username or password. Please try again.!!!!!!!!!!!\n');
                     console.log('\x1b[31m%s\x1b[0m', '\u26A0', 'Error: Something went wrong!');
-                    _this.login();
+                    this.login();
                 }
             });
         });
-    };
-    JobProvider.prototype.auth = function () {
+    }
+    auth() {
         if (localStorage) {
             return true;
         }
         else {
             return this.login();
         }
-    };
-    return JobProvider;
-}());
-function ScheduledInterviewList() {
-    interviewList.forEach(function (job) {
-        console.log("Job Title: ".concat(job.jobTitle));
-        console.log("dateOfInterview: ".concat(job.dateOfInterview));
-        console.log("time: ".concat(job.time));
-        console.log(" modeOfInterview: ".concat(job.modeOfInterview));
-    });
+    }
 }
 var jobProviderRef = new JobProvider();
 jobProviderRef.showMenu();
