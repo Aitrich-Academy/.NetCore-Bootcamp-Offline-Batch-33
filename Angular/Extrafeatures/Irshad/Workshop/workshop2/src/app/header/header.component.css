@@ -1,0 +1,35 @@
+.headerImages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.headerImages img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .headerImages {
+        justify-content: center;
+    }
+
+    .headerImages img {
+        max-width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .headerImages {
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .headerImages img {
+        max-width: 60px;
+    }
+}
