@@ -8,9 +8,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Api.Admin
 {
+<<<<<<< HEAD
 
     [Authorize(Roles = "Admin")]
 
+=======
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+=======
+>>>>>>> 179d6f1346a38ec1fc53d6c8b78f066b3d1fc3d9
+    [Authorize(Roles = "Admin")]
+
+    [Authorize(Roles = "Admin")]
+
+>>>>>>> e9582579dafeef7087ca3e4f3f8fae3a36fb6c05
+=======
+    [Authorize(Roles = "Admin")]
+>>>>>>> Stashed changes
+>>>>>>> 0388e7fe212c9a96f61b6483c15a2e80578ae1fd
     [Tags("02-Admin")]
     [Route("api/[controller]")]
     [ApiController]
