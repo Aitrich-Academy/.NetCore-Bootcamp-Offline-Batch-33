@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JOB_PORTAL_SYSTEM.Api.Admin
 {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
-    [Authorize(Roles = "Admin")]
 =======
-
-    [Authorize(Roles ="Admin")]
+>>>>>>> 179d6f1346a38ec1fc53d6c8b78f066b3d1fc3d9
+    [Authorize(Roles = "Admin")]
 
     [Authorize(Roles = "Admin")]
 
