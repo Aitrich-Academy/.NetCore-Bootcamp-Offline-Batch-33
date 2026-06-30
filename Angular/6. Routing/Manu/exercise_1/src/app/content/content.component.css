@@ -1,0 +1,41 @@
+.content {
+    background-color: #f4f4f4;
+    height: 89vh;
+}
+
+.btn {
+    background-color: gray;
+}
+
+.company-icon {
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
+}
+
+.table-head {
+    border-bottom: 1px solid grey;
+}
+
+.table-head tr td {
+    font-weight: bold;
+}
+
+.table-head tbody, span {
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.table tbody td {
+    border: none;
+}
+
+.active-btn {
+    background-color: black !important;
+    color: white !important;
+}
+
+.inactive-btn {
+    background-color: #f8d7f8 !important;
+    color: black !important;
+}

@@ -1,0 +1,41 @@
+.header {
+    background-color: #f4f4f4;
+}
+
+.input-group i {
+    color: grey;
+    position: relative;
+    right: 30px;
+}
+
+h6 {
+    font-size: 20px;
+}
+
+.header-right i {
+    font-size: 25px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+img {
+    border-radius: 50%;
+    width: 50px;
+}
+
+span {
+    font-size: 12px;
+}
+
+p {
+    font-size: 18px;
+}
