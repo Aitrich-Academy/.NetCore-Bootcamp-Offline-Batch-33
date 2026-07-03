@@ -1,0 +1,152 @@
+*{
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    font-size: small;
+    width: 100%;
+}
+
+.left {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.right {
+    flex: 0 0 60%;
+    padding: 20px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+}
+
+.profile img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.profile h3 {
+    color: black;
+}
+
+.main,
+.aboutme {
+    margin-bottom: 20px;
+    border: 1px solid rgb(180, 176, 176);
+    border-radius: 10px;
+    padding: 7% 3%;
+    color: rgb(131, 127, 127);
+}
+
+.profile-contact {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-contact h3 {
+    font-weight: 400;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.contact img {
+    width: 20px;
+    height: 20px;
+}
+
+.aboutme h3 {
+    color: black;
+}
+
+/* ======================
+   TABLET
+====================== */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left,
+    .right {
+        flex: 100%;
+        width: 100%;
+    }
+
+    .right {
+        padding: 10px;
+    }
+}
+
+/* ======================
+   MOBILE
+====================== */
+@media (max-width: 768px) {
+
+    .container {
+        padding: 10px;
+    }
+
+    .profile img {
+        width: 140px;
+    }
+
+    .profile h3 {
+        font-size: 18px;
+    }
+
+    .contact {
+        font-size: 14px;
+    }
+
+    .contact p {
+        word-break: break-word;
+        margin: 0;
+    }
+
+    .main,
+    .aboutme {
+        padding: 15px;
+    }
+
+    .right {
+        padding: 0;
+    }
+}
+
+/* ======================
+   SMALL MOBILE
+====================== */
+@media (max-width: 480px) {
+
+    .profile img {
+        width: 120px;
+    }
+
+    .profile h3 {
+        font-size: 16px;
+    }
+
+    .contact {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .contact p {
+        font-size: 13px;
+    }
+}

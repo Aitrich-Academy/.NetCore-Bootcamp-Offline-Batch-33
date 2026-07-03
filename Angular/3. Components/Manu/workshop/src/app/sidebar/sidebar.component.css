@@ -1,0 +1,44 @@
+.nav-menu {
+    height: 100vh;
+    padding-right: 100px;
+}
+
+.nav-menu li {
+    list-style: none;
+    color: rgb(204, 204, 204);
+}
+
+h1 {
+    color: white;
+    font-size: 50px;
+}
+
+.nav-menu ul {
+    padding: 0px 20px;
+    margin-top: 50px;
+}
+
+.nav-menu ul li {
+    font-size: 20px;
+    padding: 15px 0px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-menu ul li img {
+    object-fit: contain;
+    width: 25px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.logo img {
+    width: 40px;
+    object-fit: contain;
+}

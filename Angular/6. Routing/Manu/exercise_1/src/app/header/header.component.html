@@ -1,0 +1,39 @@
+<div class="header d-flex align-items-center justify-content-between p-3">
+
+    <div class="header-left">
+        <h6>New Registrations</h6>
+    </div>
+
+    <div class="input-group d-flex align-items-center w-25">
+
+        <input type="text" 
+        class="form-control bg-light p-2" 
+        placeholder="Search something here"
+        [(ngModel)]="searchText"
+        (input)="onSearch()">
+        <i class="bi bi-search"></i>
+
+    </div>
+
+    <div class="header-right d-flex align-items-center">
+
+        <div class="icon me-4">
+            <i class="bi bi-chat-dots-fill"></i>
+        </div>
+
+        <div class="icon me-4">
+            <i class="bi bi-bell-fill"></i>
+        </div>
+
+        <img src="assets/images/avatar.png" class="me-2">
+
+        <div class="profile-name d-flex flex-column align-items-center justify-content-center">
+
+            <p class="fw-bold p-0 m-0">Oda Dink</p>
+            <span class="text-muted">Super admin</span>
+
+        </div>
+
+    </div>
+
+</div>

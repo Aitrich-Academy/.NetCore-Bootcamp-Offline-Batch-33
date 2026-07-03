@@ -1,0 +1,13 @@
+
+.container{
+  display: flex;
+  background-color: rgb(244, 244, 244);
+}
+.main-content{
+    flex-grow: 1;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: #0a079c;
+}

@@ -1,29 +1,20 @@
-.row {
-    display: flex;
-    
-  }
-  
-  .col-3 {
-    flex-basis: 20%; /* Adjust the width as needed */
-    height: 123vh;
-    background-color: #20a6fc;
-  }
-  
-  .col-9 {
-    flex-basis: 80%; /* Adjust the width as needed */
-    display: flex;
-    flex-direction: column;
-    height: 123vh;
+.main-layout{
+    display:flex;
+    min-height:100vh;
 }
 
-header {
-   
-    padding: 30px 20px;
-    
+.sidebar-section{
+    width:300px;
+    background:#20a6fc;
 }
 
-.parent {
-    flex-grow: 1;
-   
-    background-color: #e6e6e67c;
+.content-section{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.parent{
+    flex:1;
+    background:#e6e6e67c;
 }
