@@ -11,7 +11,7 @@ import { Job } from '../../models/job';
 export class JobAddComponent {
   addJobForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private jobService: JobService) { }
+  constructor(private formBuilder: FormBuilder, private jobService: Job Service) { }
   job: Job[] = [];
 
   ngOnInit() {
@@ -33,7 +33,7 @@ export class JobAddComponent {
     //console.log("hai");
     console.log(this.addJobForm.value);
     this.job = this.addJobForm.value;
-    this.jobService.addJob(this.job).subscribe(data => {
+    this.jobService.addjob(this.job).subscribe(data => {
       console.log(data);
     })
 

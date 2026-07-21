@@ -14,7 +14,7 @@ export class JobService {
   getJob()
   {
     return this.http.get<Job[]>(environment.baseurl+'/job')
-  }
+    }
   addJob(job:Job[]){
     
     return this.http.post(environment.baseurl+'/job',job)
